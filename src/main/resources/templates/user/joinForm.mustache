@@ -95,19 +95,17 @@
         <div class="register-box">
             <div class="card-header register-title mb-4"><b>회원가입</b></div>
             <div class="card-body">
-                <form action="#" enctype="multipart/form-data">
+                <form action="/join" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <form>
-                            <label class="me-5 custom-radio main-text">
-                              <input type="radio" name="membership" value="company"> 기업회원
-                            </label>
-                            <label class="ms-5 main-text">
-                              <input type="radio" name="membership" value="individual"> 일반회원
-                            </label>
-                        </form>
+                        <label class="me-5 custom-radio main-text">
+                            <input type="radio" name="membership" value="company"> 기업회원
+                        </label>
+                        <label class="ms-5 main-text">
+                            <input type="radio" name="membership" value="individual"> 일반회원
+                        </label>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label main-text">아이디</label>
+                        <label for="username" class="form-label main-text">아이디</label>
                         <input type="text" id="username" class="form-control sub-text" placeholder="link" name="username">
                         <button type="button" class="btn form-control btn-register main-text">중복체크</button>
                     </div>
@@ -116,10 +114,10 @@
                         <input type="password" class="form-control sub-text" placeholder="**********" name="password" >
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label main-text">이메일</label>
+                        <label for="email" class="form-label main-text">이메일</label>
                         <input type="email" class="form-control sub-text" placeholder="link@gmail.com" name="email">
                     </div>
-                    <button id="btnJoin" type="submit" class="btn form-control btn-register main-text">NEXT</button>
+                    <button id="btnJoin" type="submit" class="btn form-control btn-register main-text">회원가입</button>
                 </form>
             </div>
         </div>
