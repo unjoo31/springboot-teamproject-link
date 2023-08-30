@@ -155,6 +155,11 @@
 }
 .box-layout{
     margin-bottom: 15px;
+    margin-left: 25px;
+}
+.box-layout-right{
+    margin-left: 25px;
+    margin-right: 25px;
 }
 /* 좌측 메뉴 스타일 시작 */
 .left-nav-title{
@@ -234,81 +239,65 @@
                 <div class="body-content-title">
                     <p>Personal information</p>
                 </div>
-                <div class="d-flex first-box box-layout">
-                    <div class="d-flex left-box-first">
-                        <div class="personal-img">
-                            <img src="./img/hello.png">
+                <form action="/user/update" method="post" enctype="multipart/form-data">
+                    <div class="d-flex first-box box-layout">
+                        <div class="d-flex left-box-first">
+                            <div class="personal-img">
+                                <img src="/img/{{user.picUrl}}">
+                            </div>
+                            <button class="btn img-botton btn-login main-text" type="button">Change</button>
+                            <button class="btn img-botton btn-register main-text" type="button">Remove</button>
                         </div>
-                        <button class="btn img-botton btn-login main-text" type="button">Change</button>
-                        <button class="btn img-botton btn-register main-text" type="button">Remove</button>
-                    </div>
-                    <form action="#" enctype="multipart/form-data">
                         <div class="mb-3 d-flex flex-column">
                             <label for="companyName" class="form-label main-text">기업명</label>
-                            <input class="input-style" type="text" id="companyName" class="form-control sub-text" placeholder="(주)link" name="companyName">
+                            <input class="input-style" type="text" id="name" class="form-control sub-text" placeholder="(주)link" name="name" value="{{user.name}}">
                         </div>
-                    </form>
-                </div>
-                <div class="d-flex box-layout">
-                    <form class="left-box" action="#" enctype="multipart/form-data">
+                    </div>
+                    <div class="d-flex box-layout">
                         <div class="mb-3 d-flex flex-column">
                             <label for="userId" class="form-label main-text">아이디</label>
-                            <input class="input-style" type="text" id="userId" class="form-control sub-text" placeholder="link" name="userId">
+                            <input class="input-style" type="text" id="username" class="form-control sub-text" placeholder="link" name="username" value="{{user.username}}" disabled>
                         </div>
-                    </form>
-                    <form action="#" enctype="multipart/form-data"></form>
-                        <div class="mb-3 d-flex flex-column">
+                        <div class="mb-3 d-flex flex-column box-layout-right">
                             <label for="password" class="form-label main-text">비밀번호</label>
                             <input class="input-style" type="text" id="password" class="form-control sub-text" placeholder="**********" name="password">
                         </div>
-                    </form>
-                </div>
-                <div class="d-flex box-layout">
-                    <form class="left-box" action="#" enctype="multipart/form-data">
+                    </div>
+                    <div class="d-flex box-layout">
                         <div class="mb-3 d-flex flex-column">
                             <label for="email" class="form-label main-text">이메일</label>
-                            <input class="input-style" type="text" id="email" class="form-control sub-text" placeholder="link@gmai.com" name="email">
+                            <input class="input-style" type="text" id="email" class="form-control sub-text" placeholder="link@gmai.com" name="email" value="{{user.email}}">
                         </div>
-                    </form>
-                    <form action="#" enctype="multipart/form-data"></form>
-                        <div class="mb-3 d-flex flex-column">
+                        <div class="mb-3 d-flex flex-column box-layout-right">
                             <label for="phonenumber" class="form-label main-text">휴대폰번호</label>
-                            <input class="input-style" type="text" id="phonenumber" class="form-control sub-text" placeholder="000-0000-0000" name="phonenumber">
+                            <input class="input-style" type="text" id="phonenumber" class="form-control sub-text" placeholder="000-0000-0000" name="phonenumber" value="{{user.phonenumber}}">
                         </div>
-                    </form>
-                </div>
-                <div class="d-flex box-layout">
-                    <form class="left-box" action="#" enctype="multipart/form-data">
+                    </div>
+                    <div class="d-flex box-layout">
                         <div class="mb-3 d-flex flex-column">
                             <label for="address" class="form-label main-text">주소</label>
-                            <input class="input-style" type="text" id="address" class="form-control sub-text" placeholder="부산" name="address">
+                            <input class="input-style" type="text" id="address" class="form-control sub-text" placeholder="부산" name="address" value="{{user.address}}">
                         </div>
-                    </form>
-                    <form action="#" enctype="multipart/form-data"></form>
-                        <div class="mb-3 d-flex flex-column">
+                        <div class="mb-3 d-flex flex-column box-layout-right">
                             <label for="business" class="form-label main-text">업종</label>
-                            <input class="input-style" type="text" id="business" class="form-control sub-text" placeholder="컴퓨터시스템 통합 시스템" name="business">
+                            <input class="input-style" type="text" id="business" class="form-control sub-text" placeholder="컴퓨터시스템 통합 시스템" name="business" value="{{user.business}}">
                         </div>
-                    </form>
-                </div>
-                <div class="d-flex box-layout">
-                    <form class="left-box" action="#" enctype="multipart/form-data">
+                    </div>
+                    <div class="d-flex box-layout">
                         <div class="mb-3 d-flex flex-column">
                             <label for="form" class="form-label main-text">기업형태</label>
-                            <input class="input-style" type="text" id="form" class="form-control sub-text" placeholder="중소기업" name="form">
+                            <input class="input-style" type="text" id="form" class="form-control sub-text" placeholder="중소기업" name="form" value="{{user.form}}">
                         </div>
-                    </form>
-                    <form action="#" enctype="multipart/form-data"></form>
-                        <div class="mb-3 d-flex flex-column">
+                        <div class="mb-3 d-flex flex-column box-layout-right">
                             <label for="performance" class="form-label main-text">업력</label>
-                            <input class="input-style" type="text" id="performance" class="form-control sub-text" placeholder="0000.00.00 설립" name="performance">
+                            <input class="input-style" type="text" id="performance" class="form-control sub-text" placeholder="0000.00.00" name="performance" value="{{user.performance}}">
                         </div>
-                    </form>
-                </div>
-                <div class="d-flex bottom-box justify-content-between">
-                    <button class="btn btn-style btn-login main-text bottom-box-left" type="button">로그아웃</button>
-                    <button class="btn btn-style btn-register main-text bottom-box-right" type="button">저장</button>
-                </div>
+                    </div>
+                    <div class="d-flex bottom-box justify-content-between">
+                        <button class="btn btn-style btn-login main-text bottom-box-left" type="button">로그아웃</button>
+                        <button class="btn btn-style btn-register main-text bottom-box-right" type="submit">저장</button>
+                    </div>
+                </form>               
             </div>                
         </div>
     </div>

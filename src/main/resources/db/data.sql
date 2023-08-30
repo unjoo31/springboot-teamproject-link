@@ -4,7 +4,7 @@ INSERT INTO user_tb (
   business, form, performance
 ) VALUES (
   'ssar1', '1234', 'ssar@nate.com', TRUE,
-  'basic.jpg', '기업회원1', '123-456-7890', '123 Main St, City', NULL,
+  'basic.jpg', '기업회원1', '123-456-7890', '123 Main St, City', '1985-05-20',
   'Tech Company', 'Software Development', 'Good'
 );
 INSERT INTO user_tb (
@@ -13,7 +13,7 @@ INSERT INTO user_tb (
   business, form, performance
 ) VALUES (
   'ssar2', '1234', 'ssar@nate.com', TRUE,
-  'basic.jpg', '기업회원2', '123-456-7890', '123 Main St, City', NULL,
+  'basic.jpg', '기업회원2', '123-456-7890', '123 Main St, City', '1985-05-20',
   'Tech Company', 'Software Development', 'Good'
 );
 INSERT INTO user_tb (
@@ -22,8 +22,8 @@ INSERT INTO user_tb (
   business, form, performance
 ) VALUES (
   'cos1', '1234', 'cos@nate.com', FALSE,
-  'basic.jpg', '일반회원1', '987-654-3210', NULL, '1985-05-20',
-  NULL, NULL, NULL
+  'basic.jpg', '일반회원1', '987-654-3210', '123 Main St, City', '1985-05-20',
+  'Tech Company', 'Software Development', 'Good'
 );
 INSERT INTO notice_tb (career, title, academic_ability, salary, type_of_work, order_date, end_date, content, user_id)
 VALUES
