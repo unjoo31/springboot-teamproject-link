@@ -1,0 +1,609 @@
+{{> layout/header}}
+
+<style>
+    .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 30px;
+    width: 1000px;
+}
+
+.body {
+    margin-top: 50px;
+}
+
+.body-content {
+    border: 1px solid #EDEEF2;
+    border-radius: 15px;
+}
+
+.body-content-title {
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+.first-box {
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+
+.left-box {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.left-box-first {
+    margin-right: 40px;
+    margin-left: 10px;
+}
+
+.bottom-box {
+    border-top: 1px solid #ccc;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+}
+
+.bottom-box-left {
+    margin-left: 15px;
+}
+
+.bottom-box-right {
+    margin-right: 15px;
+}
+
+.personal-img {
+    width: 88px;
+    height: 88px;
+    background-color: #ccc;
+    border-radius: 20px;
+    margin-right: 15px;
+}
+
+.personal-img img {
+    width: 88px;
+    height: 88px;
+    border-radius: 20px;
+}
+
+.img-botton {
+    margin-top: 20px;
+    margin-right: 15px;
+    height: 40px;
+}
+
+.input-style {
+    width: 310px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #EDEEF2;
+    font-size: 14px;
+}
+
+.box-layout {
+    margin-bottom: 15px;
+}
+
+
+.grid-container1 {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 30px;
+    width: 1500px;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.card-contain {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.card-input {
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+.grid-container2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.grid-container3 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 20px;
+}
+
+.grid-container4 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.statussuccess {
+    display: inline-block;
+    padding: 5px 20px;
+    border-radius: 20px;
+    background-color: #9F12E1;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+    height: 25px;
+    text-align: center;
+}
+
+.statusfail {
+    display: inline-block;
+    padding: 5px 20px;
+    border-radius: 20px;
+    background-color: #EDEEF2;
+    color: rgb(75, 72, 72);
+    cursor: pointer;
+    font-size: 13px;
+    height: 25px;
+    text-align: center;
+}
+
+.companyname {
+    color: rgb(155, 154, 154);
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.title {
+    font-size: 22px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    /* 줄 바꿈 없이 텍스트 표시 */
+    overflow: hidden;
+    /* 넘칠 경우 숨김 처리 */
+    text-overflow: ellipsis;
+}
+
+.container-second{
+    display: flex;
+    white-space: nowrap;
+    /* 줄 바꿈 없이 텍스트 표시 */
+    overflow: hidden;
+    /* 넘칠 경우 숨김 처리 */
+    text-overflow: ellipsis;
+    width: 1300px;
+}
+
+.container-second-card{
+    margin-right: 10px;
+}
+
+/* board에서 퍼온 스타일 */
+.search-input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 18px;
+    font-size: 15px;
+}
+
+.btn-category{
+    border-radius: 30px;
+    width: 100px;
+    height: 40px;
+    border: 1px solid #9F12E1;
+    color: #9F12E1;
+    background-color: #ffffff;
+    margin-right: 10px;
+}
+
+.btn-category-off{
+    border-radius: 30px;
+    width: 100px;
+    height: 40px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    color : rgb(75, 72, 72);
+}
+
+.btn-category-on{
+    border-radius: 30px;
+    width: 100px;
+    height: 40px;
+    background-color: #9F12E1;
+    color: white;
+}
+
+/* board에서 퍼온 스타일 */
+.left-align-container {
+    display: inline-block;
+}
+
+/* 추가된 스타일클래스입니다 */
+.body-content-title2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-left: 20px;
+}
+
+/* 추가된 스타일클래스입니다 */
+.star-icon-button {
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    outline: none;
+}
+
+/* 추가된 스타일클래스입니다 */
+.star-icon {
+    font-size: 24px;
+    color: #9F12E1;
+    transition: color 0.3s ease;
+}
+
+.body-second {
+    margin-top: 20px;
+}
+</style>
+
+<div class="container p-5 d-flex justify-content-center">
+    <div>
+        <div class="d-flex">
+            <div>
+                <button class="btn-category main-text">기술</button>
+            </div>
+            <div>
+                <button class="btn-category main-text">지역</button>
+            </div>
+            <div class="left-align-container search-input">
+                <input class=" search-text btn-login" type="text" placeholder="검색어를 입력하세요" style="border: none;">
+
+                <button class="navbar-toggler" type="button" style="background: none; border: none">
+                    <img src="./img/search.png" alt="이미지 설명">
+                </button>
+            </div>
+
+        </div>
+        <div>
+            <button class="btn btn-style btn-category-off main-text" type="button">CSS</button>
+            <button class="btn btn-style btn-category-on main-text" type="button">Ajax</button>
+            <button class="btn btn-style btn-category-off main-text" type="button">Java</button>
+            <button class="btn btn-style btn-category-off main-text" type="button">C#</button>
+            <button class="btn btn-style btn-category-off main-text" type="button">Flutter</button>
+            <button class="btn btn-style btn-category-on main-text" type="button">Javascript</button>
+            <button class="btn btn-style btn-category-on main-text" type="button">JSP</button>
+            <button class="btn btn-style btn-category-off main-text" type="button">HTML</button>
+            <button class="btn btn-style btn-category-off main-text" type="button">Android</button>
+            <button class="btn btn-style btn-category-off main-text" type="button">Mysql</button>
+            <button class="btn btn-style btn-category-off main-text" type="button">AWS</button>
+            <button class="btn btn-style btn-category-off main-text" type="button">Git</button>
+        </div>
+        <br>
+        <div class="body-content-title2 bottom-box-right">
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3 d-flex justify-content-between">
+                        <div>
+                            <img src="./img/hello.png"
+                                style="max-width: 50%; max-height: 100%; border-radius: 60%;">
+                        </div>
+                        <button class="star-icon-button btn-register" type="button">
+                            <div class="boomark-img">
+                                <img src="./img/boomark.png">
+                            </div>
+                        </button>
+                    </div>
+                    <div class="main-text"><b>빅데이터 AI 스타트업 신입 채용</b></div>
+                    <div class="companyname">(주) 그룹코리아</div>
+                    <div class="statusfail">Java</div>
+                    <div class="statusfail">CSS</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3 d-flex justify-content-between">
+                        <div>
+                            <img src="./img/hello.png"
+                                style="max-width: 50%; max-height: 100%; border-radius: 60%;">
+                        </div>
+                        <button class="star-icon-button btn-register" type="button">
+                            <div class="boomark-img">
+                                <img src="./img/boomark.png">
+                            </div>
+                        </button>
+                    </div>
+                    <div class="main-text"><b>빅데이터 AI 스타트업 신입 채용</b></div>
+                    <div class="companyname">(주) 그룹코리아</div>
+                    <div class="statusfail">Java</div>
+                    <div class="statusfail">CSS</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3 d-flex justify-content-between">
+                        <div>
+                            <img src="./img/hello.png"
+                                style="max-width: 50%; max-height: 100%; border-radius: 60%;">
+                        </div>
+                        <button class="star-icon-button btn-register" type="button">
+                            <div class="boomark-img">
+                                <img src="./img/boomark.png">
+                            </div>
+                        </button>
+                    </div>
+                    <div class="main-text"><b>빅데이터 AI 스타트업 신입 채용</b></div>
+                    <div class="companyname">(주) 그룹코리아</div>
+                    <div class="statusfail">Java</div>
+                    <div class="statusfail">CSS</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3 d-flex justify-content-between">
+                        <div>
+                            <img src="./img/hello.png"
+                                style="max-width: 50%; max-height: 100%; border-radius: 60%;">
+                        </div>
+                        <button class="star-icon-button btn-register" type="button">
+                            <div class="boomark-img">
+                                <img src="./img/boomark.png">
+                            </div>
+                        </button>
+                    </div>
+                    <div class="main-text"><b>빅데이터 AI 스타트업 신입 채용</b></div>
+                    <div class="companyname">(주) 그룹코리아</div>
+                    <div class="statusfail">Java</div>
+                    <div class="statusfail">CSS</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3 d-flex justify-content-between">
+                        <div>
+                            <img src="./img/hello.png"
+                                style="max-width: 50%; max-height: 100%; border-radius: 60%;">
+                        </div>
+                        <button class="star-icon-button btn-register" type="button">
+                            <div class="boomark-img">
+                                <img src="./img/boomark.png">
+                            </div>
+                        </button>
+                    </div>
+                    <div class="main-text"><b>빅데이터 AI 스타트업 신입 채용</b></div>
+                    <div class="companyname">(주) 그룹코리아</div>
+                    <div class="statusfail">Java</div>
+                    <div class="statusfail">CSS</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3 d-flex justify-content-between">
+                        <div>
+                            <img src="./img/hello.png"
+                                style="max-width: 50%; max-height: 100%; border-radius: 60%;">
+                        </div>
+                        <button class="star-icon-button btn-register" type="button">
+                            <div class="boomark-img">
+                                <img src="./img/boomark.png">
+                            </div>
+                        </button>
+                    </div>
+                    <div class="main-text"><b>빅데이터 AI 스타트업 신입 채용</b></div>
+                    <div class="companyname">(주) 그룹코리아</div>
+                    <div class="statusfail">Java</div>
+                    <div class="statusfail">CSS</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3 d-flex justify-content-between">
+                        <div>
+                            <img src="./img/hello.png"
+                                style="max-width: 50%; max-height: 100%; border-radius: 60%;">
+                        </div>
+                        <button class="star-icon-button btn-register" type="button">
+                            <div class="boomark-img">
+                                <img src="./img/boomark.png">
+                            </div>
+                        </button>
+                    </div>
+                    <div class="main-text"><b>빅데이터 AI 스타트업 신입 채용</b></div>
+                    <div class="companyname">(주) 그룹코리아</div>
+                    <div class="statusfail">Java</div>
+                    <div class="statusfail">CSS</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3 d-flex justify-content-between">
+                        <div>
+                            <img src="./img/hello.png"
+                                style="max-width: 50%; max-height: 100%; border-radius: 60%;">
+                        </div>
+                        <button class="star-icon-button btn-register" type="button">
+                            <div class="boomark-img">
+                                <img src="./img/boomark.png">
+                            </div>
+                        </button>
+                    </div>
+                    <div class="main-text"><b>빅데이터 AI 스타트업 신입 채용</b></div>
+                    <div class="companyname">(주) 그룹코리아</div>
+                    <div class="statusfail">Java</div>
+                    <div class="statusfail">CSS</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3 d-flex justify-content-between">
+                        <div>
+                            <img src="./img/hello.png"
+                                style="max-width: 50%; max-height: 100%; border-radius: 60%;">
+                        </div>
+                        <button class="star-icon-button btn-register" type="button">
+                            <div class="boomark-img">
+                                <img src="./img/boomark.png">
+                            </div>
+                        </button>
+                    </div>
+                    <div class="main-text"><b>빅데이터 AI 스타트업 신입 채용</b></div>
+                    <div class="companyname">(주) 그룹코리아</div>
+                    <div class="statusfail">Java</div>
+                    <div class="statusfail">CSS</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3 d-flex justify-content-between">
+                        <div>
+                            <img src="./img/hello.png"
+                                style="max-width: 50%; max-height: 100%; border-radius: 60%;">
+                        </div>
+                        <button class="star-icon-button btn-register" type="button">
+                            <div class="boomark-img">
+                                <img src="./img/boomark.png">
+                            </div>
+                        </button>
+                    </div>
+                    <div class="main-text"><b>빅데이터 AI 스타트업 신입 채용</b></div>
+                    <div class="companyname">(주) 그룹코리아</div>
+                    <div class="statusfail">Java</div>
+                    <div class="statusfail">CSS</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3 d-flex justify-content-between">
+                        <div>
+                            <img src="./img/hello.png"
+                                style="max-width: 50%; max-height: 100%; border-radius: 60%;">
+                        </div>
+                        <button class="star-icon-button btn-register" type="button">
+                            <div class="boomark-img">
+                                <img src="./img/boomark.png">
+                            </div>
+                        </button>
+                    </div>
+                    <div class="main-text"><b>빅데이터 AI 스타트업 신입 채용</b></div>
+                    <div class="companyname">(주) 그룹코리아</div>
+                    <div class="statusfail">Java</div>
+                    <div class="statusfail">CSS</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-3 d-flex justify-content-between">
+                        <div>
+                            <img src="./img/hello.png"
+                                style="max-width: 50%; max-height: 100%; border-radius: 60%;">
+                        </div>
+                        <button class="star-icon-button btn-register" type="button">
+                            <div class="boomark-img">
+                                <img src="./img/boomark.png">
+                            </div>
+                        </button>
+                    </div>
+                    <div class="main-text"><b>빅데이터 AI 스타트업 신입 채용</b></div>
+                    <div class="companyname">(주) 그룹코리아</div>
+                    <div class="statusfail">Java</div>
+                    <div class="statusfail">CSS</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center">
+    <div class="p-5 d-flex flex-column container-second">
+        <div class="title mt-3">
+            <b>요즘 뜨는 기업</b>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div class="card container-second-card">
+                <div class="card-body">
+                    <div class="mb-2">
+                        <div>
+                            <img src="./img/hello.png"
+                                style="max-width: 100%; max-height: 100%; border-radius: 10px">
+                        </div>
+                    </div>
+                    <div class="main-text"><b>(주) 그룹코리아</b></div>
+                    <div class="companyname">빅데이터 기반 플렛폼 서비스를 운영중입니다</div>
+                    <br>
+                    <div class="d-flex companyname">
+                      <img src="./img/location.png"
+                      style="max-width: 5%; margin-right: 5px;">  
+                      <div>부산</div>
+                    </div>
+                    <button class="btn btn-style-detail btn-login main-text" type="button">자세히보기</button>
+                </div>
+            </div>
+            <div class="card container-second-card">
+                <div class="card-body">
+                    <div class="mb-2">
+                        <div>
+                            <img src="./img/hello.png"
+                                style="max-width: 100%; max-height: 100%; border-radius: 10px">
+                        </div>
+                    </div>
+                    <div class="main-text"><b>(주) 그룹코리아</b></div>
+                    <div class="companyname">빅데이터 기반 플렛폼 서비스를 운영중입니다</div>
+                    <br>
+                    <div class="d-flex companyname">
+                      <img src="./img/location.png"
+                      style="max-width: 5%; margin-right: 5px;">  
+                      <div>부산</div>
+                    </div>
+                    <button class="btn btn-style-detail btn-login main-text" type="button">자세히보기</button>
+                </div>
+            </div>
+            <div class="card container-second-card">
+                <div class="card-body">
+                    <div class="mb-2">
+                        <div>
+                            <img src="./img/hello.png"
+                                style="max-width: 100%; max-height: 100%; border-radius: 10px">
+                        </div>
+                    </div>
+                    <div class="main-text"><b>(주) 그룹코리아</b></div>
+                    <div class="companyname">빅데이터 기반 플렛폼 서비스를 운영중입니다</div>
+                    <br>
+                    <div class="d-flex companyname">
+                      <img src="./img/location.png"
+                      style="max-width: 5%; margin-right: 5px;">  
+                      <div>부산</div>
+                    </div>
+                    <button class="btn btn-style-detail btn-login main-text" type="button">자세히보기</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="mb-2">
+                        <div>
+                            <img src="./img/hello.png"
+                                style="max-width: 100%; max-height: 100%; border-radius: 10px">
+                        </div>
+                    </div>
+                    <div class="main-text"><b>(주) 그룹코리아</b></div>
+                    <div class="companyname">빅데이터 기반 플렛폼 서비스를 운영중입니다</div>
+                    <br>
+                    <div class="d-flex companyname">
+                      <img src="./img/location.png"
+                      style="max-width: 5%; margin-right: 5px;">  
+                      <div>부산</div>
+                    </div>
+                    <button class="btn btn-style-detail btn-login main-text" type="button">자세히보기</button>
+                </div>
+            </div>            
+        </div>          
+    </div>
+</div>
+
+{{> layout/footer}}

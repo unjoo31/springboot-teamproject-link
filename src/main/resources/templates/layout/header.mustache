@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./CSS/header.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm header">
+        <div class="container-fluid d-flex justify-content-around mb-3">
+            <div class="p-2">
+                <a class="navbar-brand logo" href="#">Link</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="p-2">
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav header-menu">
+                      <li class="nav-item">
+                        <a class="nav-link me-5" href="#">채용공고</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link me-5" href="#">기업</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link me-5" href="#">고객센터</a>
+                      </li>  
+                    </ul>
+                </div>
+            </div>
+            <div class="p-2">
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <img src="./img/smallProfile.png">
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li class="d-flex">
+                            <a class="dropdown-item dropdown-menu-big" href="#">
+                                회원정보 수정
+                                <p class="dropdown-menu-small">Personal information</p>
+                            </a>
+                            <img class="nav-img" src="./img/navRight.png">
+                          </li>
+                          <li class="d-flex">
+                            <a class="dropdown-item dropdown-menu-big" href="#">
+                                이력서
+                                <p class="dropdown-menu-small">Resume</p>
+                            </a>
+                            <img class="nav-img" src="./img/navRight.png">
+                          </li>
+                          <li class="d-flex">
+                            <a class="dropdown-item dropdown-menu-big" href="#">
+                                지원현황
+                                <p class="dropdown-menu-small">Support status</p>
+                            </a>
+                            <img class="nav-img" src="./img/navRight.png">
+                          </li class="d-flex">
+                          <li class="d-flex">
+                            <a class="dropdown-item dropdown-menu-big" href="#">
+                                관심기업 / 기술스택 매칭
+                                <p class="dropdown-menu-small">Interested companies / Technical stack</p>
+                            </a>
+                            <img class="nav-img" src="./img/navRight.png">
+                          </li class="d-flex">
+                          <li class="d-flex">
+                            <a class="dropdown-item dropdown-menu-big" href="#">
+                                채용공고
+                                <p class="dropdown-menu-small">Employment announcement</p>
+                            </a>
+                            <img class="nav-img" src="./img/navRight.png">
+                          </li class="d-flex">
+                          <li class="d-flex">
+                            <a class="dropdown-item dropdown-menu-big" href="#">
+                                채용공고 현황
+                                <p class="dropdown-menu-small">Employment status</p>
+                            </a>
+                            <img class="nav-img" src="./img/navRight.png">
+                          </li class="d-flex">
+                          <li class="d-flex">
+                            <a class="dropdown-item dropdown-menu-big" href="#">
+                                관심구직자 / 기술스택 매칭
+                                <p class="dropdown-menu-small">Interested seekers / Technical stack</p>
+                            </a>
+                            <img class="nav-img" src="./img/navRight.png">
+                          </li>
+                          <button id="btnJoin" type="submit" class="btn form-control btn-logout main-text">로그아웃</button>
+                        </ul>
+                      </li>
+                      <button class="btn btn-style btn-login main-text" type="button">로그인</button>
+                      <button class="btn btn-style btn-register main-text" type="button">회원가입</button>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>

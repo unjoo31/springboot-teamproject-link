@@ -1,0 +1,112 @@
+{{> layout/header}}
+
+<style>
+    .body {
+    margin-top: 15px;
+    }
+
+    .body-content {
+        border: 1px solid #EDEEF2;
+        border-radius: 15px;
+    }
+
+    .body-content-title {
+        margin-left: 20px;
+        margin-top: 15px;
+    }
+
+
+    .box-layout {
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+
+    .bottom-box {
+        border-top: 1px solid #ccc;
+        margin-top: 10px;
+        margin-bottom: 10px;            
+    }
+
+    /* 제목 입력칸의 스타일 */
+    input[type="text"] {
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #EDEEF2;
+
+    }
+
+    /* 내용 입력칸의 스타일 */
+    textarea {
+        height: 300px;
+        /* 높이 설정 */
+        display: flex;
+        flex-direction: row;
+        border-radius: 10px;
+        border: 1px solid #EDEEF2;
+        margin-bottom: 10px;
+
+    }
+
+    .container {
+        display: grid;
+        grid-gap: 10px;
+        width: 600px;
+    }
+
+    h1 {
+        font-weight: bold;
+        /* 글자 굵기 설정 */
+    }
+    .custom-textarea{
+        padding: 10px;
+        border: 1px solid #EDEEF2;
+        border-radius: 1-px;
+        font-size: 13px;
+        line-height: 1.5;
+        width: 100%;
+        box-sizing: border-box;
+        color: #828294;
+    }  
+</style>
+
+<div class="container">
+
+    <h1 class="title-text body">게시글 수정</h1>
+    <div class="body-content">
+
+        <div class="body-content-title">
+            <p>Create Posts</p>
+        </div>
+
+
+        <div class="box-layout">
+
+            <form class="left-box" action="#" enctype="multipart/form-data">
+                <div class="mb-3 d-flex flex-column">
+                    <label for="password" class="form-label main-text">제목</label>
+                    <input class="input-style sub-text" type="text" id="username" class="form-control sub-text"
+                        placeholder="지원현황이 사라졌어요" name="username">
+                </div>
+            </form>
+
+            <form class="left-box" action="#" enctype="multipart/form-data">
+                <div class="mb-3 d-flex flex-column">
+                    <label for="password" class="form-label main-text">내용</label>
+                    <textarea class="custom-textarea" rows=" 20" cols="30">지원현황이 사라졌어요</textarea>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="d-flex bottom-box justify-content-end">
+            <button class="btn btn-style btn-register main-text bottom-box" type="button" style="margin-right: 15px;">수정</button>
+            <button class="btn btn-style btn-register main-text bottom-box" type="button" style="margin-right: 15px;">삭제</button>
+        </div>
+
+    </div>
+
+</div>
+
+{{> layout/footer}}

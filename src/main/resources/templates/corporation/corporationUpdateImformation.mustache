@@ -1,0 +1,229 @@
+{{> layout/header}}
+
+<style>
+    .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 30px;
+    width: 1000px;
+}
+.body{
+    margin-top: 50px;
+}
+.body-content{
+    border: 1px solid #EDEEF2;
+    border-radius: 15px;
+}
+.body-content-title{
+    margin-left: 20px;
+    margin-top: 15px;
+}
+.first-box{
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+.left-box{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.left-box-first{
+    margin-right: 40px;
+    margin-left: 10px;
+}
+.bottom-box{
+    border-top: 1px solid #ccc;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+}
+.bottom-box-left{
+    margin-left: 15px;
+}
+.bottom-box-right{
+    margin-right: 15px;
+}
+.personal-img{
+    width: 88px;
+    height: 88px;
+    background-color: #ccc;
+    border-radius: 20px;
+    margin-right: 15px;
+}
+.personal-img img{
+    width: 88px;
+    height: 88px;
+    border-radius: 20px;
+}
+.img-botton{
+    margin-top: 20px;
+    margin-right: 15px;
+    height: 40px;
+}
+.input-style{
+    width: 310px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #EDEEF2;
+    font-size: 14px;
+}
+.box-layout{
+    margin-bottom: 15px;
+}
+/* 좌측 메뉴 스타일 시작 */
+.left-nav-title{
+    font-size: 15px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.left-nav-sub{
+    font-size: 11px;
+}
+.left-nav{
+    width: 300px;
+    margin-top: 85px;
+}
+.left-nav-detail{
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    border: 1px solid #EDEEF2;
+    margin-bottom: 10px;
+}
+.nav-img img {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+/* 좌측 메뉴 스타일 끝 */
+</style>
+
+<div class="d-flex justify-content-center">
+    <div class="grid-container">
+        <div class="left-nav">
+            <div class="card-body d-flex flex-column">
+                <div class="card left-nav-detail">
+                    <div class="nav-img">
+                        <img src="./img/personal.png">
+                    </div>
+                    <a class="dropdown-item left-nav-title" href="#">
+                        회원정보 수정
+                        <p class="left-nav-sub">Personal information</p>
+                    </a>
+                </div>
+                <div class="card left-nav-detail">
+                    <div class="nav-img">
+                        <img src="./img/resume.png">
+                    </div>
+                    <a class="dropdown-item left-nav-title" href="#">
+                        채용공고
+                        <p class="left-nav-sub">Employment announcement</p>
+                    </a>
+                </div>
+                <div class="card left-nav-detail">
+                    <div class="nav-img">
+                        <img src="./img/resume.png">
+                    </div>
+                    <a class="dropdown-item left-nav-title" href="#">
+                        채용공고 현황
+                        <p class="left-nav-sub">Employment status</p>
+                    </a>
+                </div>
+                <div class="card left-nav-detail">
+                    <div class="nav-img">
+                        <img src="./img/company.png">
+                    </div>
+                    <a class="dropdown-item left-nav-title" href="#">
+                        관심구직자 / 기술스택 매칭
+                        <p class="left-nav-sub">Interested seekers / Technical stack</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <h1 class="title-text body">회원정보 수정</h1>
+            <div class="body-content">
+                <div class="body-content-title">
+                    <p>Personal information</p>
+                </div>
+                <div class="d-flex first-box box-layout">
+                    <div class="d-flex left-box-first">
+                        <div class="personal-img">
+                            <img src="./img/hello.png">
+                        </div>
+                        <button class="btn img-botton btn-login main-text" type="button">Change</button>
+                        <button class="btn img-botton btn-register main-text" type="button">Remove</button>
+                    </div>
+                    <form action="#" enctype="multipart/form-data">
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="companyName" class="form-label main-text">기업명</label>
+                            <input class="input-style" type="text" id="companyName" class="form-control sub-text" placeholder="(주)link" name="companyName">
+                        </div>
+                    </form>
+                </div>
+                <div class="d-flex box-layout">
+                    <form class="left-box" action="#" enctype="multipart/form-data">
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="userId" class="form-label main-text">아이디</label>
+                            <input class="input-style" type="text" id="userId" class="form-control sub-text" placeholder="link" name="userId">
+                        </div>
+                    </form>
+                    <form action="#" enctype="multipart/form-data"></form>
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="password" class="form-label main-text">비밀번호</label>
+                            <input class="input-style" type="text" id="password" class="form-control sub-text" placeholder="**********" name="password">
+                        </div>
+                    </form>
+                </div>
+                <div class="d-flex box-layout">
+                    <form class="left-box" action="#" enctype="multipart/form-data">
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="email" class="form-label main-text">이메일</label>
+                            <input class="input-style" type="text" id="email" class="form-control sub-text" placeholder="link@gmai.com" name="email">
+                        </div>
+                    </form>
+                    <form action="#" enctype="multipart/form-data"></form>
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="phonenumber" class="form-label main-text">휴대폰번호</label>
+                            <input class="input-style" type="text" id="phonenumber" class="form-control sub-text" placeholder="000-0000-0000" name="phonenumber">
+                        </div>
+                    </form>
+                </div>
+                <div class="d-flex box-layout">
+                    <form class="left-box" action="#" enctype="multipart/form-data">
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="address" class="form-label main-text">주소</label>
+                            <input class="input-style" type="text" id="address" class="form-control sub-text" placeholder="부산" name="address">
+                        </div>
+                    </form>
+                    <form action="#" enctype="multipart/form-data"></form>
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="business" class="form-label main-text">업종</label>
+                            <input class="input-style" type="text" id="business" class="form-control sub-text" placeholder="컴퓨터시스템 통합 시스템" name="business">
+                        </div>
+                    </form>
+                </div>
+                <div class="d-flex box-layout">
+                    <form class="left-box" action="#" enctype="multipart/form-data">
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="form" class="form-label main-text">기업형태</label>
+                            <input class="input-style" type="text" id="form" class="form-control sub-text" placeholder="중소기업" name="form">
+                        </div>
+                    </form>
+                    <form action="#" enctype="multipart/form-data"></form>
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="performance" class="form-label main-text">업력</label>
+                            <input class="input-style" type="text" id="performance" class="form-control sub-text" placeholder="0000.00.00 설립" name="performance">
+                        </div>
+                    </form>
+                </div>
+                <div class="d-flex bottom-box justify-content-between">
+                    <button class="btn btn-style btn-login main-text bottom-box-left" type="button">로그아웃</button>
+                    <button class="btn btn-style btn-register main-text bottom-box-right" type="button">저장</button>
+                </div>
+            </div>                
+        </div>
+    </div>
+</div>
+{{> layout/footer}}

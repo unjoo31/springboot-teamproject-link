@@ -1,0 +1,263 @@
+{{> layout/header}}
+
+<style>
+    .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 30px;
+    width: 1000px;
+}
+.body{
+    margin-top: 50px;
+}
+.body-content{
+    border: 1px solid #EDEEF2;
+    border-radius: 15px;
+}
+.body-content-title{
+    margin-left: 20px;
+    margin-top: 15px;
+}
+.first-box{
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+.left-box{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.left-box-first{
+    margin-right: 40px;
+    margin-left: 10px;
+}
+.bottom-box{
+    border-top: 1px solid #ccc;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+}
+.bottom-box-left{
+    margin-left: 15px;
+}
+.bottom-box-right{
+    margin-right: 5px;
+}
+.personal-img{
+    width: 88px;
+    height: 88px;
+    background-color: #ccc;
+    border-radius: 20px;
+    margin-right: 15px;
+}
+.personal-img img{
+    width: 88px;
+    height: 88px;
+    border-radius: 20px;
+}
+.img-botton{
+    margin-top: 20px;
+    margin-right: 15px;
+    height: 40px;
+}
+.input-style{
+    width: 310px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #EDEEF2;
+    font-size: 14px;
+}
+.box-layout{
+    margin-bottom: 15px;
+}
+
+
+.grid-container1 {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        grid-gap: 30px;
+        width: 1500px;
+        height: 600px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+}
+
+.card-contain{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.card-input{
+    height: 40px;
+    margin-bottom: 5px;
+}
+    .grid-container2 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .grid-container3 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin: 20px;
+    }
+
+    .statussuccess {
+        display: inline-block;
+        padding: 5px 20px;
+        border-radius: 20px;
+        background-color: #9F12E1;
+        color: white;
+        cursor: pointer;
+        font-size: 13px;
+        height: 25px;
+        text-align: center;
+    }
+
+    .statusfail {
+        display: inline-block;
+        padding: 5px 20px;
+        border-radius: 20px;
+        background-color: #EDEEF2;
+        color: rgb(75, 72, 72);
+        cursor: pointer;
+        font-size: 13px;
+        height: 25px;
+        text-align: center;
+    }
+
+    .statusundetermined{
+        display: inline-block;
+        padding: 5px 20px;
+        border-radius: 20px;
+        background-color: rgb(209, 208, 208);
+        color: rgb(75, 72, 72);
+        cursor: pointer;
+        font-size: 15px;
+        height: 30px; 
+    }
+
+
+    .companyname {
+        color: rgb(155, 154, 154);
+        font-size: 14px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+
+    .container{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap; /* 줄 바꿈 없이 텍스트 표시 */
+        overflow: hidden; /* 넘칠 경우 숨김 처리 */
+        text-overflow: ellipsis;
+        margin-bottom: 30px;
+    }
+
+    .image{
+        width: 100px;
+        height: 50px;
+    }
+    .text{
+        margin-left: 5px;
+        margin-top: 7px;
+        display: flex;
+        justify-content: center;    
+    }
+    .box{
+        width: 750px;
+        height: 800px;
+        padding: 20px;
+        border-radius: 20px;
+        border: 1px solid #EDEEF2;
+    }
+    .d-flex1{
+        display: flex;
+        justify-content: start;
+        margin-right: 150px;
+    }
+    .d-flex2{
+        margin-right: 50px;
+    }
+    .close-btn{
+        margin-left: 300px;
+    }
+    .text-line{
+        margin-bottom: 10px;
+    }
+    .main-text-color{
+        color: rgb(155, 154, 154);
+    }
+    .boomark-img{
+        margin-left: 480px;
+    }
+</style>
+
+<div class="box">
+    <div class="container d-flex first-box">
+        <button type="button" class="btn btn-style btn-register main-text bottom-box-right">합격</button>
+        <button type="button" class="btn btn-style btn-failed main-text bottom-box-right">불합격</button>
+        <button type="button" class="btn btn-style btn-login main-text bottom-box-right">미정</button>
+        <button type="button" class="btn close-btn"> 
+            <img src="./img/close.png" alt="">
+        </button>
+    </div>
+    <div class>
+         <div class="container d-flex mt-3 second-box">
+            <div class="personal-img">
+                <img src="./img/hello.png">
+            </div>
+            <div class="text title-text">김언약</div>
+            <div class="boomark-img">
+                <img src="./img/boomark.png">
+            </div>
+         </div>
+    </div>
+    <hr>
+    <div class="container d-flex third-box">
+        <div class="d-flex1 sub-text">
+            <div class="d-flex2">
+                <div class="main-text text-line">경력</div>
+                <div class="main-text text-line">이메일</div>
+                <div class="main-text">전화번호</div>
+            </div>
+            <div >
+                <div class="main-text main-text-color text-line">신입</div>
+                <div class="main-text main-text-color text-line">ssar@naver.com</div>
+                <div class="main-text main-text-color ">000.0000.0000</div>
+            </div>
+        </div>
+        <div class="d-flex1 sub-text">
+            <div class="d-flex2">
+                <div class="main-text text-line">주소</div>
+                <div class="main-text text-line">생년월일</div>
+                <div class="main-text">지역</div>
+            </div>
+            <div>
+                <div class="main-text main-text-color text-line">마산</div>
+                <div class="main-text main-text-color text-line">0000.00.00</div>
+                <div class="main-text main-text-color">경남</div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container d-flex sub-text four-box">
+        <div class="statusfail">java</div>
+        <div class="statusfail">javascript</div>
+        <div class="statusfail">ajax</div>
+    </div>
+    <br>
+    <div class="container d-flex sub-text five-box">
+        <div>안녕하세요 저는 김언약이라고 합니다. 자바 개발자로서 뛰어난 열정과 경험을 가지고 있습니다. </div>
+    </div>    
+</div>
+
+{{> layout/footer}}

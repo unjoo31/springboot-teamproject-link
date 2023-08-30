@@ -1,0 +1,170 @@
+{{> layout/header}}
+
+<style>
+    .box-layout {
+    border-radius: 18px;
+    border: 1px solid #EDEEF2;
+    margin-bottom: 15px;
+    }
+
+    th {
+        background-color: #F5F5F5;
+        border-bottom: 1px solid #EDEEF2;
+        padding: 10px;
+    }
+
+    .rounded-left {
+        border-top-left-radius: 18px;
+    }
+
+    .rounded-right {
+        border-top-right-radius: 18px;
+    }
+
+    td {
+        border-bottom: 1px solid #EDEEF2;
+        padding: 10px;
+    }
+
+    .container {
+        margin-top: 50;
+        max-width: 1000px;
+        display: grid;
+        grid-gap: 10px;
+        text-align: center;
+    }
+
+    .search-container {
+        margin-left: 10;
+        text-align: left;
+    }
+
+    .search-input {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 18px;
+    }
+
+    .state-completion{            
+        border-radius: 30px;
+        width: 65px;
+        background-color: #9F12E1;
+        color: white;
+    }
+
+    .state-notcompletion{            
+        border-radius: 30px;            
+        background-color: lightgray;
+        color: white;
+    }
+
+    .left-align-container {
+        display: inline-block;
+    }
+
+    .right-align-container {
+        display: inline-block;           
+    }
+
+    .top-section,
+    .bottom-section {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+
+<div class="container">
+
+    <div class="container-fluid d-flex justify-content-between mb-3 ">
+
+        <div class="left-align-container search-input">
+            <input class="search-input search-text" type="text" placeholder="검색어를 입력하세요" style="border: none;">
+
+            <button class="navbar-toggler" type="button" style="background: none; border: none">
+                <img src="./img/search.png" alt="이미지 설명">
+            </button>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-boardstyle btn-register main-text type="button" style="margin-right: 15px;">게시글
+                수정</button>
+            <button class="btn btn-boardstyle btn-register main-text type="button">게시글 삭제</button>
+        </div>
+
+    </div>
+
+
+    <div class="d-flex justify-content-between mb-3 box-layout">
+        <table style="width:100%">
+
+            <tr class="main-text">
+                <th class="text-center rounded-left"><input type="checkbox" disabled></th>
+                <th>제목</th>
+                <th>상태</th>
+                <th>아이디</th>
+                <th class="rounded-right">내용</th>
+            </tr>
+
+            <tr class="td-text">
+                <td class="text-center"><input type="checkbox"></td>
+                <td>지원현황이 사라졌어요</td>                    
+                <td class="state-completion">해결완료</td>
+                <td class="d-flex">
+                    <div style="margin-right: 10px;">
+                        <img src="./img/smallProfile.png" width="20" height="20" alt="이미지 설명"
+                            style="border-radius: 50%;">
+                    </div>
+                    언주
+                </td>
+                <td>지원을 했는데 지원형황이 사라졌어요</td>
+            </tr>
+
+            <tr class="td-text">
+                <td class="text-center"><input type="checkbox"></td>
+                <td>지원현황이 사라졌어요</td>
+                <td class="state-notcompletion">답변대기</td>
+                <td class="d-flex">
+                    <div style="margin-right: 10px;">
+                        <img src="./img/smallProfile.png" width="20" height="20" alt="이미지 설명" style="border-radius: 50%;">
+                    </div>
+                    지환
+                </td>
+                <td>지원을 했는데 지원형황이 사라졌어요</td>
+            </tr>
+
+            <tr class="td-text">
+                <td class="text-center"><input type="checkbox"></td>
+                <td>지원현황이 사라졌어요</td>
+                <td class="state-notcompletion">답변대기</td>
+                <td class="d-flex">
+                    <div style="margin-right: 10px;">
+                        <img src="./img/smallProfile.png" width="20" height="20" alt="이미지 설명" style="border-radius: 50%;">
+                    </div>
+                    언약
+                </td>
+                <td>지원을 했는데 지원형황이 사라졌어요</td>
+            </tr>
+
+            <tr class="td-text">
+                <td class="text-center"><input type="checkbox"></td>
+                <td>지원현황이 사라졌어요</td>
+                <td class="state-completion">해결완료</td>
+                <td class="d-flex">
+                    <div style="margin-right: 10px;">
+                        <img src="./img/smallProfile.png" width="20" height="20" alt="이미지 설명" style="border-radius: 50%;">
+                    </div>
+                    정완
+                </td>
+                <td>지원을 했는데 지원형황이 사라졌어요</td>
+            </tr>
+
+            <tr style="height: 300px;"></tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+{{> layout/footer}}
