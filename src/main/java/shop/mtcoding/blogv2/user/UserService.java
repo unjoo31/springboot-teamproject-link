@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.user.UserRequest.JoinDTO;
 import shop.mtcoding.blogv2.user.UserRequest.LoginDTO;
+import shop.mtcoding.blogv2.user.UserRequest.UpdateDTO;
 
 @Service
 public class UserService {
@@ -32,18 +33,35 @@ public class UserService {
     @Transactional
     public User 로그인(LoginDTO loginDTO){
         User user = userRepository.findByUsername(loginDTO.getUsername());
-
-        // 유저네임 검증
         if(user == null){
             throw new MyException("유저네임이 없습니다");
         }
-
-        // 패스워드 검증
         if(!user.getPassword().equals(loginDTO.getPassword())){
             throw new MyException("패스워드가 잘못되었습니다");
         }
-
-        // 로그인 성공
         return user;
     }
+
+    // 회원정보 조회
+    public User 회원정보보기(Integer id) {
+        return userRepository.findById(id).get();
+    }
+
+    // 회원수정
+    @Transactional
+    public User 회원수정(UpdateDTO updateDTO, Integer id) {
+        User user = userRepository.findById(id).get();
+        user.setPassword(updateDTO.getPassword());
+        user.setEmail(updateDTO.getEmail());
+        user.setCompanyUser(updateDTO.getCompanyUser());
+        user.setPicUrl(updateDTO.getPicUrl());
+        user.setName(updateDTO.getName());
+        user.setPhonenumber(updateDTO.getPhonenumber());
+        user.setAddress(updateDTO.getAddress());
+        user.setAge(updateDTO.getAge());
+        user.setBusiness(updateDTO.getBusiness());
+        user.setForm(updateDTO.getForm());
+        user.setPerformance(updateDTO.getPerformance());
+        return user;
+    } 
 }

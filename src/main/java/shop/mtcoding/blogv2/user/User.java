@@ -1,9 +1,6 @@
 package shop.mtcoding.blogv2.user;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -81,5 +78,7 @@ public class User {
         this.business = business;
         this.form = form;
         this.performance = performance;
-    }   
+    }
+     
+    
 }

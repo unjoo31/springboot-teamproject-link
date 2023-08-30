@@ -1,5 +1,6 @@
 package shop.mtcoding.blogv2.user;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -37,6 +38,7 @@ public class UserController {
         return "user/loginForm";
     }
 
+    // 로그인
     @PostMapping("/login")
     public String login(UserRequest.LoginDTO loginDTO, HttpServletRequest request) {
         User sessionUser = userService.로그인(loginDTO);
@@ -50,4 +52,31 @@ public class UserController {
         session.invalidate();
         return "redirect:/";
     }    
+
+    // 일반회원 회원정보 화면
+    @GetMapping("/updateSeekerForm")
+    public String updateSeekerForm(HttpServletRequest request){
+        User sessionUser = (User)session.getAttribute("sessionUser");
+        User user = userService.회원정보보기(sessionUser.getId());
+        request.setAttribute("user", user);
+        return "seeker/seekerUpdateImformation";
+    }
+
+    // 기업회원 회원정보 화면
+    @GetMapping("/updateCorporationForm")
+    public String updateCorporationForm(HttpServletRequest request){
+        User sessionUser = (User)session.getAttribute("sessionUser");
+        User user = userService.회원정보보기(sessionUser.getId());
+        request.setAttribute("user", user);
+        return "corporation/corporationUpdateImformation";
+    }
+
+    //회원정보 업데이트
+    @PostMapping("/user/update")
+    public String update(UserRequest.UpdateDTO updateDTO){
+        User sessionUser = (User)session.getAttribute("sessionUser");
+        User user = userService.회원수정(updateDTO, sessionUser.getId());
+        session.setAttribute("sessionUser", user);
+        return "redirect:/";
+    }
 }
