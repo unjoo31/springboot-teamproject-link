@@ -42,6 +42,12 @@ public class UserService {
         return user;
     }
 
+    // 기업회원, 일반회원 구분
+    public boolean 회원분류(String username) {
+        User user = userRepository.findByUsername(username);
+        return user.getCompanyUser();
+    } 
+
     // 회원정보 조회
     public User 회원정보보기(Integer id) {
         return userRepository.findById(id).get();
@@ -63,5 +69,7 @@ public class UserService {
         user.setForm(updateDTO.getForm());
         user.setPerformance(updateDTO.getPerformance());
         return user;
-    } 
+    }
+
+    
 }
