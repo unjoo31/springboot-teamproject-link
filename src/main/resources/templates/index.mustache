@@ -1,7 +1,82 @@
 {{> layout/header}}
 
 <style>
-    .grid-container {
+    /* 헤더, 푸터 스타일 시작 */
+.header{
+    height: 70px;
+    border-bottom: 1px solid #ccc;
+    margin-top: 10px;
+}
+.logo{
+    color: #9F12E1;
+    font-weight: 700;
+}
+.footer{
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+/* 타이틀 스타일 */
+.title-text{
+    font-size: 20px;
+}
+/* 메인 스타일 */
+.main-text{
+    font-size: 14px;
+}
+/* 서브 스타일 */
+.sub-text{
+    font-size: 13px;
+}
+.footer-inc{
+    font-size: 12px;
+}
+.btn-style{
+    margin-top: 15px;
+    border-radius: 30px;
+    width: 100px;
+    height: 40px;
+}
+.btn-login{
+    border: 1px solid #9F12E1;
+    color: #9F12E1;
+    margin-right: 10px;
+}
+.btn-register{
+    background-color: #9F12E1;
+    color: white;
+}
+.btn-logout{
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 280px;
+    background-color: #9F12E1;
+    color: white;
+}
+.header-menu{
+    font-weight: 600;
+}
+.dropdown-menu{
+    width: 300px;
+}
+.dropdown-menu-big{
+    font-size: 15px;
+}
+.dropdown-menu-small{
+    font-size: 11px;
+}
+.dropdown-toggle::after {
+    display: none;
+}
+.nav-img{
+    width: 20px;
+    height: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+/* 헤더, 푸터 스타일 끝 */
+
+/* index.html */
+.grid-container {
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-gap: 30px;
@@ -252,6 +327,8 @@
 .body-second {
     margin-top: 20px;
 }
+
+/* index.html */
 </style>
 
 <div class="container p-5 d-flex justify-content-center">
