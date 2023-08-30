@@ -13,4 +13,11 @@ public class UserRequest {
         private String email;
         private Boolean companyUser;
     }
+
+    @Getter
+    @Setter
+    public static class LoginDTO{
+        private String username;
+        private String password;
+    }
 }

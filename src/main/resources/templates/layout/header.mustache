@@ -28,7 +28,7 @@
                         <a class="nav-link me-5" href="#">기업</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link me-5" href="#">고객센터</a>
+                        <a class="nav-link me-5" href="/board">고객센터</a>
                       </li>  
                     </ul>
                 </div>
@@ -36,65 +36,75 @@
             <div class="p-2">
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                     <ul class="navbar-nav">
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            <img src="./img/smallProfile.png">
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li class="d-flex">
-                            <a class="dropdown-item dropdown-menu-big" href="#">
-                                회원정보 수정
-                                <p class="dropdown-menu-small">Personal information</p>
-                            </a>
-                            <img class="nav-img" src="./img/navRight.png">
-                          </li>
-                          <li class="d-flex">
-                            <a class="dropdown-item dropdown-menu-big" href="#">
-                                이력서
-                                <p class="dropdown-menu-small">Resume</p>
-                            </a>
-                            <img class="nav-img" src="./img/navRight.png">
-                          </li>
-                          <li class="d-flex">
-                            <a class="dropdown-item dropdown-menu-big" href="#">
-                                지원현황
-                                <p class="dropdown-menu-small">Support status</p>
-                            </a>
-                            <img class="nav-img" src="./img/navRight.png">
-                          </li class="d-flex">
-                          <li class="d-flex">
-                            <a class="dropdown-item dropdown-menu-big" href="#">
-                                관심기업 / 기술스택 매칭
-                                <p class="dropdown-menu-small">Interested companies / Technical stack</p>
-                            </a>
-                            <img class="nav-img" src="./img/navRight.png">
-                          </li class="d-flex">
-                          <li class="d-flex">
-                            <a class="dropdown-item dropdown-menu-big" href="#">
-                                채용공고
-                                <p class="dropdown-menu-small">Employment announcement</p>
-                            </a>
-                            <img class="nav-img" src="./img/navRight.png">
-                          </li class="d-flex">
-                          <li class="d-flex">
-                            <a class="dropdown-item dropdown-menu-big" href="#">
-                                채용공고 현황
-                                <p class="dropdown-menu-small">Employment status</p>
-                            </a>
-                            <img class="nav-img" src="./img/navRight.png">
-                          </li class="d-flex">
-                          <li class="d-flex">
-                            <a class="dropdown-item dropdown-menu-big" href="#">
-                                관심구직자 / 기술스택 매칭
-                                <p class="dropdown-menu-small">Interested seekers / Technical stack</p>
-                            </a>
-                            <img class="nav-img" src="./img/navRight.png">
-                          </li>
-                          <button id="btnJoin" type="submit" class="btn form-control btn-logout main-text">로그아웃</button>
-                        </ul>
-                      </li>
-                      <button class="btn btn-style btn-login main-text" type="button">로그인</button>
-                      <button class="btn btn-style btn-register main-text" type="button">회원가입</button>
+                      {{#sessionUser}}
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                              <img src="./img/smallProfile.png">
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li class="d-flex">
+                              <a class="dropdown-item dropdown-menu-big" href="/user/updateForm">
+                                  회원정보 수정
+                                  <p class="dropdown-menu-small">Personal information</p>
+                              </a>
+                              <img class="nav-img" src="./img/navRight.png">
+                            </li>
+                            <li class="d-flex">
+                              <a class="dropdown-item dropdown-menu-big" href="#">
+                                  이력서
+                                  <p class="dropdown-menu-small">Resume</p>
+                              </a>
+                              <img class="nav-img" src="./img/navRight.png">
+                            </li>
+                            <li class="d-flex">
+                              <a class="dropdown-item dropdown-menu-big" href="#">
+                                  지원현황
+                                  <p class="dropdown-menu-small">Support status</p>
+                              </a>
+                              <img class="nav-img" src="./img/navRight.png">
+                            </li class="d-flex">
+                            <li class="d-flex">
+                              <a class="dropdown-item dropdown-menu-big" href="#">
+                                  관심기업 / 기술스택 매칭
+                                  <p class="dropdown-menu-small">Interested companies / Technical stack</p>
+                              </a>
+                              <img class="nav-img" src="./img/navRight.png">
+                            </li class="d-flex">
+                            <li class="d-flex">
+                              <a class="dropdown-item dropdown-menu-big" href="#">
+                                  채용공고
+                                  <p class="dropdown-menu-small">Employment announcement</p>
+                              </a>
+                              <img class="nav-img" src="./img/navRight.png">
+                            </li class="d-flex">
+                            <li class="d-flex">
+                              <a class="dropdown-item dropdown-menu-big" href="#">
+                                  채용공고 현황
+                                  <p class="dropdown-menu-small">Employment status</p>
+                              </a>
+                              <img class="nav-img" src="./img/navRight.png">
+                            </li class="d-flex">
+                            <li class="d-flex">
+                              <a class="dropdown-item dropdown-menu-big" href="#">
+                                  관심구직자 / 기술스택 매칭
+                                  <p class="dropdown-menu-small">Interested seekers / Technical stack</p>
+                              </a>
+                              <img class="nav-img" src="./img/navRight.png">
+                            </li>
+                            <button id="btnJoin" type="submit" class="btn form-control btn-logout main-text">
+                              <a class="nav-link" href="/logout">로그아웃</a>
+                            </button>
+                          </ul>
+                        </li>
+                      {{/sessionUser}}
+                      {{^sessionUser}}
+                        <li class="btn btn-style btn-login main-text">
+                          <a href="/loginForm">로그인</a>
+                        </li>
+                        <li class="btn btn-style btn-register main-text">
+                          <a href="/joinForm">회원가입</a>
+                        </li>
+                        {{/sessionUser}}
                     </ul>
                 </div>
             </div>
