@@ -29,7 +29,7 @@
                       </li>
                       <li class="nav-item">
                         <a class="nav-link me-5" href="#">기업</a>
-                      </li>
+                      </li> 
                       <li class="nav-item">
                         <a class="nav-link me-5" href="/board">고객센터</a>
                       </li>  
@@ -45,62 +45,66 @@
                               <img src="./img/smallProfile.png">
                           </a>
                           <ul class="dropdown-menu">
-                            <li class="d-flex">
-                              <a class="dropdown-item dropdown-menu-big" href="/updateSeekerForm">
-                                  일반회원 정보수정
-                                  <p class="dropdown-menu-small">Personal information</p>
-                              </a>
-                              <img class="nav-img" src="./img/navRight.png">
-                            </li>
-                            <li class="d-flex">
-                              <a class="dropdown-item dropdown-menu-big" href="#">
-                                  이력서
-                                  <p class="dropdown-menu-small">Resume</p>
-                              </a>
-                              <img class="nav-img" src="./img/navRight.png">
-                            </li>
-                            <li class="d-flex">
-                              <a class="dropdown-item dropdown-menu-big" href="#">
-                                  지원현황
-                                  <p class="dropdown-menu-small">Support status</p>
-                              </a>
-                              <img class="nav-img" src="./img/navRight.png">
-                            </li class="d-flex">
-                            <li class="d-flex">
-                              <a class="dropdown-item dropdown-menu-big" href="#">
-                                  관심기업 / 기술스택 매칭
-                                  <p class="dropdown-menu-small">Interested companies / Technical stack</p>
-                              </a>
-                              <img class="nav-img" src="./img/navRight.png">
-                            </li class="d-flex">
-                            <li class="d-flex">
-                              <a class="dropdown-item dropdown-menu-big" href="/updateCorporationForm">
-                                  기업회원 정보수정
-                                  <p class="dropdown-menu-small">Personal information</p>
-                              </a>
-                              <img class="nav-img" src="./img/navRight.png">
-                            </li>                                                                   
-                            <li class="d-flex">
-                              <a class="dropdown-item dropdown-menu-big" href="#">
-                                  채용공고
-                                  <p class="dropdown-menu-small">Employment announcement</p>
-                              </a>
-                              <img class="nav-img" src="./img/navRight.png">
-                            </li class="d-flex">
-                            <li class="d-flex">
-                              <a class="dropdown-item dropdown-menu-big" href="#">
-                                  채용공고 현황
-                                  <p class="dropdown-menu-small">Employment status</p>
-                              </a>
-                              <img class="nav-img" src="./img/navRight.png">
-                            </li class="d-flex">
-                            <li class="d-flex">
-                              <a class="dropdown-item dropdown-menu-big" href="#">
-                                  관심구직자 / 기술스택 매칭
-                                  <p class="dropdown-menu-small">Interested seekers / Technical stack</p>
-                              </a>
-                              <img class="nav-img" src="./img/navRight.png">
-                            </li>
+                            {{#isCompanyUser}}
+                              <li class="d-flex">
+                                <a class="dropdown-item dropdown-menu-big" href="/updateSeekerForm">
+                                    회원정보 수정
+                                    <p class="dropdown-menu-small">Personal information</p>
+                                </a>
+                                <img class="nav-img" src="./img/navRight.png">
+                              </li>
+                              <li class="d-flex">
+                                <a class="dropdown-item dropdown-menu-big" href="#">
+                                    이력서
+                                    <p class="dropdown-menu-small">Resume</p>
+                                </a>
+                                <img class="nav-img" src="./img/navRight.png">
+                              </li>
+                              <li class="d-flex">
+                                <a class="dropdown-item dropdown-menu-big" href="#">
+                                    지원현황
+                                    <p class="dropdown-menu-small">Support status</p>
+                                </a>
+                                <img class="nav-img" src="./img/navRight.png">
+                              </li class="d-flex">
+                              <li class="d-flex">
+                                <a class="dropdown-item dropdown-menu-big" href="#">
+                                    관심기업 / 기술스택 매칭
+                                    <p class="dropdown-menu-small">Interested companies / Technical stack</p>
+                                </a>
+                                <img class="nav-img" src="./img/navRight.png">
+                              </li class="d-flex">                              
+                            {{/isCompanyUser}}
+                            {{^isCompanyUser}}
+                              <li class="d-flex">
+                                <a class="dropdown-item dropdown-menu-big" href="/updateCorporationForm">
+                                    회원정보 수정
+                                    <p class="dropdown-menu-small">Personal information</p>
+                                </a>
+                                <img class="nav-img" src="./img/navRight.png">
+                              </li>                                                                   
+                              <li class="d-flex">
+                                <a class="dropdown-item dropdown-menu-big" href="#">
+                                    채용공고
+                                    <p class="dropdown-menu-small">Employment announcement</p>
+                                </a>
+                                <img class="nav-img" src="./img/navRight.png">
+                              </li class="d-flex">
+                              <li class="d-flex">
+                                <a class="dropdown-item dropdown-menu-big" href="#">
+                                    채용공고 현황
+                                    <p class="dropdown-menu-small">Employment status</p>
+                                </a>
+                                <img class="nav-img" src="./img/navRight.png">
+                              </li class="d-flex">
+                              <li class="d-flex">
+                                <a class="dropdown-item dropdown-menu-big" href="#">
+                                    관심구직자 / 기술스택 매칭
+                                    <p class="dropdown-menu-small">Interested seekers / Technical stack</p>
+                                </a>
+                                <img class="nav-img" src="./img/navRight.png">
+                              </li>
+                            {{/isCompanyUser}}                        
                             <button id="btnJoin" type="submit" class="btn form-control btn-logout main-text">
                               <a class="nav-link" href="/logout">로그아웃</a>
                             </button>

@@ -22,6 +22,7 @@ public class UserRequest {
     public static class LoginDTO{
         private String username;
         private String password;
+        private Boolean companyUser;
     }
 
     @Getter

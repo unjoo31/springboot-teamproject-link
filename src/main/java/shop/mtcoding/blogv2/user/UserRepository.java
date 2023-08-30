@@ -10,4 +10,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "select * from user_tb where username = :username", nativeQuery = true)
     User findByUsername(@Param("username") String username);
 
+    // username으로 company_user를 조회
+    @Query(value = "select company_user from user_tb where username = :username", nativeQuery = true)
+    User companyFindByUsername(@Param("username") String username);
 }
