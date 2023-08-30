@@ -5,6 +5,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -16,6 +17,7 @@ import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.resume.Resume;
 import shop.mtcoding.blogv2.skill.Skill;
+import shop.mtcoding.blogv2.user.User;
 
 @NoArgsConstructor
 @Getter
@@ -28,7 +30,9 @@ public class hashArea {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String areaSelect;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Notice notice;
@@ -40,11 +44,11 @@ public class hashArea {
     private Area area;
 
     @Builder
-    public hashArea(Integer id, String areaSelect, Notice notice, Resume resume, Area area) {
+    public hashArea(Integer id, User user, Notice notice, Resume resume, Area area) {
         this.id = id;
-        this.areaSelect = areaSelect;
+        this.user = user;
         this.notice = notice;
         this.resume = resume;
         this.area = area;
-    } 
+    }
 }

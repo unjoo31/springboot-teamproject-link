@@ -5,6 +5,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -15,6 +16,7 @@ import lombok.Setter;
 import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.resume.Resume;
 import shop.mtcoding.blogv2.skill.Skill;
+import shop.mtcoding.blogv2.user.User;
 
 @NoArgsConstructor
 @Getter
@@ -27,7 +29,9 @@ public class hashSkil {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String skillSelect;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Skill skill;
@@ -39,11 +43,12 @@ public class hashSkil {
     private Resume resume;
 
     @Builder
-    public hashSkil(Integer id, String skillSelect, Skill skill, Notice notice, Resume resume) {
+    public hashSkil(Integer id, User user, Skill skill, Notice notice, Resume resume) {
         this.id = id;
-        this.skillSelect = skillSelect;
+        this.user = user;
         this.skill = skill;
         this.notice = notice;
         this.resume = resume;
     }
+    
 }

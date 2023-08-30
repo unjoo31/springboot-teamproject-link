@@ -62,17 +62,11 @@ INSERT INTO reply_tb (comment, user_id, board_id)
 VALUES
 ('Great post!', 1, 1),
 ('Thanks for the tips!', 2, 2);
-INSERT INTO hash_skil_tb (skill_select, skill_id, notice_id, resume_id)
-VALUES
-    ('Java', 1, 1, 1),
-    ('Java', 2, 1, 1),
-    ('Javascript', 3, 2, 2),
-    ('Javascript', 1, 2, 2),
-    ('Python', 2, 1, 1);
-INSERT INTO hash_area_tb (area_select, notice_id, resume_id, area_id)
-VALUES
-    ('Seoul', 1, 1, 1),
-    ('Seoul', 2, 1, 2),
-    ('Busan', 1, 2, 1),
-    ('Busan', 1, 2, 2),
-    ('Gyeonggi', 2, 2, 1);
+INSERT INTO hash_skil_tb (user_id, skill_id, notice_id, resume_id) VALUES
+(1, 1, 1, 1),
+(2, 2, 1, 1),
+(3, 3, 2, 2);
+INSERT INTO hash_area_tb (user_id, notice_id, resume_id, area_id) VALUES
+(1, 1, 1, 1),
+(2, 2, 1, 2),
+(3, 1, 2, 1);
