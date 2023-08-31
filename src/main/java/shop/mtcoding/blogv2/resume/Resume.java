@@ -21,7 +21,7 @@ import lombok.Setter;
 import shop.mtcoding.blogv2.apply.Apply;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.hasharea.HashArea;
-import shop.mtcoding.blogv2.hashskil.hashSkil;
+import shop.mtcoding.blogv2.hashskil.HashSkil;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.user.User;
 
@@ -49,7 +49,7 @@ public class Resume {
 
     @JsonIgnore
     @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
-    private List<hashSkil> hashSkilList = new ArrayList<>();
+    private List<HashSkil> hashSkilList = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
@@ -57,7 +57,7 @@ public class Resume {
 
     @Builder
     public Resume(Integer id, Integer career, String content, User user, List<Apply> applyList,
-            List<hashSkil> hashSkilList, List<HashArea> hashAreaList) {
+            List<HashSkil> hashSkilList, List<HashArea> hashAreaList) {
         this.id = id;
         this.career = career;
         this.content = content;
