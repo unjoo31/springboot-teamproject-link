@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import shop.mtcoding.blogv2._core.error.ex.MyApiException;
+import shop.mtcoding.blogv2._core.util.ApiUtil;
+
 @Controller
 public class UserController {
 
@@ -30,6 +33,16 @@ public class UserController {
     public String join(UserRequest.JoinDTO joinDTO){
         userService.회원가입(joinDTO);
         return "redirect:/loginForm";
+    }
+
+    // 회원가입 중복체크
+    @GetMapping("/api/check")
+    public @ResponseBody ApiUtil<String> check(String username){
+        if(username.isBlank()){
+            throw new MyApiException("유저네임을 입력하세요.");
+        }
+        userService.중복체크(username);
+        return new ApiUtil<String>(true, "중복체크 완료");
     }
 
     // 로그인 화면
