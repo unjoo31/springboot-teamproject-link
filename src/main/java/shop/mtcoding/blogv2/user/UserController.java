@@ -97,6 +97,16 @@ public class UserController {
         User sessionUser = (User)session.getAttribute("sessionUser");
         User user = userService.회원수정(updateDTO, sessionUser.getId());
         session.setAttribute("sessionUser", user);
+
+        // 기업회원의 경우 기업 회원정보 수정 페이지로 이동
+        if(sessionUser.getCompanyUser() == true){
+            return "redirect:/updateCorporationForm";
+        }
+
+        if(sessionUser.getCompanyUser() ==  false){
+            return "redirect:/updateSeekerForm";
+        }
+        // 일반회원 경우 일반 회원정보 수정 페이지로 이동
         return "redirect:/";
     }
 }
