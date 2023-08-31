@@ -31,27 +31,26 @@ VALUES
     (2023, 'UI/UX Designer Internship', 'Enrolled in a Design-related program', 'Unpaid', 'Internship', '2023-09-01', '2023-09-30', 'Join our UI/UX Design team as an intern to...', 2);
 INSERT INTO resume_tb (career, content, user_id)
 VALUES
-(1, '7 years of experience in web development.', 1),
-(1, 'Recent graduate with strong programming skills.', 2);
+(1, '7 years of experience in web development.', 3),
+(1, 'Recent graduate with strong programming skills.', 3);
 INSERT INTO apply_tb (pass, user_id, notice_id, resume_id)
 VALUES
 ('합격', 1, 1, 1),
 ('미정', 1, 1, 1),
 ('불합격', 2, 2, 2);
-INSERT INTO skill_tb (skill_name)
-VALUES
-    ('CSS'),
-    ('Spring Boot'),
-    ('JPS'),
-    ('Android'),
-    ('AJAX'),
-    ('Flutter'),
-    ('HTML'),
-    ('MySQL'),
-    ('Java'),
-    ('JavaScript'),
-    ('Git'),
-    ('AWS');
+INSERT INTO skill_tb (skill_name) VALUES('CSS');
+INSERT INTO skill_tb (skill_name) VALUES('C#');
+INSERT INTO skill_tb (skill_name) VALUES('JSP');
+INSERT INTO skill_tb (skill_name) VALUES('Android');
+INSERT INTO skill_tb (skill_name) VALUES('AJAX');
+INSERT INTO skill_tb (skill_name) VALUES('Flutter');
+INSERT INTO skill_tb (skill_name) VALUES('HTML');
+INSERT INTO skill_tb (skill_name) VALUES('MySQL');
+INSERT INTO skill_tb (skill_name) VALUES('Java');
+INSERT INTO skill_tb (skill_name) VALUES('JavaScript');
+INSERT INTO skill_tb (skill_name) VALUES('Git');
+INSERT INTO skill_tb (skill_name) VALUES('AWS');
+
 INSERT INTO area_tb (area_name)
 VALUES
     ('Busan'),
@@ -71,9 +70,9 @@ VALUES
 ('Great post!', 1, 1),
 ('Thanks for the tips!', 2, 2);
 INSERT INTO hash_skil_tb (user_id, skill_id, notice_id, resume_id) VALUES
-(1, 1, 1, 1),
-(2, 1, 1, 1),
-(3, 1, 2, 2);
+(3, 1, null, 1),
+(3, 2, null, 1),
+(2, 3, 2, null);
 INSERT INTO hash_area_tb (user_id, notice_id, resume_id, area_id) VALUES
 (1, 1, 1, 1),
 (2, 2, 1, 1),
