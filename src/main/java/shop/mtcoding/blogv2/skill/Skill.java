@@ -29,11 +29,34 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String skillName;
+    private String css;
+    private String springboot;
+    private String jps;
+    private String android;
+    private String ajax;
+    private String flutter;
+    private String html;
+    private String mysql;
+    private String java;
+    private String javascript;
+    private String git;
+    private String aws;
 
     @Builder
-    public Skill(Integer id, String skillName) {
+    public Skill(Integer id, String css, String springboot, String jps, String android, String ajax, String flutter,
+            String html, String mysql, String java, String javascript, String git, String aws) {
         this.id = id;
-        this.skillName = skillName;
-    }    
+        this.css = css;
+        this.springboot = springboot;
+        this.jps = jps;
+        this.android = android;
+        this.ajax = ajax;
+        this.flutter = flutter;
+        this.html = html;
+        this.mysql = mysql;
+        this.java = java;
+        this.javascript = javascript;
+        this.git = git;
+        this.aws = aws;
+    }       
 }
