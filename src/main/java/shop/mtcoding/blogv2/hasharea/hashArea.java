@@ -24,7 +24,7 @@ import shop.mtcoding.blogv2.user.User;
 @Setter
 @Table(name = "hash_area_tb")
 @Entity
-public class hashArea {
+public class HashArea {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,7 +44,7 @@ public class hashArea {
     private Area area;
 
     @Builder
-    public hashArea(Integer id, User user, Notice notice, Resume resume, Area area) {
+    public HashArea(Integer id, User user, Notice notice, Resume resume, Area area) {
         this.id = id;
         this.user = user;
         this.notice = notice;

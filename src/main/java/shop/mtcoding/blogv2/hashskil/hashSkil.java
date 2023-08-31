@@ -23,7 +23,7 @@ import shop.mtcoding.blogv2.user.User;
 @Setter
 @Table(name = "hash_skil_tb")
 @Entity
-public class hashSkil {
+public class HashSkil {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +43,7 @@ public class hashSkil {
     private Resume resume;
 
     @Builder
-    public hashSkil(Integer id, User user, Skill skill, Notice notice, Resume resume) {
+    public HashSkil(Integer id, User user, Skill skill, Notice notice, Resume resume) {
         this.id = id;
         this.user = user;
         this.skill = skill;

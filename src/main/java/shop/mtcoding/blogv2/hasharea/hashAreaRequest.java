@@ -1,5 +1,5 @@
 package shop.mtcoding.blogv2.hasharea;
 
-public class hashAreaRequest {
+public class HashAreaRequest {
     
 }
