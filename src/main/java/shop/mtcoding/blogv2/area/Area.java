@@ -26,20 +26,11 @@ public class Area {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String busan;
-
-    private String seoul;
-
-    private String gyeonggi;
-
-    private String daegu;
+    private String areaName;
 
     @Builder
-    public Area(Integer id, String busan, String seoul, String gyeonggi, String daegu) {
+    public Area(Integer id, String areaName) {
         this.id = id;
-        this.busan = busan;
-        this.seoul = seoul;
-        this.gyeonggi = gyeonggi;
-        this.daegu = daegu;
-    }     
+        this.areaName = areaName;
+    }    
 }

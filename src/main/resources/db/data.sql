@@ -38,12 +38,26 @@ VALUES
 ('합격', 1, 1, 1),
 ('미정', 1, 1, 1),
 ('불합격', 2, 2, 2);
-INSERT INTO skill_tb (css, springboot, jps, android, ajax, flutter, html, mysql, java, javascript, git, aws)
+INSERT INTO skill_tb (skill_name)
 VALUES
-    ('CSS', 'Spring Boot', 'JPS', 'Android', 'AJAX', 'Flutter', 'HTML', 'MySQL', 'Java', 'JavaScript', 'Git', 'AWS');
-INSERT INTO area_tb (busan, seoul, gyeonggi, daegu)
+    ('CSS'),
+    ('Spring Boot'),
+    ('JPS'),
+    ('Android'),
+    ('AJAX'),
+    ('Flutter'),
+    ('HTML'),
+    ('MySQL'),
+    ('Java'),
+    ('JavaScript'),
+    ('Git'),
+    ('AWS');
+INSERT INTO area_tb (area_name)
 VALUES
-    ('Busan', 'Seoul', 'Gyeonggi', 'Daegu');
+    ('Busan'),
+    ('Seoul'),
+    ('Gyeonggi'),
+    ('Daegu');
 INSERT INTO bookmark_tb (target_id)
 VALUES
 (1),
