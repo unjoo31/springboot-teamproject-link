@@ -186,74 +186,64 @@ h1 {
                 <h1 class="title-mini-text body">댓글</h1>
 
                 <!-- 댓글등록 -->
-                <div>
-                    <form action="/#" method="post">
-                        <input type="hidden" name="boardId" >
 
-                        <div class="reply-writer">작성자</div>
-                        <div class="d-flex align-items-center mb-3"> <!-- 세로 중앙 정렬 및 마진 추가 -->
-                            <div class="d-flex flex-grow-1"> <!-- 좌우로 확장 -->
-                                <input class="form-control sub-text" placeholder="댓글을 입력하세요">
-                            </div>
+                <form action="/reply/replyUpdate" method="post">
+                    <input type="hidden" name="boardId">
 
-                            <button class="btn btn-style btn-register main-text bottom-box reply-button" type="
-                                button">완료</button>
+                    <div class="reply-writer">작성자</div>
+                    <div class="d-flex align-items-center mb-3"> <!-- 세로 중앙 정렬 및 마진 추가 -->
+                        <div class="d-flex flex-grow-1"> <!-- 좌우로 확장 -->
+                            <input class="form-control sub-text" placeholder="댓글을 입력하세요">
                         </div>
-                    </form>
-                </div>
 
-
+                        <button class="btn btn-style btn-register main-text bottom-box reply-button" type="
+                                button">완료</button>
+                    </div>
+                </form>
 
 
 
                 <!-- 댓글목록 -->
                 <div class="list-group-item">
+                    <form action="/reply/delete" method="post">
 
-                    <div>
-                        <div class="reply-writer">작성자</div>
-                        <div class="d-flex align-items-center ">
-                            <div class="d-flex flex-grow-1">
-                                <div class="form-control sub-text">댓글 내용 들어오는 곳 입니다</div>
-                            </div>
-
-                            <form action="/reply/delete" method="post">
-                                <input type="hidden" name="boardId"  />
+                        <div>
+                            <div class="reply-writer">작성자</div>
+                            <div class="d-flex align-items-center ">
+                                <div class="d-flex flex-grow-1">
+                                    <div class="form-control sub-text">댓글 내용 들어오는 곳 입니다</div>
+                                </div>
+                                <input type="hidden" name="boardId" >
                                 <button class="btn btn-style btn-register main-text bottom-box reply-button" type="
                                     button">삭제</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="reply-writer">작성자</div>
-                        <div class="d-flex align-items-center ">
-                            <div class="d-flex flex-grow-1">
-                                <div class="form-control sub-text">댓글 내용 들어오는 곳 입니다</div>
                             </div>
+                        </div>
 
-                            <form action="/reply/delete" method="post">
-                                <input type="hidden" name="boardId"  />
+                        <div>
+                            <div class="reply-writer">작성자</div>
+                            <div class="d-flex align-items-center ">
+                                <div class="d-flex flex-grow-1">
+                                    <div class="form-control sub-text">댓글 내용 들어오는 곳 입니다</div>
+                                </div>
+                                <input type="hidden" name="boardId">
                                 <button class="btn btn-style btn-register main-text bottom-box reply-button" type="
                                     button">삭제</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="reply-writer">작성자</div>
-                        <div class="d-flex align-items-center ">
-                            <div class="d-flex flex-grow-1">
-                                <div class="form-control sub-text">댓글 내용 들어오는 곳 입니다</div>
                             </div>
+                        </div>
 
-                            <form action="/reply/delete" method="post">
-                                <input type="hidden" name="boardId" />
+                        <div>
+                            <div class="reply-writer">작성자</div>
+                            <div class="d-flex align-items-center ">
+                                <div class="d-flex flex-grow-1">
+                                    <div class="form-control sub-text">댓글 내용 들어오는 곳 입니다</div>
+                                </div>
+                                <input type="hidden" name="boardId" >
                                 <button class="btn btn-style btn-register main-text bottom-box reply-button" type="
                                     button">삭제</button>
-                            </form>
+                            </div>
                         </div>
-                    </div>
 
+                    </form>
                 </div>
             </div>
         </div>
