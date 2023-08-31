@@ -20,7 +20,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import shop.mtcoding.blogv2.apply.Apply;
-import shop.mtcoding.blogv2.hasharea.hashArea;
+import shop.mtcoding.blogv2.hasharea.HashArea;
 import shop.mtcoding.blogv2.hashskil.hashSkil;
 import shop.mtcoding.blogv2.user.User;
 
@@ -64,12 +64,12 @@ public class Notice {
 
     @JsonIgnore
     @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
-    private List<hashArea> hashAreaList = new ArrayList<>();
+    private List<HashArea> hashAreaList = new ArrayList<>();
 
     @Builder
     public Notice(Integer id, Integer career, String title, String academicAbility, String salary, String typeOfWork,
             Date orderDate, Date endDate, String content, User user, List<Apply> applyList, List<hashSkil> hashSkilList,
-            List<hashArea> hashAreaList) {
+            List<HashArea> hashAreaList) {
         this.id = id;
         this.career = career;
         this.title = title;

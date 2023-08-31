@@ -1,5 +1,5 @@
 package shop.mtcoding.blogv2.hashskil;
 
-public class hashSkilRepository {
+public class HashSkilRepository {
     
 }
