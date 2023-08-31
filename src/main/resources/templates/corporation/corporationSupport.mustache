@@ -334,21 +334,22 @@
                 </div>
 
                 <div class="grid-container3">
+                    {{#noticeList}}
                     <div class="card">
                         <div class="card-body">
-                            <div class="main-text"><b>{{notice.title}}</b></div>
-                            <div class="companyname">{{notice.user.name}}</div>
+                            <div class="main-text"><b>{{title}}</b></div>
+                            <div class="companyname">{{user.name}}</div>
                             <div>
                                 {{#notice.hashSkilList}}
-                                <div class="d-flex companyname">
+                                <div class="companyname">
                                     <div class="statusfail">{{skill.skillName}}</div>
                                 </div>
                                 {{/notice.hashSkilList}}
-                                <div class="d-flex justify-content-end sub-sub-test" >마감 3일전</div>
+                                <div class="d-flex justify-content-end sub-sub-test" >마감 {{timeDifferenceList}}일전</div>
                             </div>
-            
                         </div>
                     </div>
+                    {{/noticeList}}
                                         
                 </div>
             </div>                
