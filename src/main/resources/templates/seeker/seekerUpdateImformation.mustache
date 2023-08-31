@@ -145,7 +145,6 @@
     margin-left: 20px;
 }
 .left-box-first{
-    margin-right: 40px;
     margin-left: 10px;
 }
 .bottom-box{
@@ -174,9 +173,11 @@
 }
 .img-botton{
     margin-top: 20px;
-    margin-right: 15px;
+    margin-right: 20px;
     height: 40px;
+    width: 200px;
 }
+
 .input-style{
     width: 310px;
     height: 40px;
@@ -249,10 +250,9 @@
                     <div class="d-flex first-box box-layout">
                         <div class="d-flex left-box-first">
                             <div class="personal-img">
-                                <img src="/img/{{user.picUrl}}">
+                                <img id="preview" src="/images/{{user.picUrl}}">
                             </div>
-                            <button class="btn img-botton btn-login main-text" type="button">Change</button>
-                            <button class="btn img-botton btn-register main-text" type="button">Remove</button>
+                            <input class="btn img-botton btn-login main-text" type="file" onchange="changePic(event)" name="pic"></input>
                         </div>
                         <div class="mb-3 d-flex flex-column">
                             <label for="username" class="form-label main-text">이름</label>
@@ -298,4 +298,20 @@
         </div>
     </div>
 </div>
+<script>
+    function changePic(e1){
+        console.log(e1);
+        let f = e1.srcElement.files[0];
+        if(!f.type.match("image.*")){
+            alert("이미지를 등록해주세요.")
+            return;
+        }
+        let reader = new FileReader();
+        reader.onload = function(e2){
+            let previewEl = document.querySelector("#preview");
+            previewEl.setAttribute("src", e2.target.result);
+        }
+        reader.readAsDataURL(f);
+    }
+</script>
 {{> layout/footer}}
