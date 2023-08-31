@@ -25,10 +25,10 @@ INSERT INTO user_tb (
   'basic.jpg', '일반회원1', '987-654-3210', '123 Main St, City', '1985-05-20',
   'Tech Company', 'Software Development', 'Good'
 );
-INSERT INTO notice_tb (career, title, academic_ability, salary, type_of_work, order_date, end_date, content, user_id)
+INSERT INTO notice_tb (career, title, academic_ability, salary, type_of_work, created_at, end_date, content, user_id)
 VALUES
-    (2023, 'Backend Developer Position', 'Bachelor Degree in Computer Science', 'Competitive', 'Full-time', '2023-08-20', '2023-08-31', 'We are seeking an experienced Backend Developer...', 1),
-    (2023, 'UI/UX Designer Internship', 'Enrolled in a Design-related program', 'Unpaid', 'Internship', '2023-09-29', '2023-09-30', 'Join our UI/UX Design team as an intern to...', 2);
+    (2023, 'Backend Developer Position', 'Bachelor Degree in Computer Science', 'Competitive', 'Full-time', now(), '2023-09-03', 'We are seeking an experienced Backend Developer...', 1),
+    (2023, 'UI/UX Designer Internship', 'Enrolled in a Design-related program', 'Unpaid', 'Internship', now(), '2023-09-05', 'Join our UI/UX Design team as an intern to...', 2);
 INSERT INTO resume_tb (career, content, user_id)
 VALUES
 (1, '7 years of experience in web development.', 1),

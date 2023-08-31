@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,21 +28,26 @@ public class NoticeController {
     @GetMapping("/corporationSupport")
     public String corporationSupport(HttpServletRequest request){
 
-        List<Notice> noticeList = noticeService.공고목록보기();
-        List<Long> timeDifferenceList = new ArrayList<>();
-        
-        
+    List<Notice> noticeList = noticeService.공고목록보기();
+    
+    List<Map<String, Object>> noticeDataList = new ArrayList<>();
     for (Notice notice : noticeList) {
-        Date startDate = notice.getOrderDate();
+        Map<String, Object> noticeData = new HashMap<>();
+        noticeData.put("title", notice.getTitle());
+        noticeData.put("user", notice.getUser());
+        noticeData.put("hashSkilList", notice.getHashSkilList());
+        
+        Date startDate = notice.getCreatedAt();
         Date endDate = notice.getEndDate();
 
         long timeDifferenceMillis = endDate.getTime() - startDate.getTime();
         long timeDifferenceDays = timeDifferenceMillis / (1000 * 60 * 60 * 24);
-        timeDifferenceList.add(timeDifferenceDays);
-        System.out.println("테스트 : " + timeDifferenceList);
+        noticeData.put("timeDifference", timeDifferenceDays);
+
+        noticeDataList.add(noticeData);
     }
-    request.setAttribute("noticeList", noticeList);
-    request.setAttribute("timeDifferenceList", timeDifferenceList);
+    
+    request.setAttribute("noticeDataList", noticeDataList);
     return "/corporation/corporationSupport";
 }
 }
