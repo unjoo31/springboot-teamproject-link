@@ -104,10 +104,8 @@ public class NoticeController {
     // 공고현황 화면 
     @GetMapping("/corporationSupport")
     public String corporationSupport(HttpServletRequest request){
-    
     List<Notice> noticeList = noticeService.공고목록보기();
-    
-    // 공고현황 화면에 보여줄 값 담기
+     
     List<Map<String, Object>> noticeDataList = new ArrayList<>();
     for (Notice notice : noticeList) {
         Map<String, Object> noticeData = new HashMap<>();
@@ -141,7 +139,9 @@ public class NoticeController {
         // 마감일 연산
         long timeDifferenceMillis = endDate.getTime() - startDate.getTime();
         long timeDifferenceDays = timeDifferenceMillis / (1000 * 60 * 60 * 24);
+       
         
+        System.out.println("테스트 : "+notice.getHashAreaList().get(0).getArea().getAreaName());
         request.setAttribute("notice", notice);
         request.setAttribute("timeDifferenceDays", timeDifferenceDays);
         return "seeker/applyNotice";
