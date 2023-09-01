@@ -27,7 +27,6 @@ import shop.mtcoding.blogv2.user.User;
 public class HashSkil {
       
 
-
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
