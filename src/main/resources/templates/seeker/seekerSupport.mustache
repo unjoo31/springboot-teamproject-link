@@ -329,34 +329,15 @@
                 </div>
 
                 <div class="grid-container3">
+                    {{#applyDataList}}
                     <div class="card">
                         <div class="card-body">
-                            <div class="main-text"><b>개발자구합니다</b></div>
-                            <div class="companyname">쿠쿠전자</div>
-                            <div class="statussuccess">합격</div>
+                            <div class="main-text"><b>{{title}}</b></div>
+                            <div class="companyname">{{name}}</div>
+                            <div class="statussuccess">{{pass}}</div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="main-text"><b>개발자구합니다</b></div>
-                            <div class="companyname">르노삼성</div>
-                            <div class="statusfail">불합격</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="main-text"><b>개발자구합니다</b></div>
-                            <div class="companyname">서원유통</div>
-                            <div class="statusfail">불합격</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="main-text"><b>개발자구합니다</b></div>
-                            <div class="companyname">와니전자</div>
-                            <div class="statussuccess">합격</div>
-                        </div>
-                    </div>
+                    {{/applyDataList}}
                 </div>
             </div>                
         </div>

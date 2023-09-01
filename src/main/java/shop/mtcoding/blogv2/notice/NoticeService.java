@@ -40,10 +40,12 @@ public class NoticeService {
         return noticeRepository.findByTitleContaining(keyword, pageable);
     }   
 
+    // 공고현황 조회할때 사용
     public List<Notice> 공고목록보기() {
         return noticeRepository.findAll();
     }
 
+    // 입사지원 화면 
     public Notice 공고상세보기(int id) {
        Optional<Notice> noticeOP = noticeRepository.findById(id);
        if (noticeOP.isPresent()) {

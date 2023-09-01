@@ -36,8 +36,13 @@ INSERT INTO notice_tb (career, title, academic_ability, salary, type_of_work, cr
 VALUES
 <<<<<<< HEAD
     (1, 'Backend Developer Position', '학력무관', '면접 후 결정', '정규직', now(), '2023-09-03', 'We are seeking an experienced Backend Developer...', 1),
+    (2, 'UI/UX Designer Internship', '학력무관', '면접 후 결정', '아르바이트', now(), '2023-09-05', 'Join our UI/UX Design team as an intern to...', 2),
+=======
+<<<<<<< HEAD
+    (1, 'Backend Developer Position', '학력무관', '면접 후 결정', '정규직', now(), '2023-09-03', 'We are seeking an experienced Backend Developer...', 1),
     (2, 'UI/UX Designer Internship', '학력무관', '면접 후 결정', '아르바이트', now(), '2023-09-05', 'Join our UI/UX Design team as an intern to...', 2);
 =======
+>>>>>>> dev
     (2023, '프론트엔드 개발자 채용', 'React, Vue, Angular 중 1개 이상의 개발 경험', '시스템 소프트웨어 개발 및 공급업', '신입, 경력', now(), '2023-08-31', '백엔드/퍼블리싱/앱 개발 경험 ...', 1),
     (2023, '웹 개발 경력 및 신입사원 채용', '웹 개발 및 시스템 운영', '시스템 소프트웨어 개발 및 공급업', '신입, 경력', now(), '2023-08-31', 'JAVA개발자(Java, JSP, Spring 등)...', 1),
     (2023, '백엔드/프론트엔드개발자(java/php/react)', 'java/php/react', '시스템 소프트웨어 개발 및 공급업', '신입, 경력', now(), '2023-08-31', 'java/php/react...', 1),
@@ -108,8 +113,19 @@ INSERT INTO hash_area_tb (user_id, notice_id, resume_id, area_id) VALUES
 (1, 1, null, 3),
 (1, 1, null, 4),
 (2, 2, null, 4);
+
+=======
+<<<<<<< HEAD
+(3, null, 1, 1),
+(3, null, 1, 2),
+(1, 1, null, 1),
+(1, 1, null, 2),
+(1, 1, null, 3),
+(1, 1, null, 4),
+(2, 2, null, 4);
 =======
 (1, 1, null, 1),
 (2, 2, null, 1),
 (3, null, 2, 1);
+>>>>>>> dev
 >>>>>>> dev
