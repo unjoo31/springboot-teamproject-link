@@ -88,7 +88,5 @@ public class Notice {
         this.applyList = applyList;
         this.hashSkilList = hashSkilList;
         this.hashAreaList = hashAreaList;
-    }
-
-       
+    }      
 }

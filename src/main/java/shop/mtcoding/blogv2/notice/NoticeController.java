@@ -36,32 +36,27 @@ public class NoticeController {
     @GetMapping("/")
     public String index(@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "0") Integer page, HttpServletRequest request){
 
-        // 채용공고 리스트 보여주기
-        Page<Notice> noticePG = null; 
+        // 채용공고 리스트 보여주기    
+        List<Notice> noticeList = noticeService.공고목록보기();
+        
+        List<Map<String, Object>> noticeDataList = new ArrayList<>();
+        for (Notice notice : noticeList) {
+            Map<String, Object> noticeData = new HashMap<>();
+            noticeData.put("title", notice.getTitle());
+            noticeData.put("user", notice.getUser());
+            noticeData.put("hashSkilList", notice.getHashSkilList());
+            
+            Date startDate = notice.getCreatedAt();
+            Date endDate = notice.getEndDate();
 
-        if(keyword.isBlank()){
-            noticePG = noticeService.채용공고목록보기(page);
-        }else{
-            noticePG = noticeService.채용공고목록보기(page, keyword);
-            request.setAttribute("keyword", keyword);
+            long timeDifferenceMillis = endDate.getTime() - startDate.getTime();
+            long timeDifferenceDays = timeDifferenceMillis / (1000 * 60 * 60 * 24);
+            noticeData.put("timeDifference", timeDifferenceDays);
+
+            noticeDataList.add(noticeData);
         }
-
-        List<List<String>> skillsList = noticeService.스킬리스트보기(noticePG);
-
-        request.setAttribute("noticePG", noticePG);
-        request.setAttribute("prevPage", noticePG.getNumber() - 1);
-        request.setAttribute("nextPage", noticePG.getNumber() + 1);
-        request.setAttribute("skillsList", skillsList);
-
-        for (int i = 0; i < skillsList.size(); i++) {
-            System.out.println("테스트 스킬" + (i + 1) + ": " + skillsList.get(i));
-        }
-
-        for (Notice notice : noticePG) {
-            System.out.println("테스트 공고" + notice.getId() + ": " + notice.getContent());
-            System.out.println("테스트 공고" + notice.getId() + ": " + notice.getTitle());
-            System.out.println("테스트 공고" + notice.getId() + ": " + notice.getUser().getUsername());
-        }
+        
+        request.setAttribute("noticeDataList", noticeDataList);
 
         // 기업리스트 보여주기
 
