@@ -198,23 +198,23 @@
 
                 <div class="mb-3 d-flex flex-column">
                     <label for="password" class="form-label main-text">제목</label>
-                    <input class="input-style form-control sub-text" type="text" id="username" placeholder="제목을 적으세요"
-                        name="username">
+                    <input type="text" class="input-style form-control sub-text" id="username" placeholder="제목을 적으세요"
+                        name="title">
                 </div>
 
                 <div class="mb-3 d-flex flex-column">
                     <label for="password" class="form-label main-text">내용</label>
-                    <textarea class="custom-textarea" rows=" 20" cols="30" placeholder="글을 작성하세요"
-                        id="content"></textarea>
+                    <textarea class="custom-textarea" rows=" 20" cols="30" placeholder="글을 작성하세요" id="content"
+                        name="content"></textarea>
                 </div>
 
                 <div class="d-flex bottom-box justify-content-end">
-                    <button class="btn btn-style btn-register main-text bottom-box" type="submit"
-                        style="margin-right: 15px;">완료</button>
+                    <button type="submit" class="btn btn-style btn-register main-text bottom-box"
+                        id="content">완료</button>
                 </div>
 
             </form>
-            
+
         </div>
     </div>
 </div>
@@ -222,9 +222,16 @@
 <script>
     $(document).ready(function () {
         $('#content').summernote({
-            height: 300
+            height: 200,
+            callbacks: {
+                onPaste: function (e) {
+                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                    e.preventDefault();
+                    document.execCommand('insertText', false, bufferText);
+                }  
+            }         
         });
     });
 </script>
-    
-    {{> layout/footer}}
+
+{{> layout/footer}}

@@ -1,6 +1,15 @@
 package shop.mtcoding.blogv2.reply;
 
-public class ReplyRequest {
-    
+import lombok.Getter;
+import lombok.Setter;
 
-}
+public class ReplyRequest {
+
+    @Getter
+    @Setter
+    public class SaveDTO {
+        private Integer boardId;
+        private String comment;
+    }
+
+} 
