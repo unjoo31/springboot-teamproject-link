@@ -157,31 +157,25 @@ public class NoticeController {
         return "index";
     }
 
-    // String
-    @GetMapping("/corporationSupport")
-    public String corporationSupport(HttpServletRequest request){
+    // 입사지원 화면 
+    @GetMapping("/applyNotice")
+    public String applyNotice(HttpServletRequest request){
+        Notice notice = noticeService.공고상세보기(1);
 
-    List<Notice> noticeList = noticeService.공고목록보기();
-    
-    List<Map<String, Object>> noticeDataList = new ArrayList<>();
-    for (Notice notice : noticeList) {
-        Map<String, Object> noticeData = new HashMap<>();
-        noticeData.put("title", notice.getTitle());
-        noticeData.put("user", notice.getUser());
-        noticeData.put("hashSkilList", notice.getHashSkilList());
-        
+        // 마감일 계산을 위해서 변수에 담아주기
         Date startDate = notice.getCreatedAt();
         Date endDate = notice.getEndDate();
 
+        // 마감일 연산
         long timeDifferenceMillis = endDate.getTime() - startDate.getTime();
         long timeDifferenceDays = timeDifferenceMillis / (1000 * 60 * 60 * 24);
-        noticeData.put("timeDifference", timeDifferenceDays);
-
-        noticeDataList.add(noticeData);
-    }
-    
-    request.setAttribute("noticeDataList", noticeDataList);
-    return "/corporation/corporationSupport";
-
+       
+        
+        System.out.println("테스트 : "+notice.getHashAreaList().get(0).getArea().getAreaName());
+        request.setAttribute("notice", notice);
+        request.setAttribute("timeDifferenceDays", timeDifferenceDays);
+        return "seeker/applyNotice";
     }
 }
+
+

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.area.AreaRepository;
 import shop.mtcoding.blogv2.hasharea.HashArea;
@@ -78,4 +79,6 @@ public class ResumeService {
 
                 resumeRepository.save(resume);
         }
+
+
 }
