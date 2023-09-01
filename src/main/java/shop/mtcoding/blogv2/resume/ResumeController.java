@@ -1,7 +1,12 @@
 package shop.mtcoding.blogv2.resume;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,4 +75,6 @@ public class ResumeController {
         resumeService.이력서등록(resumeSaveDTO, sessionUser.getId());
         return "redirect:/seekerResumeForm";
     }
+
+
 }

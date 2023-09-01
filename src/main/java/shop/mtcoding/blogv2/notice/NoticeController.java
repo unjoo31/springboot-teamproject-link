@@ -101,12 +101,13 @@ public class NoticeController {
         return "index";
     }
 
-    // String
+    // 공고현황 화면 
     @GetMapping("/corporationSupport")
     public String corporationSupport(HttpServletRequest request){
-
+    
     List<Notice> noticeList = noticeService.공고목록보기();
     
+    // 공고현황 화면에 보여줄 값 담기
     List<Map<String, Object>> noticeDataList = new ArrayList<>();
     for (Notice notice : noticeList) {
         Map<String, Object> noticeData = new HashMap<>();
@@ -127,5 +128,26 @@ public class NoticeController {
     request.setAttribute("noticeDataList", noticeDataList);
     return "/corporation/corporationSupport";
 
-    }
 }
+    // 입사지원 화면 
+    @GetMapping("/applyNotice")
+    public String applyNotice(HttpServletRequest request){
+        Notice notice = noticeService.공고상세보기(1);
+
+        // 마감일 계산을 위해서 변수에 담아주기
+        Date startDate = notice.getCreatedAt();
+        Date endDate = notice.getEndDate();
+
+        // 마감일 연산
+        long timeDifferenceMillis = endDate.getTime() - startDate.getTime();
+        long timeDifferenceDays = timeDifferenceMillis / (1000 * 60 * 60 * 24);
+        
+        request.setAttribute("notice", notice);
+        request.setAttribute("timeDifferenceDays", timeDifferenceDays);
+        return "seeker/applyNotice";
+    }
+
+
+
+    }
+
