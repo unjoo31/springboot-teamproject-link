@@ -22,7 +22,7 @@ INSERT INTO user_tb (
   'basic.jpg', '일반회원2', '987-654-3210', '123 Main St, City', '1985-05-20',
   'Tech Company', 'Software Development', 'Good'
 );
-INSERT INTO notice_tb (career, title, academic_ability, salary, type_of_work, order_date, end_date, content, user_id)
+INSERT INTO notice_tb (career, title, academic_ability, salary, type_of_work, created_at, end_date, content, user_id)
 VALUES
     (2023, '프론트엔드 개발자 채용', 'React, Vue, Angular 중 1개 이상의 개발 경험', '시스템 소프트웨어 개발 및 공급업', '신입, 경력', '2023-08-01', '2023-08-31', '백엔드/퍼블리싱/앱 개발 경험 ...', 1),
     (2023, '웹 개발 경력 및 신입사원 채용', '웹 개발 및 시스템 운영', '시스템 소프트웨어 개발 및 공급업', '신입, 경력', '2023-08-01', '2023-08-31', 'JAVA개발자(Java, JSP, Spring 등)...', 1),
@@ -40,6 +40,8 @@ VALUES
     (2023, 'HR 클라우드 서비스 개발(C#) 신입', 'java/php/react', '시스템 소프트웨어 개발 및 공급업', '신입, 경력', '2023-08-01', '2023-08-31', 'java/php/react...', 1),
     (2023, '웹/ 서버/ 앱 개발/ 시스템 엔지니어', 'java/php/react', '시스템 소프트웨어 개발 및 공급업', '신입, 경력', '2023-08-01', '2023-08-31', 'java/php/react...', 1),
     (2023, 'BackEnd/PHP 개발자/보안솔루션 채용', '보안 웹하드 솔루션/서비스 BackEnd 개발', '시스템 소프트웨어 개발 및 공급업', '신입, 경력', '2023-09-01', '2023-09-30', 'Python 개발 경력 3년 이상자...', 1);
+    (2023, 'Backend Developer Position', 'Bachelor Degree in Computer Science', 'Competitive', 'Full-time', now(), '2023-09-03', 'We are seeking an experienced Backend Developer...', 1),
+    (2023, 'UI/UX Designer Internship', 'Enrolled in a Design-related program', 'Unpaid', 'Internship', now(), '2023-09-05', 'Join our UI/UX Design team as an intern to...', 2);
 INSERT INTO resume_tb (career, content, user_id)
 VALUES
 (1, '7 years of experience in web development.', 3),
@@ -86,7 +88,11 @@ INSERT INTO hash_skil_tb (user_id, skill_id, notice_id, resume_id) VALUES
 (3, 3, null, 1),
 (1, 4, 1, null),
 (1, 5, 2, null),
-(1, 7, 4, null);
+(1, 7, 4, null),
+(1, 1, 1, null),
+(1, 2, 1, null),
+(2, 4, 2, null);
+>>>>>>> dev
 INSERT INTO hash_area_tb (user_id, notice_id, resume_id, area_id) VALUES
 (1, 1, 1, 1),
 (2, 2, 1, 1),

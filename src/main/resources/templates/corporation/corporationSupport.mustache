@@ -334,59 +334,24 @@
                 </div>
 
                 <div class="grid-container3">
+                    {{#noticeDataList}}
                     <div class="card">
                         <div class="card-body">
-                            <div class="main-text"><b>Java/Springframework 개발자</b></div>
-                            <div class="companyname">(주) 그룹코리아</div>
+                            <div class="main-text"><b>{{title}}</b></div>
+                            <div class="companyname">{{user.name}}</div>
                             <div>
                                 <div class="companyname">
-                                    <div class="statusfail ">android</div>
-                                    <div class="statusfail">javascript</div>
+                                    {{#hashSkilList}}
+                                    <div class="statusfail">{{skill.skillName}}</div>
+                                    {{/hashSkilList}}
                                 </div>
-                                <div class="d-flex justify-content-end sub-sub-test">마감3일전</div>
-                            </div>
-            
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="main-text"><b>빅데이터 AI 스타트업 신입 채용</b></div>
-                            <div class="companyname">(주) 그룹코리아</div>
-                            <div>
-                                <div class="companyname">
-                                    <div class="statusfail ">android</div>
-                                    <div class="statusfail">javascript</div>
+                                <div>
+                                    <div class="d-flex justify-content-end sub-sub-test">마감 {{timeDifference}}일전</div>
                                 </div>
-                                <div class="d-flex justify-content-end sub-sub-test">마감3일전</div>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="main-text"><b>빅데이터 AI 스타트업 신입 채용</b></div>
-                            <div class="companyname">(주) 그룹코리아</div>
-                            <div>
-                                <div class="companyname">
-                                    <div class="statusfail ">android</div>
-                                    <div class="statusfail">javascript</div>
-                                </div>
-                                <div class="d-flex justify-content-end sub-sub-test">마감3일전</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="main-text"><b>빅데이터 AI 스타트업 신입 채용</b></div>
-                            <div class="companyname">(주) 그룹코리아</div>
-                            <div>
-                                <div class="companyname">
-                                    <div class="statusfail ">android</div>
-                                    <div class="statusfail">javascript</div>
-                                </div>
-                                <div class="d-flex justify-content-end sub-sub-test">마감3일전</div>
-                            </div>
-                        </div>
-                    </div>
+                    {{/noticeDataList}}
                 </div>
             </div>                
         </div>
