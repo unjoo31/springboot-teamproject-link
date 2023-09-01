@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.blogv2._core.error.ex.MyApiException;
 import shop.mtcoding.blogv2._core.error.ex.MyException;
+import shop.mtcoding.blogv2._core.util.Function;
 import shop.mtcoding.blogv2.user.UserRequest.JoinDTO;
 import shop.mtcoding.blogv2.user.UserRequest.LoginDTO;
 import shop.mtcoding.blogv2.user.UserRequest.UpdateDTO;
@@ -15,6 +16,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private Function function;
 
     // 회원가입
     @Transactional
@@ -66,11 +70,14 @@ public class UserService {
     // 회원수정
     @Transactional
     public User 회원수정(UpdateDTO updateDTO, Integer id) {
+
+        String fileName = function.saveImage(updateDTO.getPic());
+
         User user = userRepository.findById(id).get();
+
         user.setPassword(updateDTO.getPassword());
         user.setEmail(updateDTO.getEmail());
         user.setCompanyUser(updateDTO.getCompanyUser());
-        user.setPicUrl(updateDTO.getPicUrl());
         user.setName(updateDTO.getName());
         user.setPhonenumber(updateDTO.getPhonenumber());
         user.setAddress(updateDTO.getAddress());
@@ -78,6 +85,8 @@ public class UserService {
         user.setBusiness(updateDTO.getBusiness());
         user.setForm(updateDTO.getForm());
         user.setPerformance(updateDTO.getPerformance());
+        user.setPicUrl(fileName);
+
         return user;
     }
 

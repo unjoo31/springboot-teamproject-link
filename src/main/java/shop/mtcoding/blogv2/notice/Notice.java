@@ -74,6 +74,7 @@ public class Notice {
     public Notice(Integer id, Integer career, String title, String academicAbility, String salary, String typeOfWork,
             Timestamp createdAt, Date endDate, String content, User user, List<Apply> applyList,
             List<HashSkil> hashSkilList, List<HashArea> hashAreaList) {
+
         this.id = id;
         this.career = career;
         this.title = title;

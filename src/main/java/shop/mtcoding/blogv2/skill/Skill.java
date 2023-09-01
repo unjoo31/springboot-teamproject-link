@@ -35,5 +35,5 @@ public class Skill {
     public Skill(Integer id, String skillName) {
         this.id = id;
         this.skillName = skillName;
-    }    
+    }           
 }

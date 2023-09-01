@@ -3,6 +3,8 @@ package shop.mtcoding.blogv2.user;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,7 +33,7 @@ public class UserRequest {
         private String password;
         private String email;
         private Boolean companyUser;
-        private String picUrl;
+        private MultipartFile pic;
         private String name;
         private String phonenumber;
         private String address;

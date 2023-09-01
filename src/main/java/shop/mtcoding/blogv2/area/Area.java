@@ -32,5 +32,5 @@ public class Area {
     public Area(Integer id, String areaName) {
         this.id = id;
         this.areaName = areaName;
-    }   
+    }    
 }
