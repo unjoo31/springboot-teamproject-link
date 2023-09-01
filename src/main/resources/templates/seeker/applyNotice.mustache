@@ -326,17 +326,17 @@
 <div class="middle-box d-flex justify-content-center">
     <div class="middle-box d-flex flex-column">
         <div class="first-button d-flex">
-            <button type="button" class="btn btn-style btn-register main-text bottom-box-right">지원완료</button>
-            <button type="button" class="btn btn-style btn-login main-text bottom-box-right">입사지원</button>
+            <button class="btn btn-style btn-register main-text bottom-box-right">지원완료</button>
+            <a href="/" class="btn btn-style btn-login main-text bottom-box-right">입사지원</a>
         </div>
         <div class="box">
             <div class="d-flex">
                 <div class="container d-flex flex-column">
                     <div class="detail-company">
-                        (주) 그룹코리아
+                        {{notice.user.name}}
                     </div>
                     <div class="detail-company-title">
-                        Java/Springframework 개발자
+                        {{notice.title}}
                     </div>
                 </div>
                 <button class="star-icon-button btn-register" type="button">
@@ -354,33 +354,33 @@
                         <div class="main-text">근무형태</div>
                     </div>
                     <div >
-                        <div class="main-text main-text-color text-line">신입</div>
-                        <div class="main-text main-text-color text-line">학력무관</div>
-                        <div class="main-text main-text-color ">정규직</div>
+                        <div class="main-text main-text-color text-line">{{notice.career}}</div>
+                        <div class="main-text main-text-color text-line">{{notice.academicAbility}}</div>
+                        <div class="main-text main-text-color ">{{notice.typeOfWork}}</div>
                     </div>
                 </div>
                 <div class="d-flex1 sub-text">
                     <div class="d-flex2">
                         <div class="main-text text-line">급여</div>
-                        <div class="main-text text-line">접수기간</div>
+                        <div class="main-text text-line">마감일</div>
                         <div class="main-text">지역</div>
                     </div>
                     <div>
-                        <div class="main-text main-text-color text-line">면접 후 결정</div>
-                        <div class="main-text main-text-color text-line">0000.00.00 ~ 0000.00.00</div>
-                        <div class="main-text main-text-color">부산 서울 대구</div>
+                        <div class="main-text main-text-color text-line">{{notice.salary}}</div>
+                        <div class="main-text main-text-color text-line">{{timeDifferenceDays}}일 </div>
+                        <div class="main-text main-text-color">{{#notice.hashAreaList}}  {{area.areaName}}  {{/notice.hashAreaList}}</div>
                     </div>
                 </div>
             </div>
             <hr>
             <div class="container d-flex sub-text four-box">
-                <div class="statusfail">java</div>
-                <div class="statusfail">javascript</div>
-                <div class="statusfail">ajax</div>
+                {{#notice.hashSkilList}}
+                <div class="statusfail">{{skill.skillName}}</div>
+                {{/notice.hashSkilList}}
             </div>
             <br>
             <div class="container d-flex sub-text five-box">
-                <div>(주)그룹코리아는 선도적인 소프트웨어 개발 회사입니다.</div>
+                <div>{{notice.content}}</div>
             </div>    
         </div>
     </div>
