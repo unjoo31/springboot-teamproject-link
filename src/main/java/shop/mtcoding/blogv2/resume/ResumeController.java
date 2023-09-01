@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+<<<<<<< HEAD
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -71,4 +72,16 @@ public class ResumeController {
         return "redirect:/seekerResumeForm";
     }
 
+=======
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class ResumeController {
+    
+    @GetMapping("seekerSupport")
+    public String seekerSupport(){
+        return "/seeker/seekerSupport";
+    }
+
+>>>>>>> dev
 }
