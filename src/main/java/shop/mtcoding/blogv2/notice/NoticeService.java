@@ -17,11 +17,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
+import shop.mtcoding.blogv2.skill.Skill;
+import shop.mtcoding.blogv2.skill.SkillRepository;
+
 @Service
 public class NoticeService {
 
     @Autowired
     private NoticeRepository noticeRepository;
+
 
     public Page<Notice> 채용공고목록보기(Integer page){
         Pageable pageable = PageRequest.of(page, 8, Sort.Direction.DESC, "id");
@@ -33,16 +37,6 @@ public class NoticeService {
         return noticeRepository.findByTitleContaining(keyword, pageable);
     }   
 
-    public List<List<String>> 스킬리스트보기(Page<Notice> noticePage) {
-        List<List<String>> skillsList = new ArrayList<>();
-        for (Notice notice : noticePage) {
-            List<String> skills = notice.getHashSkilList().stream()
-                    .map(hashSkil -> hashSkil.getSkill().getSkillName())
-                    .collect(Collectors.toList());
-            skillsList.add(skills);
-        }
-        return skillsList;
-    }
     public List<Notice> 공고목록보기() {
         return noticeRepository.findAll();
     }

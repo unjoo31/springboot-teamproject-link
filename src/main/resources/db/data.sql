@@ -13,6 +13,16 @@ INSERT INTO user_tb (
   'Tech Company', 'Software Development', 'Good'
 ),
 (
+  'ssar3', '1234', 'ssar@nate.com', TRUE,
+  'basic.jpg', '기업회원3', '123-456-7890', '123 Main St, City', '1985-05-20',
+  'Tech Company', 'Software Development', 'Good'
+),
+(
+  'ssar4', '1234', 'ssar@nate.com', TRUE,
+  'basic.jpg', '기업회원4', '123-456-7890', '123 Main St, City', '1985-05-20',
+  'Tech Company', 'Software Development', 'Good'
+),
+(
   'cos1', '1234', 'cos@nate.com', FALSE,
   'basic.jpg', '일반회원1', '987-654-3210', '123 Main St, City', '1985-05-20',
   'Tech Company', 'Software Development', 'Good'
