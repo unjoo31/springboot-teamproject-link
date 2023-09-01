@@ -27,8 +27,8 @@ INSERT INTO user_tb (
 );
 INSERT INTO notice_tb (career, title, academic_ability, salary, type_of_work, created_at, end_date, content, user_id)
 VALUES
-    (2023, 'Backend Developer Position', 'Bachelor Degree in Computer Science', 'Competitive', 'Full-time', now(), '2023-09-03', 'We are seeking an experienced Backend Developer...', 1),
-    (2023, 'UI/UX Designer Internship', 'Enrolled in a Design-related program', 'Unpaid', 'Internship', now(), '2023-09-05', 'Join our UI/UX Design team as an intern to...', 2);
+    (1, 'Backend Developer Position', '학력무관', '면접 후 결정', '정규직', now(), '2023-09-03', 'We are seeking an experienced Backend Developer...', 1),
+    (2, 'UI/UX Designer Internship', '학력무관', '면접 후 결정', '아르바이트', now(), '2023-09-05', 'Join our UI/UX Design team as an intern to...', 2);
 INSERT INTO resume_tb (career, content, user_id)
 VALUES
 (1, '7 years of experience in web development.', 3),
@@ -76,6 +76,10 @@ INSERT INTO hash_skil_tb (user_id, skill_id, notice_id, resume_id) VALUES
 (1, 2, 1, null),
 (2, 4, 2, null);
 INSERT INTO hash_area_tb (user_id, notice_id, resume_id, area_id) VALUES
-(1, 1, 1, 1),
-(2, 2, 1, 1),
-(3, 1, 2, 1);
+(3, null, 1, 1),
+(3, null, 1, 2),
+(1, 1, null, 1),
+(1, 1, null, 2),
+(1, 1, null, 3),
+(1, 1, null, 4),
+(2, 2, null, 4);
