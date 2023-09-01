@@ -66,5 +66,6 @@ public class Resume {
         this.applyList = applyList;
         this.hashSkilList = hashSkilList;
         this.hashAreaList = hashAreaList;
-    }
+    }       
 }
+    
