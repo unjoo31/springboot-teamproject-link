@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface NoticeRepository extends JpaRepository <Notice, Integer>{
+public interface NoticeRepository extends JpaRepository <Notice, Long>{
 
     Page<Notice> findByTitleContaining(String keyword, Pageable pageable);
     
