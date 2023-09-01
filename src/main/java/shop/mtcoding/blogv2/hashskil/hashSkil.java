@@ -34,6 +34,7 @@ public class hashSkil {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "skill_id")
     private Skill skill;
 
     @ManyToOne(fetch = FetchType.LAZY)

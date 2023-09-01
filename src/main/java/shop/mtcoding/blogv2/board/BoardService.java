@@ -14,6 +14,8 @@ import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.board.BoardRequest.UpdateDTO;
 import shop.mtcoding.blogv2.user.User;
 
+import shop.mtcoding.blogv2.user.User;
+
 @Service
 public class BoardService {
 
@@ -33,6 +35,20 @@ public class BoardService {
         boardRepository.save(board);
     }
 
+    public Board 게시글화면보기(Integer id) {
+        Optional<Board> boardOP = boardRepository.mFindByIdJoinRepliesInUser(id);
+        if (boardOP.isPresent()) {
+            return boardOP.get();
+        } else {
+            throw new RuntimeException(id + "는 찾을 수 없습니다");
+        }
+    }
+
+    public Page<Board> 게시글목록보기(Integer page) {
+        Pageable pageable = PageRequest.of(page, 8, Sort.Direction.DESC, "id");
+        return boardRepository.findAll(pageable);
+    }
+
     @Transactional
     public void 게시글수정하기(Integer id, UpdateDTO updateDTO) {
         Optional<Board> boardOP = boardRepository.findById(id);
@@ -44,20 +60,15 @@ public class BoardService {
         } else {
             throw new MyException(id + "는 찾을 수 없습니다");
         }
-    } // flush (더티체킹)
+    }
 
-    public Board 게시글화면보기(Integer id) {
-        Optional<Board> boardOP = boardRepository.mFindByIdJoinRepliesInUser(id);
-        if (boardOP.isPresent()) {
-            return boardOP.get();
-        } else {
-            throw new RuntimeException(id + "는 찾을 수 없습니다");
+    @Transactional
+    public void 삭제하기(Integer id) {
+        try {
+            boardRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException(id + "를 찾을 수 없어요");
         }
     }
 
-    public Page<Board> 게시글목록보기(Integer page) {
-        Pageable pageable = PageRequest.of(page, 3, Sort.Direction.DESC, "id");
-        return boardRepository.findAll(pageable);
-    }
-  
 }

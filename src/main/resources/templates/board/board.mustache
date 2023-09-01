@@ -78,6 +78,14 @@
         color: white;
     }
 
+    .btn-save {
+        margin-bottom: 5px;
+        font-size: 15px;
+        color: #FFFFFF;
+        margin-bottom: 5px;
+        
+    }
+
     .header-menu {
         font-weight: 600;
     }
@@ -180,19 +188,22 @@
     }
 
     /* board.html */
-</style>
+</style> 
 <div class="container">
+
     <div class="container-fluid d-flex justify-content-between mb-3 ">
+
         <div class="left-align-container search-input">
             <input class="search-input search-text" type="text" placeholder="검색어를 입력하세요" style="border: none;">
             <button class="navbar-toggler" type="button" style="background: none; border: none">
                 <img src="/img/search.png" alt="이미지 설명">
             </button>
         </div>
-        <div class="d-flex justify-content-end">
-            <a class="btn btn-boardstyle btn-register main-text type=button" style="margin-right: 15px;"
-                href="/board/saveBoard">게시글작성</a>
+
+        <div class="btn btn-style btn-save main-text">
+            <a href="/board/saveBoard">게시글작성</a>
         </div>
+
     </div>
 
 
@@ -221,7 +232,9 @@
                     </div>
                     {{id}}
                 </td>
-                <td>{{content}}</td>
+
+                <td>{{{content}}}</td> <!-- 썸머노트 태그 삭제법 {{{ }}} -->
+
             </tr>
             {{/boardPG.content}}
 

@@ -5,13 +5,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import shop.mtcoding.blogv2.user.UserRequest;
 
 @Controller
 public class BoardController {
@@ -30,6 +29,7 @@ public class BoardController {
         request.setAttribute("nextPage", boardPG.getNumber() + 1);
         return "board/board";
     }
+
      
     // ===========================================================================================
 
@@ -50,18 +50,25 @@ public class BoardController {
 
     // 게시글 글수정,삭제 화면 호출
     @GetMapping("/board/{id}/updateForm")
-    public String updateForm(@PathVariable Integer id, Model model) {
+    public String updateForm(@PathVariable Integer id, HttpServletRequest request) {
         Board board = boardService.게시글화면보기(id);
-        model.addAttribute("board", board);
+        request.setAttribute("board", board);
         return "board/updateForm";
     }
 
-    // 게시글 글수정,삭제 요청 응답
+    // 게시글 글수정 요청 응답
     @PostMapping("/board/{id}/update")
     public String update(@PathVariable Integer id, BoardRequest.UpdateDTO updateDTO) {
         boardService.게시글수정하기(id, updateDTO);
-        return "redirect:/board/" + id;
-    }
+        return "redirect:/board/"; 
+    } 
+
+    // 게시글 글삭제 요청 응답
+    @PostMapping("/board/{id}/delete")
+    public String delete(@PathVariable Integer id) {
+        boardService.삭제하기(id);
+        return "redirect:/board/"; 
+    } 
 
     // ===========================================================================================
 

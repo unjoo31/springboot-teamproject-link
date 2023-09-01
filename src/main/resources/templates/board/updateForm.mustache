@@ -130,6 +130,7 @@
     }
 
     .bottom-box {
+        display: flex;
         border-top: 1px solid #ccc;
         margin-top: 10px;
         margin-bottom: 10px;
@@ -190,29 +191,34 @@
         <div class="body-content-title">
             <p>Create Posts</p>
         </div>
-        <form class="left-box" action="/board/{{board.id}}/update" method="post" enctype="multipart/form-data">
 
-            <div class="box-layout">
+        <div class="box-layout">
+
+            <form action="/board/{{board.id}}/update" method="post">
 
                 <div class="mb-3 d-flex flex-column">
                     <label for="password" class="form-label main-text">제목</label>
-                    <input type="text" class="form-control input-style sub-text" placeholder="Enter title" name="title"
+                    <input type="text" class="form-control input-style sub-text" id="username" name="title"
                         value="{{board.title}}">
                 </div>
 
                 <div class="mb-3 d-flex flex-column">
                     <label for="password" class="form-label main-text">내용</label>
-                    <textarea class="custom-textarea" rows=" 20" cols="30" id="content" name="content">{{board.content}}</textarea>
+                    <textarea class="custom-textarea" rows="20" cols="30" id="content" name="content">{{board.content}}</textarea>
                 </div>
-            </div>
 
-            <div class="d-flex bottom-box justify-content-end">
-                <button type="submit" class="btn btn-style btn-register main-text bottom-box"
-                    style="margin-right: 15px;">수정</button>
-                <button type="submit" class="btn btn-style btn-register main-text bottom-box"
-                    style="margin-right: 15px;">삭제</button>
-            </div>
-        </form>
+                <div class="bottom-box justify-content-end">
+                    <button type="submit" class="btn btn-style btn-register main-text edit-btn" style="margin-right: 15px;">수정</button>
+                </div>
+            </form>
+
+            <form action="/board/{{board.id}}/delete" method="post">
+                <div class="bottom-box justify-content-end">
+                    <button type="submit" class="btn btn-style btn-register main-text edit-btn" style="margin-right: 15px;">삭제</button>
+                </div>
+            </form>
+
+        </div>
     </div>
 
 </div>

@@ -41,6 +41,7 @@ public class hashArea {
     private Resume resume;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "area_id")
     private Area area;
 
     @Builder

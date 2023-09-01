@@ -4,7 +4,7 @@ INSERT INTO user_tb (
   business, form, performance
 ) VALUES (
   'ssar1', '1234', 'ssar@nate.com', TRUE,
-  'basic.jpg', '기업회원1', '123-456-7890', '123 Main St, City', NULL,
+  'basic.jpg', '기업회원1', '123-456-7890', '123 Main St, City', '1985-05-20',
   'Tech Company', 'Software Development', 'Good'
 );
 INSERT INTO user_tb (
@@ -13,7 +13,7 @@ INSERT INTO user_tb (
   business, form, performance
 ) VALUES (
   'ssar2', '1234', 'ssar@nate.com', TRUE,
-  'basic.jpg', '기업회원2', '123-456-7890', '123 Main St, City', NULL,
+  'basic.jpg', '기업회원2', '123-456-7890', '123 Main St, City', '1985-05-20',
   'Tech Company', 'Software Development', 'Good'
 );
 INSERT INTO user_tb (
@@ -22,8 +22,8 @@ INSERT INTO user_tb (
   business, form, performance
 ) VALUES (
   'cos1', '1234', 'cos@nate.com', FALSE,
-  'basic.jpg', '일반회원1', '987-654-3210', NULL, '1985-05-20',
-  NULL, NULL, NULL
+  'basic.jpg', '일반회원1', '987-654-3210', '123 Main St, City', '1985-05-20',
+  'Tech Company', 'Software Development', 'Good'
 );
 INSERT INTO notice_tb (career, title, academic_ability, salary, type_of_work, order_date, end_date, content, user_id)
 VALUES
@@ -38,18 +38,12 @@ VALUES
 ('합격', 1, 1, 1),
 ('미정', 1, 1, 1),
 ('불합격', 2, 2, 2);
-INSERT INTO skill_tb (skill_name)
+INSERT INTO skill_tb (css, springboot, jps, android, ajax, flutter, html, mysql, java, javascript, git, aws)
 VALUES
-  ('Java'),
-  ('Javascript'),
-  ('CSS'),
-  ('Python');
-INSERT INTO area_tb (area_name)
+    ('CSS', 'Spring Boot', 'JPS', 'Android', 'AJAX', 'Flutter', 'HTML', 'MySQL', 'Java', 'JavaScript', 'Git', 'AWS');
+INSERT INTO area_tb (busan, seoul, gyeonggi, daegu)
 VALUES
-  ('Seoul'),
-  ('Busan'),
-  ('Daegu'),
-  ('Gyeonggi');
+    ('Busan', 'Seoul', 'Gyeonggi', 'Daegu');
 INSERT INTO bookmark_tb (target_id)
 VALUES
 (1),
@@ -64,9 +58,9 @@ VALUES
 ('Thanks for the tips!', 2, 2);
 INSERT INTO hash_skil_tb (user_id, skill_id, notice_id, resume_id) VALUES
 (1, 1, 1, 1),
-(2, 2, 1, 1),
-(3, 3, 2, 2);
+(2, 1, 1, 1),
+(3, 1, 2, 2);
 INSERT INTO hash_area_tb (user_id, notice_id, resume_id, area_id) VALUES
 (1, 1, 1, 1),
-(2, 2, 1, 2),
+(2, 2, 1, 1),
 (3, 1, 2, 1);
