@@ -40,5 +40,12 @@ public class NoticeService {
     public List<Notice> 공고목록보기() {
         return noticeRepository.findAll();
     }
+
+    public List<Notice> 필터링된공고목록보기(String selectedSkill, String selectedArea) {
+        List<Notice> filteredNotices = noticeRepository.findByNoticeSkillOrArea(selectedSkill, selectedArea);
+        
+        System.out.println("테스트"+filteredNotices.size());
+        return filteredNotices;
+    }
     
 }

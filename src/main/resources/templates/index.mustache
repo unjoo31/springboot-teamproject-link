@@ -271,15 +271,11 @@
     width: 1300px;
 }
 
-.container-second-card{
-    margin-right: 10px;
-}
-
 /* board에서 퍼온 스타일 */
 .search-input {
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 18px;
+    border-radius: 25px;
     font-size: 15px;
 }
 
@@ -360,6 +356,23 @@
 .index-body{
     margin-left: 30px;
 }
+.filter-button{
+    margin-right: 700px;
+    width: 60px;
+    background-color: #9F12E1;
+    color: white;
+}
+.index-company-box{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+}
+.container-second-card{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px;
+}
 /* index.html */
 </style>
 
@@ -367,11 +380,14 @@
     <div>
         <div class="d-flex index-body">
             <div>
-                <button class="btn-category main-text">기술</button>
+                <button class="btn-category main-text" onclick="showSkills()" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">기술</button>
             </div>
             <div>
-                <button class="btn-category main-text">지역</button>
+                <button class="btn-category main-text" onclick="showAreas()" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">지역</button>
             </div>
+            <button class="btn-category main-text filter-button" type="button" onclick="applyFilters()" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">
+                검색
+            </button>
             <div class="left-align-container search-input">
                 <input class=" search-text btn-login" type="text" placeholder="검색어를 입력하세요" style="border: none;">
 
@@ -381,25 +397,26 @@
             </div>
 
         </div>
-        <div>
+        <div id="skills-list" style="display: none;">
             <ul>
                 {{#skills}}
-                    <li class="btn btn-style btn-category-off main-text" type="button">{{skillName}}</li>
+                <button class="btn btn-style btn-category-off main-text skill-button" type="button" onclick="selectSkills(this)" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">{{skillName}}</button>
                 {{/skills}}
             </ul>
         </div>
-        <div>
+        
+        <div id="areas-list" style="display: none;">
             <ul>
                 {{#areas}}
-                    <li class="btn btn-style btn-category-off main-text" type="button">{{areaName}}</li>
+                <button class="btn btn-style btn-category-off main-text area-button" type="button" onclick="selectAreas(this)" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">{{areaName}}</button>
                 {{/areas}}
             </ul>
         </div>
         <br>
         <div class="body-content-title2 bottom-box-right">
-            {{#noticeDataList}}
-                <div class="card">
-                    <div class="card-body">
+            {{#filterDataList}}
+                <div class="index-company-box" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
+                    <div>
                         <div class="mb-3 d-flex justify-content-between">
                             <div>
                                 <img src="./img/{{user.picUrl}}"
@@ -418,12 +435,49 @@
                             <div class="statusfail">{{skill.skillName}}</div>
                             {{/hashSkilList}}
                         </div>
+                        <div class="companyname">
+                            {{#hashAreaList}}
+                            <div class="statusfail">{{area.areaName}}</div>
+                            {{/hashAreaList}}
+                        </div>
+                        <div>
+                            <div class="d-flex justify-content-end sub-sub-test">마감 {{timeDifference}}일전</div>
+                        </div>
+                    </div>
+                 </div>
+            {{/filterDataList}}
+            {{#noticeDataList}}
+                <div class="index-company-box" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
+                    <div >
+                        <div class="mb-3 d-flex justify-content-between">
+                            <div>
+                                <img src="./img/{{user.picUrl}}"
+                                    style="max-width: 50%; max-height: 100%; border-radius: 60%;">
+                            </div>
+                            <button class="star-icon-button btn-register" type="button">
+                                <div class="boomark-img">
+                                    <img src="./img/boomark.png">
+                                </div>
+                            </button>
+                        </div>
+                        <div class="main-text"><b>{{title}}</b></div>
+                        <div class="companyname">{{user.business}}</div>
+                        <div class="companyname">
+                            {{#hashSkilList}}
+                            <div class="statusfail">{{skill.skillName}}</div>
+                            {{/hashSkilList}}
+                        </div>
+                        <div class="companyname">
+                            {{#hashAreaList}}
+                            <div class="statusfail">{{area.areaName}}</div>
+                            {{/hashAreaList}}
+                        </div>
                         <div>
                             <div class="d-flex justify-content-end sub-sub-test">마감 {{timeDifference}}일전</div>
                         </div>
                     </div>
                 </div>
-                {{/noticeDataList}}
+            {{/noticeDataList}}          
         </div>
     </div>
 </div>
@@ -435,7 +489,7 @@
         </div>
         <div class="d-flex justify-content-between">
             {{#companyDataList}}
-                <div class="card container-second-card">
+                <div class="container-second-card" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
                     <div class="card-body">
                         <div class="mb-2">
                             <div>
@@ -457,5 +511,85 @@
         </div>          
     </div>
 </div>
+<script>
+    // 기술버튼 누르면 기술리스트 표출
+    function showSkills() {
+        document.getElementById('skills-list').style.display = 'block';
+        document.getElementById('areas-list').style.display = 'none';        
+    }
 
+    // 기술리스트의 기술들을 선택하면 스타일 변경
+    function selectSkills(button) {
+        let selectedButtons = document.querySelectorAll('.btn-category.main-text.btn-category-on');
+        selectedButtons.forEach((btn) => {
+            btn.classList.remove('btn-category-on');
+            btn.classList.add('btn-category-off');
+        });
+
+        button.classList.remove('btn-category-off');
+        button.classList.add('btn-category-on');
+    }
+
+    // 지역버튼 누르면 지역리스트 표출
+    function showAreas() {
+        document.getElementById('skills-list').style.display = 'none';
+        document.getElementById('areas-list').style.display = 'block';        
+    }
+
+    // 지역리스트의 지역들을 선택하면 스타일 변경
+    function selectAreas(button) {      
+        let selectedButtons = document.querySelectorAll('.btn-category.main-text.btn-category-on');
+        selectedButtons.forEach((btn) => {
+            btn.classList.remove('btn-category-on');
+            btn.classList.add('btn-category-off');
+        });
+
+        button.classList.remove('btn-category-off');
+        button.classList.add('btn-category-on');
+    }
+
+    // 스킬과 지역 선택 시 공고리스트 변경하기
+    function applyFilters() {
+
+        // 선택된 스킬과 지역 가져오기
+        let selectedSkills = document.querySelectorAll('.skill-button.btn-category-on');
+        let selectedAreas = document.querySelectorAll('.area-button.btn-category-on');  
+
+        if (selectedSkills.length > 0 && selectedAreas.length > 0) {
+            // 선택된 스킬과 지역 값 설정
+            selectedSkill = selectedSkills[0].textContent;
+            selectedArea = selectedAreas[0].textContent;
+            
+            // 서버로 선택된 스킬과 지역 전송
+            window.location.href = `/filtered-notices?selectedSkill=${selectedSkill}&selectedArea=${selectedArea}`;
+        } else {
+            console.log("선택안됨");
+        }
+
+        console.log(selectedSkill);
+        console.log(selectedArea);
+    }
+    
+    // 카드 마우스 오버 시 스타일 변경
+    function highlightCard(element) {
+        element.style.border = '2px solid #9F12E1';
+        element.style.cursor = 'pointer';
+    }
+
+    function unhighlightCard(element) {
+        element.style.border = '1px solid #ccc';
+        element.style.cursor = 'pointer';
+    }
+
+    // 버튼 마우스 오버 시 스타일 변경
+    function highlightButton(element) {
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = '3px 3px 5px rgba(0, 0, 0, 0.2)';
+    }
+
+    function unhighlightButton(element) {
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = 'none'; 
+    }
+</script>
 {{> layout/footer}}

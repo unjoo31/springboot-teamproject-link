@@ -96,5 +96,11 @@ INSERT INTO hash_skil_tb (user_id, skill_id, notice_id, resume_id) VALUES
 (2, 7, 8, null);
 INSERT INTO hash_area_tb (user_id, notice_id, resume_id, area_id) VALUES
 (1, 1, null, 1),
-(2, 2, null, 1),
+(1, 2, null, 1),
+(1, 3, null, 1),
+(1, 4, null, 1),
+(1, 5, null, 2),
+(2, 6, null, 2),
+(2, 7, null, 2),
+(2, 8, null, 2),
 (3, null, 2, 1);
