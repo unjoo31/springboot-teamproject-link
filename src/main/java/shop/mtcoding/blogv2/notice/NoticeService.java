@@ -2,10 +2,29 @@ package shop.mtcoding.blogv2.notice;
 
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+
+import org.springframework.stereotype.Service;
+
+import shop.mtcoding.blogv2.skill.Skill;
+import shop.mtcoding.blogv2.skill.SkillRepository;
+
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +40,7 @@ import org.springframework.stereotype.Service;
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillRepository;
+
 
 
 @Service
@@ -45,6 +65,13 @@ public class NoticeService {
         return noticeRepository.findAll();
     }
 
+    public List<Notice> 필터링된공고목록보기(String selectedSkill, String selectedArea) {
+        List<Notice> filteredNotices = noticeRepository.findByNoticeSkillOrArea(selectedSkill, selectedArea);
+        
+        System.out.println("테스트"+filteredNotices.size());
+        return filteredNotices;
+    }
+
     // 입사지원 화면 
     public Notice 공고상세보기(int id) {
        Optional<Notice> noticeOP = noticeRepository.findById(id);
@@ -53,7 +80,5 @@ public class NoticeService {
        }else{
         throw new MyException(id + "는 찾을 수 없습니다.");
        }
-        
-    }
-    
+    }    
 }
