@@ -1,5 +1,7 @@
 package shop.mtcoding.blogv2.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -90,5 +92,8 @@ public class UserService {
         return user;
     }
 
-    
+    // 기업회원 조회
+    public List<User> 기업회원조회() {
+        return userRepository.findByCompanyUserIsTrue();
+    }   
 }

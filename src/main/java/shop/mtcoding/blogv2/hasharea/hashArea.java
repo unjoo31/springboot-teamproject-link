@@ -1,5 +1,6 @@
 package shop.mtcoding.blogv2.hasharea;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -40,7 +41,7 @@ public class HashArea {
     @ManyToOne(fetch = FetchType.LAZY)
     private Resume resume;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "area_id")
     private Area area;
 

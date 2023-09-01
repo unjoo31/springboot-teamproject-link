@@ -3,6 +3,7 @@ package shop.mtcoding.blogv2.resume;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ import shop.mtcoding.blogv2.user.User;
 @Table
 @Entity(name = "resume_tb")
 public class Resume {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -40,7 +41,7 @@ public class Resume {
 
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private User user;
 
     @JsonIgnore
@@ -48,11 +49,11 @@ public class Resume {
     private List<Apply> applyList = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<HashSkil> hashSkilList = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<HashArea> hashAreaList = new ArrayList<>();
 
     @Builder

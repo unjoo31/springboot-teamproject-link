@@ -1,5 +1,6 @@
 package shop.mtcoding.blogv2.hashskil;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,6 +25,7 @@ import shop.mtcoding.blogv2.user.User;
 @Table(name = "hash_skil_tb")
 @Entity
 public class HashSkil {
+      
     
 
     
@@ -35,7 +37,7 @@ public class HashSkil {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "skill_id")
     private Skill skill;
 
