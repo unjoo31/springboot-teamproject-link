@@ -104,9 +104,9 @@ public class NoticeController {
     // String
     @GetMapping("/corporationSupport")
     public String corporationSupport(HttpServletRequest request){
-
-    List<Notice> noticeList = noticeService.공고목록보기();
     
+    List<Notice> noticeList = noticeService.공고목록보기();
+     
     List<Map<String, Object>> noticeDataList = new ArrayList<>();
     for (Notice notice : noticeList) {
         Map<String, Object> noticeData = new HashMap<>();
@@ -127,5 +127,24 @@ public class NoticeController {
     request.setAttribute("noticeDataList", noticeDataList);
     return "/corporation/corporationSupport";
 
-    }
 }
+    @GetMapping("/applyNotice")
+    public String applyNotice(HttpServletRequest request){
+        Notice notice = noticeService.공고상세보기(1);
+
+        Date startDate = notice.getCreatedAt();
+        Date endDate = notice.getEndDate();
+
+        long timeDifferenceMillis = endDate.getTime() - startDate.getTime();
+        long timeDifferenceDays = timeDifferenceMillis / (1000 * 60 * 60 * 24);
+        
+        System.out.println("테스트 : "+notice.getHashAreaList().get(0).getArea().getAreaName());
+        request.setAttribute("notice", notice);
+        request.setAttribute("timeDifferenceDays", timeDifferenceDays);
+        return "seeker/applyNotice";
+    }
+
+
+
+    }
+
