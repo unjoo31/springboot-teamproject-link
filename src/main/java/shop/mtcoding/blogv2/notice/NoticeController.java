@@ -210,8 +210,5 @@ public class NoticeController {
 }
 
 
-<<<<<<< HEAD
-}
 
-=======
->>>>>>> dev
+
