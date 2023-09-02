@@ -20,6 +20,11 @@ public class ApplyService {
 
     }
 
+    public Optional<Apply> 지원현황상세보기(Integer id) {
+    Optional<Apply> apply = applyRepository.findById(id);     
+    return apply;
+    }
+
 }
     
 

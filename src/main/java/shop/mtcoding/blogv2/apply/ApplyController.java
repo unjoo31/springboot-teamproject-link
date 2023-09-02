@@ -40,4 +40,17 @@ public class ApplyController {
 
     return "seeker/seekerSupport";
 }
+
+    // 지원현황 상세보기
+    @GetMapping("/seekerSupportDetail")
+    public String seekerSupportDetail(HttpServletRequest request){
+    Optional<Apply> apply = applyService.지원현황상세보기(1);
+    System.out.println("테스트 : " + apply.get().getPass());
+    System.out.println("테스트 : " + apply.get().getUser().getName());
+    System.out.println("테스트 : " + apply.get().getNotice().getHashAreaList());
+    request.setAttribute("apply", apply);
+    return "/seeker/seekerSupportDetail";
+
+    }
+
 }
