@@ -52,9 +52,9 @@ VALUES
 (1, 'Recent graduate with strong programming skills.', 6);
 INSERT INTO apply_tb (pass, user_id, notice_id, resume_id)
 VALUES
-('합격', 1, 1, 1),
-('미정', 1, 1, 1),
-('불합격', 2, 2, 2);
+('합격', 5, 1, 1),
+('미정', 5, 2, 1),
+('불합격', 6, 2, 2);
 INSERT INTO skill_tb (skill_name) VALUES('CSS');
 INSERT INTO skill_tb (skill_name) VALUES('C#');
 INSERT INTO skill_tb (skill_name) VALUES('JSP');

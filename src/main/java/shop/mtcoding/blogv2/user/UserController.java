@@ -63,6 +63,7 @@ public class UserController {
         boolean isCompanyUser = userService.회원분류(loginDTO.getUsername());
         request.setAttribute("isCompanyUser", isCompanyUser);
 
+        
         return "redirect:";
     }
 

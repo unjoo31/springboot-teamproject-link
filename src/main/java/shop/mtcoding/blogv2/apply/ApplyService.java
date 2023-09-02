@@ -16,7 +16,7 @@ public class ApplyService {
     private ApplyRepository applyRepository;
 
     public List<Apply> 지원현황보기(Integer id) {
-    return applyRepository.findByNoticeId(id);
+    return applyRepository.findByUserId(id);
 
     }
 
