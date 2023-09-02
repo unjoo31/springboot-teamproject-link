@@ -16,7 +16,7 @@
     <nav class="navbar navbar-expand-sm header">
         <div class="container-fluid d-flex justify-content-around mb-3">
             <div class="p-2">
-                <a class="navbar-brand logo" href="#">Link</a>
+                <a class="navbar-brand logo" href="/">Link</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -88,7 +88,7 @@
                                 <img class="nav-img" src="./img/navRight.png">
                               </li>
                               <li class="d-flex">
-                                <a class="dropdown-item dropdown-menu-big" href="#">
+                                <a class="dropdown-item dropdown-menu-big" href="seekerSupport">
                                     지원현황
                                     <p class="dropdown-menu-small">Support status</p>
                                 </a>
@@ -108,10 +108,10 @@
                         </li>
                       {{/sessionUser}}
                       {{^sessionUser}}
-                        <li class="btn btn-style btn-login main-text">
+                        <li class="btn btn-style btn-login main-text" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">
                           <a href="/loginForm">로그인</a>
                         </li>
-                        <li class="btn btn-style btn-register main-text">
+                        <li class="btn btn-style btn-register main-text" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">
                           <a href="/joinForm">회원가입</a>
                         </li>
                       {{/sessionUser}}
