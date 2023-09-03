@@ -103,11 +103,14 @@ public class NoticeController {
     }
 
 
-    // 필터를 통해 채용공고 조회하기
     @GetMapping("/filtered-notices")
-    public String filteredNotices(@RequestParam(name = "selectedSkill", required = false) String selectedSkill,
-                                @RequestParam(name = "selectedArea", required = false) String selectedArea,
-                                HttpServletRequest request) {
+    public String filteredNotices(
+            @RequestParam(name = "selectedSkills", required = false) List<String> selectedSkillNames,
+            @RequestParam(name = "selectedAreas", required = false) List<String> selectedAreaNames,
+            HttpServletRequest request) {
+
+        // System.out.println("테스트" + selectedSkills.size());
+        // System.out.println("테스트" + selectedAreas.size());
 
         // 스킬 리스트 보여주기
         List<Skill> skills = skillService.스킬리스트목록보기();
@@ -115,9 +118,9 @@ public class NoticeController {
 
         // 지역 리스트 보여주기
         List<Area> areas = areaService.지역리스트목록보기();
-        request.setAttribute("areas", areas);                            
+        request.setAttribute("areas", areas);
 
-        List<Notice> filteredNotices = noticeService.필터링된공고목록보기(selectedSkill, selectedArea);
+        List<Notice> filteredNotices = noticeService.필터링된공고목록보기(selectedSkillNames, selectedAreaNames);
 
         List<Map<String, Object>> filterDataList = new ArrayList<>();
         for (Notice filter : filteredNotices) {
@@ -126,7 +129,7 @@ public class NoticeController {
             filterData.put("user", filter.getUser());
             filterData.put("hashSkilList", filter.getHashSkilList());
             filterData.put("hashAreaList", filter.getHashAreaList());
-            
+
             Date startDate = filter.getCreatedAt();
             Date endDate = filter.getEndDate();
 
@@ -134,9 +137,14 @@ public class NoticeController {
             long timeDifferenceDays = timeDifferenceMillis / (1000 * 60 * 60 * 24);
             filterData.put("timeDifference", timeDifferenceDays);
 
+            System.out.println("테스트" + filter.getTitle());
+            System.out.println("테스트" + filter.getUser());
+            System.out.println("테스트" + filter.getHashSkilList());
+            System.out.println("테스트" + filter.getHashAreaList());
+
             filterDataList.add(filterData);
-        }              
-                      
+        }
+
         request.setAttribute("filterDataList", filterDataList);
 
         // 기업 리스트 보여주기
@@ -157,6 +165,7 @@ public class NoticeController {
 
         return "index";
     }
+
 
 
     // 채용공고 페이지
