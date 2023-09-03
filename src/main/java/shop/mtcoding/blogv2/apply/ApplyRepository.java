@@ -10,5 +10,7 @@ import org.springframework.data.repository.query.Param;
 public interface ApplyRepository extends JpaRepository<Apply, Integer>{
 
   List<Apply> findByUserId(@Param("userId") Integer userId);
+
+  List<Apply> findByNoticeId(Integer id);
     
 }
