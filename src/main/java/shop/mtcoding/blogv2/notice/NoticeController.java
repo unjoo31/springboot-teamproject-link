@@ -190,28 +190,6 @@ public class NoticeController {
         List<Area> areas = areaService.지역리스트목록보기();
         request.setAttribute("areas", areas);                            
 
-        List<Notice> filteredNotices = noticeService.필터링된공고목록보기(selectedSkill, selectedArea);
-
-        List<Map<String, Object>> filterDataList = new ArrayList<>();
-        for (Notice filter : filteredNotices) {
-            Map<String, Object> filterData = new HashMap<>();
-            filterData.put("title", filter.getTitle());
-            filterData.put("user", filter.getUser());
-            filterData.put("hashSkilList", filter.getHashSkilList());
-            filterData.put("hashAreaList", filter.getHashAreaList());
-            
-            //Date startDate = filter.getCreatedAt();
-            //Date endDate = filter.getEndDate();
-
-            long timeDifferenceMillis = endDate.getTime() - startDate.getTime();
-            long timeDifferenceDays = timeDifferenceMillis / (1000 * 60 * 60 * 24);
-            filterData.put("timeDifference", timeDifferenceDays);
-
-            filterDataList.add(filterData);
-        }              
-                      
-        request.setAttribute("filterDataList", filterDataList);
-
         // 기업 리스트 보여주기
         List<User> companyUsers = userService.기업회원조회();
 
