@@ -19,9 +19,10 @@ public interface NoticeRepository extends JpaRepository <Notice, Long>{
        "LEFT JOIN hash_area_tb ha ON n.id = ha.notice_id " +
        "LEFT JOIN skill_tb s ON hs.skill_id = s.id " +
        "LEFT JOIN area_tb a ON ha.area_id = a.id " +
-       "WHERE s.skill_name = :selectedSkill " +
-       "OR a.area_name = :selectedArea", nativeQuery = true)
-    List<Notice> findByNoticeSkillOrArea(@Param("selectedSkill") String selectedSkill, @Param("selectedArea") String selectedArea);
+       "WHERE s.skill_name IN :selectedSkillNames " +
+       "AND a.area_name IN :selectedAreaNames", nativeQuery = true)
+    List<Notice> findByNoticeSkillsOrAreas(@Param("selectedSkillNames") List<String> selectedSkillNames, @Param("selectedAreaNames") List<String> selectedAreaNames);
+
 
     Optional<Notice> findById(int id);
 }
