@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -75,6 +76,17 @@ public class ResumeController {
         resumeService.이력서등록(resumeSaveDTO, sessionUser.getId());
         return "redirect:/seekerResumeForm";
     }
+
+    // 지원자 이력서 상세보기 
+    @GetMapping("/corporationSupportSeekerList")
+    public String corporationSupportSeekerList(HttpServletRequest request){
+    Optional<Resume> resume = resumeService.이력서조회하기(1);    
+    System.out.println(resume.get().getUser().getName());
+    System.out.println(resume.get().getUser().getPicUrl());
+    System.out.println(resume.get().getHashAreaList());
+    request.setAttribute("resume", resume);
+    return "corporation/corporationSupportSeekerList";
+}
 
 
 }
