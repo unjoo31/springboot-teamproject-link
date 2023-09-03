@@ -49,23 +49,23 @@ public class ApplyController {
         request.setAttribute("applyDataList", applyDataList);
 
     return "seeker/seekerSupport";
-}
+    }
 
+    // 채용공고 (이력서 상세보기 전)
+    @GetMapping("/corporationSupportDetail")
+    public String corporationSupportDetail(HttpServletRequest request){
+        List<Apply> applyList = applyService.지원자현황(2);
+        System.out.println("테스트 : " + applyList.get(0).getPass());
+        System.out.println("테스트 : " + applyList.get(0).getUser().getName());
+        request.setAttribute("applyList", applyList);
 
-// 채용공고 (이력서 상세보기 전)
-@GetMapping("/corporationSupportDetail")
-public String corporationSupportDetail(HttpServletRequest request){
-    List<Apply> applyList = applyService.지원자현황(2);
-    System.out.println("테스트 : " + applyList.get(0).getPass());
-    System.out.println("테스트 : " + applyList.get(0).getUser().getName());
-    request.setAttribute("applyList", applyList);
+        return "/corporation/corporationSupportDetail";
+    }
 
-    return "/corporation/corporationSupportDetail";
-}
+    // 지원현황 상세보기
+    @GetMapping("/seekerSupportDetail")
+    public String seekerSupportDetail(HttpServletRequest request){
 
- // 지원현황 상세보기
- @GetMapping("/seekerSupportDetail")
- public String seekerSupportDetail(HttpServletRequest request){
     Optional<Apply> apply = applyService.지원현황상세보기(1);
     System.out.println("테스트 : " + apply.get().getPass());
     System.out.println("테스트 : " + apply.get().getUser().getName());
@@ -74,5 +74,5 @@ public String corporationSupportDetail(HttpServletRequest request){
     
     return "/seeker/seekerSupportDetail";
 
- }
+     }
 }
