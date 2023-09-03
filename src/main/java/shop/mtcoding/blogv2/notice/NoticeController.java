@@ -2,7 +2,7 @@ package shop.mtcoding.blogv2.notice;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+import java.net.http.HttpRequest;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -102,6 +102,7 @@ public class NoticeController {
         return "index";
     }
 
+
     // 필터를 통해 채용공고 조회하기
     @GetMapping("/filtered-notices")
     public String filteredNotices(@RequestParam(name = "selectedSkill", required = false) String selectedSkill,
@@ -175,6 +176,12 @@ public class NoticeController {
         Date startDate = notice.getCreatedAt();
         Date endDate = notice.getEndDate();
 
+        long timeDifferenceMillis = endDate.getTime() - startDate.getTime();
+        long timeDifferenceDays = timeDifferenceMillis / (1000 * 60 * 60 * 24);
+        noticeData.put("timeDifference", timeDifferenceDays);
+
+        noticeDataList.add(noticeData);
+
         // 스킬 리스트 보여주기
         List<Skill> skills = skillService.스킬리스트목록보기();
         request.setAttribute("skills", skills);
@@ -220,7 +227,6 @@ public class NoticeController {
         }
 
         request.setAttribute("companyDataList", companyDataList);
-
         return "index";
     }
     
@@ -249,4 +255,6 @@ public class NoticeController {
         request.setAttribute("timeDifferenceDays", timeDifferenceDays);
         return "seeker/applyNotice";
     }
+
+  
 }

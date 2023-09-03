@@ -17,14 +17,16 @@ public class ApplyService {
 
     public List<Apply> 지원현황보기(Integer id) {
     return applyRepository.findByUserId(id);
+    }
 
+    public List<Apply> 지원자현황(Integer id) {
+    return applyRepository.findByNoticeId(id);
     }
 
     public Optional<Apply> 지원현황상세보기(Integer id) {
-    Optional<Apply> apply = applyRepository.findById(id);     
-    return apply;
+        Optional<Apply> apply = applyRepository.findById(id);     
+        return apply;
     }
-
 }
     
 

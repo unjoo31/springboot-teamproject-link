@@ -324,10 +324,10 @@
 </style>
 
 <div class="box">
-    <div class="container d-flex first-box">
+    <div class="container d-flex first-box " style="justify-content: space-between;">
         <button type="button" class="btn btn-style btn-register main-text bottom-box-right">{{apply.get.pass}}</button>
         <button type="button" class="btn close-btn"> 
-            <img src="./img/close.png" alt="">
+            <img src="./img/boomark.png" alt="">
         </button>
     </div>
     <div class="d-flex">
@@ -339,47 +339,50 @@
                 {{apply.get.notice.title}}
             </div>
         </div>
-        <div class="boomark-img">
-            <img src="./img/boomark.png">
         </div>
-    </div>
-    <hr>
-    <div class="container d-flex third-box">
-        <div class="d-flex1 sub-text">
-            <div class="d-flex2">
-                <div class="main-text text-line">경력</div>
-                <div class="main-text text-line">학력</div>
-                <div class="main-text">근무형태</div>
-            </div>
-            <div >
-                <div class="main-text main-text-color text-line">{{apply.get.notice.career}}</div>
-                <div class="main-text main-text-color text-line">{{apply.get.notice.academicAbility}}</div>
-                <div class="main-text main-text-color ">{{apply.get.notice.typeOfWork}}</div>
-            </div>
-        </div>
-        <div class="d-flex1 sub-text">
-            <div class="d-flex2">
-                <div class="main-text text-line">급여</div>
-                <div class="main-text text-line">마감일</div>
-                <div class="main-text">지역</div>
-            </div>
+        <hr />
+        <div class="d-flex">
             <div>
-                <div class="main-text main-text-color text-line">{{apply.get.notice.salary}}</div>
-                <div class="main-text main-text-color text-line">{{apply.get.notice.endDate}}</div>
-                <div class="main-text main-text-color">{{#apply.get.notice.hashAreaList}}  {{area.areaName}}  {{/apply.get.notice.hashAreaList}}</div>
+                <div class="d-flex1 sub-text">
+                    <div class="d-flex2">
+                        <div class="main-text text-line">경력</div>
+                        <div class="main-text text-line">학력</div>
+                        <div class="main-text">근무형태</div>
+                        
+                        </div>
+                        <div>
+                            <div class="main-text main-text-color text-line">{{apply.get.notice.career}}</div>
+                            <div class="main-text main-text-color text-line">{{apply.get.notice.academicAbility}}</div>
+                            <div class="main-text main-text-color ">{{apply.get.notice.typeOfWork}}</div>
+                        </div>
+                </div>
+            </div>
+            <div class="d-flex1 sub-text">
+                <div class="d-flex2">
+                    <div class="main-text text-line">급여</div>
+                    <div class="main-text text-line">마감일</div>
+                    <div class="main-text">지역</div>
+                </div>
+                <div>
+                    <div class="main-text main-text-color text-line">{{apply.get.notice.salary}}</div>
+                    <div class="main-text main-text-color text-line">{{apply.get.notice.endDate}}</div>
+                    <div class="main-text main-text-color">{{#apply.get.notice.hashAreaList}}  {{area.areaName}}  {{/apply.get.notice.hashAreaList}}</div>
+                </div>
             </div>
         </div>
+        <hr />
+        <div class="container d-flex sub-text four-box">
+            {{#apply.get.notice.hashSkilList}}
+            <div class="statusfail">{{skill.skillName}}</div>
+            {{/apply.get.notice.hashSkilList}}
+        </div>
+        <br>
+        <div class="container d-flex sub-text five-box">
+            <div>{{apply.get.notice.content}}</div>
+        </div>    
     </div>
-    <hr>
-
-    <div class="container d-flex sub-text four-box">
-        {{#apply.get.notice.hashSkilList}}
-        <div class="statusfail">{{skill.skillName}}</div>
-        {{/apply.get.notice.hashSkilList}}
-    </div>
-    <br>
-    <div class="container d-flex sub-text five-box">
-        <div>{{apply.get.notice.content}}</div>
-    </div>    
+        </div>
+    <hr>  
 </div>
+
 {{> layout/footer}}
