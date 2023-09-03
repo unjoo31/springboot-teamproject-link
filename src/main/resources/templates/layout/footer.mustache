@@ -35,6 +35,19 @@
         element.style.cursor = 'pointer';
         element.style.boxShadow = 'none'; 
     }
+
+    // 메뉴 마우스 오버 시 스타일 변경
+    function highlightMenu(element) {
+        element.style.cursor = 'pointer';
+        element.style.color = '#9F12E1';
+        element.style.fontWeight = 'bold';
+    }
+
+    function unhighlightMenu(element) {
+        element.style.cursor = 'pointer';
+        element.style.color = '#212529';
+        element.style.fontWeight = 'normal';
+    }
 </script>
 </body>
 </html>
