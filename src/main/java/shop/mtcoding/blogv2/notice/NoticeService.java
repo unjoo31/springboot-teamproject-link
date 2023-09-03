@@ -38,6 +38,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import shop.mtcoding.blogv2._core.error.ex.MyException;
+import shop.mtcoding.blogv2.apply.Apply;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillRepository;
 
@@ -80,5 +81,8 @@ public class NoticeService {
        }else{
         throw new MyException(id + "는 찾을 수 없습니다.");
        }
-    }    
+        
+    }
+
+    
 }

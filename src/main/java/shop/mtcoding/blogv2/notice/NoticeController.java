@@ -102,6 +102,7 @@ public class NoticeController {
         return "index";
     }
 
+
     // 필터를 통해 채용공고 조회하기
     @GetMapping("/filtered-notices")
     public String filteredNotices(@RequestParam(name = "selectedSkill", required = false) String selectedSkill,
@@ -157,7 +158,37 @@ public class NoticeController {
         return "index";
     }
 
+
+    // 채용공고 페이지
+    @GetMapping("/corporationSupport")
+    public String corporationSupport(HttpServletRequest request){
+
+    List<Notice> noticeList = noticeService.공고목록보기();
+    
+    List<Map<String, Object>> noticeDataList = new ArrayList<>();
+    for (Notice notice : noticeList) {
+        Map<String, Object> noticeData = new HashMap<>();
+        noticeData.put("title", notice.getTitle());
+        noticeData.put("user", notice.getUser());
+        noticeData.put("hashSkilList", notice.getHashSkilList());
+        
+        Date startDate = notice.getCreatedAt();
+        Date endDate = notice.getEndDate();
+
+        long timeDifferenceMillis = endDate.getTime() - startDate.getTime();
+        long timeDifferenceDays = timeDifferenceMillis / (1000 * 60 * 60 * 24);
+        noticeData.put("timeDifference", timeDifferenceDays);
+
+        noticeDataList.add(noticeData);
+    }
+    
+    request.setAttribute("noticeDataList", noticeDataList);
+    return "/corporation/corporationSupport";
+}
+
+
     // 입사지원 화면 
+    // 공고 작성 완료 이후에 세션 등록
     @GetMapping("/applyNotice")
     public String applyNotice(HttpServletRequest request){
         Notice notice = noticeService.공고상세보기(1);
@@ -177,5 +208,7 @@ public class NoticeController {
         return "seeker/applyNotice";
     }
 }
+
+
 
 
