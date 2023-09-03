@@ -80,5 +80,9 @@ public class ResumeService {
                 resumeRepository.save(resume);
         }
 
+        public Optional<Resume> 이력서조회하기(Integer id) {
+             return resumeRepository.findById(id);
+        }
+
 
 }
