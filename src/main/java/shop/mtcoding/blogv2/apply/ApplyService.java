@@ -6,8 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import shop.mtcoding.blogv2._core.error.ex.MyException;
-import shop.mtcoding.blogv2.resume.Resume;
 
 @Service
 public class ApplyService {
@@ -17,6 +15,7 @@ public class ApplyService {
 
     public List<Apply> 지원현황보기(Integer id) {
     return applyRepository.findByUserId(id);
+
     }
 
     public List<Apply> 지원자현황(Integer id) {
