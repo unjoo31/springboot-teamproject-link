@@ -48,62 +48,6 @@
         element.style.color = '#212529';
         element.style.fontWeight = 'normal';
     }
-
-    // 회원정보 수정 메뉴 마우스 오버시 이미지 변경
-    let personalImageContainer = document.getElementById("personalImageContainer");
-    let personalImage = document.getElementById("personalImage");
-    let personalImageSrc = "./img/navRight.png";
-    let personalHoverImageSrc = "./img/navRightOn.png";
-
-    personalImageContainer.addEventListener("mouseover", function() {
-        personalImage.src = personalHoverImageSrc;
-    });
-
-    personalImageContainer.addEventListener("mouseout", function() {
-        personalImage.src = personalImageSrc;
-    });
-
-    // 채용공고 메뉴 마우스 오버시 이미지 변경
-    let employmentImageContainer = document.getElementById("employmentImageContainer");
-    let employmentImage = document.getElementById("employmentImage");
-    let employmentImageSrc = "./img/navRight.png";
-    let employmentHoverImageSrc = "./img/navRightOn.png";
-
-    employmentImageContainer.addEventListener("mouseover", function() {
-        employmentImage.src = employmentHoverImageSrc;
-    });
-
-    employmentImageContainer.addEventListener("mouseout", function() {
-        employmentImage.src = employmentImageSrc;
-    });
-
-    // 채용공고 현황 메뉴 마우스 오버시 이미지 변경
-    let statusImageContainer = document.getElementById("statusImageContainer");
-    let statusImage = document.getElementById("statusImage");
-    let statusImageSrc = "./img/navRight.png";
-    let statusHoverImageSrc = "./img/navRightOn.png";
-
-    statusImageContainer.addEventListener("mouseover", function() {
-        statusImage.src = statusHoverImageSrc;
-    });
-
-    statusImageContainer.addEventListener("mouseout", function() {
-        statusImage.src = statusImageSrc;
-    });
-
-    // 관심구직자 메뉴 마우스 오버시 이미지 변경
-    let interestImageContainer = document.getElementById("interestImageContainer");
-    let interestImage = document.getElementById("interestImage");
-    let interestImageSrc = "./img/navRight.png";
-    let interestHoverImageSrc = "./img/navRightOn.png";
-
-    interestImageContainer.addEventListener("mouseover", function() {
-        interestImage.src = interestHoverImageSrc;
-    });
-
-    interestImageContainer.addEventListener("mouseout", function() {
-        interestImage.src = interestImageSrc;
-    });
 </script>
 </body>
 </html>
