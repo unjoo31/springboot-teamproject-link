@@ -331,7 +331,7 @@
                 <div class="body-content-title">
                     <div class="d-flex justify-content-between" style="align-content: center;">
                         <div>
-                            <div class="mt-2">(주) 그룹코리아</div>
+                            <div class="mt-2">{{applyList.0.notice.user.name}}</div>
                         </div>
                         <div>
                             <button class="star-icon-button btn-register" type="button">
@@ -341,7 +341,7 @@
                             </button>
                         </div>
                     </div>
-                    <p class="mt-2 title-text">Java/Springframework 개발자</p>
+                    <p class="mt-2 title-text">{{applyList.0.notice.title}}</p>
                     <hr>
                 </div>
                 <div class="card-contain">
@@ -365,72 +365,25 @@
                         </div>
                     </div>
                 </div>
-
+              
                 <div class="grid-container3">
+                    {{#applyList}}
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <div>
-                                    <div class="main-text mt-1"><b>박언주</b></div>
+                                    <div class="main-text mt-1"><b>{{user.name}}</b></div>
                                 </div>
                                 <div>
-                                    <div class="statussuccess">합격</div>
+                                    <div class="statussuccess">{{pass}}</div>
                                 </div>
                             </div>
                             <div>
-                                <div class="sub-sub-text mt-2">개발잘함</div>
+                                <div class="sub-sub-text mt-2">{{resume.content}}</div>
                             </div>
-            
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <div class="main-text mt-1"><b>박언주</b></div>
-                                </div>
-                                <div>
-                                    <div class="statussuccess">합격</div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="sub-sub-text mt-2">개발잘함</div>
-                            </div>
-            
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <div class="main-text mt-1"><b>박언주</b></div>
-                                </div>
-                                <div>
-                                    <div class="statussuccess">합격</div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="sub-sub-text mt-2">개발잘함</div>
-                            </div>
-            
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <div class="main-text mt-1"><b>박언주</b></div>
-                                </div>
-                                <div>
-                                    <div class="statussuccess">합격</div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="sub-sub-text mt-2">개발잘함</div>
-                            </div>
-            
-                        </div>
-                    </div>
+                    {{/applyList}}
                 </div>
             </div>                
         </div>

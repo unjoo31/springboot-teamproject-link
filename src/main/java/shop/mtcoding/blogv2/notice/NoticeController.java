@@ -2,7 +2,7 @@ package shop.mtcoding.blogv2.notice;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+import java.net.http.HttpRequest;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -207,6 +207,8 @@ public class NoticeController {
         request.setAttribute("timeDifferenceDays", timeDifferenceDays);
         return "seeker/applyNotice";
     }
+
+  
 }
 
 

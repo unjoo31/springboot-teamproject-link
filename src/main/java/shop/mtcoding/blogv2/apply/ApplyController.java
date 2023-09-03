@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.mysql.cj.protocol.x.Notice;
+
 import shop.mtcoding.blogv2.resume.Resume;
 import shop.mtcoding.blogv2.user.User;
 
@@ -27,7 +29,7 @@ public class ApplyController {
     @Autowired 
     private ApplyService applyService;
 
-    // 이력서 등록 현황
+    // 지원 등록 현황
     @GetMapping("/seekerSupport")
     public String seekerSupport(HttpServletRequest request){
     User sessionUser = (User) session.getAttribute("sessionUser");    
@@ -48,4 +50,29 @@ public class ApplyController {
 
     return "seeker/seekerSupport";
 }
+
+
+// 채용공고 (이력서 상세보기 전)
+@GetMapping("/corporationSupportDetail")
+public String corporationSupportDetail(HttpServletRequest request){
+    List<Apply> applyList = applyService.지원자현황(2);
+    System.out.println("테스트 : " + applyList.get(0).getPass());
+    System.out.println("테스트 : " + applyList.get(0).getUser().getName());
+    request.setAttribute("applyList", applyList);
+
+    return "/corporation/corporationSupportDetail";
+}
+
+ // 지원현황 상세보기
+ @GetMapping("/seekerSupportDetail")
+ public String seekerSupportDetail(HttpServletRequest request){
+    Optional<Apply> apply = applyService.지원현황상세보기(1);
+    System.out.println("테스트 : " + apply.get().getPass());
+    System.out.println("테스트 : " + apply.get().getUser().getName());
+    System.out.println("테스트 : " + apply.get().getNotice().getHashAreaList());
+    request.setAttribute("apply", apply);
+    
+    return "/seeker/seekerSupportDetail";
+
+ }
 }
