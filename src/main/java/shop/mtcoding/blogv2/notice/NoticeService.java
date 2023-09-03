@@ -38,6 +38,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import shop.mtcoding.blogv2._core.error.ex.MyException;
+import shop.mtcoding.blogv2.apply.Apply;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillRepository;
 
@@ -65,10 +66,10 @@ public class NoticeService {
         return noticeRepository.findAll();
     }
 
-    public List<Notice> 필터링된공고목록보기(String selectedSkill, String selectedArea) {
-        List<Notice> filteredNotices = noticeRepository.findByNoticeSkillOrArea(selectedSkill, selectedArea);
+    public List<Notice> 필터링된공고목록보기(List<String> selectedSkillNames, List<String> selectedAreaNames) {
+        List<Notice> filteredNotices = noticeRepository.findByNoticeSkillsOrAreas(selectedSkillNames, selectedAreaNames);
         
-        System.out.println("테스트"+filteredNotices.size());
+        System.out.println("테스트 " + filteredNotices.size());
         return filteredNotices;
     }
 
@@ -81,4 +82,6 @@ public class NoticeService {
         throw new MyException(id + "는 찾을 수 없습니다.");
        }
     }    
+        
+    
 }

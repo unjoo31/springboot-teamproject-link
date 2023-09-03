@@ -522,14 +522,23 @@
 
     // 기술리스트의 기술들을 선택하면 스타일 변경
     function selectSkills(button) {
-        let selectedButtons = document.querySelectorAll('.btn-category.main-text.btn-category-on');
-        selectedButtons.forEach((btn) => {
+        let isButtonOn = button.classList.contains('btn-category-on');
+
+        let allButtons = document.querySelectorAll('.btn-category.main-text.skill-button');
+        allButtons.forEach((btn) => {
             btn.classList.remove('btn-category-on');
             btn.classList.add('btn-category-off');
         });
 
-        button.classList.remove('btn-category-off');
-        button.classList.add('btn-category-on');
+        if (!isButtonOn) {
+            button.classList.remove('btn-category-off');
+            button.classList.add('btn-category-on');
+        }
+
+        if (isButtonOn) {
+            button.classList.remove('btn-category-on');
+            button.classList.add('btn-category-off');
+        }
     }
 
     // 지역버튼 누르면 지역리스트 표출
@@ -540,36 +549,50 @@
 
     // 지역리스트의 지역들을 선택하면 스타일 변경
     function selectAreas(button) {      
-        let selectedButtons = document.querySelectorAll('.btn-category.main-text.btn-category-on');
-        selectedButtons.forEach((btn) => {
+        let isButtonOn = button.classList.contains('btn-category-on');
+
+        let allButtons = document.querySelectorAll('.btn-category.main-text.area-button');
+        allButtons.forEach((btn) => {
             btn.classList.remove('btn-category-on');
             btn.classList.add('btn-category-off');
         });
 
-        button.classList.remove('btn-category-off');
-        button.classList.add('btn-category-on');
+        if (!isButtonOn) {
+            button.classList.remove('btn-category-off');
+            button.classList.add('btn-category-on');
+        }
+
+        if (isButtonOn) {
+            button.classList.remove('btn-category-on');
+            button.classList.add('btn-category-off');
+        }
     }
 
     // 스킬과 지역 선택 시 공고리스트 변경하기
     function applyFilters() {
-
         // 선택된 스킬과 지역 가져오기
         let selectedSkills = document.querySelectorAll('.skill-button.btn-category-on');
-        let selectedAreas = document.querySelectorAll('.area-button.btn-category-on');  
+        let selectedAreas = document.querySelectorAll('.area-button.btn-category-on');
 
-        if (selectedSkills.length > 0 && selectedAreas.length > 0) {
-            // 선택된 스킬과 지역 값 설정
-            selectedSkill = selectedSkills[0].textContent;
-            selectedArea = selectedAreas[0].textContent;
-            
-            // 서버로 선택된 스킬과 지역 전송
-            window.location.href = `/filtered-notices?selectedSkill=${selectedSkill}&selectedArea=${selectedArea}`;
+        // 선택된 스킬과 지역을 저장할 배열 초기화
+        let selectedSkillNames = [];
+        let selectedAreaNames = [];
+
+        selectedSkills.forEach((skill) => {
+            selectedSkillNames.push(skill.textContent);
+        });
+
+        selectedAreas.forEach((area) => {
+            selectedAreaNames.push(area.textContent);
+        });
+
+        if (selectedSkillNames.length > 0 && selectedAreaNames.length > 0) {
+            // 선택된 스킬과 지역 값을 서버로 전송
+            const queryString = `selectedSkills=${selectedSkillNames.join(',')}&selectedAreas=${selectedAreaNames.join(',')}`;
+            window.location.href = `/filtered-notices?${queryString}`;
         } else {
             console.log("선택안됨");
         }
-
-        console.log(selectedSkill);
-        console.log(selectedArea);
     }
     
     // 카드 마우스 오버 시 스타일 변경
