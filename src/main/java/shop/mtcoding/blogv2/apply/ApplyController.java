@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import shop.mtcoding.blogv2.resume.Resume;
 import shop.mtcoding.blogv2.user.User;
@@ -48,4 +50,13 @@ public class ApplyController {
 
     return "seeker/seekerSupport";
 }
+
+
+@PostMapping("/apply/pass")
+public String pass(String pass){
+    System.out.println("나 여기 있어 : "+pass);
+    return "redirect:/";
+}
+
+
 }
