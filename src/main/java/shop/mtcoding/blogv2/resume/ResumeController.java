@@ -68,11 +68,15 @@ public class ResumeController {
         return "/seeker/seekerResume";
     }
 
+    @GetMapping("/seekerSupportForm")
+    public String seekSupportForm() {
+        return "/seeker/seekerSupport";
+    }
+
     @GetMapping("/seekerCompanies")
     public String seekCompaniesForm() {
         return "/seeker/seekerCompanies";
     }
-
 
     @GetMapping("/seekerSaveResumeForm")
     public String seekerSaveResumeForm(Model model1, Model model2) {

@@ -84,10 +84,12 @@ VALUES
     ('Seoul'),
     ('Gyeonggi'),
     ('Daegu');
-INSERT INTO bookmark_tb (target_id)
+INSERT INTO bookmark_tb (target_id, user_id)
 VALUES
-(1),
-(2);
+(1, 5),
+(5, 1),
+(6, 1),
+(1, 6);
 INSERT INTO board_tb (title, content, user_id)
 VALUES
 ('First Post', 'Hello, world!', 1),

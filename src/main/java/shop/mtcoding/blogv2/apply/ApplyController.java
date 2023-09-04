@@ -37,6 +37,7 @@ public class ApplyController {
     public String seekerSupport(HttpServletRequest request){
     User sessionUser = (User) session.getAttribute("sessionUser");    
     System.out.println("테스트 : " + sessionUser.getId());
+
     // 공고현황 화면에 보여줄 값 담기
     List<Apply> applyList = applyService.지원현황보기(sessionUser.getId());
     
@@ -55,6 +56,14 @@ public class ApplyController {
 
 }
 
+    // 합격, 불합격, 미정 
+    @PostMapping("/apply/pass")
+    public String pass(String pass){
+        System.out.println("나 여기 있어 : "+pass);
+        return "redirect:/corporation/corporationSupportDetail";
+    }
+
+    // 채용공고 (이력서 상세보기 전)
     // 지원자 현황 (이력서 상세보기 전)
     @GetMapping("/corporationSupportDetail")
     public String corporationSupportDetail(HttpServletRequest request){
@@ -79,7 +88,7 @@ public class ApplyController {
     
     return "/seeker/seekerSupportDetail";
 
-     }
+    }
 
     // 지원자 이력서 상세보기
     @GetMapping("/corporationSupportSeekerList")
