@@ -18,11 +18,9 @@ public class AreaService {
     @Autowired
     private AreaRepository areaRepository;
 
-    public List<Area> 모든지역가져오기() {
 
-        List<Area> area = areaRepository.findAll();
-
-        return area;
+    public List<Area> 지역리스트목록보기() {
+        return areaRepository.findAll();
     }
 
     public List<Area> 나머지지역가져오기(Integer id) {
@@ -38,4 +36,8 @@ public class AreaService {
         return restArea;
     }
 
+    public List<Area> 모든지역가져오기() {
+        List<Area> area = areaRepository.findAll();
+        return area;
+    }
 }

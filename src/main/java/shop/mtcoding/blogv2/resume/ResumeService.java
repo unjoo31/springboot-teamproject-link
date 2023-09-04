@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.area.AreaRepository;
 import shop.mtcoding.blogv2.hasharea.HashArea;
@@ -163,4 +164,9 @@ public class ResumeService {
 
                 // 쿼리를 날리는 갯수를 보면 그렇게 효율적인 방안은 아니지만 데이터베이스의 최적화를 위해선 효율적인 방안입니다.
         }
+        public Optional<Resume> 이력서조회하기(Integer id) {
+             return resumeRepository.findById(id);
+        }
+
+
 }

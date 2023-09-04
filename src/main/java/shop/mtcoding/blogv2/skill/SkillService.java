@@ -15,6 +15,7 @@ public class SkillService {
     @Autowired
     private HashSkilRepository hashSkilRepository;
 
+
     @Autowired
     private SkillRepository skillRepository;
 
@@ -38,4 +39,9 @@ public class SkillService {
         return restSkill;
     }
 
+
+    
+    public List<Skill> 스킬리스트목록보기() {
+        return skillRepository.findAll();
+    }
 }

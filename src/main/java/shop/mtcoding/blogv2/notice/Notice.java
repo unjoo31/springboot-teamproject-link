@@ -38,22 +38,22 @@ public class Notice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer career;
+    private Integer career; // 경력
     
-    private String title;
+    private String title; // 제목
 
-    private String academicAbility;
+    private String academicAbility; // 학력
 
-    private String salary;
+    private String salary; // 급여
 
-    private String typeOfWork;
+    private String typeOfWork; // 근무형태
 
-    @CreationTimestamp // now
-    private Timestamp createdAt;
+    @CreationTimestamp // now를 표시하기 위한 어노테이션
+    private Timestamp createdAt; // 선택한 날짜를 넣을 수 있다
 
-    private Date endDate;
+    private Date endDate; // 마감일
 
-    private String content;
+    private String content; // 내용
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
@@ -88,11 +88,5 @@ public class Notice {
         this.applyList = applyList;
         this.hashSkilList = hashSkilList;
         this.hashAreaList = hashAreaList;
-    }
-
-    
-
-    }
-
-       
-
+    }      
+}

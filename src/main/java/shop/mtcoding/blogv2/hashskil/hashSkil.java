@@ -25,6 +25,8 @@ import shop.mtcoding.blogv2.user.User;
 @Table(name = "hash_skil_tb")
 @Entity
 public class HashSkil {
+      
+
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
