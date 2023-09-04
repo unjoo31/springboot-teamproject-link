@@ -62,6 +62,8 @@ VALUES
     (2023, 'BackEnd/PHP 개발자/보안솔루션 채용', '보안 웹하드 솔루션/서비스 BackEnd 개발', '시스템 소프트웨어 개발 및 공급업', '신입, 경력', now(), '2023-09-30', 'Python 개발 경력 3년 이상자...', 1);
 INSERT INTO resume_tb (career, content, user_id)
 VALUES
+(1, '7 years of experience in web development.', 1),
+(1, 'Recent graduate with strong programming skills.', 1),
 (1, '7 years of experience in web development.', 5),
 (1, 'Recent graduate with strong programming skills.', 6);
 INSERT INTO apply_tb (pass, user_id, notice_id, resume_id)
