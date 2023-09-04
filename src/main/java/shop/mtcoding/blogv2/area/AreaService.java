@@ -40,4 +40,18 @@ public class AreaService {
         List<Area> area = areaRepository.findAll();
         return area;
     }
+
+    public List<Area> 채용공고나머지지역가져오기(Integer id) {
+
+        List<Area> area = areaRepository.findAll();
+
+        List<Area> areaList = hashAreaRepository.findAreasByNoticeId(id);
+
+        List<Area> restArea = area.stream()
+                .filter(s -> !areaList.contains(s))
+                .collect(Collectors.toList());
+
+        return restArea;
+    }
+
 }

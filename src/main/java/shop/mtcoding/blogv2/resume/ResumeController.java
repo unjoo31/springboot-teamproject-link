@@ -86,14 +86,13 @@ public class ResumeController {
 
     @GetMapping("/seekerSaveResumeUpdateForm")
     public String seekerSaveResumeUpdateForm(Model model1, Model model2, Model model3, Model model4, Model model5) {
-        List<Area> area = areaService.모든지역가져오기();
 
         User sessionUser = (User) session.getAttribute("sessionUser");
         Resume resume = resumeService.이력서가져오기(sessionUser.getId());
 
         // 스킬처리 로직 [1. 선택한 스킬 2. 선택하지 않은 스킬]
         List<Skill> skill2 = hashSkilService.선택한스킬목록(sessionUser.getId());
-        List<Skill> restSkill = skillService.나머지스킬가져오기(resume.getId()); // 선택하고 남은 스킬
+        List<Skill> restSkill = skillService.이력서나머지스킬가져오기(resume.getId()); // 선택하고 남은 스킬
 
         // 지역처리 로직 [1. 선택한 지역 2. 선택하지 않은 지역]
         List<Area> area2 = hashAreaService.선택한지역목룍(sessionUser.getId());
