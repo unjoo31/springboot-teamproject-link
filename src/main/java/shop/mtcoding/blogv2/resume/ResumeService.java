@@ -17,7 +17,8 @@ import shop.mtcoding.blogv2.area.AreaRepository;
 import shop.mtcoding.blogv2.hasharea.HashArea;
 import shop.mtcoding.blogv2.hashskil.HashSkil;
 import shop.mtcoding.blogv2.notice.Notice;
-import shop.mtcoding.blogv2.resume.ResumeRequest.transmitDTO;
+import shop.mtcoding.blogv2.resume.ResumeRequest.PassDTO;
+import shop.mtcoding.blogv2.resume.ResumeRequest.TransmitDTO;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillRepository;
 import shop.mtcoding.blogv2.skill.SkillResponse;
@@ -92,7 +93,7 @@ public class ResumeService {
              return resumeRepository.findByUserId(id);
         }
 
-        public void 이력서전송하기(transmitDTO transmitDTO, Optional<Resume> resume) {
+        public void 이력서전송하기(TransmitDTO transmitDTO, Optional<Resume> resume) {
                 System.out.println("업데이트 쿼리 전");
                 Apply apply = Apply.builder()
                 .pass(transmitDTO.getPass())
@@ -105,6 +106,13 @@ public class ResumeService {
                 System.out.println("업데이트 쿼리 완료");
                
         }
+
+        public void 합격발표(PassDTO passDTO) {
+        String newPass = passDTO.getPass();
+        Integer applyId = passDTO.getApplyId();
+                applyRepository.updatePassById(newPass,applyId);
+            }
+        
  
 
 

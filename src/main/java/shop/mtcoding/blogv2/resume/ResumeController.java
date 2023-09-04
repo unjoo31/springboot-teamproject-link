@@ -93,7 +93,7 @@ public class ResumeController {
 
     // 이력서 전송하기 
     @PostMapping("/resume/transmit")
-    public String resumeTransmit(ResumeRequest.transmitDTO transmitDTO){
+    public String resumeTransmit(ResumeRequest.TransmitDTO transmitDTO){
         User sessionUser = (User) session.getAttribute("sessionUser");
         Optional<Resume> resume  = resumeService.이력서조회하기(sessionUser.getId());
         System.out.println("테스트 : " + resume.get().getUser().getId());
@@ -104,6 +104,13 @@ public class ResumeController {
         return "redirect:/";
     }
 
-
+        // 합격, 불합격, 미정 
+        @PostMapping("/apply/pass")
+        public String pass(ResumeRequest.PassDTO passDTO, HttpServletRequest request){
+        System.out.println("나 여기 있어 : "+passDTO.getPass());
+        System.out.println("나 여기 있어 : "+passDTO.getApplyId());
+        resumeService.합격발표(passDTO);
+        return "redirect:/corporation/corporationSupportDetail";
+    }
 
 }

@@ -34,9 +34,17 @@ public class ResumeRequest {
 
     @Getter
     @Setter    
-    public static class transmitDTO{
+    public static class TransmitDTO{
         private String pass;
         private Integer noticeId;
+    }
+
+    @Getter
+    @Setter
+    public static class PassDTO{
+        private String pass;
+        private Integer applyId;
+
     }
 
 }

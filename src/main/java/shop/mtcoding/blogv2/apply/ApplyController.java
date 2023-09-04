@@ -53,14 +53,6 @@ public class ApplyController {
 
 }
 
-
-// 합격, 불합격, 미정 
-@PostMapping("/apply/pass")
-public String pass(String pass){
-    System.out.println("나 여기 있어 : "+pass);
-    return "redirect:/corporation/corporationSupportDetail";
-}
-
     // 채용공고 (이력서 상세보기 전)
     @GetMapping("/corporationSupportDetail")
     public String corporationSupportDetail(HttpServletRequest request){
