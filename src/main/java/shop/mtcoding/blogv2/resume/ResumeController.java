@@ -73,6 +73,13 @@ public class ResumeController {
         return "/seeker/seekerSupport";
     }
 
+    // @GetMapping("/seekerCompanies")
+    // public String seekCompaniesForm() {
+    //     return "/seeker/seekerCompanies";
+    // }
+
+    }
+
     @GetMapping("/seekerCompanies")
     public String seekCompaniesForm() {
         return "/seeker/seekerCompanies";
