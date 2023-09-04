@@ -320,11 +320,13 @@
 
 <div class="box">
     <div class="container d-flex first-box">
-        <button type="button" class="btn btn-style btn-register main-text bottom-box-right">합격</button>
-        <button type="button" class="btn btn-style btn-failed main-text bottom-box-right">불합격</button>
-        <button type="button" class="btn btn-style btn-login main-text bottom-box-right">미정</button>
-        <button type="button" class="btn close-btn"> 
-            <img src="./img/close.png" alt="">
+        <form action="/apply/pass" method="post" enctype="multipart/form-data">
+            <button type="submit" class="btn btn-style btn-register main-text bottom-box-right" name="pass" value="합격">합격</button>
+            <button type="submit" class="btn btn-style btn-failed main-text bottom-box-right" name="pass" value="불합격">불합격</button>
+            <button type="submit" class="btn btn-style btn-login main-text bottom-box-right" name="pass" value="미정">미정</button>
+        </form>
+            <button type="button" class="btn close-btn"> 
+            <img src="./img/boomark.png" alt="">
         </button>
     </div>
     <div class>
@@ -332,7 +334,7 @@
             <div class="personal-img">
                 <img src="./img/hello.png">
             </div>
-            <div class="text title-text">김언약</div>
+            <div class="text title-text">{{resume.get.user.name}}</div>
             <div class="boomark-img">
                 <img src="./img/boomark.png">
             </div>
@@ -347,9 +349,9 @@
                 <div class="main-text">전화번호</div>
             </div>
             <div >
-                <div class="main-text main-text-color text-line">신입</div>
-                <div class="main-text main-text-color text-line">ssar@naver.com</div>
-                <div class="main-text main-text-color ">000.0000.0000</div>
+                <div class="main-text main-text-color text-line">{{resume.get.career}}</div>
+                <div class="main-text main-text-color text-line">{{resume.get.user.email}}</div>
+                <div class="main-text main-text-color ">{{resume.get.user.phonenumber}}</div>
             </div>
         </div>
         <div class="d-flex1 sub-text">
@@ -359,21 +361,21 @@
                 <div class="main-text">지역</div>
             </div>
             <div>
-                <div class="main-text main-text-color text-line">마산</div>
-                <div class="main-text main-text-color text-line">0000.00.00</div>
-                <div class="main-text main-text-color">경남</div>
+                <div class="main-text main-text-color text-line">{{resume.get.user.address}}</div>
+                <div class="main-text main-text-color text-line">{{resume.get.user.age}}</div>
+                <div class="main-text main-text-color">{{#resume.get.hashAreaList}} {{area.areaName}} {{/resume.get.hashAreaList}}</div>
             </div>
         </div>
     </div>
     <hr>
     <div class="container d-flex sub-text four-box">
-        <div class="statusfail">java</div>
-        <div class="statusfail">javascript</div>
-        <div class="statusfail">ajax</div>
+        {{#resume.get.hashSkilList}}
+        <div class="statusfail">{{skill.skillName}}</div>
+        {{/resume.get.hashSkilList}}
     </div>
     <br>
     <div class="container d-flex sub-text five-box">
-        <div>안녕하세요 저는 김언약이라고 합니다. 자바 개발자로서 뛰어난 열정과 경험을 가지고 있습니다. </div>
+        <div>{{resume.get.content}}</div>
     </div>    
 </div>
 

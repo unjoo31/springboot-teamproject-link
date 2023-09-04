@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.mysql.cj.protocol.x.Notice;
 
@@ -49,7 +51,16 @@ public class ApplyController {
         request.setAttribute("applyDataList", applyDataList);
 
     return "seeker/seekerSupport";
-    }
+
+}
+
+
+// 합격, 불합격, 미정 
+@PostMapping("/apply/pass")
+public String pass(String pass){
+    System.out.println("나 여기 있어 : "+pass);
+    return "redirect:/corporation/corporationSupportDetail";
+}
 
     // 채용공고 (이력서 상세보기 전)
     @GetMapping("/corporationSupportDetail")
@@ -75,4 +86,5 @@ public class ApplyController {
     return "/seeker/seekerSupportDetail";
 
      }
+
 }
