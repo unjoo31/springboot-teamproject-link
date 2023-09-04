@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 import shop.mtcoding.blogv2.skill.Skill;
 
-public interface NoticeRepository extends JpaRepository<Notice, Long> {
+public interface NoticeRepository extends JpaRepository<Notice, Integer> {
 
     Page<Notice> findByTitleContaining(String keyword, Pageable pageable);
 

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -33,13 +34,13 @@ import shop.mtcoding.blogv2.user.User;
 @Table(name = "notice_tb")
 @Entity
 public class Notice {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private Integer career; // 경력
-    
+
     private String title; // 제목
 
     private String academicAbility; // 학력
@@ -55,7 +56,7 @@ public class Notice {
 
     private String content; // 내용
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private User user;
 
     @JsonIgnore
@@ -63,11 +64,11 @@ public class Notice {
     private List<Apply> applyList = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<HashSkil> hashSkilList = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<HashArea> hashAreaList = new ArrayList<>();
 
     @Builder
@@ -88,5 +89,5 @@ public class Notice {
         this.applyList = applyList;
         this.hashSkilList = hashSkilList;
         this.hashAreaList = hashAreaList;
-    }      
+    }
 }

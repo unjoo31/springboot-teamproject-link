@@ -207,5 +207,11 @@ public class NoticeService {
         // 쿼리를 날리는 갯수를 보면 그렇게 효율적인 방안은 아니지만 데이터베이스의 최적화를 위해선 효율적인 방안입니다.
     }
 
+
+    @Transactional
+    public void 채용공고삭제(Integer noticeId) {
+        noticeRepository.deleteById(noticeId);
+    }
+
   
 }

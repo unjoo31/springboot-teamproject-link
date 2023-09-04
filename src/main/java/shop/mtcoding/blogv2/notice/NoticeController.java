@@ -231,7 +231,7 @@ public class NoticeController {
     }
 
     @GetMapping("/corporationSaveResumeUpdate")
-    public String corporationSaveResumeUpdateForm(Model model1, Model model2, Model model3, Model model4,
+    public @ResponseBody Notice  corporationSaveResumeUpdateForm(Model model1, Model model2, Model model3, Model model4,
             Model model5) {
 
         User sessionUser = (User) session.getAttribute("sessionUser");
@@ -252,7 +252,8 @@ public class NoticeController {
 
         model4.addAttribute("selectArea", area2); // 선택한 지역을 보여주는 모델
         model5.addAttribute("restArea", restArea); // 선택하고 남은 지역을 보여주는 모델
-        return "/corporation/corporationSaveResumeUpdate";
+        // return "/corporation/corporationSaveResumeUpdate";
+        return notice;
     }
 
     @GetMapping("/corporationResume")
@@ -287,6 +288,12 @@ public class NoticeController {
     public String corporationUpdate(NoticeRequest.NoticeUpdateDTO noticeUpdateDTO) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         noticeService.채용공고수정(noticeUpdateDTO, sessionUser.getId());
+        return "redirect:/corporationResume";
+    }
+
+    @PostMapping("/corporationNoticeDelete/{noticeId}/delete")
+    public String corporationDelete(@PathVariable Integer noticeId) {
+        noticeService.채용공고삭제(noticeId);
         return "redirect:/corporationResume";
     }
 
