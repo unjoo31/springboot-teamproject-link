@@ -92,7 +92,6 @@
 /* 좌측 메뉴 스타일 시작 */
 .left-nav-title{
     font-size: 15px;
-    margin-left: 20px;
     margin-top: 10px;
 }
 .left-nav-sub{
@@ -109,11 +108,10 @@
     border: 1px solid #EDEEF2;
     margin-bottom: 10px;
 }
-.nav-img img {
+.left-nav-detail .nav-img{
     width: 40px;
     height: 40px;
-    border-radius: 10px;
-    margin-right: 20px;
+    margin-top: 10px;
     margin-left: 10px;
 }
 /* 좌측 메뉴 스타일 끝 */
@@ -321,6 +319,7 @@
 <div class="box">
     <div class="container d-flex first-box">
         <form action="/apply/pass" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="applyId" value="{{apply.get.user.id}}">
             <button type="submit" class="btn btn-style btn-register main-text bottom-box-right" name="pass" value="합격">합격</button>
             <button type="submit" class="btn btn-style btn-failed main-text bottom-box-right" name="pass" value="불합격">불합격</button>
             <button type="submit" class="btn btn-style btn-login main-text bottom-box-right" name="pass" value="미정">미정</button>
@@ -334,7 +333,7 @@
             <div class="personal-img">
                 <img src="./img/hello.png">
             </div>
-            <div class="text title-text">{{resume.get.user.name}}</div>
+            <div class="text title-text">{{apply.get.user.name}}</div>
             <div class="boomark-img">
                 <img src="./img/boomark.png">
             </div>
@@ -349,9 +348,9 @@
                 <div class="main-text">전화번호</div>
             </div>
             <div >
-                <div class="main-text main-text-color text-line">{{resume.get.career}}</div>
-                <div class="main-text main-text-color text-line">{{resume.get.user.email}}</div>
-                <div class="main-text main-text-color ">{{resume.get.user.phonenumber}}</div>
+                <div class="main-text main-text-color text-line">{{apply.get.resume.career}}</div>
+                <div class="main-text main-text-color text-line">{{apply.get.user.email}}</div>
+                <div class="main-text main-text-color ">{{apply.get.user.phonenumber}}</div>
             </div>
         </div>
         <div class="d-flex1 sub-text">
@@ -361,21 +360,21 @@
                 <div class="main-text">지역</div>
             </div>
             <div>
-                <div class="main-text main-text-color text-line">{{resume.get.user.address}}</div>
-                <div class="main-text main-text-color text-line">{{resume.get.user.age}}</div>
-                <div class="main-text main-text-color">{{#resume.get.hashAreaList}} {{area.areaName}} {{/resume.get.hashAreaList}}</div>
+                <div class="main-text main-text-color text-line">{{apply.get.user.address}}</div>
+                <div class="main-text main-text-color text-line">{{apply.get.user.age}}</div>
+                <div class="main-text main-text-color">{{#apply.get.resume.hashAreaList}} {{area.areaName}} {{/apply.get.resume.hashAreaList}}</div>
             </div>
         </div>
     </div>
     <hr>
     <div class="container d-flex sub-text four-box">
-        {{#resume.get.hashSkilList}}
+        {{#apply.get.resume.hashSkilList}}
         <div class="statusfail">{{skill.skillName}}</div>
-        {{/resume.get.hashSkilList}}
+        {{/apply.get.resume.hashSkilList}}
     </div>
     <br>
     <div class="container d-flex sub-text five-box">
-        <div>{{resume.get.content}}</div>
+        <div>{{apply.get.resume.content}}</div>
     </div>    
 </div>
 
