@@ -107,23 +107,23 @@ public class ResumeService {
         }
 
         public Resume 이력서존재유무확인(Integer userId) {
-                Optional<Resume> resumeOP = resumeRepository.findById(userId);
+                Resume resumeOP = resumeRepository.findByUserId(userId);
                 
-                if (resumeOP.isPresent()) {
-                    return resumeOP.get();
+                if (resumeOP != null) {
+                    return resumeOP;
                 } else {
                     // 이력서를 찾을 수 없는 경우에 대한 처리
                     // 예: 빈 이력서를 생성하여 반환하거나 예외를 던질 수 있음
-                    return new Resume(); // 빈 이력서를 반환하는 예시
+                    return null; // 빈 이력서를 반환하는 예시
                 }
             }
 
 
         @Transactional
-        public void 이력서수정(ResumeUpdateDTO resumeUpdateDTO, Integer id) {
+        public void 이력서수정(ResumeUpdateDTO resumeUpdateDTO, Integer userId) {
 
                 // builder 를 사용하면 데이터가 쌓이기때문에 있는 데이터를 이용하여 값을 수정
-                Resume resume = resumeRepository.findByUserId(id);
+                Resume resume = resumeRepository.findByUserId(userId);
 
                 resume.setContent(resumeUpdateDTO.getContent());
                 resume.setCareer(resumeUpdateDTO.getCareer());
@@ -148,7 +148,7 @@ public class ResumeService {
                         Skill skill = skillRepository.findBySkillName(skillName);
 
                         HashSkil hashSkil = HashSkil.builder()
-                                        .user(User.builder().id(id).build())
+                                        .user(User.builder().id(userId).build())
                                         .skill(skill)
                                         .resume(resume)
                                         .build();
@@ -161,7 +161,7 @@ public class ResumeService {
                         Area area = areaRepository.findByAreaName(areaName);
 
                         HashArea hashArea = HashArea.builder()
-                                        .user(User.builder().id(id).build())
+                                        .user(User.builder().id(userId).build())
                                         .area(area)
                                         .resume(resume)
                                         .build();
@@ -187,7 +187,7 @@ public class ResumeService {
                
         }
 
-        @Transactional
+             @Transactional
         public void 이력서삭제(Integer resumeId) {
                 resumeRepository.deleteById(resumeId);
                 System.out.println("이 메소드가 뜨면 삭제되었다는 뜻이야!");

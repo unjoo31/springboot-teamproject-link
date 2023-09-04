@@ -26,11 +26,24 @@ public class SkillService {
         return skill;
     }
 
-    public List<Skill> 나머지스킬가져오기(Integer id) {
+    public List<Skill> 이력서나머지스킬가져오기(Integer id) {
 
         List<Skill> skill = skillRepository.findAll();
 
         List<Skill> skillList = hashSkilRepository.findSkillsByResumeId(id);
+
+        List<Skill> restSkill = skill.stream()
+                .filter(s -> !skillList.contains(s)) // s는 skill의 원소들인데 스킬리스트에 포함되지않는것을 
+                .collect(Collectors.toList());
+
+        return restSkill;
+    }
+
+      public List<Skill> 채용공고나머지스킬가져오기(Integer id) {
+
+        List<Skill> skill = skillRepository.findAll();
+
+        List<Skill> skillList = hashSkilRepository.findSkillsByNoticeId(id);
 
         List<Skill> restSkill = skill.stream()
                 .filter(s -> !skillList.contains(s)) // s는 skill의 원소들인데 스킬리스트에 포함되지않는것을 
