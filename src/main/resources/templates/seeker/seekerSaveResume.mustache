@@ -277,91 +277,91 @@
                     <p>Resume</p>
                 </div>
                 <form action="/seekerSave" method="post" enctype="multipart/form-data">
-                <div class="d-flex first-box box-layout">
-                        <div class="d-flex left-box-first">
-                            <div class="personal-img">
-                                <img src="./img/hello.png">
+                        <div class="d-flex first-box box-layout">
+                            <div class="d-flex left-box-first">
+                                <div class="personal-img">
+                                    <img src="./img/hello.png">
+                                </div>
+                                <div class="mb-3 d-flex flex-column">
+                                    <label for="name" class="form-label main-text">이름</label>
+                                    <input class="input-style-name" type="text" id="name" class="form-control sub-text"
+                                        placeholder="link" name="name" value="link">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div>
+                                    <label for="carrer" class="form-label main-text">경력</label>
+                                </div>
+                                <div>
+                                    <label class="me-5 custom-radio main-text">
+                                        <input type="radio" name="career" value=1> 경력
+                                    </label>
+                                    <label class="me-5 custom-radio main-text">
+                                        <input type="radio" name="career" value=2> 신입
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex box-layout">
+                            <div class="mb-3 d-flex flex-column">
+                                <label for="email" class="form-label main-text">이메일</label>
+                                <input class="input-style" type="text" id="email" class="form-control sub-text"
+                                    placeholder="link@gmail.com" name="email" value="link@gmail.com">
                             </div>
                             <div class="mb-3 d-flex flex-column">
-                                <label for="name" class="form-label main-text">이름</label>
-                                <input class="input-style-name" type="text" id="name" class="form-control sub-text"
-                                    placeholder="link" name="name" value="link">
+                                <label for="phonenumber" class="form-label main-text">전화번호</label>
+                                <input class="input-style" type="text" id="phonenumber" class="form-control sub-text"
+                                    placeholder="000-0000-0000" name="phoneNumber" value="010-0000-0000">
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <div>
-                                <label for="carrer" class="form-label main-text">경력</label>
+                        <div class="d-flex box-layout">
+                            <div class="mb-3 d-flex flex-column">
+                                <label for="address" class="form-label main-text">주소</label>
+                                <input class="input-style" type="text" id="address" class="form-control sub-text"
+                                    placeholder="부산" name="address" value="부산">
                             </div>
-                            <div>
-                                <label class="me-5 custom-radio main-text">
-                                    <input type="radio" name="career" value=1> 경력
-                                </label>
-                                <label class="me-5 custom-radio main-text">
-                                    <input type="radio" name="career" value=2> 신입
-                                </label>
+                            <div class="mb-3 d-flex flex-column">
+                                <label for="date" class="form-label main-text">생년월일</label>
+                                <input class="input-style" type="date" id="date" class="form-control sub-text"
+                                    placeholder="0000.00.00" name="date">
                             </div>
                         </div>
-                </div>
-                <div class="d-flex box-layout">
-                    <div class="mb-3 d-flex flex-column">
-                        <label for="email" class="form-label main-text">이메일</label>
-                        <input class="input-style" type="text" id="email" class="form-control sub-text"
-                            placeholder="link@gmail.com" name="email" value="link@gmail.com">
-                    </div>
-                    <div class="mb-3 d-flex flex-column">
-                        <label for="phonenumber" class="form-label main-text">전화번호</label>
-                        <input class="input-style" type="text" id="phonenumber" class="form-control sub-text"
-                            placeholder="000-0000-0000" name="phoneNumber" value="010-0000-0000">
-                    </div>
-                </div>
-                <div class="d-flex box-layout">
-                    <div class="mb-3 d-flex flex-column">
-                        <label for="address" class="form-label main-text">주소</label>
-                        <input class="input-style" type="text" id="address" class="form-control sub-text"
-                            placeholder="부산" name="address" value="부산">
-                    </div>
-                    <div class="mb-3 d-flex flex-column">
-                        <label for="date" class="form-label main-text">생년월일</label>
-                        <input class="input-style" type="date" id="date" class="form-control sub-text"
-                            placeholder="0000.00.00" name="date">
-                    </div>
-                </div>
-                <div class="mb-3 d-flex flex-column">
-                    <label for="content" class="form-label main-text">자기소개</label>
-                    <textarea class="form-control sub-text" rows="5" name="content">자기소개</textarea>
-                </div>
-                <div class="ml-3 body-content-title main-text">
-                    <p><b>기술스택</b></p>
-                </div>
-                <div class="body-content-title2 sub-text">
-                    {{#skills}}
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="skilList" value="{{skillName}}" id="checkboxExample">
-                        <label class="form-check-label">{{skillName}}
-                        </label>
-                    </div>
-                    {{/skills}}
-                <br>
-                <div class="ml-3 body-content-title main-text">
-                    <p><b>지역</b></p>
-                </div>
-                <div class="body-content-title3 sub-text">
-                    {{#areas}}
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="areaList" value="{{areaName}}" id="checkboxExample">
-                        <label class="form-check-label">{{areaName}}
-                        </label>
-                    </div>
-                    {{/areas}}
-                <div class="d-flex bottom-box justify-content-end">
-                    <button class="btn btn-style btn-register main-text bottom-box-right" type="submit">이력서 등록</button>
-                </div>
-            </form>
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="content" class="form-label main-text">자기소개</label>
+                            <textarea class="form-control sub-text" rows="5" name="content">자기소개</textarea>
+                        </div>
+                        <div class="ml-3 body-content-title main-text">
+                            <p><b>기술스택</b></p>
+                        </div>
+                        <div class="body-content-title2 sub-text">
+                            {{#skills}}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="skilList" value="{{skillName}}" id="checkboxExample">
+                                <label class="form-check-label">{{skillName}}
+                                </label>
+                            </div>
+                            {{/skills}}
+                            <br>
+                        </div>
+                        <div class="ml-3 body-content-title main-text">
+                            <p><b>지역</b></p>
+                        </div>
+                        <div class="body-content-title3 sub-text">
+                            {{#areas}}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="areaList" value="{{areaName}}" id="checkboxExample">
+                                <label class="form-check-label">{{areaName}}
+                                </label>
+                            </div>
+                            {{/areas}}
+                        </div>
+                        <div class="d-flex bottom-box justify-content-end">
+                            <button class="btn btn-style btn-register main-text bottom-box-right" type="submit">이력서 등록</button>
+                        </div>
+                </form>
             </div>
-
         </div>
     </div>
-
 </div>
 <script>
     // 카드 마우스 오버 시 스타일 변경
