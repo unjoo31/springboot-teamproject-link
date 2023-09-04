@@ -15,8 +15,11 @@ public interface ApplyRepository extends JpaRepository<Apply, Integer>{
   List<Apply> findByNoticeId(@Param("noticeId") Integer noticeId);
 
   @Modifying
-  @Query("UPDATE Apply a SET a.pass = :newPass WHERE a.id = :applyId")
+  @Query("UPDATE Apply a SET a.pass = :newPass WHERE a.user.id = :applyId")
   void updatePassById(@Param("newPass") String newPass, @Param("applyId") Integer applyId);
+
+  @Query("SELECT a FROM Apply a left join fetch a.user u WHERE u.id = :userId")
+  Optional<Apply> mFindByUserId(@Param("userId") Integer userId);
 }
 
 

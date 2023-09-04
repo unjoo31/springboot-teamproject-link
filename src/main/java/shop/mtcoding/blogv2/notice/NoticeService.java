@@ -74,7 +74,7 @@ public class NoticeService {
     }
 
     // 입사지원 화면 
-    public Notice 공고상세보기(int id) {
+    public Notice 공고상세보기(Integer id) {
        Optional<Notice> noticeOP = noticeRepository.findById(id);
        if (noticeOP.isPresent()) {
            return noticeOP.get();
