@@ -384,5 +384,83 @@
         </div>
     <hr>  
 </div>
+<script>
+    // 카드 마우스 오버 시 스타일 변경
+    function highlightCard(element) {
+        element.style.border = '2px solid #9F12E1';
+        element.style.cursor = 'pointer';
+    }
 
+    function unhighlightCard(element) {
+        element.style.border = '1px solid #ccc';
+        element.style.cursor = 'pointer';
+    }
+
+    // 버튼 마우스 오버 시 스타일 변경
+    function highlightButton(element) {
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = '3px 3px 5px rgba(0, 0, 0, 0.2)';
+    }
+
+    function unhighlightButton(element) {
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = 'none'; 
+    }
+
+    // 회원정보 수정 메뉴 마우스 오버시 이미지 변경
+    let personalImageContainer = document.getElementById("personalImageContainer");
+    let personalImage = document.getElementById("personalImage");
+    let personalImageSrc = "./img/personal.png";
+    let personalHoverImageSrc = "./img/personalOn.png";
+
+    personalImageContainer.addEventListener("mouseover", function() {
+        personalImage.src = personalHoverImageSrc;
+    });
+
+    personalImageContainer.addEventListener("mouseout", function() {
+        personalImage.src = personalImageSrc;
+    });
+
+    // 채용공고 메뉴 마우스 오버시 이미지 변경
+    let employmentImageContainer = document.getElementById("employmentImageContainer");
+    let employmentImage = document.getElementById("employmentImage");
+    let employmentImageSrc = "./img/resume.png";
+    let employmentHoverImageSrc = "./img/resumeOn.png";
+
+    employmentImageContainer.addEventListener("mouseover", function() {
+        employmentImage.src = employmentHoverImageSrc;
+    });
+
+    employmentImageContainer.addEventListener("mouseout", function() {
+        employmentImage.src = employmentImageSrc;
+    });
+
+    // 채용공고 현황 메뉴 마우스 오버시 이미지 변경
+    let statusImageContainer = document.getElementById("statusImageContainer");
+    let statusImage = document.getElementById("statusImage");
+    let statusImageSrc = "./img/resume.png";
+    let statusHoverImageSrc = "./img/resumeOn.png";
+
+    statusImageContainer.addEventListener("mouseover", function() {
+        statusImage.src = statusHoverImageSrc;
+    });
+
+    statusImageContainer.addEventListener("mouseout", function() {
+        statusImage.src = statusImageSrc;
+    });
+
+    // 관심구직자 메뉴 마우스 오버시 이미지 변경
+    let interestImageContainer = document.getElementById("interestImageContainer");
+    let interestImage = document.getElementById("interestImage");
+    let interestImageSrc = "./img/company.png";
+    let interestHoverImageSrc = "./img/companyOn.png";
+
+    interestImageContainer.addEventListener("mouseover", function() {
+        interestImage.src = interestHoverImageSrc;
+    });
+
+    interestImageContainer.addEventListener("mouseout", function() {
+        interestImage.src = interestImageSrc;
+    });
+</script>
 {{> layout/footer}}

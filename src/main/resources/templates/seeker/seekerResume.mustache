@@ -109,38 +109,31 @@
     /* 헤더, 푸터 스타일 끝 */
 
     /* 좌측 메뉴 스타일 시작 */
-    .left-nav-title {
-        font-size: 15px;
-        margin-left: 20px;
-        margin-top: 10px;
-    }
-
-    .left-nav-sub {
-        font-size: 11px;
-    }
-
-    .left-nav {
-        width: 300px;
-        margin-top: 85px;
-    }
-
-    .left-nav-detail {
-        display: flex;
-        flex-direction: row;
-        border-radius: 10px;
-        border: 1px solid #EDEEF2;
-        margin-bottom: 10px;
-    }
-
-    .nav-img img {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        margin-right: 20px;
-        margin-left: 10px;
-    }
-
-    /* 좌측 메뉴 스타일 끝 */
+.left-nav-title{
+    font-size: 15px;
+    margin-top: 10px;
+}
+.left-nav-sub{
+    font-size: 11px;
+}
+.left-nav{
+    width: 300px;
+    margin-top: 85px;
+}
+.left-nav-detail{
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    border: 1px solid #EDEEF2;
+    margin-bottom: 10px;
+}
+.nav-img{
+    width: 40px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+/* 좌측 메뉴 스타일 끝 */
 
     .grid-container {
         display: grid;
@@ -271,44 +264,48 @@
         width: 10%;
         text-align: center;
     }
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 </style>
 
 <div class="d-flex justify-content-center">
     <div class="grid-container">
         <div class="left-nav">
             <div class="card-body d-flex flex-column">
-                <div class="card left-nav-detail">
+                <div class="card left-nav-detail d-flex" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)" id="personalImageContainer">
                     <div class="nav-img">
-                        <img src="./img/personal.png">
+                        <img src="./img/personal.png" id="personalImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="#">
+                    <a class="dropdown-item left-nav-title" href="/updateSeekerForm">
                         회원정보 수정
                         <p class="left-nav-sub">Personal information</p>
                     </a>
                 </div>
-                <div class="card left-nav-detail">
+                <div class="card left-nav-detail" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)" id="employmentImageContainer">
                     <div class="nav-img">
-                        <img src="./img/resume.png">
+                        <img src="./img/resume.png" id="employmentImage">
                     </div>
                     <a class="dropdown-item left-nav-title" href="/seekerResumeForm">
                         이력서
                         <p class="left-nav-sub">Resume</p>
                     </a>
                 </div>
-                <div class="card left-nav-detail">
+                <div class="card left-nav-detail" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)" id="statusImageContainer">
                     <div class="nav-img">
-                        <img src="./img/resume.png">
+                        <img src="./img/resume.png" id="statusImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="#">
+                    <a class="dropdown-item left-nav-title" href="/seekerSupportForm">
                         지원현황
                         <p class="left-nav-sub">Support status</p>
                     </a>
                 </div>
-                <div class="card left-nav-detail">
+                <div class="card left-nav-detail" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)" id="interestImageContainer">
                     <div class="nav-img">
-                        <img src="./img/company.png">
+                        <img src="./img/company.png" id="interestImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="#">
+                    <a class="dropdown-item left-nav-title" href="/seekerCompanies">
                         관심기업 / 기술스택 매칭
                         <p class="left-nav-sub">Interested companies / Technical stack</p>
                     </a>
@@ -330,7 +327,7 @@
                                 <div class="employment-content"></div>
                                 <div>
                                     <button class="btn img-botton btn-employment main-text" id="btnJoin"
-                                        type="submit">이력서 등록</button>
+                                        type="submit" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">이력서 등록</button>
                                 </div>
                             </div>
                         </form>
@@ -367,11 +364,11 @@
                                 <div>
                                     <div>
                                         <button class="btn img-botton btn-employment main-text" id="btnJoin"
-                                            type="submit">이력서 삭제</button>
+                                            type="submit" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">이력서 삭제</button>
                                     </div>
                                     <div>
                                         <button class="btn img-botton btn-employment main-text" id="btnJoin"
-                                            type="submit"> <a href="seekerSaveResumeUpdateForm">이력서 수정</a></button>
+                                            type="submit" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)"> <a href="seekerSaveResumeUpdateForm">이력서 수정</a></button>
                                     </div>
                                 </div>
                             </div>
@@ -386,4 +383,84 @@
 </div>
 </div>
 </div>
+<script>
+    // 카드 마우스 오버 시 스타일 변경
+    function highlightCard(element) {
+        element.style.border = '2px solid #9F12E1';
+        element.style.cursor = 'pointer';
+    }
+
+    function unhighlightCard(element) {
+        element.style.border = '1px solid #ccc';
+        element.style.cursor = 'pointer';
+    }
+
+    // 버튼 마우스 오버 시 스타일 변경
+    function highlightButton(element) {
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = '3px 3px 5px rgba(0, 0, 0, 0.2)';
+    }
+
+    function unhighlightButton(element) {
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = 'none'; 
+    }
+
+    // 회원정보 수정 메뉴 마우스 오버시 이미지 변경
+    let personalImageContainer = document.getElementById("personalImageContainer");
+    let personalImage = document.getElementById("personalImage");
+    let personalImageSrc = "./img/personal.png";
+    let personalHoverImageSrc = "./img/personalOn.png";
+
+    personalImageContainer.addEventListener("mouseover", function() {
+        personalImage.src = personalHoverImageSrc;
+    });
+
+    personalImageContainer.addEventListener("mouseout", function() {
+        personalImage.src = personalImageSrc;
+    });
+
+    // 채용공고 메뉴 마우스 오버시 이미지 변경
+    let employmentImageContainer = document.getElementById("employmentImageContainer");
+    let employmentImage = document.getElementById("employmentImage");
+    let employmentImageSrc = "./img/resume.png";
+    let employmentHoverImageSrc = "./img/resumeOn.png";
+
+    employmentImageContainer.addEventListener("mouseover", function() {
+        employmentImage.src = employmentHoverImageSrc;
+    });
+
+    employmentImageContainer.addEventListener("mouseout", function() {
+        employmentImage.src = employmentImageSrc;
+    });
+
+    // 채용공고 현황 메뉴 마우스 오버시 이미지 변경
+    let statusImageContainer = document.getElementById("statusImageContainer");
+    let statusImage = document.getElementById("statusImage");
+    let statusImageSrc = "./img/resume.png";
+    let statusHoverImageSrc = "./img/resumeOn.png";
+
+    statusImageContainer.addEventListener("mouseover", function() {
+        statusImage.src = statusHoverImageSrc;
+    });
+
+    statusImageContainer.addEventListener("mouseout", function() {
+        statusImage.src = statusImageSrc;
+    });
+
+    // 관심구직자 메뉴 마우스 오버시 이미지 변경
+    let interestImageContainer = document.getElementById("interestImageContainer");
+    let interestImage = document.getElementById("interestImage");
+    let interestImageSrc = "./img/company.png";
+    let interestHoverImageSrc = "./img/companyOn.png";
+
+    interestImageContainer.addEventListener("mouseover", function() {
+        interestImage.src = interestHoverImageSrc;
+    });
+
+    interestImageContainer.addEventListener("mouseout", function() {
+        interestImage.src = interestImageSrc;
+    });
+</script>
+
 {{> layout/footer}}
