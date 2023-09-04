@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,6 +20,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.area.AreaResponse;
 import shop.mtcoding.blogv2.area.AreaService;
+import shop.mtcoding.blogv2.resume.ResumeRequest;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillService;
 import shop.mtcoding.blogv2.user.User;
@@ -48,6 +51,9 @@ public class NoticeController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private HttpSession session;
 
     // index 화면
     @GetMapping("/")
@@ -69,6 +75,7 @@ public class NoticeController {
             Map<String, Object> noticeData = new HashMap<>();
             noticeData.put("title", notice.getTitle());
             noticeData.put("user", notice.getUser());
+            noticeData.put("notice", notice.getId());
             noticeData.put("hashSkilList", notice.getHashSkilList());
             noticeData.put("hashAreaList", notice.getHashAreaList());
             
@@ -129,6 +136,7 @@ public class NoticeController {
             Map<String, Object> filterData = new HashMap<>();
             filterData.put("title", filter.getTitle());
             filterData.put("user", filter.getUser());
+            filterData.put("notice", filter.getId());
             filterData.put("hashSkilList", filter.getHashSkilList());
             filterData.put("hashAreaList", filter.getHashAreaList());
 
@@ -199,9 +207,9 @@ public class NoticeController {
 
     // 입사지원 화면 
     // 공고 작성 완료 이후에 세션 등록
-    @GetMapping("/applyNotice")
-    public String applyNotice(HttpServletRequest request){
-        Notice notice = noticeService.공고상세보기(1);
+    @GetMapping("/applyNotice/{noticeId}")
+    public String applyNotice(@PathVariable Integer noticeId, HttpServletRequest request){
+        Notice notice = noticeService.공고상세보기(noticeId);
 
         // 마감일 계산을 위해서 변수에 담아주기
         Date startDate = notice.getCreatedAt();
@@ -217,4 +225,28 @@ public class NoticeController {
         request.setAttribute("timeDifferenceDays", timeDifferenceDays);
         return "seeker/applyNotice";
     }
+
+    
+    @GetMapping("/corporationResume")
+    public String corporationResume() {
+        return "/corporation/corporationResume";
+    }
+
+    @GetMapping("/corporationSaveResume")
+    public String corporationSaveResumeForm(Model model1, Model model2) {
+        List<Skill> skill = skillService.모든스킬가져오기();
+        List<Area> area = areaService.모든지역가져오기();
+        model1.addAttribute("skills", skill);
+        model2.addAttribute("areas", area);
+         return "/corporation/corporationSaveResume";
+    }
+
+    @PostMapping("/corporationSave")
+    public String corporationSaveResume(NoticeRequest.NoticeSaveDTO noticeSaveDTO) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        noticeService.채용공고등록(noticeSaveDTO, sessionUser.getId());
+        return "redirect:/corporationResume";
+    }
+
+  
 }
