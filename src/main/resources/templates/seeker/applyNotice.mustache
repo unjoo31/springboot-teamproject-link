@@ -339,13 +339,13 @@
                         {{notice.title}}
                     </div>
                 </div>
-                <form action="/applyNoticeBookmark" method="post">
+                <form action="/applyNoticeBookmark/{{notice.id}}" method="post">
                     <button class="star-icon-button btn-register" type="submit" id="bookmarkImageContainer">
                         <div class="boomark-img">
                             <img src="./img/boomark.png" id="bookmarkImage">
                         </div>
                     </button>
-                </form>               
+                </form>              
             </div>
             <hr>
             <div class="container d-flex third-box">
