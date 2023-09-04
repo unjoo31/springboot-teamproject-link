@@ -168,5 +168,13 @@ public class ResumeService {
              return resumeRepository.findById(id);
         }
 
+        @Transactional
+        public void 이력서삭제(Integer resumeId) {
+                resumeRepository.deleteById(resumeId);
+                System.out.println("이 메소드가 뜨면 삭제되었다는 뜻이야!");
+                System.out.println("콘솔창의 딜리트 쿼리와 h2-console 데이터 삭제가 되었는지 확인하세요 !");
+
+        }
+
 
 }

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -106,7 +107,6 @@ public class ResumeController {
         model4.addAttribute("selectArea", area2); // 선택한 지역을 보여주는 모델
         model5.addAttribute("restArea", restArea); // 선택하고 남은 지역을 보여주는 모델
         return "/seeker/seekerSaveResumeUpdate";
-
     }
 
     // Post맵핑 호출공간
@@ -124,16 +124,26 @@ public class ResumeController {
         resumeService.이력서수정(resumeUpdateDTO, sessionUser.getId());
         return "redirect:/seekerResumeForm";
     }
-    // 지원자 이력서 상세보기 
-    @GetMapping("/corporationSupportSeekerList")
-    public String corporationSupportSeekerList(HttpServletRequest request){
-    Optional<Resume> resume = resumeService.이력서조회하기(1);    
-    System.out.println(resume.get().getUser().getName());
-    System.out.println(resume.get().getUser().getPicUrl());
-    System.out.println(resume.get().getHashAreaList());
-    request.setAttribute("resume", resume);
-    return "corporation/corporationSupportSeekerList";
-}
 
+    @PostMapping("/seekerResume/{resumeId}/delete")
+    public String seekerResumeDelete(@PathVariable Integer resumeId) {
+        System.out.println("컨트롤러에 진입합니다");
+        resumeService.이력서삭제(resumeId);
+        System.out.println("서비스 계층 진입 후 컨트롤러 복귀완료");
+        return "redirect:/seekerResumeForm";
+    }
+
+
+
+    // 지원자 이력서 상세보기
+    @GetMapping("/corporationSupportSeekerList")
+    public String corporationSupportSeekerList(HttpServletRequest request) {
+        Optional<Resume> resume = resumeService.이력서조회하기(1);
+        System.out.println(resume.get().getUser().getName());
+        System.out.println(resume.get().getUser().getPicUrl());
+        System.out.println(resume.get().getHashAreaList());
+        request.setAttribute("resume", resume);
+        return "corporation/corporationSupportSeekerList";
+    }
 
 }

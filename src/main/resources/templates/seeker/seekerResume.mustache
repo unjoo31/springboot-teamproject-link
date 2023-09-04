@@ -344,38 +344,42 @@
                 <div class="card">
                     <div class="card-header">Resume</div>
                     <div class="card-body">
-                        <form action="/seekerSaveResumeUpdateForm">
-                            <div class="mb-3 d-flex justify-content-start">
-                                <div class="personal-img">
-                                    <img src="./img/{{userInfo.picUrl}}">
+                        <div class="mb-3 d-flex justify-content-start">
+                            <div class="personal-img">
+                                <img src="./img/{{userInfo.picUrl}}">
+                            </div>
+                            <div class="employment-content d-flex flex-column">
+                                <div class="employment-content-title">
+                                    {{userInfo.name}}
                                 </div>
-                                <div class="employment-content d-flex flex-column">
-                                    <div class="employment-content-title">
-                                        {{userInfo.name}}
-                                    </div>
-                                    <div class="employment-content-sub">
-                                        {{existResume.content}}
-                                    </div>
-                                    <div class="employment-content-skill d-flex">
-                                        {{#selectSkill}}
-                                        <div class="employment-content-skill-box">
-                                            {{skillName}}
-                                        </div>
-                                        {{/selectSkill}}
-                                    </div>
+                                <div class="employment-content-sub">
+                                    {{existResume.content}}
                                 </div>
-                                <div>
-                                    <div>
-                                        <button class="btn img-botton btn-employment main-text" id="btnJoin"
-                                            type="submit">이력서 삭제</button>
+                                <div class="employment-content-skill d-flex">
+                                    {{#selectSkill}}
+                                    <div class="employment-content-skill-box">
+                                        {{skillName}}
                                     </div>
-                                    <div>
-                                        <button class="btn img-botton btn-employment main-text" id="btnJoin"
-                                            type="submit"> <a href="seekerSaveResumeUpdateForm">이력서 수정</a></button>
-                                    </div>
+                                    {{/selectSkill}}
                                 </div>
                             </div>
-                        </form>
+                            <div>
+                                <div class="d-flex justify-content-end">
+                                    <form action="/seekerResume/{{existResume.id}}/delete" method="post">
+                                        <button class="btn img-botton btn-employment main-text" id="btnDelete"
+                                            type="submit">이력서 삭제</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-end">
+                                    <form action="/seekerSaveResumeUpdateForm">
+                                        <button class="btn img-botton btn-employment main-text" id="btnEdit"
+                                            type="submit">이력서 수정</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
