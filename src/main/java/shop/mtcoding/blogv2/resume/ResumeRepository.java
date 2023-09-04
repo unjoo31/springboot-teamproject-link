@@ -7,7 +7,10 @@ import org.springframework.data.repository.query.Param;
 
 public interface ResumeRepository extends JpaRepository<Resume, Integer>{
 
+    // 이력서수정에 필요한 메소드
     Resume findByUserId(@Param("userId") Integer userId);
+
+
 
     
 

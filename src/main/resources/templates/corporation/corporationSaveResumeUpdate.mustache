@@ -147,6 +147,7 @@
         width: 1000px;
     }
 
+
     .body {
         margin-top: 50px;
     }
@@ -172,7 +173,7 @@
     }
 
     .left-box-first {
-        margin-right: 40px;
+        margin-right: 25px;
         margin-left: 10px;
     }
 
@@ -191,16 +192,12 @@
         margin-right: 15px;
     }
 
-    .card-contain-second .personal-img {
-        margin-top: 25px;
-    }
-
     .personal-img {
         width: 88px;
         height: 88px;
         background-color: #ccc;
         border-radius: 20px;
-        margin-top: 5px;
+        margin-right: 15px;
     }
 
     .personal-img img {
@@ -223,51 +220,40 @@
         font-size: 14px;
     }
 
+    .input-style-name {
+        width: 200px;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid #EDEEF2;
+        font-size: 14px;
+    }
+
+    .input-style-title {
+        width: 640px;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid #EDEEF2;
+        font-size: 14px;
+    }
+
     .box-layout {
         margin-bottom: 15px;
     }
 
-    .card-contain-first {
-        margin-top: 15px;
-    }
-
-    .card-contain-second {
-        margin-top: 20px;
-    }
-
-    .btn-employment {
-        width: 110px;
-        border: 1px solid #9F12E1;
-        color: #9F12E1;
-        margin-right: 10px;
-    }
-
-    .employment-content {
-        width: 400px;
+    /* 추가된 스타일클래스입니다 */
+    .body-content-title2 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
         margin-left: 20px;
-        margin-top: 30px;
     }
 
-    .employment-content-title {
-        font-weight: 500;
-        margin-bottom: 5px;
-    }
-
-    .employment-content-sub {
-        font-size: 13px;
-        margin-bottom: 5px;
-    }
-
-    .employment-content-skill {
-        font-size: 13px;
-    }
-
-    .employment-content-skill-box {
-        background-color: #ccc;
-        margin-right: 10px;
-        border-radius: 10px;
-        width: 10%;
-        text-align: center;
+    /* 추가된 스타일클래스입니다 */
+    .body-content-title3 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-left: 20px;
     }
 </style>
 
@@ -317,81 +303,137 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <h1 class="title-text body">채용공고</h1>
-            {{^existNotice}}
-            <div class="card-contain-first">
-                <div class="card">
-                    <div class="card-header">Employment announcement</div>
-                    <div class="card-body">
-                        <form action="/corporationSaveResume">
-                            <div class="mb-3 d-flex justify-content-start">
-                                <div class="personal-img">
-                                    <img src="./img/hello.png">
-                                </div>
-                                <div class="employment-content"></div>
-                                <div>
-                                    <button class="btn img-botton btn-employment main-text" id="btnJoin"
-                                        type="submit">채용공고 등록</button>
-                                </div>
-                            </div>
-                        </form>
+        <div>
+            <form action="/corporationUpdate" enctype="multipart/form-data" method="post">
+                <h1 class="title-text body"></h1>
+                <div class="body-content">
+                    <div class="body-content-title mb-3">
+                        <b>Employment announcements</b>
                     </div>
-                </div>
-            </div>
-            {{/existNotice}}
+                    {{#userNotice}}
+                    <div class="d-flex first-box box-layout">
+                        <div class="d-flex left-box-first">
+                            <div class="personal-img">
+                                <img src="./img/hello.png">
+                            </div>
+                            <div class="mt-2 d-flex flex-column">
+                                <label for="username" class="form-label main-text">기업명</label>
+                                <input class="input-style-name" type="text" id="username" class="form-control sub-text"
+                                    placeholder="{{user.business}}" name="username" value="{{user.business}}">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <form class="mt-2">
+                                <div>
+                                    <label for="password" class="form-label main-text">경력</label>
+                                </div>
+                                <div>
+                                    <label class="me-5 custom-radio main-text">
+                                        <input type="radio" name="career" value=1
+                                            checked="{{#career}}checked{{/career}}"> 경력
+                                    </label>
+                                    <label class="me-5 custom-radio main-text">
+                                        <input type="radio" name="career" value=2
+                                            checke="{{^career}}checked{{/career}}"> 신입
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="d-flex box-layout">
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="title" class="form-label main-text">채용공고 제목</label>
+                            <input class="input-style-title" type="text" id="title" class="form-control sub-text"
+                                placeholder="{{title}}" name="title" value="{{title}}">
+                        </div>
+                    </div>
+                    <div class="d-flex box-layout">
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="academicAbility" class="form-label main-text">학력</label>
+                            <input class="input-style" type="text" id="academicAbility" class="form-control sub-text"
+                                placeholder="{{academicAbility}}" name="academicAbility" value="{{academicAbility}}">
+                        </div>
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="salary" class="form-label main-text">급여</label>
+                            <input class="input-style" type="text" id="salary" class="form-control sub-text"
+                                placeholder="{{salary}}" name="salary" value="{{salary}}">
+                        </div>
+                    </div>
+                    <div class="d-flex box-layout">
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="typeOfWork" class="form-label main-text">근무형태</label>
+                            <input class="input-style" type="text" id="typeOfWork" class="form-control sub-text"
+                                placeholder="{{typeOfWork}}" name="typeOfWork" value="{{typeOfWork}}">
+                        </div>
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="endDate" class="form-label main-text">접수기간</label>
+                            <input class="input-style" type="date" id="endDate" class="form-control sub-text"
+                                placeholder="{{endDate}}" name="endDate" value="{{endDate}}">
+                        </div>
+                    </div>
 
-            {{#existNotice}}
-            <div class="card-contain-second">
-                <div class="card">
-                    <div class="card-header">Employment announcement</div>
-                    <div class="card-body">
-                        <form action="/join" method="post">
-                            <div class="mb-3 d-flex justify-content-start">
-                                <div class="personal-img">
-                                    <img src="./img/hello.png">
-                                </div>
-                                <div class="employment-content d-flex flex-column">
-                                    <div class="employment-content-title">
-                                        {{title}}
-                                    </div>
-                                    <div class="employment-content-sub">
-                                    </div>
-                                    <div class="employment-content-skill d-flex">
-                                        {{#selectSkill}}
-                                        <div class="employment-content-skill-box">
-                                            {{skillName}}
-                                        </div>
-                                        {{/selectSkill}}
-                                    </div>
-                                </div>
-                                <div>
-                                    <div>
-                                        <form action="#" method="post">
-                                            <button class="btn img-botton btn-employment main-text" id="btnJoin"
-                                                type="submit" onmouseover="highlightButton(this)"
-                                                onmouseout="unhighlightButton(this)">채용공고 삭제</button>
-                                        </form>
-                                    </div>
-                                    <div>
-                                        <button class="btn img-botton btn-employment main-text" id="btnJoin"
-                                            type="submit" onmouseover="highlightButton(this)"
-                                            onmouseout="unhighlightButton(this)"> <a
-                                                href="/corporationSaveResumeUpdate">채용공고 수정</a></button>
-                                    </div>
-                                </div>
+                    <div class="mb-3 d-flex flex-column">
+                        <label for="content" class="form-label main-text">상세내용</label>
+                        <textarea class="form-control sub-text" rows="5" name="content">{{content}}</textarea>
+                    </div>
+                    {{/userNotice}}
+
+                    <div class="d-flex box-layout-skillArea flex-column">
+                        <div class="ml-3 body-content-title main-text">
+                            <p><b>기술스택</b></p>
+                        </div>
+                        <div class="body-content-title2 sub-text">
+                            {{#selectSkill}}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="skilList" value="{{skillName}}"
+                                    id="{{skillName}}" checked="checked">
+                                <label class="form-check-label" for="{{skillName}}">{{skillName}}</label>
                             </div>
-                        </form>
+                            {{/selectSkill}}
+                            {{#restSkill}}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="skilList" value="{{skillName}}"
+                                    id="{{skillName}}">
+                                <label class="form-check-label" for="{{skillName}}">{{skillName}}</label>
+                            </div>
+                            {{/restSkill}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="d-flex box-layout-skillArea flex-column">
+                        <div class="ml-3 body-content-title main-text">
+                            <p><b>지역</b></p>
+                        </div>
+                        <div class="body-content-title3 sub-text">
+                            {{#selectArea}}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="areaList" value="{{areaName}}"
+                                    id="{{areaName}}" checked="checked">
+                                <label class="form-check-label">{{areaName}}
+                                </label>
+                            </div>
+                            {{/selectArea}}
+                            {{#restArea}}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="areaList" value="{{areaName}}"
+                                    id="{{areaName}}">
+                                <label class="form-check-label">{{areaName}}
+                                </label>
+                            </div>
+                            {{/restArea}}
+                        </div>
+                    </div>
+                    <div class="d-flex bottom-box justify-content-end">
+                        <button class="btn btn-style btn-register main-text bottom-box-right" type="submit"
+                            onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">채용공고수정</button>
                     </div>
                 </div>
-            </div>
-            {{/existNotice}}
+            </form>
         </div>
     </div>
-    ​
 </div>
-</div>
-</div>
+
+
 <script>
     // 카드 마우스 오버 시 스타일 변경
     function highlightCard(element) {
