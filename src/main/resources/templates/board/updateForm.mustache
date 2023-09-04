@@ -197,14 +197,14 @@
             <form action="/board/{{board.id}}/update" method="post">
 
                 <div class="mb-3 d-flex flex-column">
-                    <label for="password" class="form-label main-text">제목</label>
+                    <label class="form-label main-text">제목</label>
                     <input type="text" class="form-control input-style sub-text" id="username" name="title"
                         value="{{board.title}}">
                 </div>
 
                 <div class="mb-3 d-flex flex-column">
-                    <label for="password" class="form-label main-text">내용</label>
-                    <textarea class="custom-textarea" rows="20" cols="30" id="content" name="content">{{board.content}}</textarea>
+                    <label class="form-label main-text">내용</label>
+                    <textarea class="custom-textarea" rows="20" cols="30" id="content" name="content">{{{board.content}}}</textarea>
                 </div>
 
                 <div class="bottom-box justify-content-end">

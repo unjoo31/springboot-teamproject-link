@@ -8,12 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import shop.mtcoding.blogv2._core.error.ex.MyException;
+
+import shop.mtcoding.blogv2.apply.Apply;
+import shop.mtcoding.blogv2.apply.ApplyRepository;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.area.AreaRepository;
 import shop.mtcoding.blogv2.hasharea.HashArea;
 import shop.mtcoding.blogv2.hasharea.HashAreaRepository;
 import shop.mtcoding.blogv2.hashskil.HashSkil;
+import shop.mtcoding.blogv2.notice.Notice;
+import shop.mtcoding.blogv2.resume.ResumeRequest.PassDTO;
+import shop.mtcoding.blogv2.resume.ResumeRequest.TransmitDTO;
 import shop.mtcoding.blogv2.hashskil.HashSkilRepository;
 import shop.mtcoding.blogv2.resume.ResumeRequest.ResumeUpdateDTO;
 import shop.mtcoding.blogv2.skill.Skill;
@@ -41,6 +46,9 @@ public class ResumeService {
 
         @Autowired
         private UserRepository userRepository;
+
+        @Autowired 
+        private ApplyRepository applyRepository;
 
         @Transactional
         public void 이력서등록(ResumeRequest.ResumeSaveDTO resumeSaveDTO, Integer userId) {
@@ -99,23 +107,23 @@ public class ResumeService {
         }
 
         public Resume 이력서존재유무확인(Integer userId) {
-                Optional<Resume> resumeOP = resumeRepository.findById(userId);
+                Resume resumeOP = resumeRepository.findByUserId(userId);
                 
-                if (resumeOP.isPresent()) {
-                    return resumeOP.get();
+                if (resumeOP != null) {
+                    return resumeOP;
                 } else {
                     // 이력서를 찾을 수 없는 경우에 대한 처리
                     // 예: 빈 이력서를 생성하여 반환하거나 예외를 던질 수 있음
-                    return new Resume(); // 빈 이력서를 반환하는 예시
+                    return null; // 빈 이력서를 반환하는 예시
                 }
             }
 
 
         @Transactional
-        public void 이력서수정(ResumeUpdateDTO resumeUpdateDTO, Integer id) {
+        public void 이력서수정(ResumeUpdateDTO resumeUpdateDTO, Integer userId) {
 
                 // builder 를 사용하면 데이터가 쌓이기때문에 있는 데이터를 이용하여 값을 수정
-                Resume resume = resumeRepository.findByUserId(id);
+                Resume resume = resumeRepository.findByUserId(userId);
 
                 resume.setContent(resumeUpdateDTO.getContent());
                 resume.setCareer(resumeUpdateDTO.getCareer());
@@ -140,7 +148,7 @@ public class ResumeService {
                         Skill skill = skillRepository.findBySkillName(skillName);
 
                         HashSkil hashSkil = HashSkil.builder()
-                                        .user(User.builder().id(id).build())
+                                        .user(User.builder().id(userId).build())
                                         .skill(skill)
                                         .resume(resume)
                                         .build();
@@ -153,7 +161,7 @@ public class ResumeService {
                         Area area = areaRepository.findByAreaName(areaName);
 
                         HashArea hashArea = HashArea.builder()
-                                        .user(User.builder().id(id).build())
+                                        .user(User.builder().id(userId).build())
                                         .area(area)
                                         .resume(resume)
                                         .build();
@@ -164,8 +172,32 @@ public class ResumeService {
 
                 // 쿼리를 날리는 갯수를 보면 그렇게 효율적인 방안은 아니지만 데이터베이스의 최적화를 위해선 효율적인 방안입니다.
         }
+
+        public void 이력서전송하기(TransmitDTO transmitDTO, Optional<Resume> resume) {
+                System.out.println("업데이트 쿼리 전");
+                Apply apply = Apply.builder()
+                .pass(transmitDTO.getPass())
+                .user(User.builder().id(resume.get().getUser().getId()).build())
+                .notice(Notice.builder().id(transmitDTO.getNoticeId()).build())
+                .resume(Resume.builder().id(resume.get().getId()).build())
+                .build();
+                
+                applyRepository.save(apply);
+                System.out.println("업데이트 쿼리 완료");
+               
+        }
+
+             @Transactional
+        public void 이력서삭제(Integer resumeId) {
+                resumeRepository.deleteById(resumeId);
+                System.out.println("이 메소드가 뜨면 삭제되었다는 뜻이야!");
+                System.out.println("콘솔창의 딜리트 쿼리와 h2-console 데이터 삭제가 되었는지 확인하세요 !");
+
+        }
+
+        // 이력서 전송을 위해 유저 아이디를 조회
         public Optional<Resume> 이력서조회하기(Integer id) {
-             return resumeRepository.findById(id);
+        return resumeRepository.findByUser_Id(id);
         }
 
 
