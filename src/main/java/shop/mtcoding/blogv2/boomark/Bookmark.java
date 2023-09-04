@@ -32,5 +32,5 @@ public class Bookmark {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    private Long targetId;
+    private Integer targetId;
 }

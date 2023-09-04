@@ -108,7 +108,7 @@
     border: 1px solid #EDEEF2;
     margin-bottom: 10px;
 }
-.nav-img{
+.left-nav-detail .nav-img{
     width: 40px;
     height: 40px;
     margin-top: 10px;
@@ -302,6 +302,12 @@
 .body-second{
     margin-top: 20px;
 }
+.location-img{
+    width: 20px;
+    height: 20px;
+    margin-top: 15px;
+    margin-right: 10px;
+}
 </style>
 
 <div class="d-flex justify-content-center">
@@ -461,70 +467,24 @@
                 </div>
                 <div class="card-body">
                     <div class="grid-container4">
-                        <div class="card" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
-                            <div class="card-body">
-                                <button class="star-icon-button btn-register" type="button">
-                                    <div class="boomark-img">
-                                        <img src="./img/boomark.png">
+                        {{#companyDataList}}
+                            <div class="card" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
+                                <div class="card-body">
+                                    <button class="star-icon-button btn-register" type="button">
+                                        <div class="boomark-img">
+                                            <img src="./img/boomarkOn.png">
+                                        </div>
+                                    </button>
+                                    <div class="mt-3"></div>
+                                    <div class="main-text"><b>{{name}}</b></div>
+                                    <div class="companyname">{{business}}</div>
+                                    <div class="d-flex">
+                                        <img src="./img/location.png" class="location-img" alt="위치">
+                                        <div class="mt-3 companyname">{{address}}</div>
                                     </div>
-                                </button>
-                                <div class="mt-3"></div>
-                                <div class="main-text"><b>(주) 그룹코리아</b></div>
-                                <div class="companyname">빅데이터 기반 서비스 운영중입니다.</div>
-                                <div class="d-flex">
-                                    <img src="./img/location.png" class="nav-img" alt="위치">
-                                    <div class="mt-3 companyname">부산</div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
-                            <div class="card-body">
-                                <button class="star-icon-button btn-register" type="button">
-                                    <div class="boomark-img">
-                                        <img src="./img/boomark.png">
-                                    </div>
-                                </button>
-                                <div class="mt-3"></div>
-                                <div class="main-text"><b>(주) 그룹코리아</b></div>
-                                <div class="companyname">빅데이터 기반 서비스 운영중입니다.</div>
-                                <div class="d-flex">
-                                    <img src="./img/location.png" class="nav-img" alt="위치">
-                                    <div class="mt-3 companyname">부산</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
-                            <div class="card-body">
-                                <button class="star-icon-button btn-register" type="button">
-                                    <div class="boomark-img">
-                                        <img src="./img/boomark.png">
-                                    </div>
-                                </button>
-                                <div class="mt-3"></div>
-                                <div class="main-text"><b>(주) 그룹코리아</b></div>
-                                <div class="companyname">빅데이터 기반 서비스 운영중입니다.</div>
-                                <div class="d-flex">
-                                    <img src="./img/location.png" class="nav-img" alt="위치">
-                                    <div class="mt-3 companyname">부산</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
-                            <div class="card-body">
-                                <button class="star-icon-button btn-register" type="button">
-                                    <div class="boomark-img">
-                                        <img src="./img/boomark.png">
-                                    </div>
-                                </button>
-                                <div class="mt-3"></div>
-                                <div class="main-text"><b>(주) 그룹코리아</b></div>
-                                <div class="companyname">빅데이터 기반 서비스 운영중입니다.</div>
-                                <div class="d-flex">
-                                    <img src="./img/location.png" class="nav-img" alt="위치">
-                                    <div class="mt-3 companyname">부산</div>
-                                </div>
-                            </div>
-                        </div>
+                        {{/companyDataList}}
                     </div>
                 </div>
             </div>

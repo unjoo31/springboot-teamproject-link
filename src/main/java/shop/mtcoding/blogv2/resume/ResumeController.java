@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import shop.mtcoding.blogv2.apply.Apply;
+import shop.mtcoding.blogv2.apply.ApplyRequest;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.area.AreaService;
+import shop.mtcoding.blogv2.notice.NoticeRequest;
 import shop.mtcoding.blogv2.hasharea.HashAreaService;
 import shop.mtcoding.blogv2.hashskil.HashSkilService;
 import shop.mtcoding.blogv2.skill.Skill;
@@ -63,16 +66,6 @@ public class ResumeController {
         model2.addAttribute("existResume", resume);
         model3.addAttribute("selectSkill", skill2);
         return "/seeker/seekerResume";
-    }
-
-    @GetMapping("/seekerCompanies")
-    public String seekCompaniesForm() {
-        return "/seeker/seekerCompanies";
-    }
-
-    @GetMapping("/seekerSupportForm")
-    public String seekSupportForm() {
-        return "/seeker/seekerSupport";
     }
 
     @GetMapping("/seekerSaveResumeForm")
@@ -133,16 +126,18 @@ public class ResumeController {
     }
 
 
-
-    // 지원자 이력서 상세보기
-    @GetMapping("/corporationSupportSeekerList")
-    public String corporationSupportSeekerList(HttpServletRequest request) {
-        Optional<Resume> resume = resumeService.이력서조회하기(1);
-        System.out.println(resume.get().getUser().getName());
-        System.out.println(resume.get().getUser().getPicUrl());
-        System.out.println(resume.get().getHashAreaList());
-        request.setAttribute("resume", resume);
-        return "corporation/corporationSupportSeekerList";
+    //이력서 전송하기 
+    @PostMapping("/resume/transmit")
+    public String resumeTransmit(ResumeRequest.TransmitDTO transmitDTO){
+        User sessionUser = (User) session.getAttribute("sessionUser"); 
+        Optional<Resume> resume  = resumeService.이력서조회하기(sessionUser.getId());
+        System.out.println("테스트 : " + resume.get().getUser().getId());
+        System.out.println("테스트 : " + resume.get().getId());
+        System.out.println("테스트 : " + transmitDTO.getPass());
+        System.out.println("테스트 : " + transmitDTO.getNoticeId());
+        resumeService.이력서전송하기(transmitDTO, resume);
+        return "redirect:/";
     }
+
 
 }
