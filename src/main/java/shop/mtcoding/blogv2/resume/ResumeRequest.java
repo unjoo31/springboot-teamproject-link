@@ -32,4 +32,11 @@ public class ResumeRequest {
 
     }
 
+    @Getter
+    @Setter    
+    public static class transmitDTO{
+        private String pass;
+        private Integer noticeId;
+    }
+
 }

@@ -81,7 +81,9 @@ public class NoticeService {
        }else{
         throw new MyException(id + "는 찾을 수 없습니다.");
        }
-    }    
+    }
+
+
         
     
 }

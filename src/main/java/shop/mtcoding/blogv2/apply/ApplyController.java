@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.mysql.cj.protocol.x.Notice;
 
-import shop.mtcoding.blogv2.resume.Resume;
 import shop.mtcoding.blogv2.user.User;
 
 @Controller
@@ -86,5 +85,6 @@ public String pass(String pass){
     return "/seeker/seekerSupportDetail";
 
      }
+
 
 }

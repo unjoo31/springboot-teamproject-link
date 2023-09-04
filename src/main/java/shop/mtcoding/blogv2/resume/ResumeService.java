@@ -8,11 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import shop.mtcoding.blogv2._core.error.ex.MyException;
+import shop.mtcoding.blogv2.apply.Apply;
+import shop.mtcoding.blogv2.apply.ApplyRepository;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.area.AreaRepository;
 import shop.mtcoding.blogv2.hasharea.HashArea;
 import shop.mtcoding.blogv2.hashskil.HashSkil;
+import shop.mtcoding.blogv2.notice.Notice;
+import shop.mtcoding.blogv2.resume.ResumeRequest.transmitDTO;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillRepository;
 import shop.mtcoding.blogv2.skill.SkillResponse;
@@ -33,6 +38,9 @@ public class ResumeService {
 
         @Autowired
         private UserRepository userRepository;
+
+        @Autowired 
+        private ApplyRepository applyRepository;
 
         @Transactional
         public void 이력서등록(ResumeRequest.ResumeSaveDTO resumeSaveDTO, Integer userId) {
@@ -81,8 +89,23 @@ public class ResumeService {
         }
 
         public Optional<Resume> 이력서조회하기(Integer id) {
-             return resumeRepository.findById(id);
+             return resumeRepository.findByUserId(id);
         }
+
+        public void 이력서전송하기(transmitDTO transmitDTO, Optional<Resume> resume) {
+                System.out.println("업데이트 쿼리 전");
+                Apply apply = Apply.builder()
+                .pass(transmitDTO.getPass())
+                .user(User.builder().id(resume.get().getUser().getId()).build())
+                .notice(Notice.builder().id(transmitDTO.getNoticeId()).build())
+                .resume(Resume.builder().id(resume.get().getId()).build())
+                .build();
+                
+                applyRepository.save(apply);
+                System.out.println("업데이트 쿼리 완료");
+               
+        }
+ 
 
 
 }

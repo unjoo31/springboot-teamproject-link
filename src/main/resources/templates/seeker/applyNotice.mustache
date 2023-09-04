@@ -327,7 +327,11 @@
     <div class="middle-box d-flex flex-column">
         <div class="first-button d-flex">
             <button class="btn btn-style btn-register main-text bottom-box-right">지원완료</button>
-            <a href="/" class="btn btn-style btn-login main-text bottom-box-right">입사지원</a>
+            <form action="/resume/transmit" method="post">
+                <input type="hidden" name="noticeId" value="{{notice.id}}">
+                <input type="hidden" name="pass" value="미정">
+            <button type="submit" class="btn btn-style btn-login main-text bottom-box-right">입사지원</button>
+        </form>
         </div>
         <div class="box">
             <div class="d-flex">

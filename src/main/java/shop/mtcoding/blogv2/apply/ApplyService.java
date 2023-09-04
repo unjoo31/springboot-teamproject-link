@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import shop.mtcoding.blogv2.resume.Resume;
+
 
 @Service
 public class ApplyService {
@@ -26,6 +28,9 @@ public class ApplyService {
         Optional<Apply> apply = applyRepository.findById(id);     
         return apply;
     }
+
+
+    
 }
     
 

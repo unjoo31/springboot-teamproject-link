@@ -16,8 +16,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import shop.mtcoding.blogv2.apply.Apply;
+import shop.mtcoding.blogv2.apply.ApplyRequest;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.area.AreaService;
+import shop.mtcoding.blogv2.notice.NoticeRequest;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillService;
 import shop.mtcoding.blogv2.user.User;
@@ -87,6 +90,20 @@ public class ResumeController {
     request.setAttribute("resume", resume);
     return "corporation/corporationSupportSeekerList";
 }
+
+    // 이력서 전송하기 
+    @PostMapping("/resume/transmit")
+    public String resumeTransmit(ResumeRequest.transmitDTO transmitDTO){
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        Optional<Resume> resume  = resumeService.이력서조회하기(sessionUser.getId());
+        System.out.println("테스트 : " + resume.get().getUser().getId());
+        System.out.println("테스트 : " + resume.get().getId());
+        System.out.println("테스트 : " + transmitDTO.getPass());
+        System.out.println("테스트 : " + transmitDTO.getNoticeId());
+        resumeService.이력서전송하기(transmitDTO, resume);
+        return "redirect:/";
+    }
+
 
 
 }
