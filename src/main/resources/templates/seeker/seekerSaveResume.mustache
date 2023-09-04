@@ -226,6 +226,21 @@
         gap: 10px;
         margin-left: 20px;
     }
+    .box-layout-right{
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+    .box-layout-textarea{
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+    .box-layout-left{
+        margin-left: 25px;
+    }
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 </style>
 
 <div class="d-flex justify-content-center">
@@ -303,30 +318,30 @@
                             </div>
                         </div>
                         <div class="d-flex box-layout">
-                            <div class="mb-3 d-flex flex-column">
+                            <div class="mb-3 d-flex flex-column box-layout-left">
                                 <label for="email" class="form-label main-text">이메일</label>
                                 <input class="input-style" type="text" id="email" class="form-control sub-text"
                                     placeholder="link@gmail.com" name="email" value="link@gmail.com">
                             </div>
-                            <div class="mb-3 d-flex flex-column">
+                            <div class="mb-3 d-flex flex-column box-layout-right">
                                 <label for="phonenumber" class="form-label main-text">전화번호</label>
                                 <input class="input-style" type="text" id="phonenumber" class="form-control sub-text"
                                     placeholder="000-0000-0000" name="phoneNumber" value="010-0000-0000">
                             </div>
                         </div>
                         <div class="d-flex box-layout">
-                            <div class="mb-3 d-flex flex-column">
+                            <div class="mb-3 d-flex flex-column box-layout-left">
                                 <label for="address" class="form-label main-text">주소</label>
                                 <input class="input-style" type="text" id="address" class="form-control sub-text"
                                     placeholder="부산" name="address" value="부산">
                             </div>
-                            <div class="mb-3 d-flex flex-column">
+                            <div class="mb-3 d-flex flex-column box-layout-right">
                                 <label for="date" class="form-label main-text">생년월일</label>
                                 <input class="input-style" type="date" id="date" class="form-control sub-text"
                                     placeholder="0000.00.00" name="date">
                             </div>
                         </div>
-                        <div class="mb-3 d-flex flex-column">
+                        <div class="mb-3 d-flex flex-column box-layout-textarea">
                             <label for="content" class="form-label main-text">자기소개</label>
                             <textarea class="form-control sub-text" rows="5" name="content">자기소개</textarea>
                         </div>
@@ -356,7 +371,7 @@
                             {{/areas}}
                         </div>
                         <div class="d-flex bottom-box justify-content-end">
-                            <button class="btn btn-style btn-register main-text bottom-box-right" type="submit">이력서 등록</button>
+                            <button class="btn btn-style btn-register main-text bottom-box-right" type="submit" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">이력서 등록</button>
                         </div>
                 </form>
             </div>

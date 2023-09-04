@@ -245,6 +245,10 @@
     .box-layout-skillArea{
         margin-left: 5px;
     }
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 </style>
 
 <div class="d-flex justify-content-center">
@@ -372,22 +376,6 @@
                             {{/restSkill}}
                         </div>
                     </div>
-                    <div class="body-content-title2 sub-text">
-                        {{#selectSkill}}
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="skilList" value="{{skillName}}"
-                                id="{{skillName}}" checked="checked">
-                            <label class="form-check-label" for="{{skillName}}">{{skillName}}</label>
-                        </div>
-                        {{/selectSkill}}
-                        {{#restSkill}} 
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="skilList" value="{{skillName}}"
-                                id="{{skillName}}">
-                            <label class="form-check-label" for="{{skillName}}">{{skillName}}</label>
-                        </div>
-                        {{/restSkill}}
-                        <br>
                     <div class="d-flex box-layout-skillArea flex-column">
                         <div class="ml-3 body-content-title main-text">
                             <p><b>지역</b></p>

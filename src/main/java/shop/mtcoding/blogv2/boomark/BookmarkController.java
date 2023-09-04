@@ -25,8 +25,6 @@ public class BookmarkController {
     @Autowired
     private HttpSession session;
 
-    
-
     // 관심기업/기술스택
     @GetMapping("/seekerCompanies")
     public String seekCompaniesForm(HttpServletRequest request) {
