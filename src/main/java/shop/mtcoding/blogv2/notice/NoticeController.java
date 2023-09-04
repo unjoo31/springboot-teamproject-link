@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import shop.mtcoding.blogv2.apply.Apply;
+import shop.mtcoding.blogv2.apply.ApplyRequest;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.area.AreaResponse;
 import shop.mtcoding.blogv2.area.AreaService;
@@ -230,6 +233,9 @@ public class NoticeController {
         return "seeker/applyNotice";
     }
 
+
+    
+    
     @GetMapping("/corporationSaveResumeUpdate")
     public @ResponseBody Notice  corporationSaveResumeUpdateForm(Model model1, Model model2, Model model3, Model model4,
             Model model5) {

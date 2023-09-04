@@ -8,12 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import shop.mtcoding.blogv2._core.error.ex.MyException;
+
+import shop.mtcoding.blogv2.apply.Apply;
+import shop.mtcoding.blogv2.apply.ApplyRepository;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.area.AreaRepository;
 import shop.mtcoding.blogv2.hasharea.HashArea;
 import shop.mtcoding.blogv2.hasharea.HashAreaRepository;
 import shop.mtcoding.blogv2.hashskil.HashSkil;
+import shop.mtcoding.blogv2.notice.Notice;
+import shop.mtcoding.blogv2.resume.ResumeRequest.PassDTO;
+import shop.mtcoding.blogv2.resume.ResumeRequest.TransmitDTO;
 import shop.mtcoding.blogv2.hashskil.HashSkilRepository;
 import shop.mtcoding.blogv2.resume.ResumeRequest.ResumeUpdateDTO;
 import shop.mtcoding.blogv2.skill.Skill;
@@ -41,6 +46,9 @@ public class ResumeService {
 
         @Autowired
         private UserRepository userRepository;
+
+        @Autowired 
+        private ApplyRepository applyRepository;
 
         @Transactional
         public void 이력서등록(ResumeRequest.ResumeSaveDTO resumeSaveDTO, Integer userId) {
@@ -164,8 +172,19 @@ public class ResumeService {
 
                 // 쿼리를 날리는 갯수를 보면 그렇게 효율적인 방안은 아니지만 데이터베이스의 최적화를 위해선 효율적인 방안입니다.
         }
-        public Optional<Resume> 이력서조회하기(Integer id) {
-             return resumeRepository.findById(id);
+
+        public void 이력서전송하기(TransmitDTO transmitDTO, Optional<Resume> resume) {
+                System.out.println("업데이트 쿼리 전");
+                Apply apply = Apply.builder()
+                .pass(transmitDTO.getPass())
+                .user(User.builder().id(resume.get().getUser().getId()).build())
+                .notice(Notice.builder().id(transmitDTO.getNoticeId()).build())
+                .resume(Resume.builder().id(resume.get().getId()).build())
+                .build();
+                
+                applyRepository.save(apply);
+                System.out.println("업데이트 쿼리 완료");
+               
         }
 
              @Transactional
@@ -174,6 +193,11 @@ public class ResumeService {
                 System.out.println("이 메소드가 뜨면 삭제되었다는 뜻이야!");
                 System.out.println("콘솔창의 딜리트 쿼리와 h2-console 데이터 삭제가 되었는지 확인하세요 !");
 
+        }
+
+        // 이력서 전송을 위해 유저 아이디를 조회
+        public Optional<Resume> 이력서조회하기(Integer id) {
+        return resumeRepository.findByUser_Id(id);
         }
 
 
