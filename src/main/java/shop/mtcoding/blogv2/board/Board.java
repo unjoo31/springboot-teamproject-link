@@ -44,7 +44,7 @@ public class Board {
     private String content;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private User user;
 
     @JsonIgnoreProperties({"board"})
