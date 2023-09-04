@@ -25,25 +25,23 @@ import shop.mtcoding.blogv2.user.User;
 @Table(name = "hash_skil_tb")
 @Entity
 public class HashSkil {
-      
 
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,  cascade = CascadeType.DETACH)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JoinColumn(name = "skill_id")
     private Skill skill;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Notice notice;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Resume resume;
 
     @Builder
@@ -54,5 +52,5 @@ public class HashSkil {
         this.notice = notice;
         this.resume = resume;
     }
-    
+
 }
