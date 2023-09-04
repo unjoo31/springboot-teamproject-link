@@ -31,8 +31,8 @@ VALUES
     (2023, 'UI/UX Designer Internship', 'Enrolled in a Design-related program', 'Unpaid', 'Internship', now(), '2023-09-05', 'Join our UI/UX Design team as an intern to...', 2);
 INSERT INTO resume_tb (career, content, user_id)
 VALUES
-(1, '7 years of experience in web development.', 3),
-(1, 'Recent graduate with strong programming skills.', 3);
+(1, '7 years of experience in web development.', 1),
+(1, 'Recent graduate with strong programming skills.', 1);
 INSERT INTO apply_tb (pass, user_id, notice_id, resume_id)
 VALUES
 ('합격', 1, 1, 1),
