@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,6 +20,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.area.AreaResponse;
 import shop.mtcoding.blogv2.area.AreaService;
+import shop.mtcoding.blogv2.resume.ResumeRequest;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillService;
 import shop.mtcoding.blogv2.user.User;
@@ -47,6 +50,9 @@ public class NoticeController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private HttpSession session;
 
     // index 화면
     @GetMapping("/")
@@ -215,6 +221,28 @@ public class NoticeController {
         request.setAttribute("notice", notice);
         request.setAttribute("timeDifferenceDays", timeDifferenceDays);
         return "seeker/applyNotice";
+    }
+
+    
+    @GetMapping("/corporationResume")
+    public String corporationResume() {
+        return "/corporation/corporationResume";
+    }
+
+    @GetMapping("/corporationSaveResume")
+    public String corporationSaveResumeForm(Model model1, Model model2) {
+        List<Skill> skill = skillService.모든스킬가져오기();
+        List<Area> area = areaService.모든지역가져오기();
+        model1.addAttribute("skills", skill);
+        model2.addAttribute("areas", area);
+         return "/corporation/corporationSaveResume";
+    }
+
+    @PostMapping("/corporationSave")
+    public String corporationSaveResume(NoticeRequest.NoticeSaveDTO noticeSaveDTO) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        noticeService.채용공고등록(noticeSaveDTO, sessionUser.getId());
+        return "redirect:/corporationResume";
     }
 
   

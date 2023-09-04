@@ -33,7 +33,7 @@ public class SkillService {
         List<Skill> skillList = hashSkilRepository.findSkillsByResumeId(id);
 
         List<Skill> restSkill = skill.stream()
-                .filter(s -> !skillList.contains(s))
+                .filter(s -> !skillList.contains(s)) // s는 skill의 원소들인데 스킬리스트에 포함되지않는것을 
                 .collect(Collectors.toList());
 
         return restSkill;
