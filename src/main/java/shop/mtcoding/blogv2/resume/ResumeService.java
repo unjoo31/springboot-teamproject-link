@@ -195,7 +195,7 @@ public class ResumeService {
 
         }
 
-
+        // 이력서 전송을 위해 유저 아이디를 조회
         public Optional<Resume> 이력서조회하기(Integer id) {
         return resumeRepository.findByUser_Id(id);
         }

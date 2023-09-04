@@ -139,7 +139,8 @@ public class ResumeController {
     //이력서 전송하기 
     @PostMapping("/resume/transmit")
     public String resumeTransmit(ResumeRequest.TransmitDTO transmitDTO){
-        Optional<Resume> resume  = resumeService.이력서조회하기(3);
+        User sessionUser = (User) session.getAttribute("sessionUser"); 
+        Optional<Resume> resume  = resumeService.이력서조회하기(sessionUser.getId());
         System.out.println("테스트 : " + resume.get().getUser().getId());
         System.out.println("테스트 : " + resume.get().getId());
         System.out.println("테스트 : " + transmitDTO.getPass());
