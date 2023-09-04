@@ -26,6 +26,7 @@ public class BookmarkController {
     private HttpSession session;
 
     
+
     // 관심기업/기술스택
     @GetMapping("/seekerCompanies")
     public String seekCompaniesForm(HttpServletRequest request) {
@@ -65,6 +66,7 @@ public class BookmarkController {
         return "redirect:/applyNotice/{noticeId}";
     }
 
+
     // 관심구직자/기술스택
     @GetMapping("/corporationSeeker")
     public String corporationSeeker(HttpServletRequest request){
@@ -88,4 +90,5 @@ public class BookmarkController {
         request.setAttribute("seekerDataList", seekerDataList);
         return "/corporation/corporationSeeker";
     }
+
 }
