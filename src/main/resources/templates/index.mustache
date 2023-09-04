@@ -333,6 +333,7 @@
     cursor: pointer;
     background: none;
     outline: none;
+    z-index: 100;
 }
 
 /* 추가된 스타일클래스입니다 */
@@ -431,9 +432,9 @@
                                 <img src="./img/{{user.picUrl}}"
                                     style="max-width: 50%; max-height: 100%; border-radius: 60%;">
                             </div>
-                            <button class="star-icon-button btn-register" type="button">
+                            <button class="star-icon-button btn-register" type="button" id="bookmarkImageContainer">
                                 <div class="boomark-img">
-                                    <img src="./img/boomark.png">
+                                    <img src="./img/boomark.png" id="bookmarkImage">
                                 </div>
                             </button>
                         </div>
@@ -463,9 +464,9 @@
                                 <img src="./img/{{user.picUrl}}"
                                     style="max-width: 50%; max-height: 100%; border-radius: 60%;">
                             </div>
-                            <button class="star-icon-button btn-register" type="button">
+                            <button class="star-icon-button btn-register" type="button" id="bookmarkImageContainer">
                                 <div class="boomark-img">
-                                    <img src="./img/boomark.png">
+                                    <img src="./img/boomark.png" id="bookmarkImage">
                                 </div>
                             </button>
                         </div>
@@ -521,6 +522,44 @@
     </div>
 </div>
 <script>
+    // 북마크 마우스오버, 선택시 이미지 변경
+    let bookmarkImageContainer = document.getElementById("bookmarkImageContainer");
+    let bookmarkImage = document.getElementById("bookmarkImage");
+    let bookmarkImageSrc = "./img/boomark.png";
+    let bookmarkHoverImageSrc = "./img/boomarkOn.png";
+    let isMouseOver = false;
+    let isClicked = false;
+
+    // 마우스 오버 이벤트 리스너
+    bookmarkImageContainer.addEventListener("mouseover", function () {
+        if (!isClicked) { // 클릭 상태가 아닌 경우에만 이미지 변경
+            bookmarkImage.src = bookmarkHoverImageSrc;
+            isMouseOver = true; // 마우스 오버 상태로 설정
+        }
+    });
+
+    // 마우스 아웃 이벤트 리스너
+    bookmarkImageContainer.addEventListener("mouseout", function () {
+        if (!isClicked) { // 클릭 상태가 아닌 경우에만 이미지 변경
+            bookmarkImage.src = bookmarkImageSrc;
+            isMouseOver = false; // 마우스 오버 상태 해제
+        }
+    });
+
+    // 클릭 이벤트 리스너
+    bookmarkImageContainer.addEventListener("click", function () {
+        if (!isClicked) {
+            // 클릭 전 상태에서 클릭 시 이미지 변경
+            bookmarkImage.src = bookmarkHoverImageSrc;
+        } else {
+            // 클릭 후 상태에서 클릭 시 이미지 변경
+            bookmarkImage.src = bookmarkImageSrc;
+        }
+        
+        isClicked = !isClicked; // 클릭 상태 토글
+        isMouseOver = false; // 마우스 오버 상태 해제
+    });
+
     // 기술버튼 누르면 기술리스트 표출
     function showSkills() {
         document.getElementById('skills-list').style.display = 'block';
