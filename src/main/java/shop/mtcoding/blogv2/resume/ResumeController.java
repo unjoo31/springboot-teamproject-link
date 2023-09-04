@@ -78,6 +78,13 @@ public class ResumeController {
     //     return "/seeker/seekerCompanies";
     // }
 
+    }
+
+    @GetMapping("/seekerCompanies")
+    public String seekCompaniesForm() {
+        return "/seeker/seekerCompanies";
+    }
+
     @GetMapping("/seekerSaveResumeForm")
     public String seekerSaveResumeForm(Model model1, Model model2) {
         List<Skill> skill = skillService.모든스킬가져오기();
