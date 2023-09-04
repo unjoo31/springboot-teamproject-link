@@ -19,6 +19,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.stereotype.Controller;
@@ -68,6 +69,7 @@ public class NoticeController {
             Map<String, Object> noticeData = new HashMap<>();
             noticeData.put("title", notice.getTitle());
             noticeData.put("user", notice.getUser());
+            noticeData.put("notice", notice.getId());
             noticeData.put("hashSkilList", notice.getHashSkilList());
             noticeData.put("hashAreaList", notice.getHashAreaList());
             
@@ -128,6 +130,7 @@ public class NoticeController {
             Map<String, Object> filterData = new HashMap<>();
             filterData.put("title", filter.getTitle());
             filterData.put("user", filter.getUser());
+            filterData.put("notice", filter.getId());
             filterData.put("hashSkilList", filter.getHashSkilList());
             filterData.put("hashAreaList", filter.getHashAreaList());
 
@@ -198,9 +201,9 @@ public class NoticeController {
 
     // 입사지원 화면 
     // 공고 작성 완료 이후에 세션 등록
-    @GetMapping("/applyNotice")
-    public String applyNotice(HttpServletRequest request){
-        Notice notice = noticeService.공고상세보기(1);
+    @GetMapping("/applyNotice/{noticeId}")
+    public String applyNotice(@PathVariable Integer noticeId, HttpServletRequest request){
+        Notice notice = noticeService.공고상세보기(noticeId);
 
         // 마감일 계산을 위해서 변수에 담아주기
         Date startDate = notice.getCreatedAt();
