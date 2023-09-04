@@ -34,6 +34,8 @@ public class BookmarkController {
         // 기업 리스트 보여주기
         List<User> companyUsers = bookmarkService.북마크기업찾기(sessionUser.getId());
 
+        System.out.println("북마크" + sessionUser.getId());
+
         List<Map<String, Object>> companyDataList = new ArrayList<>();
         for (User companyuser : companyUsers) {
             Map<String, Object> companyData = new HashMap<>();

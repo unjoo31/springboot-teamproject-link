@@ -109,36 +109,31 @@
     /* 헤더, 푸터 스타일 끝 */
 
     /* 좌측 메뉴 스타일 시작 */
-    .left-nav-title {
-        font-size: 15px;
-        margin-top: 10px;
-    }
-
-    .left-nav-sub {
-        font-size: 11px;
-    }
-
-    .left-nav {
-        width: 300px;
-        margin-top: 85px;
-    }
-
-    .left-nav-detail {
-        display: flex;
-        flex-direction: row;
-        border-radius: 10px;
-        border: 1px solid #EDEEF2;
-        margin-bottom: 10px;
-    }
-
-    .nav-img {
-        width: 40px;
-        height: 40px;
-        margin-top: 10px;
-        margin-left: 10px;
-    }
-
-    /* 좌측 메뉴 스타일 끝 */
+.left-nav-title{
+    font-size: 15px;
+    margin-top: 10px;
+}
+.left-nav-sub{
+    font-size: 11px;
+}
+.left-nav{
+    width: 300px;
+    margin-top: 85px;
+}
+.left-nav-detail{
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    border: 1px solid #EDEEF2;
+    margin-bottom: 10px;
+}
+.left-nav-detail .nav-img{
+    width: 40px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+/* 좌측 메뉴 스타일 끝 */
 
     .grid-container {
         display: grid;
@@ -375,7 +370,7 @@
                                         <button class="btn img-botton btn-employment main-text" id="btnJoin"
                                             type="submit" onmouseover="highlightButton(this)"
                                             onmouseout="unhighlightButton(this)"> <a
-                                                href="seekerSaveResumeUpdateForm">이력서 수정</a></button>
+                                                href="/seekerSaveResumeUpdateForm">이력서 수정</a></button>
                                         <div class="employment-content-skill d-flex">
                                             {{#selectSkill}}
                                             <div class="employment-content-skill-box">

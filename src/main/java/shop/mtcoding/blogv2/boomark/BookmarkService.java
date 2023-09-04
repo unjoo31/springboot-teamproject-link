@@ -1,5 +1,6 @@
 package shop.mtcoding.blogv2.boomark;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -23,6 +24,18 @@ public class BookmarkService {
     }
 
     public List<User> 북마크기업찾기(Integer id) {
-        return bookmarkRepository.findByBookmark(id);
-    } 
+        List<Object[]> result = bookmarkRepository.findByBookmark(id);
+        List<User> users = new ArrayList<>();
+
+        for (Object[] row : result) {
+            User user = new User();
+            user.setName((String) row[6]);            
+            user.setAddress((String) row[8]);
+            user.setBusiness((String) row[10]);
+
+            users.add(user);
+        }
+
+        return users;
+    }
 }
