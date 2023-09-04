@@ -19,4 +19,7 @@ public interface HashAreaRepository extends JpaRepository<HashArea, Integer> {
     @Modifying
     @Query("DELETE FROM HashArea h WHERE h.resume.id = :resumeId")
     void deleteByResumeId(@Param("resumeId") Integer resumeId);
+
+    @Query("select h.area FROM HashArea h WHERE h.notice.id = :noticeId")
+    List<Area> findAreasByNoticeId(@Param("noticeId") Integer noticeId);
 }
