@@ -382,7 +382,10 @@
     padding: 10px;
     margin-right: 10px;
 }
-
+a {
+        text-decoration: none;
+        color: inherit;
+    }
 /* index.html */
 </style>
 
@@ -426,7 +429,8 @@
         <div class="body-content-title2 bottom-box-right">
             {{#filterDataList}}
                 <div class="index-company-box" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
-                    <div>
+                    <input type="hidden" id="noticeId" value="{{notice}}">
+                    <a href="/applyNotice/{{notice}}">
                         <div class="mb-3 d-flex justify-content-between">
                             <div>
                                 <img src="./img/{{user.picUrl}}"
@@ -453,12 +457,13 @@
                         <div>
                             <div class="d-flex justify-content-end sub-sub-test">마감 {{timeDifference}}일전</div>
                         </div>
-                    </div>
+                    </a>
                  </div>
             {{/filterDataList}}
             {{#noticeDataList}}
                 <div class="index-company-box" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
-                    <div >
+                    <input type="hidden" id="noticeId" value="{{notice}}">
+                    <a href="/applyNotice/{{notice}}">
                         <div class="mb-3 d-flex justify-content-between">
                             <div>
                                 <img src="./img/{{user.picUrl}}"
@@ -485,7 +490,7 @@
                         <div>
                             <div class="d-flex justify-content-end sub-sub-test">마감 {{timeDifference}}일전</div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             {{/noticeDataList}}          
         </div>

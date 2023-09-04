@@ -1,13 +1,13 @@
 package shop.mtcoding.blogv2.notice;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import java.sql.Date;
-
 public class NoticeRequest {
+
 
     @Getter
     @Setter

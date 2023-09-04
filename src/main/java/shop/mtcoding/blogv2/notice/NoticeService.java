@@ -21,6 +21,8 @@ import shop.mtcoding.blogv2.hashskil.HashSkil;
 import shop.mtcoding.blogv2.hashskil.HashSkilRepository;
 import shop.mtcoding.blogv2.notice.NoticeRequest.NoticeSaveDTO;
 import shop.mtcoding.blogv2.notice.NoticeRequest.NoticeUpdateDTO;
+import shop.mtcoding.blogv2.hashskil.HashSkil;
+import shop.mtcoding.blogv2.notice.NoticeRequest.NoticeSaveDTO;
 import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.skill.SkillRepository;
 import shop.mtcoding.blogv2.user.User;
@@ -79,6 +81,7 @@ public class NoticeService {
             throw new MyException(id + "는 찾을 수 없습니다.");
         }
     }
+   
 
     @Transactional
     public void 채용공고등록(NoticeSaveDTO noticeSaveDTO, Integer userId) {
@@ -204,4 +207,5 @@ public class NoticeService {
         // 쿼리를 날리는 갯수를 보면 그렇게 효율적인 방안은 아니지만 데이터베이스의 최적화를 위해선 효율적인 방안입니다.
     }
 
+  
 }
