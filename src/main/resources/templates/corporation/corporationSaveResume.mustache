@@ -1,122 +1,144 @@
 {{> layout/header}}
 
 <style>
-/* 헤더, 푸터 스타일 시작 */
-.header{
-    height: 70px;
-    border-bottom: 1px solid #ccc;
-    margin-top: 10px;
-}
-.logo{
-    color: #9F12E1;
-    font-weight: 700;
-}
-.footer{
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 20px;
-}
-/* 타이틀 스타일 */
-.title-text{
-    font-size: 20px;
-}
-/* 메인 스타일 */
-.main-text{
-    font-size: 14px;
-}
-/* 서브 스타일 */
-.sub-text{
-    font-size: 13px;
-}
-.footer-inc{
-    font-size: 12px;
-}
-.btn-style{
-    margin-top: 15px;
-    border-radius: 30px;
-    width: 100px;
-    height: 40px;
-}
-.btn-login{
-    border: 1px solid #9F12E1;
-    color: #9F12E1;
-    margin-right: 10px;
-}
-.btn-login a{
-    margin-bottom: 5px;
-    font-size: 15px;
-    color: #9F12E1;
-    margin-bottom: 5px;
-    text-decoration: none;
-}
-.btn-register{
-    background-color: #9F12E1;
-    color: white;
-}
-.btn-register a{
-    margin-bottom: 5px;
-    font-size: 15px;
-    color: #ffffff;
-    margin-bottom: 5px;
-    text-decoration: none;
-}
-.btn-logout{
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 280px;
-    background-color: #9F12E1;
-    color: white;
-}
-.header-menu{
-    font-weight: 600;
-}
-.dropdown-menu{
-    width: 300px;
-}
-.dropdown-menu-big{
-    font-size: 15px;
-}
-.dropdown-menu-small{
-    font-size: 11px;
-}
-.dropdown-toggle::after {
-    display: none;
-}
-.nav-img{
-    width: 20px;
-    height: 20px;
-    margin-top: 20px;
-    margin-right: 20px;
-}
-/* 헤더, 푸터 스타일 끝 */
+    /* 헤더, 푸터 스타일 시작 */
+    .header {
+        height: 70px;
+        border-bottom: 1px solid #ccc;
+        margin-top: 10px;
+    }
 
-/* 좌측 메뉴 스타일 시작 */
-.left-nav-title{
-    font-size: 15px;
-    margin-left: 20px;
-    margin-top: 10px;
-}
-.left-nav-sub{
-    font-size: 11px;
-}
-.left-nav{
-    width: 300px;
-    margin-top: 85px;
-}
-.left-nav-detail{
-    display: flex;
-    flex-direction: row;
-    border-radius: 10px;
-    border: 1px solid #EDEEF2;
-    margin-bottom: 10px;
-}
-.nav-img img {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    margin-right: 20px;
-    margin-left: 10px;
-}
-/* 좌측 메뉴 스타일 끝 */
+    .logo {
+        color: #9F12E1;
+        font-weight: 700;
+    }
+
+    .footer {
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 20px;
+    }
+
+    /* 타이틀 스타일 */
+    .title-text {
+        font-size: 20px;
+    }
+
+    /* 메인 스타일 */
+    .main-text {
+        font-size: 14px;
+    }
+
+    /* 서브 스타일 */
+    .sub-text {
+        font-size: 13px;
+    }
+
+    .footer-inc {
+        font-size: 12px;
+    }
+
+    .btn-style {
+        margin-top: 15px;
+        border-radius: 30px;
+        width: 100px;
+        height: 40px;
+    }
+
+    .btn-login {
+        border: 1px solid #9F12E1;
+        color: #9F12E1;
+        margin-right: 10px;
+    }
+
+    .btn-login a {
+        margin-bottom: 5px;
+        font-size: 15px;
+        color: #9F12E1;
+        margin-bottom: 5px;
+        text-decoration: none;
+    }
+
+    .btn-register {
+        background-color: #9F12E1;
+        color: white;
+    }
+
+    .btn-register a {
+        margin-bottom: 5px;
+        font-size: 15px;
+        color: #ffffff;
+        margin-bottom: 5px;
+        text-decoration: none;
+    }
+
+    .btn-logout {
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 280px;
+        background-color: #9F12E1;
+        color: white;
+    }
+
+    .header-menu {
+        font-weight: 600;
+    }
+
+    .dropdown-menu {
+        width: 300px;
+    }
+
+    .dropdown-menu-big {
+        font-size: 15px;
+    }
+
+    .dropdown-menu-small {
+        font-size: 11px;
+    }
+
+    .dropdown-toggle::after {
+        display: none;
+    }
+
+    .nav-img {
+        width: 20px;
+        height: 20px;
+        margin-top: 20px;
+        margin-right: 20px;
+    }
+
+    /* 헤더, 푸터 스타일 끝 */
+
+    /* 좌측 메뉴 스타일 시작 */
+    .left-nav-title {
+        font-size: 15px;
+        margin-top: 10px;
+    }
+
+    .left-nav-sub {
+        font-size: 11px;
+    }
+
+    .left-nav {
+        width: 300px;
+        margin-top: 85px;
+    }
+
+    .left-nav-detail {
+        display: flex;
+        flex-direction: row;
+        border-radius: 10px;
+        border: 1px solid #EDEEF2;
+        margin-bottom: 10px;
+    }
+
+    .nav-img {
+        width: 40px;
+        height: 40px;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+
+    /* 좌측 메뉴 스타일 끝 */
 
     .grid-container {
         display: grid;
@@ -197,14 +219,16 @@
         border: 1px solid #EDEEF2;
         font-size: 14px;
     }
-    .input-style-name{
+
+    .input-style-name {
         width: 200px;
         height: 40px;
         border-radius: 5px;
         border: 1px solid #EDEEF2;
         font-size: 14px;
     }
-    .input-style-title{
+
+    .input-style-title {
         width: 640px;
         height: 40px;
         border-radius: 5px;
@@ -231,45 +255,48 @@
         gap: 10px;
         margin-left: 20px;
     }
-
 </style>
 
 <div class="d-flex justify-content-center">
     <div class="grid-container">
         <div class="left-nav">
             <div class="card-body d-flex flex-column">
-                <div class="card left-nav-detail">
+                <div class="card left-nav-detail" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)"
+                    id="personalImageContainer">
                     <div class="nav-img">
-                        <img src="./img/personal.png">
+                        <img src="./img/personal.png" id="personalImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="#">
+                    <a class="dropdown-item left-nav-title" href="/updateCorporationForm">
                         회원정보 수정
                         <p class="left-nav-sub">Personal information</p>
                     </a>
                 </div>
-                <div class="card left-nav-detail">
+                <div class="card left-nav-detail" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)"
+                    id="employmentImageContainer">
                     <div class="nav-img">
-                        <img src="./img/resume.png">
+                        <img src="./img/resume.png" id="employmentImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="#">
+                    <a class="dropdown-item left-nav-title" href="/corporationResume">
                         채용공고
                         <p class="left-nav-sub">Employment announcement</p>
                     </a>
                 </div>
-                <div class="card left-nav-detail">
+                <div class="card left-nav-detail" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)"
+                    id="statusImageContainer">
                     <div class="nav-img">
-                        <img src="./img/resume.png">
+                        <img src="./img/resume.png" id="statusImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="#">
+                    <a class="dropdown-item left-nav-title" href="/corporationSupport">
                         채용공고 현황
                         <p class="left-nav-sub">Employment status</p>
                     </a>
                 </div>
-                <div class="card left-nav-detail">
+                <div class="card left-nav-detail" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)"
+                    id="interestImageContainer">
                     <div class="nav-img">
-                        <img src="./img/company.png">
+                        <img src="./img/company.png" id="interestImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="#">
+                    <a class="dropdown-item left-nav-title" href="/corporationSeeker">
                         관심구직자 / 기술스택 매칭
                         <p class="left-nav-sub">Interested seekers / Technical stack</p>
                     </a>
@@ -277,189 +304,191 @@
             </div>
         </div>
         <div>
-            <h1 class="title-text body"></h1>
-            <div class="body-content">
-                <div class="body-content-title mb-3">
-                    <b>Employment announcements</b>
-                </div>
-                <div class="d-flex first-box box-layout">
-                    <div class="d-flex left-box-first">
-                        <div class="personal-img">
-                            <img src="./img/hello.png">
-                        </div>
-                        <form action="#" enctype="multipart/form-data">
+            <form action="/corporationSave" enctype="multipart/form-data" method="post">
+                <h1 class="title-text body"></h1>
+                <div class="body-content">
+                    <div class="body-content-title mb-3">
+                        <b>Employment announcements</b>
+                    </div>
+                    <div class="d-flex first-box box-layout">
+                        <div class="d-flex left-box-first">
+                            <div class="personal-img">
+                                <img src="./img/hello.png">
+                            </div>
                             <div class="mt-2 d-flex flex-column">
                                 <label for="username" class="form-label main-text">기업명</label>
-                                <input class="input-style-name" type="text" id="username" class="form-control sub-text" placeholder="(주) 그룹코리아" name="username">
+                                <input class="input-style-name" type="text" id="username" class="form-control sub-text"
+                                    placeholder="(주) 그룹코리아" name="username" value="(주) 그룹코리아">
                             </div>
-                        </form>
+                        </div>
+                        <div class="mb-3">
+                            <form class="mt-2">
+                                <div>
+                                    <label for="password" class="form-label main-text">경력</label>
+                                </div>
+                                <div>
+                                    <label class="me-5 custom-radio main-text">
+                                        <input type="radio" name="career" value=1> 경력
+                                    </label>
+                                    <label class="me-5 custom-radio main-text">
+                                        <input type="radio" name="career" value=2> 신입
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <form class="mt-2">
-                            <div>
-                                <label for="password" class="form-label main-text">경력</label>
-                            </div>
-                            <div>
-                                <label class="me-5 custom-radio main-text">
-                                    <input type="radio" name="membership" value="company"> 경력
-                                </label>
-                                <label class="me-5 custom-radio main-text">
-                                    <input type="radio" name="membership" value="company"> 신입
-                                </label>
-                            </div>                               
-                        </form>
-                    </div>
-                </div>
-                <div class="d-flex box-layout">
-                    <form class="left-box" action="#" enctype="multipart/form-data">
+                    <div class="d-flex box-layout">
                         <div class="mb-3 d-flex flex-column">
                             <label for="title" class="form-label main-text">채용공고 제목</label>
                             <input class="input-style-title" type="text" id="title" class="form-control sub-text"
-                                placeholder=" Java/Springframework 개발자" name="title">
+                                placeholder=" Java/Springframework 개발자" name="title" value="my demian is here">
                         </div>
-                    </form>
-                </div>
-                <div class="d-flex box-layout">
-                    <form class="left-box" action="#" enctype="multipart/form-data">
-                        <div class="mb-3 d-flex flex-column">
-                            <label for="password" class="form-label main-text">학력</label>
-                            <input class="input-style" type="text" id="username" class="form-control sub-text"
-                                placeholder=" 학력무관" name="email">
-                        </div>
-                    </form>
-                    <form action="#" enctype="multipart/form-data"></form>
-                    <div class="mb-3 d-flex flex-column">
-                        <label for="password" class="form-label main-text">급여</label>
-                        <input class="input-style" type="text" id="username" class="form-control sub-text"
-                            placeholder=" 면접 후 결정" name="phonenumber">
                     </div>
-                    </form>
-                </div>
-                <div class="d-flex box-layout">
-                    <form class="left-box" action="#" enctype="multipart/form-data">
+                    <div class="d-flex box-layout">
                         <div class="mb-3 d-flex flex-column">
-                            <label for="password" class="form-label main-text">근무형태</label>
-                            <input class="input-style" type="text" id="username" class="form-control sub-text"
-                                placeholder=" 정규직" name="address">
+                            <label for="academicAbility" class="form-label main-text">학력</label>
+                            <input class="input-style" type="text" id="academicAbility" class="form-control sub-text"
+                                placeholder=" 학력무관" name="academicAbility" value="학력무관">
                         </div>
-                    </form>
-                    <form action="#" enctype="multipart/form-data"></form>
-                    <div class="mb-3 d-flex flex-column">
-                        <label for="password" class="form-label main-text">접수기간</label>
-                        <input class="input-style" type="text" id="username" class="form-control sub-text"
-                            placeholder=" 0000.00.00~0000.00.00" name="age">
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="salary" class="form-label main-text">급여</label>
+                            <input class="input-style" type="text" id="salary" class="form-control sub-text"
+                                placeholder="면접 후 결정" name="salary" value="면접 후 결정">
+                        </div>
                     </div>
-                    </form>
-                </div>
+                    <div class="d-flex box-layout">
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="typeOfWork" class="form-label main-text">근무형태</label>
+                            <input class="input-style" type="text" id="typeOfWork" class="form-control sub-text"
+                                placeholder=" 정규직" name="typeOfWork" value="정규직">
+                        </div>
+                        <div class="mb-3 d-flex flex-column">
+                            <label for="endDate" class="form-label main-text">접수기간</label>
+                            <input class="input-style" type="date" id="endDate" class="form-control sub-text"
+                                placeholder=" 0000.00.00~0000.00.00" name="endDate">
+                        </div>
+                    </div>
 
-                <form class="left-box" action="#" enctype="multipart/form-data">
                     <div class="mb-3 d-flex flex-column">
-                        <label for="password" class="form-label main-text">상세내용</label>
+                        <label for="content" class="form-label main-text">상세내용</label>
                         <textarea class="form-control sub-text" rows="5" name="content">- 근무부서 : 플렛폼 센터</textarea>
                     </div>
-                </form>
 
 
-                <div class="ml-3 body-content-title main-text">
-                    <p><b>기술스택</b></p>
-                </div>
-                <div class="body-content-title2 sub-text">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
-                        <label class="form-check-label">CSS
-                        </label>
+                    <div class="ml-3 body-content-title main-text">
+                        <p><b>기술스택</b></p>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
-                        <label class="form-check-label">C#
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
-                        <label class="form-check-label">JSP
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
-                        <label class="form-check-label">Android
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
-                        <label class="form-check-label">Ajax
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
-                        <label class="form-check-label">Flutter
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
-                        <label class="form-check-label">HTML
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
-                        <label class="form-check-label">Mysql
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
-                        <label class="form-check-label">Java
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
-                        <label class="form-check-label">Javascript
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
-                        <label class="form-check-label">Git
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
-                        <label class="form-check-label">AWS
-                        </label>
-                    </div>
-                </div>
-               
-                <br>
-                <div class="ml-3 body-content-title main-text">
-                    <p><b>지역</b></p>
-                </div>
-                <div class="body-content-title3 sub-text">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
-                        <label class="form-check-label">부산
-                        </label>btn-style
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
-                        <label class="form-check-label">서울
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
-                        <label class="form-check-label">경기도
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
-                        <label class="form-check-label">대구
-                        </label>
-                    </div>
-                </div>
+                    <div class="body-content-title2 sub-text">
+                        {{#skills}}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="skilList" value="{{skillName}}"
+                                id="checkboxExample">
+                            <label class="form-check-label">{{skillName}}
+                            </label>
+                        </div>
+                        {{/skills}}
 
-
-                <div class="d-flex bottom-box justify-content-end">
-                    <button class="btn btn-style btn-register sub-text bottom-box-right" type="button">채용공고 수정</button>
-                    <button class="btn btn-style btn-register sub-text bottom-box-right" type="button">채용공고 등록</button>
+                        <br>
+                        <div class="ml-3 body-content-title main-text">
+                            <p><b>지역</b></p>
+                        </div>
+                        <div class="body-content-title3 sub-text">
+                            {{#areas}}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="areaList" value="{{areaName}}"
+                                    id="checkboxExample">
+                                <label class="form-check-label">{{areaName}}
+                                </label>
+                            </div>
+                            {{/areas}}
+                            <div class="d-flex bottom-box justify-content-end">
+                                <button class="btn btn-style btn-register sub-text bottom-box-right" type="submit">채용공고
+                                    등록</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </div>
 
-</div>
-{{> layout/footer}}
+
+        <script>
+            // 카드 마우스 오버 시 스타일 변경
+            function highlightCard(element) {
+                element.style.border = '2px solid #9F12E1';
+                element.style.cursor = 'pointer';
+            }
+
+            function unhighlightCard(element) {
+                element.style.border = '1px solid #ccc';
+                element.style.cursor = 'pointer';
+            }
+
+            // 버튼 마우스 오버 시 스타일 변경
+            function highlightButton(element) {
+                element.style.cursor = 'pointer';
+                element.style.boxShadow = '3px 3px 5px rgba(0, 0, 0, 0.2)';
+            }
+
+            function unhighlightButton(element) {
+                element.style.cursor = 'pointer';
+                element.style.boxShadow = 'none';
+            }
+
+            // 회원정보 수정 메뉴 마우스 오버시 이미지 변경
+            let personalImageContainer = document.getElementById("personalImageContainer");
+            let personalImage = document.getElementById("personalImage");
+            let personalImageSrc = "./img/personal.png";
+            let personalHoverImageSrc = "./img/personalOn.png";
+
+            personalImageContainer.addEventListener("mouseover", function () {
+                personalImage.src = personalHoverImageSrc;
+            });
+
+            personalImageContainer.addEventListener("mouseout", function () {
+                personalImage.src = personalImageSrc;
+            });
+
+            // 채용공고 메뉴 마우스 오버시 이미지 변경
+            let employmentImageContainer = document.getElementById("employmentImageContainer");
+            let employmentImage = document.getElementById("employmentImage");
+            let employmentImageSrc = "./img/resume.png";
+            let employmentHoverImageSrc = "./img/resumeOn.png";
+
+            employmentImageContainer.addEventListener("mouseover", function () {
+                employmentImage.src = employmentHoverImageSrc;
+            });
+
+            employmentImageContainer.addEventListener("mouseout", function () {
+                employmentImage.src = employmentImageSrc;
+            });
+
+            // 채용공고 현황 메뉴 마우스 오버시 이미지 변경
+            let statusImageContainer = document.getElementById("statusImageContainer");
+            let statusImage = document.getElementById("statusImage");
+            let statusImageSrc = "./img/resume.png";
+            let statusHoverImageSrc = "./img/resumeOn.png";
+
+            statusImageContainer.addEventListener("mouseover", function () {
+                statusImage.src = statusHoverImageSrc;
+            });
+
+            statusImageContainer.addEventListener("mouseout", function () {
+                statusImage.src = statusImageSrc;
+            });
+
+            // 관심구직자 메뉴 마우스 오버시 이미지 변경
+            let interestImageContainer = document.getElementById("interestImageContainer");
+            let interestImage = document.getElementById("interestImage");
+            let interestImageSrc = "./img/company.png";
+            let interestHoverImageSrc = "./img/companyOn.png";
+
+            interestImageContainer.addEventListener("mouseover", function () {
+                interestImage.src = interestHoverImageSrc;
+            });
+
+            interestImageContainer.addEventListener("mouseout", function () {
+                interestImage.src = interestImageSrc;
+            });
+        </script>
+        {{> layout/footer}}
