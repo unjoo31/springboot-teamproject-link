@@ -38,9 +38,16 @@
     }
 
     .btn-style {
-        margin-top: 15px;
+        margin-top: 10px;
         border-radius: 30px;
         width: 100px;
+        height: 40px;
+    }
+
+    .btn-style-bottom {
+        margin-top: 15px;
+        border-radius: 10px;
+        width: 55px;
         height: 40px;
     }
 
@@ -119,20 +126,28 @@
     }
 
     .body-content-title {
-        margin-left: 20px;
+        margin-left: 10px;
         margin-top: 15px;
+        font-weight: 800;
     }
-
 
     .box-layout {
         margin-bottom: 15px;
-        padding: 15px;
+    }
+
+    .box-title {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     .bottom-box {
         border-top: 1px solid #ccc;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 30px;
+    }
+
+    .savetitle-text {
+        margin-top: 30px;
+        font-size: 20px;
     }
 
     /* 제목 입력칸의 스타일 */
@@ -154,7 +169,6 @@
         border-radius: 10px;
         border: 1px solid #EDEEF2;
         margin-bottom: 10px;
-
     }
 
     .container {
@@ -184,7 +198,7 @@
 
 <div class="container">
 
-    <h1 class="title-text body">게시글 작성</h1>
+    <h1 class="savetitle-text body">게시글 작성</h1>
     <div class="body-content">
 
         <div class="body-content-title">
@@ -196,21 +210,21 @@
 
             <form class="left-box" action="/board/save" method="post" enctype="multipart/form-data">
 
-                <div class="mb-3 d-flex flex-column">
+                <div class="box-title mb-3">
                     <label for="password" class="form-label main-text">제목</label>
                     <input type="text" class="input-style form-control sub-text" id="username" placeholder="제목을 적으세요"
                         name="title">
                 </div>
 
-                <div class="mb-3 d-flex flex-column">
+                <div class="box-title mb-3">
                     <label for="password" class="form-label main-text">내용</label>
                     <textarea class="custom-textarea" rows=" 20" cols="30" placeholder="글을 작성하세요" id="content"
                         name="content"></textarea>
                 </div>
 
                 <div class="d-flex bottom-box justify-content-end">
-                    <button type="submit" class="btn btn-style btn-register main-text bottom-box"
-                        id="content">완료</button>
+                    <button type="submit" class="btn btn-style-bottom btn-register main-text" id="content"
+                        style="margin-right: 15px;">완료</button>
                 </div>
 
             </form>
@@ -222,14 +236,7 @@
 <script>
     $(document).ready(function () {
         $('#content').summernote({
-            height: 200,
-            callbacks: {
-                onPaste: function (e) {
-                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-                    e.preventDefault();
-                    document.execCommand('insertText', false, bufferText);
-                }  
-            }         
+            height: 200,        
         });
     });
 </script>

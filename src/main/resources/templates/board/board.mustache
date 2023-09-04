@@ -83,7 +83,7 @@
         font-size: 15px;
         color: #FFFFFF;
         margin-bottom: 5px;
-        
+
     }
 
     .header-menu {
@@ -188,7 +188,7 @@
     }
 
     /* board.html */
-</style> 
+</style>
 <div class="container">
 
     <div class="container-fluid d-flex justify-content-between mb-3 ">
@@ -200,12 +200,11 @@
             </button>
         </div>
 
-        <div class="btn btn-style btn-save main-text">
+        <div class="btn btn-boardstyle btn-register main-text">
             <a href="/board/saveBoard">게시글작성</a>
         </div>
 
     </div>
-
 
 
     <div class="d-flex justify-content-between mb-3 box-layout">
@@ -221,25 +220,36 @@
             {{#boardPG.content}}
             <tr class="td-text">
                 <td class="text-center"><input type="checkbox"></td>
-                <td>
-                    <a class="btn btn-primary" href="/board/{{id}}/updateForm">{{title}}</a>
-                </td>
-                <td class="state-completion">해결완료</td>
+
+                <td><a class="btn btn-primary" href="/board/{{id}}/detailBoard">{{title}}</a></td>
+ 
+                <td><a class="state-completion" href="/board/{{id}}/updateForm">수정</a></td>
+
                 <td class="d-flex">
                     <div style="margin-right: 10px;">
-                        <img src="/img/smallProfile.png" width="20" height="20" alt="이미지 설명"
+                        <img src="./img/smallProfile.png" width="20" height="20" alt="이미지 설명"
                             style="border-radius: 50%;">
                     </div>
-                    {{id}}
+                    {{user.username}} <!-- 모든 문제의 발단 -->
                 </td>
 
-                <td>{{{content}}}</td> <!-- 썸머노트 태그 삭제법 {{{ }}} -->
+                <td>{{{content}}}</td>
 
             </tr>
             {{/boardPG.content}}
 
-            <tr style="height: 300px;"></tr>
+            <tr style="height: 100px;"></tr>
         </table>
     </div>
+
+    <ul class="pagination d-flex justify-content-center">
+
+        <li class="page-item {{#boardPG.first}} disabled {{/boardPG.first}}"><a class="page-link"
+                href="?page={{prevPage}}">이전</a>
+        </li>
+        <li class="page-item {{#boardPG.last}} disabled {{/boardPG.last}}"><a class="page-link"
+                href="?page={{nextPage}}">다음</a></li>
+    </ul>
+
 </div>
 {{> layout/footer}}

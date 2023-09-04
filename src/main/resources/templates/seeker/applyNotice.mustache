@@ -309,7 +309,7 @@
         background: none;
         outline: none;
         margin-right: 10px;
-        
+        z-index: 100;
     }
 
     /* 추가된 스타일클래스입니다 */
@@ -326,12 +326,17 @@
 <div class="middle-box d-flex justify-content-center">
     <div class="middle-box d-flex flex-column">
         <div class="first-button d-flex">
+<<<<<<< HEAD
             <button class="btn btn-style btn-register main-text bottom-box-right">지원완료</button>
             <form action="/resume/transmit" method="post">
                 <input type="hidden" name="noticeId" value="{{notice.id}}">
                 <input type="hidden" name="pass" value="미정">
             <button type="submit" class="btn btn-style btn-login main-text bottom-box-right">입사지원</button>
         </form>
+=======
+            <button class="btn btn-style btn-register main-text bottom-box-right" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">지원완료</button>
+            <a href="/" class="btn btn-style btn-login main-text bottom-box-right" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">입사지원</a>
+>>>>>>> dev
         </div>
         <div class="box">
             <div class="d-flex">
@@ -343,9 +348,9 @@
                         {{notice.title}}
                     </div>
                 </div>
-                <button class="star-icon-button btn-register" type="button">
+                <button class="star-icon-button btn-register" type="button" id="bookmarkImageContainer">
                     <div class="boomark-img">
-                        <img src="./img/boomark.png">
+                        <img src="./img/boomark.png" id="bookmarkImage">
                     </div>
                 </button>
             </div>
@@ -389,4 +394,54 @@
         </div>
     </div>
 </div>
+<script>
+    // 북마크 마우스오버, 선택시 이미지 변경
+    let bookmarkImageContainer = document.getElementById("bookmarkImageContainer");
+    let bookmarkImage = document.getElementById("bookmarkImage");
+    let bookmarkImageSrc = "./img/boomark.png";
+    let bookmarkHoverImageSrc = "./img/boomarkOn.png";
+    let isMouseOver = false;
+    let isClicked = false;
+
+    // 마우스 오버 이벤트 리스너
+    bookmarkImageContainer.addEventListener("mouseover", function () {
+        if (!isClicked) { // 클릭 상태가 아닌 경우에만 이미지 변경
+            bookmarkImage.src = bookmarkHoverImageSrc;
+            isMouseOver = true; // 마우스 오버 상태로 설정
+        }
+    });
+
+    // 마우스 아웃 이벤트 리스너
+    bookmarkImageContainer.addEventListener("mouseout", function () {
+        if (!isClicked) { // 클릭 상태가 아닌 경우에만 이미지 변경
+            bookmarkImage.src = bookmarkImageSrc;
+            isMouseOver = false; // 마우스 오버 상태 해제
+        }
+    });
+
+    // 클릭 이벤트 리스너
+    bookmarkImageContainer.addEventListener("click", function () {
+        if (!isClicked) {
+            // 클릭 전 상태에서 클릭 시 이미지 변경
+            bookmarkImage.src = bookmarkHoverImageSrc;
+        } else {
+            // 클릭 후 상태에서 클릭 시 이미지 변경
+            bookmarkImage.src = bookmarkImageSrc;
+        }
+        
+        isClicked = !isClicked; // 클릭 상태 토글
+        isMouseOver = false; // 마우스 오버 상태 해제
+    });
+
+    // 버튼 마우스 오버 시 스타일 변경
+    function highlightButton(element) {
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = '3px 3px 5px rgba(0, 0, 0, 0.2)';
+    }
+
+    function unhighlightButton(element) {
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = 'none'; 
+    }
+</script>
 {{> layout/footer}}
