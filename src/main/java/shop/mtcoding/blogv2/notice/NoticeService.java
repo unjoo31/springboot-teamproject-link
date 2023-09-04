@@ -72,16 +72,17 @@ public class NoticeService {
         return filteredNotices;
     }
 
-    // 입사지원 화면
-    public Notice 공고상세보기(int id) {
-        Optional<Notice> noticeOP = noticeRepository.findById(id);
-        if (noticeOP.isPresent()) {
-            return noticeOP.get();
-        } else {
-            throw new MyException(id + "는 찾을 수 없습니다.");
-        }
+    // 입사지원 화면 
+
+    public Notice 공고상세보기(Integer noticeId) {
+       Optional<Notice> noticeOP = noticeRepository.findById(noticeId);
+       if (noticeOP.isPresent()) {
+           return noticeOP.get();
+       }else{
+        throw new MyException(noticeId + "는 찾을 수 없습니다.");
+       }
     }
-   
+
 
     @Transactional
     public void 채용공고등록(NoticeSaveDTO noticeSaveDTO, Integer userId) {

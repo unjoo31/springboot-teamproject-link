@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.mysql.cj.protocol.x.Notice;
 
 import shop.mtcoding.blogv2.resume.Resume;
+import shop.mtcoding.blogv2.resume.ResumeRequest;
 import shop.mtcoding.blogv2.user.User;
 
 @Controller
@@ -63,11 +64,13 @@ public class ApplyController {
     }
 
     // 채용공고 (이력서 상세보기 전)
+    // 지원자 현황 (이력서 상세보기 전)
     @GetMapping("/corporationSupportDetail")
     public String corporationSupportDetail(HttpServletRequest request){
-        List<Apply> applyList = applyService.지원자현황(2);
+        List<Apply> applyList = applyService.지원자현황(1);
         System.out.println("테스트 : " + applyList.get(0).getPass());
         System.out.println("테스트 : " + applyList.get(0).getUser().getName());
+        System.out.println("테스트 : " + applyList.get(0).getResume().getUser().getName());
         request.setAttribute("applyList", applyList);
 
         return "/corporation/corporationSupportDetail";
@@ -86,5 +89,30 @@ public class ApplyController {
     return "/seeker/seekerSupportDetail";
 
     }
+
+    // 지원자 이력서 상세보기
+    @GetMapping("/corporationSupportSeekerList")
+    public String corporationSupportSeekerList(HttpServletRequest request){
+    Optional<Apply> apply = applyService.지원자이력서조회하기(1);    
+    request.setAttribute("apply", apply);
+    System.out.println("테스트 : " +apply.get().getUser().getName());
+    System.out.println("테스트 : " +apply.get().getResume().getCareer());
+    System.out.println("테스트 : " +apply.get().getResume().getHashAreaList());
+    System.out.println("테스트 : " +apply.get().getResume().getContent());
+    System.out.println("테스트 : " + apply.get().getResume().getHashSkilList().get(0).getSkill().getSkillName());
+    System.out.println("테스트 : " + apply.get().getId());
+
+    return "corporation/corporationSupportSeekerList";
+}
+
+
+    // 합격, 불합격, 미정 
+    @PostMapping("/apply/pass")
+    public String pass(ResumeRequest.PassDTO passDTO){
+    System.out.println("나 여기 있어 : "+passDTO.getPass());
+    System.out.println("나 여기 있어 : "+passDTO.getApplyId());
+    applyService.합격여부결정(passDTO);
+    return "redirect:/corporation/corporationSupportDetail";
+}
 
 }
