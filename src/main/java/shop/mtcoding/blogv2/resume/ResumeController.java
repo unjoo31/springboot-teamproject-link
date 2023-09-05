@@ -131,10 +131,6 @@ public class ResumeController {
     public String resumeTransmit(ResumeRequest.TransmitDTO transmitDTO){
         User sessionUser = (User) session.getAttribute("sessionUser"); 
         Optional<Resume> resume  = resumeService.이력서조회하기(sessionUser.getId());
-        System.out.println("테스트 : " + resume.get().getUser().getId());
-        System.out.println("테스트 : " + resume.get().getId());
-        System.out.println("테스트 : " + transmitDTO.getPass());
-        System.out.println("테스트 : " + transmitDTO.getNoticeId());
         resumeService.이력서전송하기(transmitDTO, resume);
         return "redirect:/";
     }

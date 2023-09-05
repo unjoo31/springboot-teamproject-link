@@ -38,6 +38,9 @@ public class ApplyController {
     User sessionUser = (User) session.getAttribute("sessionUser");    
     System.out.println("테스트 : " + sessionUser.getId());
 
+    int passCount = 0;
+    int failCount = 0;
+    int undecidedCount = 0;
     // 공고현황 화면에 보여줄 값 담기
     List<Apply> applyList = applyService.지원현황보기(sessionUser.getId());
     
@@ -47,10 +50,21 @@ public class ApplyController {
             applyData.put("title", apply.getNotice().getTitle());
             applyData.put("name", apply.getUser().getName());
             applyData.put("pass", apply.getPass());
-            
+            applyData.put("applyId", apply.getId());
+             if ("합격".equals(apply.getPass())) {
+                passCount++;
+            }else if("불합격".equals(apply.getPass())){
+                failCount++;
+            }else if("미정".equals(apply.getPass())){
+                undecidedCount++;
+            }
+
             applyDataList.add(applyData);
         }
         request.setAttribute("applyDataList", applyDataList);
+        request.setAttribute("pass", passCount);
+        request.setAttribute("fail", failCount);
+        request.setAttribute("undecided", undecidedCount);
 
     return "seeker/seekerSupport";
 
@@ -81,7 +95,6 @@ public class ApplyController {
             }
             applyDataList.add(applyData);
         }
-
         request.setAttribute("applyList", applyList);
         request.setAttribute("applyDataList", applyDataList);
         request.setAttribute("pass", passCount);
@@ -92,13 +105,9 @@ public class ApplyController {
     }
 
     // 지원현황 상세보기
-    @GetMapping("/seekerSupportDetail")
-    public String seekerSupportDetail(HttpServletRequest request){
-
-    Optional<Apply> apply = applyService.지원현황상세보기(1);
-    System.out.println("테스트 : " + apply.get().getPass());
-    System.out.println("테스트 : " + apply.get().getUser().getName());
-    System.out.println("테스트 : " + apply.get().getNotice().getHashAreaList());
+    @GetMapping("/seekerSupportDetail/{id}")
+    public String seekerSupportDetail(@PathVariable Integer id, HttpServletRequest request){
+    Optional<Apply> apply = applyService.지원현황상세보기(id);
     request.setAttribute("apply", apply);
     
     return "/seeker/seekerSupportDetail";
@@ -106,16 +115,11 @@ public class ApplyController {
     }
 
     // 지원자 이력서 상세보기
-    @GetMapping("/corporationSupportSeekerList")
-    public String corporationSupportSeekerList(HttpServletRequest request){
-    Optional<Apply> apply = applyService.지원자이력서조회하기(1);    
+    @GetMapping("/corporationSupportSeekerList/{id}")
+    public String corporationSupportSeekerList(@PathVariable Integer id, HttpServletRequest request){
+    Optional<Apply> apply = applyService.지원자이력서조회하기(id);    
     request.setAttribute("apply", apply);
-    System.out.println("테스트 : " +apply.get().getUser().getName());
-    System.out.println("테스트 : " +apply.get().getResume().getCareer());
-    System.out.println("테스트 : " +apply.get().getResume().getHashAreaList());
-    System.out.println("테스트 : " +apply.get().getResume().getContent());
-    System.out.println("테스트 : " + apply.get().getResume().getHashSkilList().get(0).getSkill().getSkillName());
-    System.out.println("테스트 : " + apply.get().getId());
+     
 
     return "corporation/corporationSupportSeekerList";
 }
