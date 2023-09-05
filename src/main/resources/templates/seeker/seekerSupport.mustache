@@ -289,7 +289,7 @@
                     <div class="nav-img">
                         <img src="/img/resume.png" id="statusImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="/seekerSupportForm">
+                    <a class="dropdown-item left-nav-title" href="/seekerSupport">
                         지원현황
                         <p class="left-nav-sub">Support status</p>
                     </a>
@@ -335,7 +335,7 @@
 
                 <div class="grid-container3">
                     {{#applyDataList}}
-                    <div class="card">
+                    <div class="card" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
                         <div class="card-body">
                             <div class="main-text"><b>{{title}}</b></div>
                             <div class="companyname">{{name}}</div>
