@@ -17,7 +17,6 @@ import shop.mtcoding.blogv2.hasharea.HashArea;
 import shop.mtcoding.blogv2.hasharea.HashAreaRepository;
 import shop.mtcoding.blogv2.hashskil.HashSkil;
 import shop.mtcoding.blogv2.notice.Notice;
-import shop.mtcoding.blogv2.resume.ResumeRequest.PassDTO;
 import shop.mtcoding.blogv2.resume.ResumeRequest.TransmitDTO;
 import shop.mtcoding.blogv2.hashskil.HashSkilRepository;
 import shop.mtcoding.blogv2.resume.ResumeRequest.ResumeUpdateDTO;

@@ -133,9 +133,6 @@ public class ResumeController {
     }
 
 
-
-
-
     //이력서 전송하기 
     @PostMapping("/resume/transmit")
     public String resumeTransmit(ResumeRequest.TransmitDTO transmitDTO){

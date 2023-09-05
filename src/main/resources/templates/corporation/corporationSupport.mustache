@@ -66,11 +66,18 @@
     background-color: #9F12E1;
     color: white;
 }
+.btn-logout a{
+    font-size: 15px;
+    color: #ffffff;
+}
 .header-menu{
     font-weight: 600;
 }
 .dropdown-menu{
     width: 300px;
+    position: absolute;
+    left: -230px;
+
 }
 .dropdown-menu-big{
     font-size: 15px;
@@ -267,7 +274,7 @@
             <div class="card-body d-flex flex-column">
                 <div class="card left-nav-detail" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)" id="personalImageContainer">
                     <div class="nav-img">
-                        <img src="./img/personal.png" id="personalImage">
+                        <img src="/img/personal.png" id="personalImage">
                     </div>
                     <a class="dropdown-item left-nav-title" href="/updateCorporationForm">
                         회원정보 수정
@@ -276,7 +283,7 @@
                 </div>
                 <div class="card left-nav-detail" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)" id="employmentImageContainer">
                     <div class="nav-img">
-                        <img src="./img/resume.png" id="employmentImage">
+                        <img src="/img/resume.png" id="employmentImage">
                     </div>
                     <a class="dropdown-item left-nav-title" href="/corporationResume">
                         채용공고
@@ -285,16 +292,16 @@
                 </div>
                 <div class="card left-nav-detail" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)" id="statusImageContainer">
                     <div class="nav-img">
-                        <img src="./img/resume.png" id="statusImage">
+                        <img src="/img/resume.png" id="statusImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="/corporationSupport">
+                    <a class="dropdown-item left-nav-title" href="/corporationSupport/{{sessionUser.id}}">
                         채용공고 현황
                         <p class="left-nav-sub">Employment status</p>
                     </a>
                 </div>
                 <div class="card left-nav-detail" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)" id="interestImageContainer">
                     <div class="nav-img">
-                        <img src="./img/company.png" id="interestImage">
+                        <img src="/img/company.png" id="interestImage">
                     </div>
                     <a class="dropdown-item left-nav-title" href="/corporationSeeker">
                         관심구직자 / 기술스택 매칭
@@ -314,17 +321,17 @@
                         <div class="grid-container2">
                             <div class="main-text">공고 등록완료
                                 <div class="card">
-                                    <div class="card-body d-flex justify-content-end card-input">0</div>
+                                    <div class="card-body d-flex justify-content-end card-input">{{count}}</div>
                                 </div>
                             </div>
                             <div class="main-text">진행중
                                 <div class="card">
-                                    <div class="card-body d-flex justify-content-end card-input">0</div>
+                                    <div class="card-body d-flex justify-content-end card-input">{{ongoing}}</div>
                                 </div>
                             </div>
                             <div class="main-text">종료
                                 <div class="card">
-                                    <div class="card-body d-flex justify-content-end card-input">0</div>
+                                    <div class="card-body d-flex justify-content-end card-input">{{expiredNoticeCount}}</div>
                                 </div>
                             </div>
                         </div>
@@ -335,7 +342,7 @@
                     {{#noticeDataList}}
                     <div class="card" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
                         <div class="card-body">
-                            <div class="main-text"><b>{{title}}</b></div>
+                            <a href="/corporationSupportDetail/{{noticeId}}" class="main-text"><b>{{title}}</b></a>
                             <div class="companyname">{{user.name}}</div>
                             <div>
                                 <div class="companyname">
@@ -381,8 +388,8 @@
     // 회원정보 수정 메뉴 마우스 오버시 이미지 변경
     let personalImageContainer = document.getElementById("personalImageContainer");
     let personalImage = document.getElementById("personalImage");
-    let personalImageSrc = "./img/personal.png";
-    let personalHoverImageSrc = "./img/personalOn.png";
+    let personalImageSrc = "/img/personal.png";
+    let personalHoverImageSrc = "/img/personalOn.png";
 
     personalImageContainer.addEventListener("mouseover", function() {
         personalImage.src = personalHoverImageSrc;
@@ -395,8 +402,8 @@
     // 채용공고 메뉴 마우스 오버시 이미지 변경
     let employmentImageContainer = document.getElementById("employmentImageContainer");
     let employmentImage = document.getElementById("employmentImage");
-    let employmentImageSrc = "./img/resume.png";
-    let employmentHoverImageSrc = "./img/resumeOn.png";
+    let employmentImageSrc = "/img/resume.png";
+    let employmentHoverImageSrc = "/img/resumeOn.png";
 
     employmentImageContainer.addEventListener("mouseover", function() {
         employmentImage.src = employmentHoverImageSrc;
@@ -409,8 +416,8 @@
     // 채용공고 현황 메뉴 마우스 오버시 이미지 변경
     let statusImageContainer = document.getElementById("statusImageContainer");
     let statusImage = document.getElementById("statusImage");
-    let statusImageSrc = "./img/resume.png";
-    let statusHoverImageSrc = "./img/resumeOn.png";
+    let statusImageSrc = "/img/resume.png";
+    let statusHoverImageSrc = "/img/resumeOn.png";
 
     statusImageContainer.addEventListener("mouseover", function() {
         statusImage.src = statusHoverImageSrc;
@@ -423,8 +430,8 @@
     // 관심구직자 메뉴 마우스 오버시 이미지 변경
     let interestImageContainer = document.getElementById("interestImageContainer");
     let interestImage = document.getElementById("interestImage");
-    let interestImageSrc = "./img/company.png";
-    let interestHoverImageSrc = "./img/companyOn.png";
+    let interestImageSrc = "/img/company.png";
+    let interestHoverImageSrc = "/img/companyOn.png";
 
     interestImageContainer.addEventListener("mouseover", function() {
         interestImage.src = interestHoverImageSrc;

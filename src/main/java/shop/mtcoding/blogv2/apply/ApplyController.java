@@ -59,13 +59,35 @@ public class ApplyController {
 
     // 채용공고 (이력서 상세보기 전)
     // 지원자 현황 (이력서 상세보기 전)
-    @GetMapping("/corporationSupportDetail")
-    public String corporationSupportDetail(HttpServletRequest request){
-        List<Apply> applyList = applyService.지원자현황(1);
-        System.out.println("테스트 : " + applyList.get(0).getPass());
-        System.out.println("테스트 : " + applyList.get(0).getUser().getName());
-        System.out.println("테스트 : " + applyList.get(0).getResume().getUser().getName());
+    @GetMapping("/corporationSupportDetail/{id}")
+    public String corporationSupportDetail(@PathVariable Integer id, HttpServletRequest request){
+        System.out.println("테스트 : 111"+ id);
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        
+        List<Apply> applyList = applyService.지원자현황(id);
+
+        int passCount = 0;
+        int failCount = 0;
+        int undecidedCount = 0;
+
+        List<Map<String, Object>> applyDataList = new ArrayList<>();
+        for (Apply apply : applyList) {
+            Map<String, Object> applyData = new HashMap<>();
+            if ("합격".equals(apply.getPass())) {
+                passCount++;
+            }else if("불합격".equals(apply.getPass())){
+                failCount++;
+            }else if("미정".equals(apply.getPass())){
+                undecidedCount++;
+            }
+            applyDataList.add(applyData);
+        }
+
         request.setAttribute("applyList", applyList);
+        request.setAttribute("applyDataList", applyDataList);
+        request.setAttribute("pass", passCount);
+        request.setAttribute("fail", failCount);
+        request.setAttribute("undecided", undecidedCount);
 
         return "/corporation/corporationSupportDetail";
     }
@@ -102,11 +124,12 @@ public class ApplyController {
 
     // 합격, 불합격, 미정 
     @PostMapping("/apply/pass")
-    public String pass(ResumeRequest.PassDTO passDTO){
+    public String pass(ApplyRequest.PassDTO passDTO){
     System.out.println("나 여기 있어 : "+passDTO.getPass());
     System.out.println("나 여기 있어 : "+passDTO.getApplyId());
+    System.out.println("나 여기 있어 : "+passDTO.getNoticeId());
     applyService.합격여부결정(passDTO);
-    return "redirect:/corporation/corporationSupportDetail";
+    return "redirect:/corporationSupportDetail/" + passDTO.getNoticeId();
 }
 
 }

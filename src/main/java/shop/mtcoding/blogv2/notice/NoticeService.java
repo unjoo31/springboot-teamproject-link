@@ -216,4 +216,9 @@ public class NoticeService {
         noticeRepository.deleteById(noticeId);
     }
 
+    public List<Notice> 등록한공고목록보기(Integer id) {
+        return noticeRepository.findByUserId(id);
+    }
+
+  
 }
