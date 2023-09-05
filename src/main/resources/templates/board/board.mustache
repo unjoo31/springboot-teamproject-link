@@ -94,6 +94,113 @@
     margin-right: 20px;
 }
 /* 헤더, 푸터 스타일 끝 */
+    .logo {
+        color: #9F12E1;
+        font-weight: 700;
+    }
+
+    .footer {
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 20px;
+    }
+
+    /* 타이틀 스타일 */
+    .title-text {
+        font-size: 20px;
+    }
+
+    /* 메인 스타일 */
+    .main-text {
+        font-size: 14px;
+    }
+
+    /* 서브 스타일 */
+    .sub-text {
+        font-size: 13px;
+    }
+
+    .footer-inc {
+        font-size: 12px;
+    }
+
+    .btn-style {
+        margin-top: 15px;
+        border-radius: 30px;
+        width: 100px;
+        height: 40px;
+    }
+
+    .btn-login {
+        border: 1px solid #9F12E1;
+        color: #9F12E1;
+        margin-right: 10px;
+    }
+
+    .btn-login a {
+        margin-bottom: 5px;
+        font-size: 15px;
+        color: #9F12E1;
+        margin-bottom: 5px;
+        text-decoration: none;
+    }
+
+    .btn-register {
+        background-color: #9F12E1;
+        color: white;
+    }
+
+    .btn-register a {
+        margin-bottom: 5px;
+        font-size: 15px;
+        color: #FFFFFF;
+        margin-bottom: 5px;
+        text-decoration: none;
+    }
+
+    .btn-logout {
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 280px;
+        background-color: #9F12E1;
+        color: white;
+    }
+
+    .btn-save {
+        margin-bottom: 5px;
+        font-size: 15px;
+        color: #FFFFFF;
+        margin-bottom: 5px;
+        
+    }
+
+    .header-menu {
+        font-weight: 600;
+    }
+
+    .dropdown-menu {
+        width: 300px;
+    }
+
+    .dropdown-menu-big {
+        font-size: 15px;
+    }
+
+    .dropdown-menu-small {
+        font-size: 11px;
+    }
+
+    .dropdown-toggle::after {
+        display: none;
+    }
+
+    .nav-img {
+        width: 20px;
+        height: 20px;
+        margin-top: 20px;
+        margin-right: 20px;
+    }
+
+    /* 헤더, 푸터 스타일 끝 */
     /* board.html */
     .box-layout {
         border-radius: 18px;
@@ -174,17 +281,35 @@
     <div class="container-fluid d-flex justify-content-between mb-3 ">
 
         <div class="left-align-container search-input">
-            <input class="search-input search-text" type="text" placeholder="검색어를 입력하세요" style="border: none;">
-            <button class="navbar-toggler" type="button" style="background: none; border: none">
-                <img src="/img/search.png" alt="이미지 설명">
-            </button>
+            <form action="/board" method="get" onsubmit="return valid()">
+                <input id="keyword" class="search-input search-text" type="text" name="keyword" placeholder="검색어를 입력하세요" style="border: none;" required>
+                <button class="btn btn-primary" type="submit" style="background: none; border: none">
+                    <img src="/img/search.png" alt="검색 돋보기">
+                </button>
+            </form>
         </div>
-
+     
         <div class="btn btn-boardstyle btn-register main-text">
             <a href="/board/saveBoard">게시글작성</a>
         </div>
 
     </div>
+
+    <script>
+        function isWhitespace(str) {
+            return str.trim() === '';
+        }
+
+        function valid() {
+            let keyword = document.querySelector("#keyword").value;
+            console.log(keyword);
+            if (isWhitespace(keyword)) {
+                alert('공백을 입력할 수 없습니다');
+                return false;
+            }
+        }
+    </script>
+
 
 
     <div class="d-flex justify-content-between mb-3 box-layout">
@@ -202,7 +327,7 @@
                 <td class="text-center"><input type="checkbox"></td>
 
                 <td><a class="btn btn-primary" href="/board/{{id}}/detailBoard">{{title}}</a></td>
- 
+
                 <td><a class="state-completion" href="/board/{{id}}/updateForm">수정</a></td>
 
                 <td class="d-flex">
