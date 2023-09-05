@@ -13,12 +13,19 @@ public class HashSkilService {
     @Autowired
     private HashSkilRepository hashSkilRepository;
 
-    public List<Skill> 선택한스킬목록(Integer resumeId) {
+    public List<Skill> 이력서선택한스킬목록(Integer resumeId) {
 
         List<Skill> skillList = hashSkilRepository.findSkillsByResumeId(resumeId);
 
         return skillList;
 
+    }
+
+    public List<Skill> 채용공고선택한스킬목록(Integer noticeId) {
+
+        List<Skill> skillList = hashSkilRepository.findSkillsByNoticeId(noticeId);
+
+        return skillList;
     }
     
 }

@@ -109,31 +109,36 @@
     /* 헤더, 푸터 스타일 끝 */
 
     /* 좌측 메뉴 스타일 시작 */
-.left-nav-title{
-    font-size: 15px;
-    margin-top: 10px;
-}
-.left-nav-sub{
-    font-size: 11px;
-}
-.left-nav{
-    width: 300px;
-    margin-top: 85px;
-}
-.left-nav-detail{
-    display: flex;
-    flex-direction: row;
-    border-radius: 10px;
-    border: 1px solid #EDEEF2;
-    margin-bottom: 10px;
-}
-.left-nav-detail .nav-img{
-    width: 40px;
-    height: 40px;
-    margin-top: 10px;
-    margin-left: 10px;
-}
-/* 좌측 메뉴 스타일 끝 */
+    .left-nav-title {
+        font-size: 15px;
+        margin-top: 10px;
+    }
+
+    .left-nav-sub {
+        font-size: 11px;
+    }
+
+    .left-nav {
+        width: 300px;
+        margin-top: 85px;
+    }
+
+    .left-nav-detail {
+        display: flex;
+        flex-direction: row;
+        border-radius: 10px;
+        border: 1px solid #EDEEF2;
+        margin-bottom: 10px;
+    }
+
+    .left-nav-detail .nav-img {
+        width: 40px;
+        height: 40px;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+
+    /* 좌측 메뉴 스타일 끝 */
 
     .grid-container {
         display: grid;
@@ -319,7 +324,7 @@
         </div>
         <div class="container">
             <h1 class="title-text body">이력서</h1>
-            {{^existResume.id}}
+            {{^existResume}}
             <div class="card-contain-first">
                 <div class="card">
                     <div class="card-header">Resume</div>
@@ -340,9 +345,9 @@
                     </div>
                 </div>
             </div>
-            {{/existResume.id}}
+            {{/existResume}}
 
-            {{#existResume.id}}
+            {{#existResume}}
             <div class="card-contain-second">
                 <div class="card">
                     <div class="card-header">Resume</div>
@@ -356,11 +361,11 @@
                                     {{userInfo.name}}
                                 </div>
                                 <div class="employment-content-sub">
-                                    {{existResume.content}}
+                                    {{content}}
                                 </div>
                                 <div>
                                     <div>
-                                        <form action="/seekerResume/{{existResume.id}}/delete" method="post">
+                                        <form action="/seekerResume/{{id}}/delete" method="post">
                                             <button class="btn img-botton btn-employment main-text" id="btnJoin"
                                                 type="submit" onmouseover="highlightButton(this)"
                                                 onmouseout="unhighlightButton(this)">이력서 삭제</button>
@@ -370,22 +375,23 @@
                                         <button class="btn img-botton btn-employment main-text" id="btnJoin"
                                             type="submit" onmouseover="highlightButton(this)"
                                             onmouseout="unhighlightButton(this)"> <a
-                                                href="/seekerSaveResumeUpdateForm">이력서 수정</a></button>
+                                                href="/seekerSaveResumeUpdateForm/{{id}}">이력서
+                                                수정</a></button>
+                                        {{#selectSkill}}
                                         <div class="employment-content-skill d-flex">
-                                            {{#selectSkill}}
                                             <div class="employment-content-skill-box">
                                                 {{skillName}}
                                             </div>
-                                            {{/selectSkill}}
                                         </div>
+                                        {{/selectSkill}}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {{/existResume.id}}
                 </div>
             </div>
+            {{/existResume}}
         </div>
         <script>
             // 카드 마우스 오버 시 스타일 변경

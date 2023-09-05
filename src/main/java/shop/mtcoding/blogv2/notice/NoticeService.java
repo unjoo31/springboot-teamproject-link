@@ -72,17 +72,16 @@ public class NoticeService {
         return filteredNotices;
     }
 
-    // 입사지원 화면 
+    // 입사지원 화면
 
     public Notice 공고상세보기(Integer noticeId) {
-       Optional<Notice> noticeOP = noticeRepository.findById(noticeId);
-       if (noticeOP.isPresent()) {
-           return noticeOP.get();
-       }else{
-        throw new MyException(noticeId + "는 찾을 수 없습니다.");
-       }
+        Optional<Notice> noticeOP = noticeRepository.findById(noticeId);
+        if (noticeOP.isPresent()) {
+            return noticeOP.get();
+        } else {
+            throw new MyException(noticeId + "는 찾을 수 없습니다.");
+        }
     }
-
 
     @Transactional
     public void 채용공고등록(NoticeSaveDTO noticeSaveDTO, Integer userId) {
@@ -94,10 +93,9 @@ public class NoticeService {
 
         // 로그인을 한 상황에서 진행이 되기 때문에 유저는 따로 만들 필요가 없다.
         // 어떤 유저가 채용공고를 작성하는지만 데이터에 들어 가면 된다.
-        User user = userRepository.findById(userId).get();
 
         Notice notice = Notice.builder()
-                .user(user)
+                .user(User.builder().id(userId).build())
                 .career(noticeSaveDTO.getCareer())
                 .title(noticeSaveDTO.getTitle())
                 .academicAbility(noticeSaveDTO.getAcademicAbility())
@@ -114,7 +112,7 @@ public class NoticeService {
             Skill skill = skillRepository.findBySkillName(skillName);
 
             HashSkil hashSkil = HashSkil.builder()
-                    .user(user)
+                    .user(User.builder().id(userId).build())
                     .skill(skill)
                     .notice(notice)
                     .build();
@@ -125,7 +123,7 @@ public class NoticeService {
             Area area = areaRepository.findByAreaName(areaName);
 
             HashArea hashArea = HashArea.builder()
-                    .user(user)
+                    .user(User.builder().id(userId).build())
                     .area(area)
                     .notice(notice)
                     .build();
@@ -148,16 +146,21 @@ public class NoticeService {
         }
     }
 
-    public Notice 채용공고가져오기(Integer userId) {
-        Notice notice = noticeRepository.findById(userId).get();
-        return notice;
+    public Notice 채용공고가져오기(Integer noticeId) {
+        Optional<Notice> noticeOP = noticeRepository.findById(noticeId);
+
+        // Optional에서 Notice 객체를 가져오거나, 없으면 빈 Notice 객체를 반환합니다.
+        return noticeOP.orElse(new Notice());
     }
 
     @Transactional
-    public void 채용공고수정(NoticeUpdateDTO noticeUpdateDTO, Integer userId) {
+    public void 채용공고수정(NoticeUpdateDTO noticeUpdateDTO, Integer noticeId) {
 
         // builder 를 사용하면 데이터가 쌓이기때문에 있는 데이터를 이용하여 값을 수정
-        Notice notice = noticeRepository.findNoticeByUserId(userId);
+
+        // Optional<Notice> notice = noticeRepository.findById(noticeId);
+
+        Notice notice = noticeRepository.mfindByNoticeId(noticeId);
 
         notice.getUser().setUsername(noticeUpdateDTO.getUsername());
         notice.setCareer(noticeUpdateDTO.getCareer());
@@ -173,8 +176,8 @@ public class NoticeService {
         List<HashArea> hashAreaList = new ArrayList<>();
 
         // 필요없는 이전 데이터[쓰레기데이터]가 쌓이는 것을 방지 하기위해 삭제 [초기화 과정]
-        hashSkilRepository.deleteByResumeId(notice.getId());
-        hashAreaRepository.deleteByResumeId(notice.getId());
+        hashSkilRepository.deleteByNoticeId(notice.getId());
+        hashAreaRepository.deleteByNoticeId(notice.getId());
 
         List<String> skillList = noticeUpdateDTO.getSkilList();
         List<String> areaList = noticeUpdateDTO.getAreaList();
@@ -183,7 +186,7 @@ public class NoticeService {
             Skill skill = skillRepository.findBySkillName(skillName);
 
             HashSkil hashSkil = HashSkil.builder()
-                    .user(User.builder().id(userId).build())
+                    .user(User.builder().id(notice.getUser().getId()).build())
                     .skill(skill)
                     .notice(notice)
                     .build();
@@ -196,7 +199,7 @@ public class NoticeService {
             Area area = areaRepository.findByAreaName(areaName);
 
             HashArea hashArea = HashArea.builder()
-                    .user(User.builder().id(userId).build())
+                    .user(User.builder().id(notice.getUser().getId()).build())
                     .area(area)
                     .notice(notice)
                     .build();
@@ -208,11 +211,9 @@ public class NoticeService {
         // 쿼리를 날리는 갯수를 보면 그렇게 효율적인 방안은 아니지만 데이터베이스의 최적화를 위해선 효율적인 방안입니다.
     }
 
-
     @Transactional
     public void 채용공고삭제(Integer noticeId) {
         noticeRepository.deleteById(noticeId);
     }
 
-  
 }

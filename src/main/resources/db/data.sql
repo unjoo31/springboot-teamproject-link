@@ -77,7 +77,6 @@ INSERT INTO skill_tb (skill_name) VALUES('Java');
 INSERT INTO skill_tb (skill_name) VALUES('JavaScript');
 INSERT INTO skill_tb (skill_name) VALUES('Git');
 INSERT INTO skill_tb (skill_name) VALUES('AWS');
-
 INSERT INTO area_tb (area_name)
 VALUES
     ('Busan'),
@@ -115,10 +114,6 @@ INSERT INTO hash_skil_tb (user_id, skill_id, notice_id, resume_id) VALUES
 (2, 6, 4, null),
 (2, 7, 4, null);
 INSERT INTO hash_area_tb (user_id, notice_id, resume_id, area_id) VALUES
-(1, 1, null, 1),
-(1, 1, null, 2),
-(1, 1, null, 3),
-(1, 1, null, 4),
 (1, 3, null, 1),
 (1, 3, null, 2),
 (1, 3, null, 3),
