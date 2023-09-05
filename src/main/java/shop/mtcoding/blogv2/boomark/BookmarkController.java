@@ -50,7 +50,7 @@ public class BookmarkController {
         return "/seeker/seekerCompanies";
     }
 
-    // 입사지원 북마크
+    // 채용공고 북마크
     @PostMapping("/applyNoticeBookmark/{noticeId}")
     public String applyNoticeBookmark(@PathVariable Integer noticeId){
         User sessionUser = (User) session.getAttribute("sessionUser");

@@ -1,7 +1,7 @@
 {{> layout/header}}
 
 <style>
-    /* 헤더, 푸터 스타일 시작 */
+        /* 헤더, 푸터 스타일 시작 */
 .header{
     height: 70px;
     border-bottom: 1px solid #ccc;
@@ -66,11 +66,18 @@
     background-color: #9F12E1;
     color: white;
 }
+.btn-logout a{
+    font-size: 15px;
+    color: #ffffff;
+}
 .header-menu{
     font-weight: 600;
 }
 .dropdown-menu{
     width: 300px;
+    position: absolute;
+    left: -230px;
+
 }
 .dropdown-menu-big{
     font-size: 15px;
@@ -299,7 +306,7 @@
         font-weight: 600;
     }
     .first-button{
-        margin-left: 550px;
+        margin-left: 650px;
         margin-top: 30px;
     }
     .star-icon-button {
@@ -326,14 +333,12 @@
 <div class="middle-box d-flex justify-content-center">
     <div class="middle-box d-flex flex-column">
         <div class="first-button d-flex">
-            <button class="btn btn-style btn-register main-text bottom-box-right" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">지원완료</button>
-            <form action="/resume/transmit" method="post">
-                <input type="hidden" name="noticeId" value="{{notice.id}}">
-                <input type="hidden" name="pass" value="미정">
-                <button type="submit" class="btn btn-style btn-login main-text bottom-box-right" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">입사지원</button>
-        </form>
-            
-         
+            {{#ischeck}}
+                <button class="btn btn-style btn-register main-text bottom-box-right btn-complete" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">지원완료</button>
+            {{/ischeck}}
+            {{^ischeck}}
+                <a href="" class="btn btn-style btn-login main-text bottom-box-right btn-apply" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">입사지원</a>
+            {{/ischeck}}
         </div>
         <div class="box">
             <div class="d-flex">
@@ -345,13 +350,21 @@
                         {{notice.title}}
                     </div>
                 </div>
-                <form action="/applyNoticeBookmark/{{notice.id}}" method="post">
+                <form action="/applyNoticeBookmark/{{noticeId}}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" id="noticeId" value="{{notice.id}}">
                     <button class="star-icon-button btn-register" type="submit" id="bookmarkImageContainer">
+                        {{#isBookmark}}
                         <div class="boomark-img">
-                            <img src="./img/boomark.png" id="bookmarkImage">
+                            <img src="/img/boomarkOn.png" id="bookmarkImage">
                         </div>
+                        {{/isBookmark}}
+                        {{^isBookmark}}
+                        <div class="boomark-img">
+                            <img src="/img/boomark.png" id="bookmarkImage">
+                        </div>
+                        {{/isBookmark}}
                     </button>
-                </form>              
+                </form>
             </div>
             <hr>
             <div class="container d-flex third-box">
@@ -394,43 +407,43 @@
     </div>
 </div>
 <script>
-    // 북마크 마우스오버, 선택시 이미지 변경
-    let bookmarkImageContainer = document.getElementById("bookmarkImageContainer");
-    let bookmarkImage = document.getElementById("bookmarkImage");
-    let bookmarkImageSrc = "./img/boomark.png";
-    let bookmarkHoverImageSrc = "./img/boomarkOn.png";
-    let isMouseOver = false;
-    let isClicked = false;
+    // // 북마크 마우스오버, 선택시 이미지 변경
+    // let bookmarkImageContainer = document.getElementById("bookmarkImageContainer");
+    // let bookmarkImage = document.getElementById("bookmarkImage");
+    // let bookmarkImageSrc = "/img/boomark.png";
+    // let bookmarkHoverImageSrc = "/img/boomarkOn.png";
+    // let isMouseOver = false;
+    // let isClicked = false;
 
-    // 마우스 오버 이벤트 리스너
-    bookmarkImageContainer.addEventListener("mouseover", function () {
-        if (!isClicked) { // 클릭 상태가 아닌 경우에만 이미지 변경
-            bookmarkImage.src = bookmarkHoverImageSrc;
-            isMouseOver = true; // 마우스 오버 상태로 설정
-        }
-    });
+    // // 마우스 오버 이벤트 리스너
+    // bookmarkImageContainer.addEventListener("mouseover", function () {
+    //     if (!isClicked) { // 클릭 상태가 아닌 경우에만 이미지 변경
+    //         bookmarkImage.src = bookmarkHoverImageSrc;
+    //         isMouseOver = true; // 마우스 오버 상태로 설정
+    //     }
+    // });
 
-    // 마우스 아웃 이벤트 리스너
-    bookmarkImageContainer.addEventListener("mouseout", function () {
-        if (!isClicked) { // 클릭 상태가 아닌 경우에만 이미지 변경
-            bookmarkImage.src = bookmarkImageSrc;
-            isMouseOver = false; // 마우스 오버 상태 해제
-        }
-    });
+    // // 마우스 아웃 이벤트 리스너
+    // bookmarkImageContainer.addEventListener("mouseout", function () {
+    //     if (!isClicked) { // 클릭 상태가 아닌 경우에만 이미지 변경
+    //         bookmarkImage.src = bookmarkImageSrc;
+    //         isMouseOver = false; // 마우스 오버 상태 해제
+    //     }
+    // });
 
-    // 클릭 이벤트 리스너
-    bookmarkImageContainer.addEventListener("click", function () {
-        if (!isClicked) {
-            // 클릭 전 상태에서 클릭 시 이미지 변경
-            bookmarkImage.src = bookmarkHoverImageSrc;
-        } else {
-            // 클릭 후 상태에서 클릭 시 이미지 변경
-            bookmarkImage.src = bookmarkImageSrc;
-        }
+    // // 클릭 이벤트 리스너
+    // bookmarkImageContainer.addEventListener("click", function () {
+    //     if (!isClicked) {
+    //         // 클릭 전 상태에서 클릭 시 이미지 변경
+    //         bookmarkImage.src = bookmarkHoverImageSrc;
+    //     } else {
+    //         // 클릭 후 상태에서 클릭 시 이미지 변경
+    //         bookmarkImage.src = bookmarkImageSrc;
+    //     }
         
-        isClicked = !isClicked; // 클릭 상태 토글
-        isMouseOver = false; // 마우스 오버 상태 해제
-    });
+    //     isClicked = !isClicked; // 클릭 상태 토글
+    //     isMouseOver = false; // 마우스 오버 상태 해제
+    // });
 
     // 버튼 마우스 오버 시 스타일 변경
     function highlightButton(element) {
