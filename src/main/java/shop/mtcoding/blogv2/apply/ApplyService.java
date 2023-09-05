@@ -8,8 +8,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import shop.mtcoding.blogv2.apply.ApplyRequest.PassDTO;
 import shop.mtcoding.blogv2.resume.Resume;
-import shop.mtcoding.blogv2.resume.ResumeRequest.PassDTO;
 import shop.mtcoding.blogv2.user.User;
 
 
@@ -45,9 +45,13 @@ public class ApplyService {
         applyRepository.updatePassById(newPass,applyId);
     }
 
-
-
-    
+    public boolean 채용공고지원여부확인(User userId, Integer noticeId){
+        int count = applyRepository.noticeApplyCheck(userId, noticeId);
+        if(count > 0){
+            return true;
+        }
+        return false;
+    }    
 }
     
 
