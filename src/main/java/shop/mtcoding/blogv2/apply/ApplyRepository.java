@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import shop.mtcoding.blogv2.user.User;
+
 public interface ApplyRepository extends JpaRepository<Apply, Integer>{
 
   List<Apply> findByUserId(@Param("userId") Integer userId);
@@ -20,6 +22,10 @@ public interface ApplyRepository extends JpaRepository<Apply, Integer>{
 
   @Query("SELECT a FROM Apply a left join fetch a.user u WHERE u.id = :userId")
   Optional<Apply> mFindByUserId(@Param("userId") Integer userId);
+
+  @Query(value = "SELECT COUNT(*) FROM APPLY_TB at\n" + //
+      "where notice_id = :noticeId and user_id = :userId", nativeQuery = true)
+  int noticeApplyCheck(@Param("userId") User userId, @Param("noticeId") Integer noticeId);
 }
 
 
