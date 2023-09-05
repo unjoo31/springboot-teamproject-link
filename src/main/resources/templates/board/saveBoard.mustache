@@ -78,6 +78,112 @@
     position: absolute;
     left: -230px;
 
+    .logo {
+        color: #9F12E1;
+        font-weight: 700;
+    }
+
+    .footer {
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 20px;
+    }
+
+    /* 타이틀 스타일 */
+    .title-text {
+        font-size: 20px;
+    }
+
+    /* 메인 스타일 */
+    .main-text {
+        font-size: 14px;
+    }
+
+    /* 서브 스타일 */
+    .sub-text {
+        font-size: 13px;
+    }
+
+    .footer-inc {
+        font-size: 12px;
+    }
+
+    .btn-style {
+        margin-top: 10px;
+        border-radius: 30px;
+        width: 100px;
+        height: 40px;
+    }
+
+    .btn-style-bottom {
+        margin-top: 15px;
+        border-radius: 10px;
+        width: 55px;
+        height: 40px;
+    }
+
+    .btn-login {
+        border: 1px solid #9F12E1;
+        color: #9F12E1;
+        margin-right: 10px;
+    }
+
+    .btn-login a {
+        margin-bottom: 5px;
+        font-size: 15px;
+        color: #9F12E1;
+        margin-bottom: 5px;
+        text-decoration: none;
+    }
+
+    .btn-register {
+        background-color: #9F12E1;
+        color: white;
+    }
+
+    .btn-register a {
+        margin-bottom: 5px;
+        font-size: 15px;
+        color: #ffffff;
+        margin-bottom: 5px;
+        text-decoration: none;
+    }
+
+    .btn-logout {
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 280px;
+        background-color: #9F12E1;
+        color: white;
+    }
+
+    .header-menu {
+        font-weight: 600;
+    }
+
+    .dropdown-menu {
+        width: 300px;
+    }
+
+    .dropdown-menu-big {
+        font-size: 15px;
+    }
+
+    .dropdown-menu-small {
+        font-size: 11px;
+    }
+
+    .dropdown-toggle::after {
+        display: none;
+    }
+
+    .nav-img {
+        width: 20px;
+        height: 20px;
+        margin-top: 20px;
+        margin-right: 20px;
+    }
+
+    /* 헤더, 푸터 스타일 끝 */
 }
 .dropdown-menu-big{
     font-size: 15px;
@@ -192,14 +298,14 @@
             <form class="left-box" action="/board/save" method="post" enctype="multipart/form-data">
 
                 <div class="box-title mb-3">
-                    <label for="password" class="form-label main-text">제목</label>
+                    <label class="form-label main-text">제목</label>
                     <input type="text" class="input-style form-control sub-text" id="username" placeholder="제목을 적으세요"
                         name="title">
                 </div>
 
                 <div class="box-title mb-3">
-                    <label for="password" class="form-label main-text">내용</label>
-                    <textarea class="custom-textarea" rows=" 20" cols="30" placeholder="글을 작성하세요" id="content"
+                    <label class="form-label main-text">내용</label>
+                    <textarea class="custom-textarea" rows=" 20" cols="30" id="content"
                         name="content"></textarea>
                 </div>
 
@@ -217,7 +323,8 @@
 <script>
     $(document).ready(function () {
         $('#content').summernote({
-            height: 200,        
+            placeholder: '글을 작성하세요',
+            height: 200,
         });
     });
 </script>
