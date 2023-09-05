@@ -306,7 +306,7 @@
         font-weight: 600;
     }
     .first-button{
-        margin-left: 550px;
+        margin-left: 650px;
         margin-top: 30px;
     }
     .star-icon-button {
@@ -333,8 +333,12 @@
 <div class="middle-box d-flex justify-content-center">
     <div class="middle-box d-flex flex-column">
         <div class="first-button d-flex">
-            <button class="btn btn-style btn-register main-text bottom-box-right btn-complete" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">지원완료</button>
-            <a href="" class="btn btn-style btn-login main-text bottom-box-right btn-apply" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">입사지원</a>
+            {{#ischeck}}
+                <button class="btn btn-style btn-register main-text bottom-box-right btn-complete" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">지원완료</button>
+            {{/ischeck}}
+            {{^ischeck}}
+                <a href="" class="btn btn-style btn-login main-text bottom-box-right btn-apply" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">입사지원</a>
+            {{/ischeck}}
         </div>
         <div class="box">
             <div class="d-flex">
