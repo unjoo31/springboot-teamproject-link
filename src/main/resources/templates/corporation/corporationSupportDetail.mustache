@@ -307,7 +307,7 @@
                     <div class="nav-img">
                         <img src="./img/resume.png" id="statusImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="/corporationSupport">
+                    <a class="dropdown-item left-nav-title" href="/corporationSupport/{{sessionUser.id}}">
                         채용공고 현황
                         <p class="left-nav-sub">Employment status</p>
                     </a>
@@ -347,17 +347,17 @@
                         <div class="grid-container2">
                             <div class="main-text">합격
                                 <div class="card">
-                                    <div class="card-body d-flex justify-content-end card-input">0</div>
+                                    <div class="card-body d-flex justify-content-end card-input">{{pass}}</div>
                                 </div>
                             </div>
                             <div class="main-text">불합격
                                 <div class="card">
-                                    <div class="card-body d-flex justify-content-end card-input">0</div>
+                                    <div class="card-body d-flex justify-content-end card-input">{{fail}}</div>
                                 </div>
                             </div>
                             <div class="main-text">미정
                                 <div class="card">
-                                    <div class="card-body d-flex justify-content-end card-input">0</div>
+                                    <div class="card-body d-flex justify-content-end card-input">{{undecided}}</div>
                                 </div>
                             </div>
                         </div>
@@ -370,7 +370,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <div>
-                                    <div class="main-text mt-1"><b>{{user.name}}</b></div>
+                                    <a href="/corporationSupportSeekerList" class="main-text mt-1"><b>{{user.name}}</b></a>
                                 </div>
                                 <div>
                                     <div class="statussuccess">{{pass}}</div>

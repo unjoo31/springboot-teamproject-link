@@ -8,8 +8,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import shop.mtcoding.blogv2.apply.ApplyRequest.PassDTO;
 import shop.mtcoding.blogv2.resume.Resume;
-import shop.mtcoding.blogv2.resume.ResumeRequest.PassDTO;
 import shop.mtcoding.blogv2.user.User;
 
 

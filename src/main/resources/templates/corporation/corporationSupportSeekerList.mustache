@@ -320,6 +320,7 @@
     <div class="container d-flex first-box">
         <form action="/apply/pass" method="post" enctype="multipart/form-data">
             <input type="hidden" name="applyId" value="{{apply.get.user.id}}">
+            <input type="hidden" name="noticeId" value="{{apply.get.notice.id}}">
             <button type="submit" class="btn btn-style btn-register main-text bottom-box-right" name="pass" value="합격">합격</button>
             <button type="submit" class="btn btn-style btn-failed main-text bottom-box-right" name="pass" value="불합격">불합격</button>
             <button type="submit" class="btn btn-style btn-login main-text bottom-box-right" name="pass" value="미정">미정</button>
