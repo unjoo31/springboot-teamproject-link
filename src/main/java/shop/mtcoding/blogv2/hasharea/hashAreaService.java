@@ -14,11 +14,18 @@ public class HashAreaService {
     @Autowired
     private HashAreaRepository hashAreaRepository;
 
-    public List<Area> 선택한지역목룍(Integer resumeId) {
+    public List<Area> 이력서선택한지역목룍(Integer resumeId) {
       
         List<Area> areaList = hashAreaRepository.findAreasByResumeId(resumeId);
 
         return areaList;
     }
-    
+
+    public List<Area> 채용공고선책한지역목록(Integer noticeId) {
+
+        List<Area> areaList = hashAreaRepository.findAreasByNoticeId(noticeId);
+
+        return areaList;
+    }
+     
 }
