@@ -191,28 +191,37 @@ public class NoticeController {
     }
 
     // 채용공고 페이지
-    @GetMapping("/corporationSupport")
-    public String corporationSupport(HttpServletRequest request) {
-
-        List<Notice> noticeList = noticeService.공고목록보기();
-
+    @GetMapping("/corporationSupport/{id}")
+    public String corporationSupport(@PathVariable Integer id, HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        List<Notice> noticeList = noticeService.등록한공고목록보기(id);
         List<Map<String, Object>> noticeDataList = new ArrayList<>();
+        
+        int expiredNoticeCount = 0;
+
         for (Notice notice : noticeList) {
             Map<String, Object> noticeData = new HashMap<>();
             noticeData.put("title", notice.getTitle());
             noticeData.put("user", notice.getUser());
             noticeData.put("hashSkilList", notice.getHashSkilList());
+            noticeData.put("noticeId", notice.getId());
 
             Date startDate = notice.getCreatedAt();
             Date endDate = notice.getEndDate();
 
             long timeDifferenceMillis = endDate.getTime() - startDate.getTime();
             long timeDifferenceDays = timeDifferenceMillis / (1000 * 60 * 60 * 24);
+            if (timeDifferenceDays <= 0) {
+                expiredNoticeCount++;
+            }
             noticeData.put("timeDifference", timeDifferenceDays);
-
+            System.out.println("테스트 : " + expiredNoticeCount);
             noticeDataList.add(noticeData);
+            
         }
-
+        request.setAttribute("ongoing", noticeDataList.size()-expiredNoticeCount);
+        request.setAttribute("expiredNoticeCount", expiredNoticeCount);
+        request.setAttribute("count", noticeDataList.size());
         request.setAttribute("noticeDataList", noticeDataList);
         return "/corporation/corporationSupport";
     }
@@ -268,6 +277,7 @@ public class NoticeController {
         return "/corporation/corporationSaveResumeUpdate";
     }
 
+
     @GetMapping("/corporationResume")
     public String corporationResume(Model model1, Model model2, Model model3) {
         User sessionUser = (User) session.getAttribute("sessionUser");
@@ -280,14 +290,19 @@ public class NoticeController {
         return "/corporation/corporationResume";
     }
 
+
     @GetMapping("/corporationSaveResume")
     public String corporationSaveResumeForm(Model model1, Model model2) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        User user = userService.회원정보보기(sessionUser.getId());
         List<Skill> skill = skillService.모든스킬가져오기();
         List<Area> area = areaService.모든지역가져오기();
+        model1.addAttribute("userInfo", user);
         model1.addAttribute("skills", skill);
         model2.addAttribute("areas", area);
         return "/corporation/corporationSaveResume";
     }
+
 
     @PostMapping("/corporationSave")
     public String corporationSaveResume(NoticeRequest.NoticeSaveDTO noticeSaveDTO) {
@@ -295,6 +310,7 @@ public class NoticeController {
         noticeService.채용공고등록(noticeSaveDTO, sessionUser.getId());
         return "redirect:/corporationResume";
     }
+
 
     @PostMapping("/corporationUpdate")
     public String corporationUpdate(NoticeRequest.NoticeUpdateDTO noticeUpdateDTO) {
