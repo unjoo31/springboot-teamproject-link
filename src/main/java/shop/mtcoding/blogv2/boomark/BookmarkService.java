@@ -38,4 +38,29 @@ public class BookmarkService {
 
         return users;
     }
+
+    public List<User> 북마크구직자찾기(Integer id) {
+        List<Object[]> result = bookmarkRepository.findByBookmark(id);
+        List<User> users = new ArrayList<>();
+
+        for (Object[] row : result) {
+            User user = new User();
+            user.setEmail((String) row[3]);            
+            user.setName((String) row[6]);            
+            user.setAddress((String) row[8]);
+
+            users.add(user);
+        }
+
+        return users;
+    }
+
+    public Boolean 채용공고북마크여부확인(User userId, Integer noticeId) {
+        int count = bookmarkRepository.noticeBookmarkCheck(userId, noticeId);
+        if(count > 0){
+            return true;
+        }
+        return false;
+    }
+
 }

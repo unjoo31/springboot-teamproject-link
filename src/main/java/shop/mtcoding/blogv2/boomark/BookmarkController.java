@@ -25,8 +25,7 @@ public class BookmarkController {
     @Autowired
     private HttpSession session;
 
-    
-    // 관심구직자/기술스택
+    // 관심기업/기술스택
     @GetMapping("/seekerCompanies")
     public String seekCompaniesForm(HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
@@ -51,7 +50,7 @@ public class BookmarkController {
         return "/seeker/seekerCompanies";
     }
 
-    // 입사지원 북마크
+    // 채용공고 북마크
     @PostMapping("/applyNoticeBookmark/{noticeId}")
     public String applyNoticeBookmark(@PathVariable Integer noticeId){
         User sessionUser = (User) session.getAttribute("sessionUser");
@@ -64,4 +63,30 @@ public class BookmarkController {
               
         return "redirect:/applyNotice/{noticeId}";
     }
+
+
+    // 관심구직자/기술스택
+    @GetMapping("/corporationSeeker")
+    public String corporationSeeker(HttpServletRequest request){
+        User sessionUser = (User) session.getAttribute("sessionUser");
+
+        // 구직자 리스트 보여주기
+        List<User> seekerUsers = bookmarkService.북마크구직자찾기(sessionUser.getId());
+
+        System.out.println("북마크" + sessionUser.getId());
+
+        List<Map<String, Object>> seekerDataList = new ArrayList<>();
+        for (User seekeruser : seekerUsers) {
+            Map<String, Object> seekerData = new HashMap<>();
+            seekerData.put("email", seekeruser.getEmail());
+            seekerData.put("name", seekeruser.getName());
+            seekerData.put("address", seekeruser.getAddress());
+
+            seekerDataList.add(seekerData);
+        }
+
+        request.setAttribute("seekerDataList", seekerDataList);
+        return "/corporation/corporationSeeker";
+    }
+
 }
