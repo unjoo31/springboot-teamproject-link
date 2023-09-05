@@ -333,7 +333,6 @@
                 <div class="card">
                     <div class="card-header">Employment announcement</div>
                     <div class="card-body">
-                        <form action="/join" method="post">
                             <div class="mb-3 d-flex justify-content-start">
                                 <div class="personal-img">
                                     <img src="/img/hello.png">
@@ -354,7 +353,7 @@
                                 </div>
                                 <div>
                                     <div>
-                                        <form action="#" method="post">
+                                        <form action="/corporationNoticeDelete/{{id}}/delete" method="post">
                                             <button class="btn img-botton btn-employment main-text" id="btnJoin"
                                                 type="submit" onmouseover="highlightButton(this)"
                                                 onmouseout="unhighlightButton(this)">채용공고 삭제</button>
@@ -364,11 +363,10 @@
                                         <button class="btn img-botton btn-employment main-text" id="btnJoin"
                                             type="submit" onmouseover="highlightButton(this)"
                                             onmouseout="unhighlightButton(this)"> <a
-                                                href="/corporationSaveResumeUpdate">채용공고 수정</a></button>
+                                                href="/corporationSaveResumeUpdate/{{id}}">채용공고 수정</a></button>
                                     </div>
                                 </div>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>

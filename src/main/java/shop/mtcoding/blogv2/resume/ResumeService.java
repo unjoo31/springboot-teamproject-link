@@ -100,29 +100,30 @@ public class ResumeService {
                 resumeRepository.save(resume);
         }
 
-        public Resume 이력서가져오기(Integer userId) {
-                Resume resume = resumeRepository.findById(userId).get();
-                return resume;
+        public Resume 이력서가져오기(Integer resumeId) {
+                Optional<Resume> resumeOP = resumeRepository.findById(resumeId);
+
+                return resumeOP.orElse(new Resume());
         }
 
-        public Resume 이력서존재유무확인(Integer userId) {
-                Resume resumeOP = resumeRepository.findByUserId(userId);
+        public List<Resume> 이력서존재유무확인(Integer userId) {
+                List<Resume> resumeList = resumeRepository.findByUserId(userId);
                 
-                if (resumeOP != null) {
-                    return resumeOP;
-                } else {
-                    // 이력서를 찾을 수 없는 경우에 대한 처리
-                    // 예: 빈 이력서를 생성하여 반환하거나 예외를 던질 수 있음
-                    return null; // 빈 이력서를 반환하는 예시
-                }
+                if (resumeList != null) {
+                        System.out.println("값이 있습니다.");
+                        return resumeList;
+                    } else {
+                        System.out.println("값이 없습니다.");
+                        return null;
+                    }
             }
 
 
         @Transactional
-        public void 이력서수정(ResumeUpdateDTO resumeUpdateDTO, Integer userId) {
+        public void 이력서수정(ResumeUpdateDTO resumeUpdateDTO, Integer resumeId) {
 
                 // builder 를 사용하면 데이터가 쌓이기때문에 있는 데이터를 이용하여 값을 수정
-                Resume resume = resumeRepository.findByUserId(userId);
+                Resume resume = resumeRepository.mfindByResumeId(resumeId);
 
                 resume.setContent(resumeUpdateDTO.getContent());
                 resume.setCareer(resumeUpdateDTO.getCareer());
@@ -147,7 +148,7 @@ public class ResumeService {
                         Skill skill = skillRepository.findBySkillName(skillName);
 
                         HashSkil hashSkil = HashSkil.builder()
-                                        .user(User.builder().id(userId).build())
+                                        .user(User.builder().id(resume.getUser().getId()).build())
                                         .skill(skill)
                                         .resume(resume)
                                         .build();
@@ -160,7 +161,7 @@ public class ResumeService {
                         Area area = areaRepository.findByAreaName(areaName);
 
                         HashArea hashArea = HashArea.builder()
-                                        .user(User.builder().id(userId).build())
+                                        .user(User.builder().id(resume.getUser().getId()).build())
                                         .area(area)
                                         .resume(resume)
                                         .build();

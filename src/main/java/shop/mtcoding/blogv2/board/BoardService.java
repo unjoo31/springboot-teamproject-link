@@ -2,6 +2,9 @@ package shop.mtcoding.blogv2.board;
 
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -22,6 +25,9 @@ public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
 
+    @PersistenceContext
+    private EntityManager em; // EntityManager를 주입받습니다.
+
     @Transactional
     public void 글쓰기(BoardRequest.SaveDTO saveDTO, int sessionUserId) {
 
@@ -35,18 +41,29 @@ public class BoardService {
         boardRepository.save(board);
     }
 
-    public Board 게시글화면보기(Integer id) {
+    // 게시글 목록보기
+    public Page<Board> board(String keyword, Integer page) {
+        final int SIZE = 5;
+        Pageable pageable = PageRequest.of(page, SIZE, Sort.by("id").descending());
+
+        Page<Board> boardPage;
+        if (keyword == null || keyword.isBlank()) {
+            boardPage = boardRepository.findAll(pageable);
+        } else {
+            boardPage = boardRepository.findByTitleContainingOrContentContaining(keyword, keyword, pageable);
+        }
+
+        return boardPage;
+    }
+
+    @Transactional
+    public Board 게시글수정화면보기(Integer id) {
         Optional<Board> boardOP = boardRepository.mFindByIdJoinRepliesInUser(id);
         if (boardOP.isPresent()) {
             return boardOP.get();
         } else {
             throw new RuntimeException(id + "는 찾을 수 없습니다");
         }
-    }
-
-    public Page<Board> 게시글목록보기(Integer page) {
-        Pageable pageable = PageRequest.of(page, 5, Sort.Direction.DESC, "id");
-        return boardRepository.findAll(pageable);
     }
 
     @Transactional
@@ -64,14 +81,11 @@ public class BoardService {
 
     @Transactional
     public void 게시글삭제하기(Integer id) {
-        try {
+        boardRepository.deleteById(id);
+    }
 
-            boardRepository.deleteById(id);
-        } catch (DataIntegrityViolationException e) {
-            throw new RuntimeException(id + "를 삭제할 수 없습니다. 게시물과 관련된 댓글이 존재합니다.");
-        } catch (Exception e) {
-            throw new RuntimeException(id + "를 찾을 수 없어요");
-        }
+    public Optional<Board> 게시글작성자조회하기(Integer id) {
+        return boardRepository.findById(id);
     }
 
     public Board 댓글화면보기(Integer id) {
@@ -82,5 +96,6 @@ public class BoardService {
             throw new RuntimeException(id + "는 찾을 수 없습니다");
         }
     }
+
 
 } // class

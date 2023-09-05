@@ -67,6 +67,12 @@ VALUES
 ('합격', 5, 3, 1),
 ('합격', 5, 4, 1),
 ('합격', 5, 5, 1),
+('합격', 5, 6, 1),
+('합격', 5, 7, 1),
+('합격', 5, 8, 1),
+('합격', 5, 9, 1),
+('미정', 2, 10, 2),
+('불합격', 1, 2, 2),
 ('합격', 6, 1, 2),
 ('합격', 6, 2, 2),
 ('합격', 6, 3, 2),
@@ -84,7 +90,6 @@ INSERT INTO skill_tb (skill_name) VALUES('Java');
 INSERT INTO skill_tb (skill_name) VALUES('JavaScript');
 INSERT INTO skill_tb (skill_name) VALUES('Git');
 INSERT INTO skill_tb (skill_name) VALUES('AWS');
-
 INSERT INTO area_tb (area_name)
 VALUES
     ('Busan'),

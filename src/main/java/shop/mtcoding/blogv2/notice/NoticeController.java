@@ -32,6 +32,7 @@ import shop.mtcoding.blogv2.apply.ApplyService;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.area.AreaResponse;
 import shop.mtcoding.blogv2.area.AreaService;
+import shop.mtcoding.blogv2.boomark.BookmarkService;
 import shop.mtcoding.blogv2.hasharea.HashAreaService;
 import shop.mtcoding.blogv2.hashskil.HashSkil;
 import shop.mtcoding.blogv2.hashskil.HashSkilService;
@@ -44,6 +45,9 @@ import shop.mtcoding.blogv2.user.UserService;
 
 @Controller
 public class NoticeController {
+
+    @Autowired
+    private BookmarkService bookmarkService;
 
     @Autowired
     private ApplyService applyService;
@@ -196,7 +200,7 @@ public class NoticeController {
         User sessionUser = (User) session.getAttribute("sessionUser");
         List<Notice> noticeList = noticeService.등록한공고목록보기(id);
         List<Map<String, Object>> noticeDataList = new ArrayList<>();
-        
+
         int expiredNoticeCount = 0;
 
         for (Notice notice : noticeList) {
@@ -217,9 +221,9 @@ public class NoticeController {
             noticeData.put("timeDifference", timeDifferenceDays);
             System.out.println("테스트 : " + expiredNoticeCount);
             noticeDataList.add(noticeData);
-            
+
         }
-        request.setAttribute("ongoing", noticeDataList.size()-expiredNoticeCount);
+        request.setAttribute("ongoing", noticeDataList.size() - expiredNoticeCount);
         request.setAttribute("expiredNoticeCount", expiredNoticeCount);
         request.setAttribute("count", noticeDataList.size());
         request.setAttribute("noticeDataList", noticeDataList);
@@ -229,11 +233,15 @@ public class NoticeController {
     // 입사지원 화면
     // 공고 작성 완료 이후에 세션 등록
     @GetMapping("/applyNotice/{noticeId}")
-    public String applyNotice(@PathVariable Integer noticeId, HttpServletRequest request){
+    public String applyNotice(@PathVariable Integer noticeId, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User userId = userService.회원정보보기(sessionUser.getId());
         Notice notice = noticeService.공고상세보기(noticeId);
         Boolean ischeck = applyService.채용공고지원여부확인(userId, noticeId);
+        Boolean isBookmark = bookmarkService.채용공고북마크여부확인(userId, noticeId);
+
+        System.out.println("북마크 공고 테스트 : " + noticeId);
+        System.out.println("북마크 테스트 : " + isBookmark);
 
         // 마감일 계산을 위해서 변수에 담아주기
         Date startDate = notice.getCreatedAt();
@@ -246,25 +254,24 @@ public class NoticeController {
         request.setAttribute("notice", notice);
         request.setAttribute("timeDifferenceDays", timeDifferenceDays);
         request.setAttribute("ischeck", ischeck);
+        request.setAttribute("isBookmark", isBookmark);
         return "seeker/applyNotice";
     }
 
-
-    
-    
-    @GetMapping("/corporationSaveResumeUpdate")
-    public String corporationSaveResumeUpdateForm(Model model1, Model model2, Model model3, Model model4,
+    @GetMapping("/corporationSaveResumeUpdate/{noticeId}")
+    public String corporationSaveResumeUpdateForm(@PathVariable Integer noticeId, Model model1, Model model2,
+            Model model3, Model model4,
             Model model5) {
 
         User sessionUser = (User) session.getAttribute("sessionUser");
-        Notice notice = noticeService.채용공고가져오기(sessionUser.getId());
+        Notice notice = noticeService.채용공고가져오기(noticeId);
 
         // 스킬처리 로직 [1. 선택한 스킬 2. 선택하지 않은 스킬]
-        List<Skill> skill2 = hashSkilService.선택한스킬목록(sessionUser.getId());
+        List<Skill> skill2 = hashSkilService.채용공고선택한스킬목록(noticeId);
         List<Skill> restSkill = skillService.채용공고나머지스킬가져오기(notice.getId()); // 선택하고 남은 스킬
 
         // 지역처리 로직 [1. 선택한 지역 2. 선택하지 않은 지역]
-        List<Area> area2 = hashAreaService.선택한지역목룍(sessionUser.getId());
+        List<Area> area2 = hashAreaService.채용공고선책한지역목록(notice.getId());
         List<Area> restArea = areaService.채용공고나머지지역가져오기(notice.getId());
 
         model1.addAttribute("userNotice", notice); // 이력서를 보여주는 모델
@@ -277,19 +284,17 @@ public class NoticeController {
         return "/corporation/corporationSaveResumeUpdate";
     }
 
-
     @GetMapping("/corporationResume")
     public String corporationResume(Model model1, Model model2, Model model3) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.회원정보보기(sessionUser.getId());
         List<Notice> notice = noticeService.채용공고존재유무확인(sessionUser.getId());
-        List<Skill> skill = hashSkilService.선택한스킬목록(sessionUser.getId());
+        List<Skill> skill = hashSkilService.채용공고선택한스킬목록(sessionUser.getId());
         model1.addAttribute("userInfo", user);
         model2.addAttribute("existNotice", notice);
         model3.addAttribute("selectSkill", skill);
         return "/corporation/corporationResume";
     }
-
 
     @GetMapping("/corporationSaveResume")
     public String corporationSaveResumeForm(Model model1, Model model2) {
@@ -303,7 +308,6 @@ public class NoticeController {
         return "/corporation/corporationSaveResume";
     }
 
-
     @PostMapping("/corporationSave")
     public String corporationSaveResume(NoticeRequest.NoticeSaveDTO noticeSaveDTO) {
         User sessionUser = (User) session.getAttribute("sessionUser");
@@ -311,13 +315,16 @@ public class NoticeController {
         return "redirect:/corporationResume";
     }
 
-
-    @PostMapping("/corporationUpdate")
-    public String corporationUpdate(NoticeRequest.NoticeUpdateDTO noticeUpdateDTO) {
-        User sessionUser = (User) session.getAttribute("sessionUser");
-        noticeService.채용공고수정(noticeUpdateDTO, sessionUser.getId());
+    @PostMapping("/corporationUpdate/{noticeId}")
+    public String corporationUpdate(@PathVariable Integer noticeId, NoticeRequest.NoticeUpdateDTO noticeUpdateDTO) {
+        noticeService.채용공고수정(noticeUpdateDTO, noticeId);
         return "redirect:/corporationResume";
     }
 
-  
+    @PostMapping("/corporationNoticeDelete/{noticeId}/delete")
+    public String corporationDelete(@PathVariable Integer noticeId) {
+        noticeService.채용공고삭제(noticeId);
+        return "redirect:/corporationResume";
+    }
+
 }
