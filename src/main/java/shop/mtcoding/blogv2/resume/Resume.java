@@ -20,17 +20,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import shop.mtcoding.blogv2.apply.Apply;
-import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.hasharea.HashArea;
 import shop.mtcoding.blogv2.hashskil.HashSkil;
-import shop.mtcoding.blogv2.skill.Skill;
 import shop.mtcoding.blogv2.user.User;
 
 @NoArgsConstructor
 @Getter
 @Setter
-@Table
-@Entity(name = "resume_tb")
+@Table (name = "resume_tb")
+@Entity
 public class Resume {
 
     @Id
@@ -41,11 +39,11 @@ public class Resume {
 
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Apply> applyList = new ArrayList<>();
 
     @JsonIgnore

@@ -70,6 +70,7 @@ public class ApplyController {
 
 }
 
+
     // 채용공고 (이력서 상세보기 전)
     // 지원자 현황 (이력서 상세보기 전)
     @GetMapping("/corporationSupportDetail/{id}")

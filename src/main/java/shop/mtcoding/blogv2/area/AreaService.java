@@ -23,7 +23,7 @@ public class AreaService {
         return areaRepository.findAll();
     }
 
-    public List<Area> 나머지지역가져오기(Integer id) {
+    public List<Area> 이력서나머지지역가져오기(Integer id) {
 
         List<Area> area = areaRepository.findAll();
 
