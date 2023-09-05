@@ -10,8 +10,6 @@ public class Blogv2Application {
 		SpringApplication.run(Blogv2Application.class, args);
 
 
-
-		
 	}
 
 }

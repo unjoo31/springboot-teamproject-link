@@ -194,17 +194,35 @@
     <div class="container-fluid d-flex justify-content-between mb-3 ">
 
         <div class="left-align-container search-input">
-            <input class="search-input search-text" type="text" placeholder="검색어를 입력하세요" style="border: none;">
-            <button class="navbar-toggler" type="button" style="background: none; border: none">
-                <img src="/img/search.png" alt="이미지 설명">
-            </button>
+            <form action="/board" method="get" onsubmit="return valid()">
+                <input id="keyword" class="search-input search-text" type="text" name="keyword" placeholder="검색어를 입력하세요" style="border: none;" required>
+                <button class="btn btn-primary" type="submit" style="background: none; border: none">
+                    <img src="/img/search.png" alt="검색 돋보기">
+                </button>
+            </form>
         </div>
-
+     
         <div class="btn btn-boardstyle btn-register main-text">
             <a href="/board/saveBoard">게시글작성</a>
         </div>
 
     </div>
+
+    <script>
+        function isWhitespace(str) {
+            return str.trim() === '';
+        }
+
+        function valid() {
+            let keyword = document.querySelector("#keyword").value;
+            console.log(keyword);
+            if (isWhitespace(keyword)) {
+                alert('공백을 입력할 수 없습니다');
+                return false;
+            }
+        }
+    </script>
+
 
 
     <div class="d-flex justify-content-between mb-3 box-layout">
@@ -222,7 +240,7 @@
                 <td class="text-center"><input type="checkbox"></td>
 
                 <td><a class="btn btn-primary" href="/board/{{id}}/detailBoard">{{title}}</a></td>
- 
+
                 <td><a class="state-completion" href="/board/{{id}}/updateForm">수정</a></td>
 
                 <td class="d-flex">
