@@ -90,7 +90,6 @@ INSERT INTO skill_tb (skill_name) VALUES('Java');
 INSERT INTO skill_tb (skill_name) VALUES('JavaScript');
 INSERT INTO skill_tb (skill_name) VALUES('Git');
 INSERT INTO skill_tb (skill_name) VALUES('AWS');
-
 INSERT INTO area_tb (area_name)
 VALUES
     ('Busan'),
