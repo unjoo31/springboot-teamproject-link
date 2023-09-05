@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.blogv2.apply.Apply;
 import shop.mtcoding.blogv2.apply.ApplyRequest;
+import shop.mtcoding.blogv2.apply.ApplyService;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.area.AreaResponse;
 import shop.mtcoding.blogv2.area.AreaService;
@@ -43,6 +44,9 @@ import shop.mtcoding.blogv2.user.UserService;
 
 @Controller
 public class NoticeController {
+
+    @Autowired
+    private ApplyService applyService;
 
     @Autowired
     private NoticeService noticeService;
@@ -226,7 +230,10 @@ public class NoticeController {
     // 공고 작성 완료 이후에 세션 등록
     @GetMapping("/applyNotice/{noticeId}")
     public String applyNotice(@PathVariable Integer noticeId, HttpServletRequest request){
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        User userId = userService.회원정보보기(sessionUser.getId());
         Notice notice = noticeService.공고상세보기(noticeId);
+        Boolean ischeck = applyService.채용공고지원여부확인(userId, noticeId);
 
         // 마감일 계산을 위해서 변수에 담아주기
         Date startDate = notice.getCreatedAt();
@@ -236,9 +243,9 @@ public class NoticeController {
         long timeDifferenceMillis = endDate.getTime() - startDate.getTime();
         long timeDifferenceDays = timeDifferenceMillis / (1000 * 60 * 60 * 24);
 
-        System.out.println("테스트 : " + notice.getHashAreaList().get(0).getArea().getAreaName());
         request.setAttribute("notice", notice);
         request.setAttribute("timeDifferenceDays", timeDifferenceDays);
+        request.setAttribute("ischeck", ischeck);
         return "seeker/applyNotice";
     }
 

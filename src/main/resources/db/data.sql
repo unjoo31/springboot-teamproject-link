@@ -63,8 +63,21 @@ VALUES
 INSERT INTO apply_tb (pass, user_id, notice_id, resume_id)
 VALUES
 ('합격', 5, 1, 1),
+<<<<<<< HEAD
 ('미정', 6, 1, 2),
 ('불합격', 5, 3, 2);
+=======
+('합격', 5, 2, 1),
+('합격', 5, 3, 1),
+('합격', 5, 4, 1),
+('합격', 5, 5, 1),
+('합격', 5, 6, 1),
+('합격', 5, 7, 1),
+('합격', 5, 8, 1),
+('합격', 5, 9, 1),
+('미정', 2, 10, 2),
+('불합격', 1, 2, 2);
+>>>>>>> dev
 INSERT INTO skill_tb (skill_name) VALUES('CSS');
 INSERT INTO skill_tb (skill_name) VALUES('C#');
 INSERT INTO skill_tb (skill_name) VALUES('JSP');

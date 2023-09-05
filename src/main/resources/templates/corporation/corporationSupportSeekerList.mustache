@@ -66,11 +66,18 @@
     background-color: #9F12E1;
     color: white;
 }
+.btn-logout a{
+    font-size: 15px;
+    color: #ffffff;
+}
 .header-menu{
     font-weight: 600;
 }
 .dropdown-menu{
     width: 300px;
+    position: absolute;
+    left: -230px;
+
 }
 .dropdown-menu-big{
     font-size: 15px;
@@ -326,17 +333,17 @@
             <button type="submit" class="btn btn-style btn-login main-text bottom-box-right" name="pass" value="미정">미정</button>
         </form>
             <button type="button" class="btn close-btn"> 
-            <img src="./img/boomark.png" alt="">
+            <img src="/img/boomark.png" alt="">
         </button>
     </div>
     <div class>
          <div class="container d-flex mt-3 second-box">
             <div class="personal-img">
-                <img src="./img/hello.png">
+                <img src="/img/hello.png">
             </div>
             <div class="text title-text">{{apply.get.user.name}}</div>
             <div class="boomark-img">
-                <img src="./img/boomark.png">
+                <img src="/img/boomark.png">
             </div>
          </div>
     </div>

@@ -45,9 +45,13 @@ public class ApplyService {
         applyRepository.updatePassById(newPass,applyId);
     }
 
-
-
-    
+    public boolean 채용공고지원여부확인(User userId, Integer noticeId){
+        int count = applyRepository.noticeApplyCheck(userId, noticeId);
+        if(count > 0){
+            return true;
+        }
+        return false;
+    }    
 }
     
 
