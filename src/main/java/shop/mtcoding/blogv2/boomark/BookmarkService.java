@@ -38,4 +38,21 @@ public class BookmarkService {
 
         return users;
     }
+
+    public List<User> 북마크구직자찾기(Integer id) {
+        List<Object[]> result = bookmarkRepository.findByBookmark(id);
+        List<User> users = new ArrayList<>();
+
+        for (Object[] row : result) {
+            User user = new User();
+            user.setEmail((String) row[3]);            
+            user.setName((String) row[6]);            
+            user.setAddress((String) row[8]);
+
+            users.add(user);
+        }
+
+        return users;
+    }
+
 }
