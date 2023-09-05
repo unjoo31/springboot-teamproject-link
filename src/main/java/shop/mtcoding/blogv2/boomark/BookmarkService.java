@@ -55,4 +55,12 @@ public class BookmarkService {
         return users;
     }
 
+    public Boolean 채용공고북마크여부확인(User userId, Integer noticeId) {
+        int count = bookmarkRepository.noticeBookmarkCheck(userId, noticeId);
+        if(count > 0){
+            return true;
+        }
+        return false;
+    }
+
 }

@@ -32,6 +32,7 @@ import shop.mtcoding.blogv2.apply.ApplyService;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.area.AreaResponse;
 import shop.mtcoding.blogv2.area.AreaService;
+import shop.mtcoding.blogv2.boomark.BookmarkService;
 import shop.mtcoding.blogv2.hasharea.HashAreaService;
 import shop.mtcoding.blogv2.hashskil.HashSkil;
 import shop.mtcoding.blogv2.hashskil.HashSkilService;
@@ -46,6 +47,12 @@ import shop.mtcoding.blogv2.user.UserService;
 public class NoticeController {
 
     @Autowired
+<<<<<<< HEAD
+=======
+    private BookmarkService bookmarkService;
+
+    @Autowired
+>>>>>>> fe815c4626249bb3d5e67e46e6db82fcbbb34779
     private ApplyService applyService;
 
     @Autowired
@@ -234,6 +241,13 @@ public class NoticeController {
         User userId = userService.회원정보보기(sessionUser.getId());
         Notice notice = noticeService.공고상세보기(noticeId);
         Boolean ischeck = applyService.채용공고지원여부확인(userId, noticeId);
+<<<<<<< HEAD
+=======
+        Boolean isBookmark = bookmarkService.채용공고북마크여부확인(userId, noticeId);
+
+        System.out.println("북마크 공고 테스트 : "+ noticeId);
+        System.out.println("북마크 테스트 : " + isBookmark);
+>>>>>>> fe815c4626249bb3d5e67e46e6db82fcbbb34779
 
         // 마감일 계산을 위해서 변수에 담아주기
         Date startDate = notice.getCreatedAt();
@@ -246,6 +260,10 @@ public class NoticeController {
         request.setAttribute("notice", notice);
         request.setAttribute("timeDifferenceDays", timeDifferenceDays);
         request.setAttribute("ischeck", ischeck);
+<<<<<<< HEAD
+=======
+        request.setAttribute("isBookmark", isBookmark);
+>>>>>>> fe815c4626249bb3d5e67e46e6db82fcbbb34779
         return "seeker/applyNotice";
     }
 
