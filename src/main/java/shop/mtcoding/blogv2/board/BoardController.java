@@ -59,6 +59,7 @@ public class BoardController {
         return "redirect:/board";
     }
 
+  
     // 게시글 글수정,삭제 화면 호출
     @GetMapping("/board/{id}/updateForm")
     public String updateForm(@PathVariable Integer id, HttpServletRequest request) {

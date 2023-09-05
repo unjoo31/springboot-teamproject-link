@@ -16,6 +16,11 @@ import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.area.AreaRepository;
 import shop.mtcoding.blogv2.hasharea.HashArea;
+import shop.mtcoding.blogv2.hasharea.HashAreaRepository;
+import shop.mtcoding.blogv2.hashskil.HashSkil;
+import shop.mtcoding.blogv2.hashskil.HashSkilRepository;
+import shop.mtcoding.blogv2.notice.NoticeRequest.NoticeSaveDTO;
+import shop.mtcoding.blogv2.notice.NoticeRequest.NoticeUpdateDTO;
 import shop.mtcoding.blogv2.hashskil.HashSkil;
 import shop.mtcoding.blogv2.notice.NoticeRequest.NoticeSaveDTO;
 import shop.mtcoding.blogv2.skill.Skill;
@@ -25,6 +30,12 @@ import shop.mtcoding.blogv2.user.UserRepository;
 
 @Service
 public class NoticeService {
+
+    @Autowired
+    private HashAreaRepository hashAreaRepository;
+
+    @Autowired
+    private HashSkilRepository hashSkilRepository;
 
     @Autowired
     private NoticeRepository noticeRepository;
@@ -62,6 +73,7 @@ public class NoticeService {
     }
 
     // 입사지원 화면 
+
     public Notice 공고상세보기(Integer noticeId) {
        Optional<Notice> noticeOP = noticeRepository.findById(noticeId);
        if (noticeOP.isPresent()) {
@@ -69,7 +81,8 @@ public class NoticeService {
        }else{
         throw new MyException(noticeId + "는 찾을 수 없습니다.");
        }
-    }    
+    }
+
 
     @Transactional
     public void 채용공고등록(NoticeSaveDTO noticeSaveDTO, Integer userId) {
@@ -84,43 +97,116 @@ public class NoticeService {
         User user = userRepository.findById(userId).get();
 
         Notice notice = Notice.builder()
-        .user(user)
-        .career(noticeSaveDTO.getCareer())
-        .title(noticeSaveDTO.getTitle())
-        .academicAbility(noticeSaveDTO.getAcademicAbility())
-        .salary(noticeSaveDTO.getSalary())
-        .typeOfWork(noticeSaveDTO.getTypeOfWork())
-        .endDate(noticeSaveDTO.getEndDate())
-        .content(noticeSaveDTO.getContent())
-        .hashSkilList(hashSkilList)
-        .hashAreaList(hashAreaList)
-        .build();
+                .user(user)
+                .career(noticeSaveDTO.getCareer())
+                .title(noticeSaveDTO.getTitle())
+                .academicAbility(noticeSaveDTO.getAcademicAbility())
+                .salary(noticeSaveDTO.getSalary())
+                .typeOfWork(noticeSaveDTO.getTypeOfWork())
+                .endDate(noticeSaveDTO.getEndDate())
+                .content(noticeSaveDTO.getContent())
+                .hashSkilList(hashSkilList)
+                .hashAreaList(hashAreaList)
+                .build();
 
-               // 채용공고가 만들어진 후에 스킬과 지역이 만들어진다.
-                for (String skillName : skillList) {
-                        Skill skill = skillRepository.findBySkillName(skillName);
+        // 채용공고가 만들어진 후에 스킬과 지역이 만들어진다.
+        for (String skillName : skillList) {
+            Skill skill = skillRepository.findBySkillName(skillName);
 
-                        HashSkil hashSkil = HashSkil.builder()
-                                        .user(user)
-                                        .skill(skill)
-                                        .notice(notice) 
-                                        .build();
-                        hashSkilList.add(hashSkil);
-                }
+            HashSkil hashSkil = HashSkil.builder()
+                    .user(user)
+                    .skill(skill)
+                    .notice(notice)
+                    .build();
+            hashSkilList.add(hashSkil);
+        }
 
-                for (String areaName : areaList) {
-                        Area area = areaRepository.findByAreaName(areaName);
+        for (String areaName : areaList) {
+            Area area = areaRepository.findByAreaName(areaName);
 
-                        HashArea hashArea = HashArea.builder()
-                                        .user(user)
-                                        .area(area)
-                                        .notice(notice) 
-                                        .build();
-                        hashAreaList.add(hashArea);
-                }
+            HashArea hashArea = HashArea.builder()
+                    .user(user)
+                    .area(area)
+                    .notice(notice)
+                    .build();
+            hashAreaList.add(hashArea);
+        }
 
-                noticeRepository.save(notice);
+        noticeRepository.save(notice);
 
     }
 
+    public List<Notice> 채용공고존재유무확인(Integer userId) {
+        List<Notice> noticeList = noticeRepository.findByUserId(userId);
+
+        if (noticeList != null) {
+            System.out.println("값이 있습니다.");
+            return noticeList;
+        } else {
+            System.out.println("값이 없습니다.");
+            return null;
+        }
+    }
+
+    public Notice 채용공고가져오기(Integer userId) {
+        Notice notice = noticeRepository.findById(userId).get();
+        return notice;
+    }
+
+    @Transactional
+    public void 채용공고수정(NoticeUpdateDTO noticeUpdateDTO, Integer userId) {
+
+        // builder 를 사용하면 데이터가 쌓이기때문에 있는 데이터를 이용하여 값을 수정
+        Notice notice = noticeRepository.findNoticeByUserId(userId);
+
+        notice.getUser().setUsername(noticeUpdateDTO.getUsername());
+        notice.setCareer(noticeUpdateDTO.getCareer());
+        notice.setTitle(noticeUpdateDTO.getTitle());
+        notice.setAcademicAbility(noticeUpdateDTO.getAcademicAbility());
+        notice.setSalary(noticeUpdateDTO.getSalary());
+        notice.setTypeOfWork(noticeUpdateDTO.getTypeOfWork());
+        notice.setEndDate(noticeUpdateDTO.getEndDate());
+        notice.setContent(noticeUpdateDTO.getContent());
+
+        // 여기서부터 지역과 스킬스택 처리 로직
+        List<HashSkil> hashSkilList = new ArrayList<>();
+        List<HashArea> hashAreaList = new ArrayList<>();
+
+        // 필요없는 이전 데이터[쓰레기데이터]가 쌓이는 것을 방지 하기위해 삭제 [초기화 과정]
+        hashSkilRepository.deleteByResumeId(notice.getId());
+        hashAreaRepository.deleteByResumeId(notice.getId());
+
+        List<String> skillList = noticeUpdateDTO.getSkilList();
+        List<String> areaList = noticeUpdateDTO.getAreaList();
+
+        for (String skillName : skillList) {
+            Skill skill = skillRepository.findBySkillName(skillName);
+
+            HashSkil hashSkil = HashSkil.builder()
+                    .user(User.builder().id(userId).build())
+                    .skill(skill)
+                    .notice(notice)
+                    .build();
+            hashSkilList.add(hashSkil);
+        }
+
+        notice.setHashSkilList(hashSkilList);
+
+        for (String areaName : areaList) {
+            Area area = areaRepository.findByAreaName(areaName);
+
+            HashArea hashArea = HashArea.builder()
+                    .user(User.builder().id(userId).build())
+                    .area(area)
+                    .notice(notice)
+                    .build();
+            hashAreaList.add(hashArea);
+        }
+
+        notice.setHashAreaList(hashAreaList);
+
+        // 쿼리를 날리는 갯수를 보면 그렇게 효율적인 방안은 아니지만 데이터베이스의 최적화를 위해선 효율적인 방안입니다.
+    }
+
+  
 }
