@@ -328,6 +328,10 @@
         vertical-align: middle;
        
     }
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 </style>
 
 <div class="middle-box d-flex justify-content-center">
@@ -337,7 +341,11 @@
                 <button class="btn btn-style btn-register main-text bottom-box-right btn-complete" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">지원완료</button>
             {{/ischeck}}
             {{^ischeck}}
-                <a href="" class="btn btn-style btn-login main-text bottom-box-right btn-apply" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">입사지원</a>
+                <form action="/resume/transmit" method="post">
+                <input type="hidden" name="noticeId" value="{{notice.id}}">
+                <input type="hidden" name="pass" value="미정">
+                <button type="submit" class="btn btn-style btn-login main-text bottom-box-right btn-apply" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">입사지원</button>
+                </form>
             {{/ischeck}}
         </div>
         <div class="box">
@@ -371,7 +379,7 @@
                 <div class="d-flex1 sub-text">
                     <div class="d-flex2">
                         <div class="main-text text-line">경력</div>
-                        <div class="main-text text-line">학력</div>x
+                        <div class="main-text text-line">학력</div>
                         <div class="main-text">근무형태</div>
                     </div>
                     <div >

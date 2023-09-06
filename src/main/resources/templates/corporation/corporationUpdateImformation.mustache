@@ -194,6 +194,10 @@
     margin-top: 10px;
     margin-left: 10px;
 }
+a {
+        text-decoration: none;
+        color: inherit;
+    }
 /* 좌측 메뉴 스타일 끝 */
 </style>
 
@@ -223,7 +227,7 @@
                     <div class="nav-img">
                         <img src="./img/resume.png" id="statusImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="/corporationSupport">
+                    <a class="dropdown-item left-nav-title" href="/corporationSupport/{{sessionUser.id}}">
                         채용공고 현황
                         <p class="left-nav-sub">Employment status</p>
                     </a>
