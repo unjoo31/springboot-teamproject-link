@@ -64,10 +64,12 @@ public class UserController {
         boolean isCompanyUser = userService.회원분류(loginDTO.getUsername());
         
         if(isCompanyUser == true){
-            request.setAttribute("isCompanyUser", "true");
-        }else{
-            request.setAttribute("isCompanyUser", "false");
+            request.setAttribute("isCompanyUser", true);
+        } else {
+            request.setAttribute("isCompanyUser", false);
         }
+            
+
         System.out.println("로그인 테스트" + isCompanyUser);
         
         return Script.href("/");
