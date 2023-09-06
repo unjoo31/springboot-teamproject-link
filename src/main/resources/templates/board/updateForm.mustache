@@ -248,6 +248,7 @@
     .body-content {
         border: 1px solid #EDEEF2;
         border-radius: 15px;
+        background-color: #ffffff;
     }
 
     .body-content-title {
@@ -302,8 +303,14 @@
         display: grid;
         grid-gap: 10px;
         width: 600px;
+
     }
 
+    .box-background{
+        background-color: #FAFAFA;
+        height: 800px;
+        padding-top: 20px;
+    }
     h1 {
         font-weight: bold;
         /* 글자 굵기 설정 */
@@ -323,54 +330,57 @@
     /* updateBoard.html */
 </style>
 
-<div class="container">
+<div class="box-background">
+    <div class="container">
 
-    <div class="d-flex justify-content-between">
-
-        <h1 class="savetitle-text body">게시글 수정</h1>
-
-        <form action="/board/{{board.id}}/delete" method="post">
-            <div class="d-flex justify-content-end">
-                <button type="submit" class="btn-category main-text ml-auto"
-                   >삭제</button>
-            </div>
-        </form>
-
-    </div>
-
-
-    <div class="body-content">
-
-        <div class="body-content-title">
-            <p>Create Posts</p>
-        </div>
-
-        <div class="box-layout">
-
-            <form class="left-box" action="/board/{{board.id}}/update" method="post" enctype="multipart/form-data">
-
-                <div class="box-title mb-3">
-                    <label class="form-label main-text">제목</label>
-                    <input type="text" class="input-style form-control sub-text" id="username" name="title"
-                        value="{{board.title}}">
-                </div>
-
-                <div class="box-title mb-3">
-                    <label class="form-label main-text">내용</label>
-                    <textarea class="custom-textarea" rows="20" cols="30" id="content"
-                        name="content">{{{board.content}}}</textarea>
-                </div>
-
-                <div class="d-flex bottom-box justify-content-end">
-                    <button type="submit" class="btn btn-style-bottom btn-register main-text"
-                        style="margin-right: 15px;">수정</button>
+        <div class="d-flex justify-content-between">
+    
+            <h1 class="savetitle-text body">게시글 수정</h1>
+    
+            <form action="/board/{{board.id}}/delete" method="post">
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn-category main-text ml-auto"
+                       >삭제</button>
                 </div>
             </form>
-
+    
         </div>
+    
+    
+        <div class="body-content">
+    
+            <div class="body-content-title">
+                <p>Create Posts</p>
+            </div>
+    
+            <div class="box-layout">
+    
+                <form class="left-box" action="/board/{{board.id}}/update" method="post" enctype="multipart/form-data">
+    
+                    <div class="box-title mb-3">
+                        <label class="form-label main-text">제목</label>
+                        <input type="text" class="input-style form-control sub-text" id="username" name="title"
+                            value="{{board.title}}">
+                    </div>
+    
+                    <div class="box-title mb-3">
+                        <label class="form-label main-text">내용</label>
+                        <textarea class="custom-textarea" rows="20" cols="30" id="content"
+                            name="content">{{{board.content}}}</textarea>
+                    </div>
+    
+                    <div class="d-flex bottom-box justify-content-end">
+                        <button type="submit" class="btn btn-style-bottom btn-register main-text"
+                            style="margin-right: 15px;">수정</button>
+                    </div>
+                </form>
+    
+            </div>
+        </div>
+    
     </div>
-
 </div>
+
 
 <script>
     $(document).ready(function () {

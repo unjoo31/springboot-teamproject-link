@@ -246,7 +246,7 @@
     .search-input {
         padding: 5px;
         border: 1px solid #ccc;
-        border-radius: 18px;
+        border-radius: 25px;
     }
 
     /* 여기 작업 중 ================================================================================================= */
@@ -276,7 +276,7 @@
         background-color: #9F12E1;
         color: white;
         text-align: center;
-        font-size: 16px;
+        font-size: 13px;
         padding: 5px 15px;
     }
 
@@ -331,7 +331,9 @@
         text-decoration: none;
         color: inherit;
     }
-
+    .board-button{
+        font-size: 14px;
+    }
 
     /* board.html */
 </style>
@@ -356,15 +358,15 @@
     </div>
 
 
-    <div class="d-flex justify-content-between mb-3 box-layout">
+    <div class="d-flex justify-content-between mb-3 box-layout .text-black-50">
         <table style="width:100%">
             <tr class="main-text">
 
-                <th class="board-number rounded-left">
+                <th class="board-number rounded-left .text-black-50">
                     <span id="your-id-here">No</span>
                 </th>
 
-                <th class="board-title">제목</th>
+                <th class="board-title .text-black-50">제목</th>
 
                 <th class="board-state">상태</th>
 
@@ -384,7 +386,7 @@
                 <td><a class="board-state state-completion" href="/board/{{id}}/updateForm">수정</a>
                 </td>
 
-                <td class="board-id" ">
+                <td class="board-id">
                     <img src=" ./img/smallProfile.png" width="20" height="20" alt="이미지 설명" style="border-radius: 50%;">
                     {{user.username}}
                 </td>
@@ -400,11 +402,12 @@
 
     <ul class="pagination d-flex justify-content-between">
 
-        <li class="page-item {{#boardPG.first}} disabled {{/boardPG.first}}"><a class="page-link"
+        <li class="page-item {{#boardPG.first}} disabled {{/boardPG.first}}"><a class="board-button page-link"
                 href="?page={{prevPage}}" style="margin-left: 418px;">이전</a>
         </li>
-        <li class="page-item {{#boardPG.last}} disabled {{/boardPG.last}}"><a class="page-link"
-                href="?page={{nextPage}}" style="margin-right: 418px;">다음</a></li>
+        <li class="page-item {{#boardPG.last}} disabled {{/boardPG.last}}"><a class="board-button page-link"
+                href="?page={{nextPage}}" style="margin-right: 418px;">다음</a>
+        </li>
     </ul>
 
 </div>
