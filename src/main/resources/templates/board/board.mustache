@@ -58,6 +58,9 @@
     }
 
     .btn-register {
+        margin-top: 35px;
+        width: 100px;
+        height: 40px;
         background-color: #9F12E1;
         color: white;
     }
@@ -83,7 +86,7 @@
         font-size: 15px;
         color: #FFFFFF;
         margin-bottom: 5px;
-        
+
     }
 
     .header-menu {
@@ -159,20 +162,39 @@
         border-radius: 18px;
     }
 
-    .state-completion {
-        border-radius: 30px;
-        width: 65px;
-        background-color: #9F12E1;
-        color: white;
+    /* 여기 작업 중 ================================================================================================= */
+    .board-number {
+        width: 10px;
     }
 
-    .state-notcompletion {
-        border-radius: 30px;
-        background-color: lightgray;
+    .board-title {
+        width: 260px;
+    }
+
+    .board-state {
+        width: 100px;
+    }
+
+    .board-id {
+        width: 100px;
+    }
+
+    .board-content {
+        width: 420px;
+    }
+
+    .state-completion {
+        border-radius: 15px;
+        width: 120px;
+        background-color: #9F12E1;
         color: white;
+        text-align: center;
+        font-size: 16px;
+        padding: 5px 15px;
     }
 
     .left-align-container {
+        margin-top: 30px;
         display: inline-block;
     }
 
@@ -187,6 +209,43 @@
         justify-content: space-between;
     }
 
+    .button-search {
+        position: relative;
+        top: -4px;
+    }
+
+    .page-link {
+        border-radius: 5px;
+    }
+
+    .board-overflow-title {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-line-clamp: 1;
+        max-width: 260px;
+    }
+
+    .board-overflow-content p {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        
+        word-break: break-word; 
+        display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; 
+    
+        max-width: 420px;        
+        margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+
     /* board.html */
 </style>
 <div class="container">
@@ -195,63 +254,55 @@
 
         <div class="left-align-container search-input">
             <form action="/board" method="get" onsubmit="return valid()">
-                <input id="keyword" class="search-input search-text" type="text" name="keyword" placeholder="검색어를 입력하세요" style="border: none;" required>
-                <button class="btn btn-primary" type="submit" style="background: none; border: none">
+                <input id="keyword" class="search-text" type="text" name="keyword" placeholder="검색어를 입력하세요"
+                    style="border: none;" required>
+                <button class="btn btn-primary button-search" type="submit" style="background: none; border: none">
                     <img src="/img/search.png" alt="검색 돋보기">
                 </button>
             </form>
         </div>
-     
-        <div class="btn btn-boardstyle btn-register main-text">
-            <a href="/board/saveBoard">게시글작성</a>
+
+        <div class="d-flex justify-content-end">
+            <a class="btn btn-register main-text" href="/board/saveBoard">게시글작성</a>
         </div>
 
     </div>
-
-    <script>
-        function isWhitespace(str) {
-            return str.trim() === '';
-        }
-
-        function valid() {
-            let keyword = document.querySelector("#keyword").value;
-            console.log(keyword);
-            if (isWhitespace(keyword)) {
-                alert('공백을 입력할 수 없습니다');
-                return false;
-            }
-        }
-    </script>
-
 
 
     <div class="d-flex justify-content-between mb-3 box-layout">
         <table style="width:100%">
             <tr class="main-text">
-                <th class="text-center rounded-left"><input type="checkbox" disabled></th>
-                <th>제목</th>
-                <th>상태</th>
-                <th>아이디</th>
-                <th class="rounded-right">내용</th>
+
+                <th class="board-number rounded-left">
+                    <span id="your-id-here">No</span>
+                </th>
+
+                <th class="board-title">제목</th>
+
+                <th class="board-state">상태</th>
+
+                <th class="board-id">아이디</th>
+
+                <th class="board-content rounded-right">내용</th>
+
             </tr>
 
             {{#boardPG.content}}
-            <tr class="td-text">
-                <td class="text-center"><input type="checkbox"></td>
+            <tr class="td-text board-list">
 
-                <td><a class="btn btn-primary" href="/board/{{id}}/detailBoard">{{title}}</a></td>
+                <td class="board-number text-center"></td>
 
-                <td><a class="state-completion" href="/board/{{id}}/updateForm">수정</a></td>
+                <td class="board-title board-overflow-title"><a href="/board/{{id}}/detailBoard">{{title}}</a></td>
 
-                <td class="d-flex">
-                    <div style="margin-right: 10px;">
-                        <img src="./img/smallProfile.png" width="20" height="20" alt="이미지 설명"
-                            style="border-radius: 50%;">
-                    </div>
-                    {{user.username}} <!-- 모든 문제의 발단 -->
+                <td><a class="board-state state-completion" href="/board/{{id}}/updateForm">수정</a>
                 </td>
 
-                <td>{{{content}}}</td>
+                <td class="board-id" ">
+                    <img src=" ./img/smallProfile.png" width="20" height="20" alt="이미지 설명" style="border-radius: 50%;">
+                    {{user.username}}
+                </td>
+
+                <td class="board-content board-overflow-content p">{{{content}}}</td>
 
             </tr>
             {{/boardPG.content}}
@@ -260,14 +311,38 @@
         </table>
     </div>
 
-    <ul class="pagination d-flex justify-content-center">
+    <ul class="pagination d-flex justify-content-between">
 
         <li class="page-item {{#boardPG.first}} disabled {{/boardPG.first}}"><a class="page-link"
-                href="?page={{prevPage}}">이전</a>
+                href="?page={{prevPage}}" style="margin-left: 418px;">이전</a>
         </li>
         <li class="page-item {{#boardPG.last}} disabled {{/boardPG.last}}"><a class="page-link"
-                href="?page={{nextPage}}">다음</a></li>
+                href="?page={{nextPage}}" style="margin-right: 418px;">다음</a></li>
     </ul>
 
 </div>
+
+<script>
+    function isWhitespace(str) {
+        return str.trim() === '';
+    }
+
+    function valid() {
+        let keyword = document.querySelector("#keyword").value;
+        console.log(keyword);
+        if (isWhitespace(keyword)) {
+            alert('공백을 입력할 수 없습니다');
+            return false;
+        }
+    }
+    const tdElements = document.querySelectorAll('td.board-number'); // 클래스가 'board-number'인 모든 <td> 요소 선택
+    const totalElements = tdElements.length;
+
+    tdElements.forEach((td, index) => {
+        const id = document.createElement('span');
+        id.textContent = `${totalElements - index}`; // 역순으로 아이디 생성
+        td.appendChild(id); // <td> 내에 아이디 추가
+    });
+</script>
+
 {{> layout/footer}}
