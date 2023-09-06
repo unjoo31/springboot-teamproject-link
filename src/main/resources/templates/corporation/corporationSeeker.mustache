@@ -335,6 +335,15 @@
     .body-second {
         margin-top: 20px;
     }
+
+    .body-second {
+        margin-top: 20px;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 </style>
 
 <div class="d-flex justify-content-center">
@@ -394,68 +403,66 @@
                     </div>
                     <div class="body-content-title2 sub-text" id="skillName">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="CSS">
                             <label class="form-check-label">CSS
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="C#">
                             <label class="form-check-label">C#
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="JSP">
                             <label class="form-check-label">JSP
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="Android">
                             <label class="form-check-label">Android
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="Ajax">
                             <label class="form-check-label">Ajax
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="Flutter">
                             <label class="form-check-label">Flutter
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="HTML">
                             <label class="form-check-label">HTML
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="Mysql">
                             <label class="form-check-label">Mysql
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="Java">
                             <label class="form-check-label">Java
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="Javascript">
                             <label class="form-check-label">Javascript
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="Git">
                             <label class="form-check-label">Git
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="AWS">
                             <label class="form-check-label">AWS
                             </label>
                         </div>
                     </div>
                 </div>
-
-
                 <div class="grid-container3" id="resume-Box">
 
                 </div>
@@ -501,8 +508,8 @@
     // 1. 셀렉트 박스 변경될 때 마다, 화면 갱신
     $(".form-check-input").change(() => {
         let value = $(".form-check-input").val();
-        alert(value);
-        render(value);
+        // alert(value);
+        // render(value);
     });
 
 
@@ -513,7 +520,6 @@
         }).get();
 
         // 선택된 스킬을 출력하거나 다른 작업을 수행할 수 있습니다.
-        console.log("로고가 뜨면 이게 출력이 되요!" + selectedSkills);
 
         render(selectedSkills);
     });
@@ -522,7 +528,6 @@
 
     // 2. 통신해서 화면 다시 그리기
     async function render(selectedSkills) {
-        console.log("다음단계에 진입하면 이 로고가 뜹니다.")
         $("#resume-Box").html('');
         let responseBody = await download(selectedSkills);
         responseBody.forEach((bookmark) => {
@@ -537,14 +542,13 @@
     // 3. 컴퍼넌트 (디자인 결합)
     function resumeBox(bookmark) {
         console.log(bookmark)
-
-        // return `<div class="card" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
-        //                 <div class="card-body">
-        //                     <div class="main-text">${bookmark.user.business}</div>
-        //                     <div class="companyname">${bookmark.notice.title}</div>
-        //                     <div class="statusfail">${bookmark.skill.skillName}</div>
-        //                 </div>
-        //             </div>`;
+        return `<div class="card" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
+                        <div class="card-body">
+                            <div class="main-text">${bookmark.user.name}</div>
+                            <div class="companyname">${bookmark.resume.content}</div>
+                            <div class="statusfail">${bookmark.skill.skillName}</div>
+                        </div>
+                    </div>`;
     }
 
     // 4. 통신코드
@@ -554,6 +558,7 @@
         let responseBody = await response.json();
         return responseBody;
     }
+
     // 카드 마우스 오버 시 스타일 변경
     function highlightCard(element) {
         element.style.border = '2px solid #9F12E1';

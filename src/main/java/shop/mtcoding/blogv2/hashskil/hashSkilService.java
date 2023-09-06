@@ -39,7 +39,6 @@ public class HashSkilService {
             hashSkillList.addAll(skillsForSkillName);
         }
 
-        System.out.println(" 이거 출력되면됨");
         return hashSkillList;
     }
 

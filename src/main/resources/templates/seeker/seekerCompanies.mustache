@@ -342,6 +342,22 @@
         margin-top: 15px;
         margin-right: 10px;
     }
+
+    .body-second {
+        margin-top: 20px;
+    }
+
+    .location-img {
+        width: 20px;
+        height: 20px;
+        margin-top: 15px;
+        margin-right: 10px;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 </style>
 
 <div class="d-flex justify-content-center">
@@ -373,7 +389,7 @@
                     <div class="nav-img">
                         <img src="/img/resume.png" id="statusImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="/seekerSupportForm">
+                    <a class="dropdown-item left-nav-title" href="/seekerSupport">
                         지원현황
                         <p class="left-nav-sub">Support status</p>
                     </a>
@@ -461,8 +477,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="grid-container3" id="notice-Box">
 
                 </div>
@@ -508,8 +522,8 @@
     // 1. 셀렉트 박스 변경될 때 마다, 화면 갱신
     $(".form-check-input").change(() => {
         let value = $(".form-check-input").val();
-        alert(value);
-        render(value);
+        // alert(value);
+        // render(value);
     });
 
 
@@ -520,7 +534,6 @@
         }).get();
 
         // 선택된 스킬을 출력하거나 다른 작업을 수행할 수 있습니다.
-        console.log("로고가 뜨면 이게 출력이 되요!" + selectedSkills);
 
         render(selectedSkills);
     });
@@ -531,7 +544,6 @@
 
     // 2. 통신해서 화면 다시 그리기
     async function render(selectedSkills) {
-        console.log("다음단계에 진입하면 이 로고가 뜹니다.")
         $("#notice-Box").html('');
         let responseBody = await download(selectedSkills);
         responseBody.forEach((bookmark) => {
@@ -546,7 +558,6 @@
     // 3. 컴퍼넌트 (디자인 결합)
     function noticeBox(bookmark) {
         console.log(bookmark)
-
         return `<div class="card" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
                         <div class="card-body">
                             <div class="main-text">${bookmark.user.business}</div>

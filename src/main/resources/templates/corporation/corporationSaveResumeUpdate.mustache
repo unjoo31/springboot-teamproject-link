@@ -226,6 +226,17 @@
 
     .box-layout {
         margin-bottom: 15px;
+        margin-left: 25px;
+    }
+
+    .box-layout-right {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    .box-layout-textarea {
+        margin-left: 25px;
+        margin-right: 25px;
     }
 
     /* 추가된 스타일클래스입니다 */
@@ -242,6 +253,10 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
         margin-left: 20px;
+    }
+    a {
+        text-decoration: none;
+        color: inherit;
     }
 </style>
 
@@ -341,7 +356,7 @@
                             <input class="input-style" type="text" id="academicAbility" class="form-control sub-text"
                                 placeholder="{{academicAbility}}" name="academicAbility">
                         </div>
-                        <div class="mb-3 d-flex flex-column">
+                        <div class="mb-3 d-flex flex-column box-layout-right">
                             <label for="salary" class="form-label main-text">급여</label>
                             <input class="input-style" type="text" id="salary" class="form-control sub-text"
                                 placeholder="{{salary}}" name="salary">
@@ -353,14 +368,14 @@
                             <input class="input-style" type="text" id="typeOfWork" class="form-control sub-text"
                                 placeholder="{{typeOfWork}}" name="typeOfWork">
                         </div>
-                        <div class="mb-3 d-flex flex-column">
+                        <div class="mb-3 d-flex flex-column box-layout-right">
                             <label for="endDate" class="form-label main-text">접수기간</label>
                             <input class="input-style" type="date" id="endDate" class="form-control sub-text"
                                 placeholder="{{endDate}}" name="endDate">
                         </div>
                     </div>
 
-                    <div class="mb-3 d-flex flex-column">
+                    <div class="mb-3 d-flex flex-column box-layout-textarea">
                         <label for="content" class="form-label main-text">상세내용</label>
                         <textarea class="form-control sub-text" rows="5" name="content"
                             placeholder="{{content}}"></textarea>
@@ -417,6 +432,7 @@
                                 onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">채용공고수정</button>
                         </div>
                     </div>
+                </div>
             </form>
         </div>
     </div>

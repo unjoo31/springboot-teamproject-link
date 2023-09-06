@@ -61,6 +61,7 @@ public class UserService {
     // 기업회원, 일반회원 구분
     public boolean 회원분류(String username) {
         User user = userRepository.findByUsername(username);
+        System.out.println("로그인 테스트" + user.getCompanyUser());
         return user.getCompanyUser();
     } 
 
