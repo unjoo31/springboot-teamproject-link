@@ -73,7 +73,7 @@ public class UserService {
 
     // 회원수정
     @Transactional
-    public User 회원수정(UpdateDTO updateDTO, Integer id) {
+    public ApiUtil<String> 회원수정(UpdateDTO updateDTO, Integer id) {
 
         String fileName = function.saveImage(updateDTO.getPic());
 
@@ -81,17 +81,15 @@ public class UserService {
 
         user.setPassword(updateDTO.getPassword());
         user.setEmail(updateDTO.getEmail());
-        user.setCompanyUser(updateDTO.getCompanyUser());
-        user.setName(updateDTO.getName());
         user.setPhonenumber(updateDTO.getPhonenumber());
         user.setAddress(updateDTO.getAddress());
-        user.setAge(updateDTO.getAge());
         user.setBusiness(updateDTO.getBusiness());
         user.setForm(updateDTO.getForm());
         user.setPerformance(updateDTO.getPerformance());
         user.setPicUrl(fileName);
 
-        return user;
+
+        return new ApiUtil<String>(true, "회원정보 수정 완료");
     }
 
     // 기업회원 조회
