@@ -57,7 +57,7 @@ public class BoardService {
                 .build();
         // 생성한 Board 객체를 Repository를 통해 데이터베이스에 저장
         boardRepository.save(board);
-    }
+    } 
 
     // 게시글 목록보기
     public Page<Board> board(String keyword, Integer page) {

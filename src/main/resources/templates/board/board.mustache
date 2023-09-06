@@ -58,6 +58,113 @@
     }
 
     .btn-register {
+        background-color: #9F12E1;
+        color: white;
+    }
+
+    .btn-register a {
+        margin-bottom: 5px;
+        font-size: 15px;
+        color: #ffffff;
+        margin-bottom: 5px;
+        text-decoration: none;
+    }
+
+    .btn-logout {
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 280px;
+        background-color: #9F12E1;
+        color: white;
+    }
+
+    .btn-logout a {
+        font-size: 15px;
+        color: #ffffff;
+    }
+
+    .header-menu {
+        font-weight: 600;
+    }
+
+    .dropdown-menu {
+        width: 300px;
+        position: absolute;
+        left: -230px;
+
+    }
+
+    .dropdown-menu-big {
+        font-size: 15px;
+    }
+
+    .dropdown-menu-small {
+        font-size: 11px;
+    }
+
+    .dropdown-toggle::after {
+        display: none;
+    }
+
+    .nav-img {
+        width: 20px;
+        height: 20px;
+        margin-top: 20px;
+        margin-right: 20px;
+    }
+
+    /* 헤더, 푸터 스타일 끝 */
+    .logo {
+        color: #9F12E1;
+        font-weight: 700;
+    }
+
+    .footer {
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 20px;
+    }
+
+    /* 타이틀 스타일 */
+    .title-text {
+        font-size: 20px;
+    }
+
+    /* 메인 스타일 */
+    .main-text {
+        font-size: 14px;
+    }
+
+    /* 서브 스타일 */
+    .sub-text {
+        font-size: 13px;
+    }
+
+    .footer-inc {
+        font-size: 12px;
+    }
+
+    .btn-style {
+        margin-top: 15px;
+        border-radius: 30px;
+        width: 100px;
+        height: 40px;
+    }
+
+    .btn-login {
+        border: 1px solid #9F12E1;
+        color: #9F12E1;
+        margin-right: 10px;
+    }
+
+    .btn-login a {
+        margin-bottom: 5px;
+        font-size: 15px;
+        color: #9F12E1;
+        margin-bottom: 5px;
+        text-decoration: none;
+    }
+
+    .btn-register {
         margin-top: 35px;
         width: 100px;
         height: 40px;
@@ -162,7 +269,6 @@
         border-radius: 18px;
     }
 
-    /* 여기 작업 중 ================================================================================================= */
     .board-number {
         width: 10px;
     }
@@ -172,7 +278,8 @@
     }
 
     .board-state {
-        width: 100px;
+        width: 120px;
+        min-width: 120px;
     }
 
     .board-id {
@@ -186,6 +293,7 @@
     .state-completion {
         border-radius: 15px;
         width: 120px;
+        min-width: 120px;
         background-color: #9F12E1;
         color: white;
         text-align: center;
@@ -220,25 +328,34 @@
 
     .board-overflow-title {
         white-space: nowrap;
+        /* 너비를 벗어나도 줄 바꿈 하지 않음 */
         text-overflow: ellipsis;
+        /* 너비를 벗어날때 ...로 처리됨 */
         overflow: hidden;
+        /* 너비를 벗어날때 텍스트를 숨김 */
         -webkit-line-clamp: 1;
+        /* 1줄로만 표시함 */
         max-width: 260px;
     }
 
-    .board-overflow-content p {
+    /* 여기 작업 중 ================================================================================================= */
+
+    .board-overflow-content {
         white-space: nowrap;
+        /* 너비를 벗어나도 줄 바꿈 하지 않음 */
         text-overflow: ellipsis;
+        /* 너비를 벗어날때 ...로 처리됨 */
         overflow: hidden;
-        
-        word-break: break-word; 
-        display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1; 
-    
-        max-width: 420px;        
+        /* 너비를 벗어날때 텍스트를 숨김 */
+        -webkit-line-clamp: 1;
+        /* 1줄로만 표시함 */
+        max-width: 420px;
+    }
+
+    p {
         margin: 0;
     }
+
 
     a {
         text-decoration: none;
@@ -297,12 +414,21 @@
                 <td><a class="board-state state-completion" href="/board/{{id}}/updateForm">수정</a>
                 </td>
 
-                <td class="board-id" ">
+                <td class="board-id">
                     <img src=" ./img/smallProfile.png" width="20" height="20" alt="이미지 설명" style="border-radius: 50%;">
                     {{user.username}}
                 </td>
 
-                <td class="board-content board-overflow-content p">{{{content}}}</td>
+                <body>
+                    <td class="board-content board-overflow-content p" >
+                        <span id="contentSpan">{{{content}}}</span>
+                    </td>
+                    <script>
+                        // 줄 바꿈 문자를 제거합니다.                       
+                        var contentSpan = document.getElementById("contentSpan");
+                        contentSpan.textContent = contentSpan.textContent.replace(/\n/g, '').trim();
+                    </script>
+                </body>
 
             </tr>
             {{/boardPG.content}}
@@ -311,13 +437,13 @@
         </table>
     </div>
 
-    <ul class="pagination d-flex justify-content-between">
+    <ul class="pagination d-flex justify-content-center">
 
         <li class="page-item {{#boardPG.first}} disabled {{/boardPG.first}}"><a class="page-link"
-                href="?page={{prevPage}}" style="margin-left: 418px;">이전</a>
+                href="?page={{prevPage}}" style="margin-right: 10px;">이전</a>
         </li>
         <li class="page-item {{#boardPG.last}} disabled {{/boardPG.last}}"><a class="page-link"
-                href="?page={{nextPage}}" style="margin-right: 418px;">다음</a></li>
+                href="?page={{nextPage}}" style="margin-left: 10px;">다음</a></li>
     </ul>
 
 </div>
@@ -343,6 +469,8 @@
         id.textContent = `${totalElements - index}`; // 역순으로 아이디 생성
         td.appendChild(id); // <td> 내에 아이디 추가
     });
+
 </script>
+
 
 {{> layout/footer}}
