@@ -1,5 +1,6 @@
 package shop.mtcoding.blogv2.hashskil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,31 @@ public class HashSkilService {
 
         return skillList;
     }
-    
+
+    public List<HashSkil> 선택한스킬로기업조회하기(List<String> selectedSkills) {
+
+        // 여기서는 파싱이 불가능해 자바차원이 아닌 자바 스크립트의 차원에서 진행해야돼.
+        List<HashSkil> hashSkillList = new ArrayList<>();
+
+        for (String selectedSkill : selectedSkills) {
+            List<HashSkil> skillsForSkillName = hashSkilRepository.mfindSkillsBySkillName(selectedSkill);
+            hashSkillList.addAll(skillsForSkillName);
+        }
+
+        System.out.println(" 이거 출력되면됨");
+        return hashSkillList;
+    }
+
+    public List<HashSkil> 선택한스킬로이력서조회하기(List<String> selectedSkills) {
+        // 여기서는 파싱이 불가능해 자바차원이 아닌 자바 스크립트의 차원에서 진행해야돼.
+        List<HashSkil> hashSkillList = new ArrayList<>();
+
+        for (String selectedSkill : selectedSkills) {
+            List<HashSkil> skillsForSkillName = hashSkilRepository.mfindResumeBySkillName(selectedSkill);
+            hashSkillList.addAll(skillsForSkillName);
+        }
+
+        return hashSkillList;
+    }
+
 }
