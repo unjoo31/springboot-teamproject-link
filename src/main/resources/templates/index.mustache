@@ -468,6 +468,8 @@ a {
                     </a>
                  </div>
             {{/filterDataList}}
+                 
+        
             {{#noticeDataList}}
                 <div class="index-company-box" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
                     <input type="hidden" id="noticeId" value="{{notice}}">
@@ -495,8 +497,11 @@ a {
                         </div>
                     </a>
                 </div>
-            {{/noticeDataList}}          
+            {{/noticeDataList}}
+
+                   
         </div>
+        
         <ul class="pagination d-flex justify-content-center">
             <li class="page-item {{#noticeDataList.first}}disabled{{/noticeDataList.first}}"><a class="page-link"
                     href="?page={{prevPage}}">이전</a>
@@ -504,7 +509,8 @@ a {
             <li class="page-item {{#noticeDataList.last}}disabled{{/noticeDataList.last}}"><a class="page-link"
                     href="?page={{nextPage}}">다음</a>
             </li>
-        </ul>
+        </ul> 
+        
     </div>
 </div>
 
