@@ -64,6 +64,16 @@ public class NoticeService {
         return noticeRepository.findAll();
     }
 
+    public Page<Notice> 공고목록보기(Integer page) {
+        Pageable pageable = PageRequest.of(page, 8, Sort.Direction.DESC, "id");
+        return noticeRepository.findAll(pageable);
+    }
+
+    public Page<Notice> 공고목록보기(Integer page, String keyword) {
+        Pageable pageable = PageRequest.of(page, 8, Sort.Direction.DESC, "id");
+        return noticeRepository.findByTitleContaining(keyword, pageable);
+    }
+
     public List<Notice> 필터링된공고목록보기(List<String> selectedSkillNames, List<String> selectedAreaNames) {
         List<Notice> filteredNotices = noticeRepository.findByNoticeSkillsOrAreas(selectedSkillNames,
                 selectedAreaNames);

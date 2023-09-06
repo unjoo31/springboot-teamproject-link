@@ -32,6 +32,7 @@ import shop.mtcoding.blogv2.apply.ApplyService;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.area.AreaResponse;
 import shop.mtcoding.blogv2.area.AreaService;
+import shop.mtcoding.blogv2.board.Board;
 import shop.mtcoding.blogv2.boomark.BookmarkService;
 import shop.mtcoding.blogv2.hasharea.HashAreaService;
 import shop.mtcoding.blogv2.hashskil.HashSkil;
@@ -87,7 +88,17 @@ public class NoticeController {
         request.setAttribute("areas", areas);
 
         // 채용공고 리스트 보여주기
-        List<Notice> noticeList = noticeService.공고목록보기();
+
+        Page<Notice> noticeList = null; 
+
+        if(keyword.isBlank()){
+            noticeList = noticeService.공고목록보기(page);
+        }else{
+            noticeList = noticeService.공고목록보기(page, keyword);
+            request.setAttribute("keyword", keyword);
+        }
+
+        //List<Notice> noticeList = noticeService.공고목록보기();
 
         List<Map<String, Object>> noticeDataList = new ArrayList<>();
         for (Notice notice : noticeList) {
@@ -109,6 +120,9 @@ public class NoticeController {
         }
 
         request.setAttribute("noticeDataList", noticeDataList);
+        request.setAttribute("prevPage", noticeList.getNumber()-1);
+        request.setAttribute("nextPage", noticeList.getNumber()+1);
+        
 
         // 기업 리스트 보여주기
         List<User> companyUsers = userService.기업회원조회();
