@@ -62,13 +62,13 @@ public class UserController {
 
         // 로그인시 기업회원, 일반회원 구분
         boolean isCompanyUser = userService.회원분류(loginDTO.getUsername());
+        int companyUser = 1;
         
         if(isCompanyUser == true){
-            request.setAttribute("isCompanyUser", "true");
-        }else{
-            request.setAttribute("isCompanyUser", "false");
+            request.setAttribute("companyUser", companyUser);
         }
         System.out.println("로그인 테스트" + isCompanyUser);
+        System.out.println("로그인 테스트" + companyUser);
         
         return Script.href("/");
     }
