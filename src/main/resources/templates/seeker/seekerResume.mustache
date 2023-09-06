@@ -97,31 +97,36 @@
 /* 헤더, 푸터 스타일 끝 */
 
     /* 좌측 메뉴 스타일 시작 */
-.left-nav-title{
-    font-size: 15px;
-    margin-top: 10px;
-}
-.left-nav-sub{
-    font-size: 11px;
-}
-.left-nav{
-    width: 300px;
-    margin-top: 85px;
-}
-.left-nav-detail{
-    display: flex;
-    flex-direction: row;
-    border-radius: 10px;
-    border: 1px solid #EDEEF2;
-    margin-bottom: 10px;
-}
-.left-nav-detail .nav-img{
-    width: 40px;
-    height: 40px;
-    margin-top: 10px;
-    margin-left: 10px;
-}
-/* 좌측 메뉴 스타일 끝 */
+    .left-nav-title {
+        font-size: 15px;
+        margin-top: 10px;
+    }
+
+    .left-nav-sub {
+        font-size: 11px;
+    }
+
+    .left-nav {
+        width: 300px;
+        margin-top: 85px;
+    }
+
+    .left-nav-detail {
+        display: flex;
+        flex-direction: row;
+        border-radius: 10px;
+        border: 1px solid #EDEEF2;
+        margin-bottom: 10px;
+    }
+
+    .left-nav-detail .nav-img {
+        width: 40px;
+        height: 40px;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+
+    /* 좌측 메뉴 스타일 끝 */
 
     .grid-container {
         display: grid;
@@ -302,7 +307,7 @@
                     <div class="nav-img">
                         <img src="./img/resume.png" id="statusImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="/seekerSupportForm">
+                    <a class="dropdown-item left-nav-title" href="/seekerSupport">
                         지원현황
                         <p class="left-nav-sub">Support status</p>
                     </a>
@@ -319,79 +324,80 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <h1 class="title-text body">이력서</h1>
-            {{^existResume.id}}
-            <div class="card-contain-first">
-                <div class="card">
-                    <div class="card-header">Resume</div>
-                    <div class="card-body">
-                        <form action="/seekerSaveResumeForm">
-                            <div class="mb-3 d-flex justify-content-start">
-                                <div class="personal-img">
-                                    <img src="/img/{{userInfo.picUrl}}">
+            <div class="container">
+                <h1 class="title-text body">이력서</h1>
+                {{^existResume}}
+                <div class="card-contain-first">
+                    <div class="card">
+                        <div class="card-header">Resume</div>
+                        <div class="card-body">
+                            <form action="/seekerSaveResumeForm">
+                                <div class="mb-3 d-flex justify-content-start">
+                                    <div class="personal-img">
+                                        <img src="./img/{{userInfo.picUrl}}">
+                                    </div>
+                                    <div class="employment-content"></div>
+                                    <div>
+                                        <button class="btn img-botton btn-employment main-text" id="btnJoin" type="submit"
+                                            onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">이력서
+                                            등록</button>
+                                    </div>
                                 </div>
-                                <div class="employment-content"></div>
-                                <div>
-                                    <button class="btn img-botton btn-employment main-text" id="btnJoin" type="submit"
-                                        onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">이력서
-                                        등록</button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {{/existResume.id}}
-
-            {{#existResume.id}}
-            <div class="card-contain-first">
-                <div class="card">
-                    <div class="card-header">Resume</div>
-                    <div class="card-body">
-                        <div class="mb-3 d-flex justify-content-start">
-                            <div class="personal-img-update">
-                                <img src="/img/{{userInfo.picUrl}}">
-                            </div>
-                            <div class="employment-content d-flex flex-column">
-                                <div class="employment-content-title">
-                                    {{userInfo.name}}
+                {{/existResume}}
+    
+                {{#existResume}}
+                <div class="card-contain-second">
+                    <div class="card">
+                        <div class="card-header">Resume</div>
+                        <div class="card-body">
+                            <div class="mb-3 d-flex justify-content-start">
+                                <div class="personal-img">
+                                    <img src="./img/{{userInfo.picUrl}}">
                                 </div>
-                                <div class="employment-content-sub">
-                                    {{existResume.content}}
-                                </div>
-                                <div class="employment-content-skill d-flex">
-                                    {{#selectSkill}}
-                                    <div class="employment-content-skill-box">
-                                        {{skillName}}
+                                <div class="employment-content d-flex flex-column">
+                                    <div class="employment-content-title">
+                                        {{userInfo.name}}
                                     </div>
-                                    {{/selectSkill}}
+                                    <div class="employment-content-sub">
+                                        {{content}}
+                                    </div>
+                                    <div class="d-flex justify-content-start employment-content-skill">
+                                        {{#selectSkill}}
+                                            <div class="employment-content-skill-box">
+                                                {{skillName}}
+                                            </div>
+                                        {{/selectSkill}}
+                                    </div>                                   
                                 </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <form action="/seekerResume/{{existResume.id}}/delete" method="post">
+                                <div>                                   
+                                    <div>
+                                        <form action="/seekerResume/{{id}}/delete" method="post">
+                                            <button class="btn img-botton btn-employment main-text" id="btnJoin"
+                                                type="submit" onmouseover="highlightButton(this)"
+                                                onmouseout="unhighlightButton(this)">이력서 삭제</button>
+                                        </form>
+                                    </div>
+                                    <div>
                                         <button class="btn img-botton btn-employment main-text" id="btnJoin"
                                             type="submit" onmouseover="highlightButton(this)"
-                                            onmouseout="unhighlightButton(this)">이력서 삭제</button>
-                                    </form>
-                                </div>
-                                <div>
-                                    <button class="btn img-botton btn-employment main-text" id="btnJoin"
-                                        type="submit" onmouseover="highlightButton(this)"
-                                        onmouseout="unhighlightButton(this)"> <a
-                                            href="/seekerSaveResumeUpdateForm">이력서 수정</a>
-                                    </button>                                       
+                                            onmouseout="unhighlightButton(this)"> <a
+                                                href="/seekerSaveResumeUpdateForm/{{id}}">이력서
+                                                수정</a></button>                                           
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>
-                    </div>                    
-                </div>                
+                    </div>
+                </div>
+                {{/existResume}}
             </div>
-            {{/existResume.id}}
-        </div>
     </div>
 </div>
+
         <script>
             // 카드 마우스 오버 시 스타일 변경
             function highlightCard(element) {

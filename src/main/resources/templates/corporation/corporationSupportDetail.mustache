@@ -286,6 +286,10 @@
         vertical-align: middle;
        
     }
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 </style>
 
 <div class="d-flex justify-content-center">
@@ -373,11 +377,11 @@
               
                 <div class="grid-container3">
                     {{#applyList}}
-                    <div class="card">
+                    <div class="card" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <div>
-                                    <a href="/corporationSupportSeekerList" class="main-text mt-1"><b>{{user.name}}</b></a>
+                                    <a href="/corporationSupportSeekerList/{{id}}" class="main-text mt-1"><b>{{user.name}}</b></a>
                                 </div>
                                 <div>
                                     <div class="statussuccess">{{pass}}</div>

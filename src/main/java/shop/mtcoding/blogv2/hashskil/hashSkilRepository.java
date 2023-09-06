@@ -25,4 +25,7 @@ List<Skill> findSkillsByNoticeId(@Param("noticeId") Integer noticeId);
 @Query("DELETE FROM HashSkil h WHERE h.resume.id = :resumeId")
 void deleteByResumeId(@Param("resumeId") Integer resumeId);
 
+
+void deleteByNoticeId(Integer id);
+
 }

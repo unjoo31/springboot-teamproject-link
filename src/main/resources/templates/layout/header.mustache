@@ -23,13 +23,17 @@
             </div>
             <div class="p-2">
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                    <ul class="navbar-nav header-menu">
-                      <li class="nav-item">
-                        <a class="nav-link me-5" href="/corporationResume">채용공고</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link me-5" href="#">기업</a>
-                      </li> 
+                    <ul class="navbar-nav header-menu">                          
+                      {{#isCompanyUser}}
+                        <li class="nav-item">
+                          <a class="nav-link me-5" href="#">기업</a>
+                        </li>
+                      {{/isCompanyUser}}
+                      {{^isCompanyUser}}
+                        <li class="nav-item">
+                          <a class="nav-link me-5" href="/corporationResume">채용공고</a>
+                        </li>
+                      {{/isCompanyUser}}
                       <li class="nav-item">
                         <a class="nav-link me-5" href="/board">고객센터</a>
                       </li>  
@@ -45,6 +49,7 @@
                               <img src="/img/smallProfile.png">
                           </a>
                           <ul class="dropdown-menu">
+                            {{#isCompanyUser}}
                               <li class="d-flex">
                                 <a class="dropdown-item dropdown-menu-big" href="/updateCorporationForm" onmouseover="highlightMenu(this)" onmouseout="unhighlightMenu(this)">
                                     회원정보 수정
@@ -73,6 +78,8 @@
                                 </a>
                                 <img class="nav-img" src="/img/navRight.png">
                               </li>
+                            {{/isCompanyUser}}
+                            {{^isCompanyUser}}
                               <li class="d-flex">
                                 <a class="dropdown-item dropdown-menu-big" href="/updateSeekerForm" onmouseover="highlightMenu(this)" onmouseout="unhighlightMenu(this)">
                                     회원정보 수정
@@ -100,7 +107,8 @@
                                     <p class="dropdown-menu-small">Interested companies / Technical stack</p>
                                 </a>
                                 <img class="nav-img" src="/img/navRight.png">
-                              </li>                     
+                              </li> 
+                            {{/isCompanyUser}}                    
                             <button id="btnJoin" type="submit" class="btn form-control btn-logout main-text" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">
                               <a class="nav-link" href="/logout">로그아웃</a>
                             </button>
