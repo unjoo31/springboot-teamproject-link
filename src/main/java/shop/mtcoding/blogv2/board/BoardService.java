@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.board.BoardRequest.UpdateDTO;
-import shop.mtcoding.blogv2.board.BoardRequest.SaveDTO;
 import shop.mtcoding.blogv2.user.User;
 
 @Service
@@ -30,6 +28,26 @@ public class BoardService {
 
     @Transactional
     public void 글쓰기(BoardRequest.SaveDTO saveDTO, int sessionUserId) {
+        String title = saveDTO.getTitle();
+        String content = saveDTO.getContent();
+
+        // 제목과 내용의 최대 길이 설정
+        int maxTitleLength = 60;
+        int maxContentLength = 200000;
+
+        if (saveDTO.getTitle() == null || saveDTO.getTitle().isEmpty()) {
+            throw new MyException("제목을 입력하세요");
+        }
+        if (saveDTO.getContent() == null || saveDTO.getContent().isEmpty()) {
+            throw new MyException("내용을 입력하세요");
+        }
+        // 제목과 내용의 길이를 체크하여 최대 길이를 넘어가면 저장하지 않음
+        if (title.length() > maxTitleLength) {
+            throw new MyException("제목의 글자수를 초과 하였습니다");
+        }
+        if (content.length() > maxContentLength) {
+            throw new MyException("내용의 글자수를 초과 하였습니다");
+        }
 
         // Board 객체 생성 및 데이터 설정
         Board board = Board.builder()
@@ -68,6 +86,28 @@ public class BoardService {
 
     @Transactional
     public void 게시글수정하기(Integer id, UpdateDTO updateDTO) {
+        String title = updateDTO.getTitle();
+        String content = updateDTO.getContent();
+
+        // 제목과 내용의 최대 길이 설정
+        int maxTitleLength = 60;
+        int maxContentLength = 200000;
+
+      
+        // 제목과 내용의 길이를 체크하여 최대 길이를 넘어가면 저장하지 않음
+        if (title.length() > maxTitleLength) {
+            throw new MyException("제목의 글자수를 초과 하였습니다");
+        }
+        if (content.length() > maxContentLength) {
+            throw new MyException("내용의 글자수를 초과 하였습니다");
+        }
+          if (updateDTO.getTitle() == null || updateDTO.getTitle().isEmpty()) {
+            throw new MyException("제목을 입력하세요");
+        }
+        if (updateDTO.getContent() == null || updateDTO.getContent().isEmpty()) {
+            throw new MyException("내용을 입력하세요");
+        }
+
         Optional<Board> boardOP = boardRepository.findById(id);
         if (boardOP.isPresent()) {
             Board board = boardOP.get();
@@ -96,6 +136,5 @@ public class BoardService {
             throw new RuntimeException(id + "는 찾을 수 없습니다");
         }
     }
-
 
 } // class

@@ -68,8 +68,6 @@ public class UserController {
         } else {
             request.setAttribute("isCompanyUser", false);
         }
-            
-
         System.out.println("로그인 테스트" + isCompanyUser);
         
         return Script.href("/");
