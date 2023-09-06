@@ -301,10 +301,6 @@
         top: -4px;
     }
 
-    .page-link {
-        border-radius: 5px;
-    }
-
     .board-overflow-title {
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -333,6 +329,17 @@
     }
     .board-button{
         font-size: 14px;
+    }
+    .pagination{
+        margin-top: 20px;
+    }
+    .pagination a{
+        color: #9F12E1;
+    }
+    .page-link {
+        border-radius: 5px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     /* board.html */
@@ -400,13 +407,13 @@
         </table>
     </div>
 
-    <ul class="pagination d-flex justify-content-between">
+    <ul class="pagination d-flex justify-content-center">
 
-        <li class="page-item {{#boardPG.first}} disabled {{/boardPG.first}}"><a class="board-button page-link"
-                href="?page={{prevPage}}" style="margin-left: 418px;">이전</a>
+        <li class="page-item {{#boardPG.first}} disabled {{/boardPG.first}}"><a class="page-link"
+                href="?page={{prevPage}}">이전</a>
         </li>
-        <li class="page-item {{#boardPG.last}} disabled {{/boardPG.last}}"><a class="board-button page-link"
-                href="?page={{nextPage}}" style="margin-right: 418px;">다음</a>
+        <li class="page-item {{#boardPG.last}} disabled {{/boardPG.last}}"><a class="page-link"
+                href="?page={{nextPage}}">다음</a>
         </li>
     </ul>
 
