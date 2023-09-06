@@ -249,14 +249,14 @@ a {
                 <div class="body-content-title">
                     <p>Personal information</p>
                 </div>
-                <form>
-                <div class="d-flex first-box box-layout">
-                    <div class="d-flex left-box-first">
-                        <div class="personal-img">
-                            <img id="preview" src="/images/{{user.picUrl}}">
+                <form action="/user/update" method="post" enctype="multipart/form-data">
+                    <div class="d-flex first-box box-layout">
+                        <div class="d-flex left-box-first">
+                            <div class="personal-img">
+                                <img id="preview" src="/images/{{user.picUrl}}">
+                            </div>
+                            <input class="btn img-botton btn-login main-text file-select" type="file" onchange="changePic(event)" name="pic" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)"></input>
                         </div>
-                        <input class="btn img-botton btn-login main-text file-select" type="file" onchange="changePic(event)" name="pic" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)"></input>
-                    </div>
                         <div class="mb-3 d-flex flex-column">
                             <label for="companyName" class="form-label main-text">기업명</label>
                             <input class="input-style" type="text" id="name" class="form-control sub-text" placeholder="(주)link" name="name" value="{{user.name}}">
@@ -304,7 +304,7 @@ a {
                     </div>
                     <div class="d-flex bottom-box justify-content-between">
                         <button class="btn btn-style btn-login main-text bottom-box-left" type="button" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">로그아웃</button>
-                        <button class="btn btn-style btn-register main-text bottom-box-right" type="submit" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)" onclick="updateSave()">저장</button>
+                        <button class="btn btn-style btn-register main-text bottom-box-right" type="submit" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">저장</button>
                     </div>
                 </form>               
             </div>                
@@ -402,39 +402,5 @@ a {
     interestImageContainer.addEventListener("mouseout", function() {
         interestImage.src = interestImageSrc;
     });
-
-    async function updateSave() {
-        console.log("여기왔어")
-        let requestBody = {
-            pic: document.querySelector("#pic").value,
-            name: document.querySelector("#name").value,
-            username: document.querySelector("#username").value,
-            password: document.querySelector("#password").value,
-            phonenumber: document.querySelector("#phonenumber").value,
-            address: document.querySelector("#address").value,
-            business: document.querySelector("#business").value,
-            form: document.querySelector("#form").value,
-            performance: document.querySelector("#performance").value
-        };
-        console.log("여기왔어2")
-        
-        let response = await fetch("/api/user/update",{
-            method:'post',
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body: JSON.stringify(requestBody)
-        });
-        console.log("여기왔어3")
-        
-        let responseBody = await response.json();
-        console.log(responseBody);
-
-        if (responseBody.sucuess) {
-        alert(responseBody.data);// ssr 서버 사이더 랜더링을 한다. (새로고침)
-        }else{
-        alert(responseBody.data);
-        }
-    }
 </script>
 {{> layout/footer}}

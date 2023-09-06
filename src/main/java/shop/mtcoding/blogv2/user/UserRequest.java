@@ -32,10 +32,12 @@ public class UserRequest {
     public static class UpdateDTO{
         private String password;
         private String email;
+        private Boolean companyUser;
         private MultipartFile pic;
-        private String username;
+        private String name;
         private String phonenumber;
         private String address;
+        private Date age;
         private String business;
         private String form;
         private String performance;
