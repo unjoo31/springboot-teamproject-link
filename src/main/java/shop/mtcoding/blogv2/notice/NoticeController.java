@@ -265,6 +265,12 @@ public class NoticeController {
         long timeDifferenceMillis = endDate.getTime() - startDate.getTime();
         long timeDifferenceDays = timeDifferenceMillis / (1000 * 60 * 60 * 24);
 
+        int companyUser = 1;
+        
+        if(sessionUser.getCompanyUser() == true){
+            request.setAttribute("companyUser", companyUser);
+        }
+
         request.setAttribute("notice", notice);
         request.setAttribute("timeDifferenceDays", timeDifferenceDays);
         request.setAttribute("ischeck", ischeck);
