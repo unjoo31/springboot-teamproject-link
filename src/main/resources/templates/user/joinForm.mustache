@@ -116,13 +116,13 @@
         <div class="register-box">
             <div class="card-header register-title mb-4"><b>회원가입</b></div>
             <div class="card-body">
-                <form action="/join" method="post" enctype="multipart/form-data">
+                <form action="/join" method="post" enctype="multipart/form-data" onsubmit="return valid()">
                     <div class="mb-3">
                         <label class="me-5 custom-radio main-text">
-                            <input type="radio" name="membership" value="company"> 기업회원
+                            <input type="radio" name="membership" value="company" required> 기업회원
                         </label>
                         <label class="ms-5 main-text">
-                            <input type="radio" name="membership" value="individual"> 일반회원
+                            <input type="radio" name="membership" value="individual" required> 일반회원
                         </label>
                     </div>
                     <div class="mb-3">
@@ -131,12 +131,12 @@
                         <button type="button" class="btn form-control btn-register main-text" onclick="check()" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">중복체크</button>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label main-text">비밀번호</label>
-                        <input type="password" class="form-control sub-text" placeholder="**********" name="password" >
+                        <label for="password" class="form-label main-text" >비밀번호</label>
+                        <input type="password" class="form-control sub-text" placeholder="**********" name="password" required>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label main-text">이메일</label>
-                        <input type="email" class="form-control sub-text" placeholder="link@gmail.com" name="email">
+                        <label for="email" class="form-label main-text" >이메일</label>
+                        <input type="email" class="form-control sub-text" placeholder="link@gmail.com" name="email" required>
                     </div>
                     <button id="btnJoin" type="submit" class="btn form-control btn-register main-text" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">회원가입</button>
                 </form>
@@ -145,6 +145,8 @@
     </div>
 </div>
 <script>
+    
+
     // 아이디 중복체크
     let usernameSameCheck = false;
 
@@ -154,6 +156,7 @@
 
     function valid(){
         if(usernameSameCheck){
+            alert("회원가입 완료")
             return true;
         }else{
             alert("유저네임 중복체크를 해주세요")
@@ -163,13 +166,13 @@
 
     async function check(){
         let username = document.querySelector("#username").value;
-        let response = await fetch("/api/check?username=" + username);
+        let response = await fetch("/api/check?username="+username);
         let responseBody = await response.json();
         let btnJoin = document.querySelector("#btnJoin");
 
-        if (responseBody.success) {
+        if (responseBody.sucuess) {
             usernameSameCheck = true;
-            location.reload();
+            alert(responseBody.data);
         } else {
             usernameSameCheck = false;
             alert(responseBody.data);
