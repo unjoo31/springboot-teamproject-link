@@ -261,6 +261,10 @@
     .title {
         font-size: 22px;
     }
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 </style>
 
 <div class="d-flex justify-content-center">
@@ -335,7 +339,7 @@
 
                 <div class="grid-container3">
                     {{#applyDataList}}
-                    <div class="card">
+                    <div class="card" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
                         <div class="card-body">
                             <a href="/seekerSupportDetail/{{applyId}}" class="main-text"><b>{{title}}</b></a>
                             <div class="companyname">{{name}}</div>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.blogv2._core.error.ex.MyApiException;
 import shop.mtcoding.blogv2._core.util.ApiUtil;
+import shop.mtcoding.blogv2._core.util.Script;
 
 @Controller
 public class UserController {
@@ -54,17 +55,22 @@ public class UserController {
 
     // 로그인
     @PostMapping("/login")
-    public String login(UserRequest.LoginDTO loginDTO, HttpServletRequest request) {
+    public @ResponseBody String login(UserRequest.LoginDTO loginDTO, HttpServletRequest request) {
         // 로그인 기능
         User sessionUser = userService.로그인(loginDTO);
         session.setAttribute("sessionUser", sessionUser);
 
         // 로그인시 기업회원, 일반회원 구분
         boolean isCompanyUser = userService.회원분류(loginDTO.getUsername());
-        request.setAttribute("isCompanyUser", isCompanyUser);
-
         
-        return "redirect:";
+        if(isCompanyUser == true){
+            request.setAttribute("isCompanyUser", "true");
+        }else{
+            request.setAttribute("isCompanyUser", "false");
+        }
+        System.out.println("로그인 테스트" + isCompanyUser);
+        
+        return Script.href("/");
     }
 
     // 로그아웃
