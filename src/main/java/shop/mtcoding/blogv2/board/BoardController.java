@@ -21,7 +21,7 @@ public class BoardController {
 
     @Autowired
     private BoardService boardService;
-  
+
     @Autowired
     private HttpSession session;
 
@@ -32,17 +32,17 @@ public class BoardController {
             @RequestParam(defaultValue = "0") Integer page,
             HttpServletRequest request) {
 
-                Page<Board> boardPage = boardService.board(keyword, page);
+        Page<Board> boardPage = boardService.board(keyword, page);
 
-    request.setAttribute("keyword", keyword);
-    request.setAttribute("boardPG", boardPage);
-    request.setAttribute("prevPage", boardPage.hasPrevious() ? page - 1 : 0);
-    request.setAttribute("nextPage", boardPage.hasNext() ? page + 1 : 0);
-    request.setAttribute("first", !boardPage.hasPrevious());
-    request.setAttribute("last", !boardPage.hasNext());
-    request.setAttribute("totalPage", boardPage.getTotalPages());
-    request.setAttribute("totalCount", boardPage.getTotalElements());
-        
+        request.setAttribute("keyword", keyword);
+        request.setAttribute("boardPG", boardPage);
+        request.setAttribute("prevPage", boardPage.hasPrevious() ? page - 1 : 0);
+        request.setAttribute("nextPage", boardPage.hasNext() ? page + 1 : 0);
+        request.setAttribute("first", !boardPage.hasPrevious());
+        request.setAttribute("last", !boardPage.hasNext());
+        request.setAttribute("totalPage", boardPage.getTotalPages());
+        request.setAttribute("totalCount", boardPage.getTotalElements());
+
         return "board/board";
     }
 
@@ -59,7 +59,6 @@ public class BoardController {
         return "redirect:/board";
     }
 
-  
     // 게시글 글수정,삭제 화면 호출
     @GetMapping("/board/{id}/updateForm")
     public String updateForm(@PathVariable Integer id, HttpServletRequest request) {
@@ -85,7 +84,6 @@ public class BoardController {
     // 게시글 글삭제 요청 응답
     @PostMapping("/board/{id}/delete")
     public String delete(@PathVariable Integer id) {
-
         boardService.게시글삭제하기(id);
         return "redirect:/board";
     }
