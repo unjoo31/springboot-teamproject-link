@@ -58,9 +58,6 @@
     }
 
     .btn-register {
-        margin-top: 35px;
-        width: 100px;
-        height: 40px;
         background-color: #9F12E1;
         color: white;
     }
@@ -94,7 +91,6 @@
         width: 300px;
         position: absolute;
         left: -230px;
-
     }
 
     .dropdown-menu-big {
@@ -120,6 +116,7 @@
     .logo {
         color: #9F12E1;
         font-weight: 700;
+        margin-left: -4px;
     }
 
     .footer {
@@ -168,117 +165,7 @@
     }
 
     .btn-register {
-        margin-top: 35px;
-        width: 100px;
-        height: 40px;
-        background-color: #9F12E1;
-        color: white;
-    }
-
-    .btn-register a {
-        margin-bottom: 5px;
-        font-size: 15px;
-        color: #ffffff;
-        margin-bottom: 5px;
-        text-decoration: none;
-    }
-
-    .btn-logout {
-        margin-left: 10px;
-        margin-right: 10px;
-        width: 280px;
-        background-color: #9F12E1;
-        color: white;
-    }
-
-    .btn-logout a {
-        font-size: 15px;
-        color: #ffffff;
-    }
-
-    .header-menu {
-        font-weight: 600;
-    }
-
-    .dropdown-menu {
-        width: 300px;
-        position: absolute;
-        left: -230px;
-
-    }
-
-    .dropdown-menu-big {
-        font-size: 15px;
-    }
-
-    .dropdown-menu-small {
-        font-size: 11px;
-    }
-
-    .dropdown-toggle::after {
-        display: none;
-    }
-
-    .nav-img {
-        width: 20px;
-        height: 20px;
-        margin-top: 20px;
-        margin-right: 20px;
-    }
-
-    /* 헤더, 푸터 스타일 끝 */
-    .logo {
-        color: #9F12E1;
-        font-weight: 700;
-    }
-
-    .footer {
-        border-bottom: 1px solid #ccc;
-        margin-bottom: 20px;
-    }
-
-    /* 타이틀 스타일 */
-    .title-text {
-        font-size: 20px;
-    }
-
-    /* 메인 스타일 */
-    .main-text {
-        font-size: 14px;
-    }
-
-    /* 서브 스타일 */
-    .sub-text {
-        font-size: 13px;
-    }
-
-    .footer-inc {
-        font-size: 12px;
-    }
-
-    .btn-style {
         margin-top: 15px;
-        border-radius: 30px;
-        width: 100px;
-        height: 40px;
-    }
-
-    .btn-login {
-        border: 1px solid #9F12E1;
-        color: #9F12E1;
-        margin-right: 10px;
-    }
-
-    .btn-login a {
-        margin-bottom: 5px;
-        font-size: 15px;
-        color: #9F12E1;
-        margin-bottom: 5px;
-        text-decoration: none;
-    }
-
-    .btn-register {
-        margin-top: 35px;
         width: 100px;
         height: 40px;
         background-color: #9F12E1;
@@ -302,11 +189,11 @@
     }
 
     .btn-save {
-        margin-bottom: 5px;
-        font-size: 15px;
-        color: #FFFFFF;
-        margin-bottom: 5px;
-
+        margin-top: 35px;
+        width: 100px;
+        height: 40px;
+        background-color: #9F12E1;
+        color: white;
     }
 
     .header-menu {
@@ -434,7 +321,10 @@
         position: relative;
         top: -4px;
     }
-    
+    .page-link {
+        border-radius: 5px;
+    }
+
     .board-overflow-title {
         white-space: nowrap;
         /* 너비를 벗어나도 줄 바꿈 하지 않음 */
@@ -446,7 +336,7 @@
         /* 1줄로만 표시함 */
         max-width: 260px;
     }
- 
+
     .board-overflow-content {
         white-space: nowrap;
         /* 너비를 벗어나도 줄 바꿈 하지 않음 */
@@ -462,13 +352,10 @@
     p {
         margin: 0;
     }
-
-
     a {
         text-decoration: none;
         color: inherit;
     }
-
     .board-button{
         font-size: 14px;
     }
@@ -495,27 +382,17 @@
                 <input id="keyword" class="search-text" type="text" name="keyword" placeholder="검색어를 입력하세요"
                     style="border: none;" required>
                 <button class="btn btn-primary button-search" type="submit" style="background: none; border: none">
-                    <img src="/img/search.png" alt="검색 돋보기">
                     <img src="/images/search.png" alt="검색 돋보기">
                 </button>
             </form>
         </div>
 
         <div class="d-flex justify-content-end">
-            <a class="btn btn-register main-text" href="/board/saveBoard">게시글작성</a>
+            <a class="btn btn-save main-text" href="/board/saveBoard">게시글작성</a>
         </div>
 
     </div>
 
-    <div class="d-flex justify-content-between mb-3 box-layout">
-        <table style="width:100%">
-            <tr class="main-text">
-
-                <th class="board-number rounded-left">
-                    <span id="your-id-here">No</span>
-                </th>
-
-                <th class="board-title">제목</th>
     <div class="d-flex justify-content-between mb-3 box-layout .text-black-50">
         <table style="width:100%">
             <tr class="main-text">
@@ -531,12 +408,11 @@
                 <th class="board-id">아이디</th>
 
                 <th class="board-content rounded-right">내용</th>
-
             </tr>
 
             {{#boardPG.content}}
             <tr class="td-text board-list">
-
+                
                 <td class="board-number text-center"></td>
 
                 <td class="board-title board-overflow-title"><a href="/board/{{id}}/detailBoard">{{title}}</a></td>
@@ -545,36 +421,26 @@
                 </td>
 
                 <td class="board-id">
-                    <img src=" ./img/smallProfile.png" width="20" height="20" alt="이미지 설명" style="border-radius: 50%;">
-                    {{user.username}}
-                </td>
                     <img src="/images/smallProfile.png" width="20" height="20" alt="이미지 설명" style="border-radius: 50%;">
                     {{user.username}}
                 </td>
-                <body>
-                    <td class="board-content board-overflow-content p" >
-                        <span id="contentSpan">{{{content}}}</span>
-                    </td>
-                    <script>
-                        // 줄 바꿈 문자를 제거합니다.                       
-                        var contentSpan = document.getElementById("contentSpan");
-                        contentSpan.textContent = contentSpan.textContent.replace(/\n/g, '').trim();
-                    </script>
-                </body>
-
+              
                 <body>
                     <td class="board-content board-overflow-content p">
-                        <span id="contentSpan">{{{content}}}</span>
+                        <span class="contentSpan">{{{content}}}</span>
                     </td>
-                    <script>
-                        // 줄 바꿈 문자를 제거합니다.                       
-                        var contentSpan = document.getElementById("contentSpan");
-                        contentSpan.textContent = contentSpan.textContent.replace(/\n/g, '').trim();
-                    </script>
                 </body>
              
             </tr>
             {{/boardPG.content}}
+
+            <script>
+                // 줄 바꿈 문자를 제거합니다.
+                var contentSpans = document.querySelectorAll(".contentSpan");
+                contentSpans.forEach(function (contentSpan) {
+                    contentSpan.textContent = contentSpan.textContent.replace(/\n/g, '').trim();
+                });
+            </script>
 
             <tr style="height: 100px;"></tr>
         </table>
@@ -587,6 +453,8 @@
         </li>
         <li class="page-item {{#boardPG.last}} disabled {{/boardPG.last}}"><a class="page-link"
                 href="?page={{nextPage}}" style="margin-left: 10px;">다음</a></li>
+        </li>
+
     </ul>
 
 </div>
@@ -614,6 +482,5 @@
     });
 
 </script>
-
 
 {{> layout/footer}}

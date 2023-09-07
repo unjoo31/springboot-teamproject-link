@@ -237,7 +237,6 @@
     .body-content {
         border: 1px solid #EDEEF2;
         border-radius: 15px;
-        background-color: #ffffff;
     }
 
     .body-content-title {
@@ -278,7 +277,6 @@
     /* 내용 입력칸의 스타일 */
     textarea {
         height: 300px;
-        /* 높이 설정 */
         display: flex;
         flex-direction: row;
         border-radius: 10px;
@@ -290,12 +288,6 @@
         display: grid;
         grid-gap: 10px;
         width: 600px;
-    }
-
-    .box-background{
-        background-color: #FAFAFA;
-        height: 800px;
-        padding-top: 20px;
     }
 
     h1 {
@@ -318,51 +310,67 @@
 </style>
 
 <div class="box-background">
-    <div class="container">
 
+    <div class="container">
         <h1 class="savetitle-text body">게시글 작성</h1>
+        
         <div class="body-content">
     
             <div class="body-content-title">
                 <p>Create Posts</p>
             </div>
+
+
+        <div class="box-layout">
     
-    
-            <div class="box-layout">
-    
-                <form class="left-box" action="/board/save" method="post" enctype="multipart/form-data">
-    
-                    <div class="box-title mb-3">
-                        <label class="form-label main-text">제목</label>
-                        <input type="text" class="input-style form-control sub-text" id="username" placeholder="제목을 적으세요"
-                            name="title">
-                    </div>
-    
-                    <div class="box-title mb-3">
-                        <label class="form-label main-text">내용</label>
-                        <textarea class="custom-textarea" rows=" 20" cols="30" id="content" name="content"></textarea>
-                    </div>
-    
-                    <div class="d-flex bottom-box justify-content-end">
-                        <button type="submit" class="btn btn-style-bottom btn-register main-text" id="content"
-                            style="margin-right: 15px;">완료</button>
-                    </div>
-    
-                </form>
-    
-            </div>
+            <form class="left-box" action="/board/save" method="post" enctype="multipart/form-data">
+
+                <div class="box-title mb-3">
+                    <label class="form-label main-text">제목</label>
+                    <input type="text" class="input-style form-control sub-text" id="username" placeholder="제목을 적으세요"
+                        name="title">
+                </div>
+
+                <div class="box-title mb-3">
+                    <label class="form-label main-text">내용</label>
+                    <textarea class="custom-textarea" rows=" 20" cols="30" id="content" name="content"></textarea>
+                </div>
+
+                <div class="d-flex bottom-box justify-content-end">
+                    <button type="submit" class="btn btn-style-bottom btn-register main-text" id="content"
+                        style="margin-right: 15px;">완료</button>
+                </div>
+
+            </form>
+
         </div>
     </div>
 </div>
-
+</div>
 
 <script>
     $(document).ready(function () {
-        $('#content').summernote({
+        var $content = $('#content');
+        
+        $content.summernote({
             placeholder: '글을 작성하세요',
-            height: 300,            
+            minHeight: 300,  // 최소 높이 설정
+            maxHeight: 800,  // 최대 높이 설정
         });
-    }); 
+
+        // Summernote 내용이 변경될 때마다 높이를 조정
+        $content.on('summernote.change', function () {
+            // 현재 내용의 높이를 가져오기
+            var contentHeight = $content.height();
+            
+            // 높이를 동적으로 조정 (예: 최소 높이 ~ 최대 높이 사이에서)
+            if (contentHeight < 300) {
+                $content.height(300);
+            } else if (contentHeight > 800) {
+                $content.height(800);
+            }
+        });
+    });                    
 </script>
 
 {{> layout/footer}}
