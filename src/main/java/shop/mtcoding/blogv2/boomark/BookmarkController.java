@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mysql.cj.protocol.x.Notice;
+
 import shop.mtcoding.blogv2.hashskil.HashSkil;
 import shop.mtcoding.blogv2.hashskil.HashSkilService;
+import shop.mtcoding.blogv2.notice.NoticeService;
 import shop.mtcoding.blogv2.user.User;
 
 @Controller
@@ -28,6 +31,9 @@ public class BookmarkController {
 
     @Autowired
     private HashSkilService hashSkilService;
+
+    @Autowired
+    private NoticeService noticeService;
 
     @Autowired
     private HttpSession session;
@@ -61,7 +67,7 @@ public class BookmarkController {
     @PostMapping("/applyNoticeBookmark/{noticeId}")
     public String applyNoticeBookmark(@PathVariable Integer noticeId){
         User sessionUser = (User) session.getAttribute("sessionUser");
-        
+    
         Bookmark bookmark = new Bookmark();
         bookmark.setTargetId(noticeId);
         bookmark.setUser(sessionUser);
