@@ -89,16 +89,16 @@ public class NoticeController {
 
         // 채용공고 리스트 보여주기
 
-        Page<Notice> noticeList = null; 
+        Page<Notice> noticeList = null;
 
-        if(keyword.isBlank()){
+        if (keyword.isBlank()) {
             noticeList = noticeService.공고목록보기(page);
-        }else{
+        } else {
             noticeList = noticeService.공고목록보기(page, keyword);
             request.setAttribute("keyword", keyword);
         }
 
-        //List<Notice> noticeList = noticeService.공고목록보기();
+        // List<Notice> noticeList = noticeService.공고목록보기();
 
         List<Map<String, Object>> noticeDataList = new ArrayList<>();
         for (Notice notice : noticeList) {
@@ -120,9 +120,8 @@ public class NoticeController {
         }
 
         request.setAttribute("noticeDataList", noticeDataList);
-        request.setAttribute("prevPage", noticeList.getNumber()-1);
-        request.setAttribute("nextPage", noticeList.getNumber()+1);
-        
+        request.setAttribute("prevPage", noticeList.getNumber() - 1);
+        request.setAttribute("nextPage", noticeList.getNumber() + 1);
 
         // 기업 리스트 보여주기
         List<User> companyUsers = userService.기업회원조회();
@@ -266,8 +265,8 @@ public class NoticeController {
         long timeDifferenceDays = timeDifferenceMillis / (1000 * 60 * 60 * 24);
 
         int companyUser = 1;
-        
-        if(sessionUser.getCompanyUser() == true){
+
+        if (sessionUser.getCompanyUser() == true) {
             request.setAttribute("companyUser", companyUser);
         }
 
@@ -305,15 +304,15 @@ public class NoticeController {
     }
 
     @GetMapping("/corporationResume")
-    public String corporationResume(Model model1, Model model2, Model model3) {
+    public String corporationResume(Model model) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.회원정보보기(sessionUser.getId());
-        List<Notice> notice = noticeService.채용공고존재유무확인(sessionUser.getId());
-        List<Skill> skill = hashSkilService.채용공고선택한스킬목록(sessionUser.getId());
-        model1.addAttribute("userInfo", user);
-        model2.addAttribute("existNotice", notice);
-        model3.addAttribute("selectSkill", skill);
+        List<NoticeResponse.CorporationResume> noticeList = noticeService.채용공고존재유무확인(sessionUser.getId());
+        //List<Skill> skill = hashSkilService.채용공고선택한스킬목록2(sessionUser.getId());
+        model.addAttribute("userInfo", user);
+        model.addAttribute("noticeList", noticeList);
         return "/corporation/corporationResume";
+        //return notice;
     }
 
     @GetMapping("/corporationSaveResume")
