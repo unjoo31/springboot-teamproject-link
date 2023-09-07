@@ -57,7 +57,7 @@ public class BoardService {
                 .build();
         // 생성한 Board 객체를 Repository를 통해 데이터베이스에 저장
         boardRepository.save(board);
-    } 
+    }
 
     // 게시글 목록보기
     public Page<Board> board(String keyword, Integer page) {
@@ -70,7 +70,6 @@ public class BoardService {
         } else {
             boardPage = boardRepository.findByTitleContainingOrContentContaining(keyword, keyword, pageable);
         }
-
         return boardPage;
     }
 
@@ -93,7 +92,6 @@ public class BoardService {
         int maxTitleLength = 60;
         int maxContentLength = 200000;
 
-      
         // 제목과 내용의 길이를 체크하여 최대 길이를 넘어가면 저장하지 않음
         if (title.length() > maxTitleLength) {
             throw new MyException("제목의 글자수를 초과 하였습니다");
@@ -101,7 +99,7 @@ public class BoardService {
         if (content.length() > maxContentLength) {
             throw new MyException("내용의 글자수를 초과 하였습니다");
         }
-          if (updateDTO.getTitle() == null || updateDTO.getTitle().isEmpty()) {
+        if (updateDTO.getTitle() == null || updateDTO.getTitle().isEmpty()) {
             throw new MyException("제목을 입력하세요");
         }
         if (updateDTO.getContent() == null || updateDTO.getContent().isEmpty()) {
