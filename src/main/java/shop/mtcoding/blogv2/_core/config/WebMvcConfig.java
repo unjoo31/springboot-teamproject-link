@@ -26,10 +26,11 @@ public class WebMvcConfig implements WebMvcConfigurer{
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
-                .addPathPatterns("/updateSeekerForm", "/updateCorporationForm", "/user/update")
-                .addPathPatterns("/board/**")
+                .addPathPatterns("/updateCorporationForm", "/corporationResume", "/corporationSupport/{{sessionUser.id}}", "/corporationSeeker")
+                .addPathPatterns("/updateSeekerForm", "/seekerResumeForm", "/seekerSupport", "/seekerCompanies")
+                .addPathPatterns("/applyNotice/**")
+                .addPathPatterns("/board/**/updateForm", "/board/saveBoard")
+                .excludePathPatterns("/board")
                 .excludePathPatterns("/board/{id:[0-9]+}");
-    }  
-
-    
+    }    
 }

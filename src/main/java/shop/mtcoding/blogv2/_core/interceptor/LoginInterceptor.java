@@ -29,13 +29,13 @@ public class LoginInterceptor implements HandlerInterceptor{
             if (startEndPoint.equals("api")) {
                 response.setHeader("Content-Type", "application/json; charset=utf-8");
                 PrintWriter out = response.getWriter();
-                ApiUtil<String> apiUtil = new ApiUtil<>(false, "인증이 필요합니다");
+                ApiUtil<String> apiUtil = new ApiUtil<>(false, "로그인후 사용 가능합니다");
                 String responseBody = new ObjectMapper().writeValueAsString(apiUtil);
                 out.println(responseBody);
             } else {
                 response.setHeader("Content-Type", "text/html; charset=utf-8");
                 PrintWriter out = response.getWriter();
-                out.println(Script.href("/loginForm", "인증이 필요합니다"));
+                out.println(Script.href("/loginForm", "로그인후 사용 가능합니다"));
             }
             return false;
         }
