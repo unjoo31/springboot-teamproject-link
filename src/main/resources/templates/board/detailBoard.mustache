@@ -104,6 +104,7 @@
     .body-content {
         border: 1px solid #EDEEF2;
         border-radius: 15px;
+        background-color: #ffffff;
     }
 
 .header{
@@ -456,6 +457,11 @@
         /* 글자 굵기 설정 */
     }
 
+    .box-background{
+        background-color: #FAFAFA;
+        height: 600px;
+        padding-top: 50px;
+    }
     .custom-textarea {
         padding: 10px;
         border: 1px solid #EDEEF2;
@@ -486,79 +492,82 @@
     /* detailBoard.html */
 </style>
 
-<div class="container">
+<div class="box-background">
+    <div class="container">
 
-    <!-- 게시글내용 -->
-    <h1 class="title-text body">{{board.title}}</h1>
-    <div class="body-content">
-
-        <div class="">
-
-            <div class="mb-3 d-flex flex-column">
-                <div class="custom-textarea">
-                    {{{board.content}}}
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="d-flex bottom-box justify-content-center">
-
-            <div class="w-100 px-3">
-
-                <h1 class="title-mini-text body" style="margin-bottom: 20px;">댓글</h1>
-
-                <!-- 댓글등록 -->
-                <form>
-                    <input type="hidden" id="boardId" value="{{board.id}}">
-
-                    <div class="reply-writer">작성자</div>
-
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="d-flex flex-grow-1"> <!-- 좌우로 확장 -->
-                            <input class="form-control sub-text" placeholder="댓글을 입력하세요" id="comment">
-                        </div>
-
-                        <button type="button" class="btn btn-style btn-register main-text bottom-box reply-button"
-                            onclick="saveReply()">완료</button>
-
+        <!-- 게시글내용 -->
+        <h1 class="title-text body">{{board.title}}</h1>
+        <div class="body-content">
+    
+            <div class="">
+    
+                <div class="mb-3 d-flex flex-column">
+                    <div class="custom-textarea">
+                        {{{board.content}}}
                     </div>
-                </form>
-
-
-                <!-- 댓글목록 -->
-                <div class="list-group-item">
-
-                    {{#board.replies}}
-
-                    <div>
-                        <div class="reply-writer">{{user.username}}</div>
-                        <div class="d-flex align-items-center">
-
-                            <div class="d-flex flex-grow-1">
-                                <div class="form-control sub-text">{{comment}}</div>
+                </div>
+    
+            </div>
+    
+    
+            <div class="d-flex bottom-box justify-content-center">
+    
+                <div class="w-100 px-3">
+    
+                    <h1 class="title-mini-text body" style="margin-bottom: 20px;">댓글</h1>
+    
+                    <!-- 댓글등록 -->
+                    <form>
+                        <input type="hidden" id="boardId" value="{{board.id}}">
+    
+                        <div class="reply-writer">작성자</div>
+    
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="d-flex flex-grow-1"> <!-- 좌우로 확장 -->
+                                <input class="form-control sub-text" placeholder="댓글을 입력하세요" id="comment">
                             </div>
-
-                            <form>
-                                <button type="button"
-                                    class="btn btn-style btn-register main-text bottom-box reply-button"
-                                    onclick="deleteReply('{{id}}')">삭제</button>
-                            </form>
-
+    
+                            <button type="button" class="btn btn-style btn-register main-text bottom-box reply-button"
+                                onclick="saveReply()">완료</button>
+    
                         </div>
+                    </form>
+    
+    
+                    <!-- 댓글목록 -->
+                    <div class="list-group-item">
+    
+                        {{#board.replies}}
+    
+                        <div>
+                            <div class="reply-writer">{{user.username}}</div>
+                            <div class="d-flex align-items-center">
+    
+                                <div class="d-flex flex-grow-1">
+                                    <div class="form-control sub-text">{{comment}}</div>
+                                </div>
+    
+                                <form>
+                                    <button type="button"
+                                        class="btn btn-style btn-register main-text bottom-box reply-button"
+                                        onclick="deleteReply('{{id}}')">삭제</button>
+                                </form>
+    
+                            </div>
+                        </div>
+    
+                        {{/board.replies}}
+    
                     </div>
-
-                    {{/board.replies}}
-
+    
                 </div>
-
             </div>
+    
         </div>
-
+    
     </div>
-
 </div>
+
 
 <script>
     async function deleteReply(id) {

@@ -58,6 +58,9 @@
     }
 
     .btn-register {
+        margin-top: 35px;
+        width: 100px;
+        height: 40px;
         background-color: #9F12E1;
         color: white;
     }
@@ -266,7 +269,7 @@
     .search-input {
         padding: 5px;
         border: 1px solid #ccc;
-        border-radius: 18px;
+        border-radius: 25px;
     }
 
     .board-number {
@@ -338,8 +341,6 @@
         max-width: 260px;
     }
 
-    /* 여기 작업 중 ================================================================================================= */
-
     .board-overflow-content {
         white-space: nowrap;
         /* 너비를 벗어나도 줄 바꿈 하지 않음 */
@@ -362,6 +363,20 @@
         color: inherit;
     }
 
+    .board-button{
+        font-size: 14px;
+    }
+    .pagination{
+        margin-top: 20px;
+    }
+    .pagination a{
+        color: #9F12E1;
+    }
+    .page-link {
+        border-radius: 5px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 
     /* board.html */
 </style>
@@ -384,7 +399,6 @@
         </div>
 
     </div>
-
 
     <div class="d-flex justify-content-between mb-3 box-layout">
         <table style="width:100%">
@@ -420,7 +434,7 @@
                 </td>
 
                 <body>
-                    <td class="board-content board-overflow-content p" >
+                    <td class="board-content board-overflow-content p">
                         <span id="contentSpan">{{{content}}}</span>
                     </td>
                     <script>
@@ -429,7 +443,7 @@
                         contentSpan.textContent = contentSpan.textContent.replace(/\n/g, '').trim();
                     </script>
                 </body>
-
+             
             </tr>
             {{/boardPG.content}}
 
@@ -443,7 +457,8 @@
                 href="?page={{prevPage}}" style="margin-right: 10px;">이전</a>
         </li>
         <li class="page-item {{#boardPG.last}} disabled {{/boardPG.last}}"><a class="page-link"
-                href="?page={{nextPage}}" style="margin-left: 10px;">다음</a></li>
+                href="?page={{nextPage}}" style="margin-left: 10px;">다음</a></li>               
+        </li>
     </ul>
 
 </div>
