@@ -74,10 +74,15 @@ public class UserService {
     @Transactional
     public User 회원수정(UpdateDTO updateDTO, Integer id) {
 
-        String fileName = function.saveImage(updateDTO.getPic());
+        String fileName = null;
+        
+        if (updateDTO.getPic() == null || updateDTO.getPic().isEmpty()) {
+            fileName = "basic.jpg"; // 디폴트 이미지 파일 이름
+        } else {
+            fileName = function.saveImage(updateDTO.getPic());
+        }
 
         User user = userRepository.findById(id).get();
-
         user.setPassword(updateDTO.getPassword());
         user.setEmail(updateDTO.getEmail());
         user.setCompanyUser(updateDTO.getCompanyUser());
