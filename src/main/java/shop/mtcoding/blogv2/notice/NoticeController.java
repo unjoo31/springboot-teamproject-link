@@ -305,15 +305,16 @@ public class NoticeController {
     }
 
     @GetMapping("/corporationResume")
-    public String corporationResume(Model model1, Model model2, Model model3) {
+    public @ResponseBody List<Notice> corporationResume(Model model1, Model model2, Model model3) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.회원정보보기(sessionUser.getId());
-        List<Notice> notice = noticeService.채용공고존재유무확인(sessionUser.getId());
-        List<Skill> skill = hashSkilService.채용공고선택한스킬목록(sessionUser.getId());
+        List<Notice> noticeList = noticeService.채용공고존재유무확인(sessionUser.getId());
+        // List<Skill> skill = hashSkilService.채용공고선택한스킬목록(sessionUser.getId());
         model1.addAttribute("userInfo", user);
-        model2.addAttribute("existNotice", notice);
-        model3.addAttribute("selectSkill", skill);
-        return "/corporation/corporationResume";
+        model2.addAttribute("NoticeList", noticeList);
+        // model3.addAttribute("selectSkill", skill);
+        // return "/corporation/corporationResume";
+        return noticeList;
     }
 
     @GetMapping("/corporationSaveResume")

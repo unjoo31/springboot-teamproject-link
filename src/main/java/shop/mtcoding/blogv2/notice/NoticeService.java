@@ -3,6 +3,7 @@ package shop.mtcoding.blogv2.notice;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -145,15 +146,24 @@ public class NoticeService {
     }
 
     public List<Notice> 채용공고존재유무확인(Integer userId) {
-        List<Notice> noticeList = noticeRepository.findByUserId(userId);
+        List<Notice> noticeList = noticeRepository.mfindNoticeWithSkillsByUserId(userId);
 
         if (noticeList != null) {
-            System.out.println("값이 있습니다.");
+            List<NoticeResponse.CorporationResume> resp = new ArrayList<>();
+            for (Notice notice : noticeList) {
+                NoticeResponse.CorporationResume noticeDTO = new NoticeResponse.CorporationResume(notice);
+                resp.add(noticeDTO);
+            }
+
+            // Stream 버전이에요! 나중에 프로젝트 이후 공부하실때 꼭 숙지하세요. 코드가 간편해집니다.
+            // return noticeList.stream().map(t -> new NoticeResponse.CorporationResume(t)).collect(Collectors.toList());
+
             return noticeList;
         } else {
             System.out.println("값이 없습니다.");
             return null;
         }
+
     }
 
     public Notice 채용공고가져오기(Integer noticeId) {
@@ -230,5 +240,4 @@ public class NoticeService {
         return noticeRepository.findByUserId(id);
     }
 
-  
 }
