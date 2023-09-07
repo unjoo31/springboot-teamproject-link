@@ -26,6 +26,7 @@ public interface HashSkilRepository extends JpaRepository<HashSkil, Integer> {
     List<Skill> findSkillsByUserId(@Param("userId") Integer userId);
 
 
+
     // 디비에 데이터가 쌓이는것을 방지하기위해 초기화를 위한 딜리트 메서드 생성
     @Modifying
     @Query("DELETE FROM HashSkil h WHERE h.resume.id = :resumeId")
