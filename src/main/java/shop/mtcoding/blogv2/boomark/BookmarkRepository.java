@@ -19,5 +19,8 @@ public interface BookmarkRepository extends JpaRepository <Bookmark, Integer>{
             "LEFT JOIN notice_tb n ON b.target_id = :noticeId\n" + //
             "WHERE b.user_id = :userId and b.target_id = :noticeId", nativeQuery = true)
     int noticeBookmarkCheck(@Param("userId") User userId, @Param("noticeId") Integer noticeId);
+
+    List<Bookmark> findByUserId(@Param("userId") Integer userId);
+
     
 }

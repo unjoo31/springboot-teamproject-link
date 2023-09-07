@@ -19,8 +19,9 @@ public class BookmarkService {
     private BookmarkRepository bookmarkRepository;
 
     @Transactional
-    public void 북마크하기(Bookmark bookmark, Integer integer) {
-        bookmarkRepository.save(bookmark);
+    public boolean 북마크하기(Bookmark bookmark, Integer integer) {
+      return bookmarkRepository.save(bookmark) != null;
+        
     }
 
     public List<User> 북마크기업찾기(Integer id) {
@@ -61,6 +62,10 @@ public class BookmarkService {
             return true;
         }
         return false;
+    }
+
+    public List<Bookmark> 나를북마크한구직자(Integer id) {
+        return bookmarkRepository.findByUserId(id);
     }
 
 }
