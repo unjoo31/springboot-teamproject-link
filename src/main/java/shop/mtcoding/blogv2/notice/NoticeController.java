@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import shop.mtcoding.blogv2._core.error.ex.MyApiException;
+import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.apply.Apply;
 import shop.mtcoding.blogv2.apply.ApplyRequest;
 import shop.mtcoding.blogv2.apply.ApplyService;
@@ -249,6 +251,9 @@ public class NoticeController {
     @GetMapping("/applyNotice/{noticeId}")
     public String applyNotice(@PathVariable Integer noticeId, HttpServletRequest request) {
         User sessionUser = (User) session.getAttribute("sessionUser");
+        if (sessionUser == null) {
+            throw new MyException("로그인이 필요합니다.");
+        }
         User userId = userService.회원정보보기(sessionUser.getId());
         Notice notice = noticeService.공고상세보기(noticeId);
         Boolean ischeck = applyService.채용공고지원여부확인(userId, noticeId);
