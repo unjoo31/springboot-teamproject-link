@@ -16,8 +16,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mysql.cj.protocol.x.Notice;
+
+import shop.mtcoding.blogv2._core.error.ex.MyApiException;
+import shop.mtcoding.blogv2._core.error.ex.MyException;
+import shop.mtcoding.blogv2._core.util.Script;
 import shop.mtcoding.blogv2.hashskil.HashSkil;
 import shop.mtcoding.blogv2.hashskil.HashSkilService;
+import shop.mtcoding.blogv2.notice.NoticeService;
 import shop.mtcoding.blogv2.user.User;
 
 @Controller
@@ -28,6 +34,9 @@ public class BookmarkController {
 
     @Autowired
     private HashSkilService hashSkilService;
+
+    @Autowired
+    private NoticeService noticeService;
 
     @Autowired
     private HttpSession session;
@@ -58,18 +67,25 @@ public class BookmarkController {
     }
 
     // 채용공고 북마크
-    @PostMapping("/applyNoticeBookmark/{noticeId}")
-    public String applyNoticeBookmark(@PathVariable Integer noticeId){
-        User sessionUser = (User) session.getAttribute("sessionUser");
-        
-        Bookmark bookmark = new Bookmark();
-        bookmark.setTargetId(noticeId);
-        bookmark.setUser(sessionUser);
-
-        bookmarkService.북마크하기(bookmark, sessionUser.getId());
-              
-        return "redirect:/applyNotice/{noticeId}";
-    }
+    // 채용공고 북마크
+@PostMapping("/applyNoticeBookmark/{noticeId}")
+public @ResponseBody String applyNoticeBookmark(@PathVariable Integer noticeId){
+    User sessionUser = (User) session.getAttribute("sessionUser");
+    System.out.println("여기 값이 머야" + noticeId);
+    
+    Bookmark bookmark = new Bookmark();
+    bookmark.setTargetId(noticeId);
+    bookmark.setUser(sessionUser);
+    
+    boolean mark = bookmarkService.북마크하기(bookmark, sessionUser.getId());
+    System.out.println("mark에 머가 들어와?" + mark);
+   if (mark == true) {
+    return Script.href("/applyNotice/" + noticeId,"북마크 추가 성공");
+   }else {
+       // 알림 메시지를 표시하고 페이지를 리디렉션합니다.
+       throw new MyException("북마크 추가에 실패했습니다.");
+   }
+}
 
 
     // 관심구직자/기술스택
@@ -78,21 +94,12 @@ public class BookmarkController {
         User sessionUser = (User) session.getAttribute("sessionUser");
 
         // 구직자 리스트 보여주기
-        List<User> seekerUsers = bookmarkService.북마크구직자찾기(sessionUser.getId());
+        // List<User> seekerUsers = bookmarkService.북마크구직자찾기(sessionUser.getId());
+        List<Bookmark> seekerUsers = bookmarkService.나를북마크한구직자(sessionUser.getId());
+        
 
-        System.out.println("북마크" + sessionUser.getId());
 
-        List<Map<String, Object>> seekerDataList = new ArrayList<>();
-        for (User seekeruser : seekerUsers) {
-            Map<String, Object> seekerData = new HashMap<>();
-            seekerData.put("email", seekeruser.getEmail());
-            seekerData.put("name", seekeruser.getName());
-            seekerData.put("address", seekeruser.getAddress());
-
-            seekerDataList.add(seekerData);
-        }
-
-        request.setAttribute("seekerDataList", seekerDataList);
+        request.setAttribute("seekerUsers", seekerUsers);
         return "/corporation/corporationSeeker";
     }
 
