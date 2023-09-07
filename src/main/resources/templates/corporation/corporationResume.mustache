@@ -306,7 +306,7 @@
         </div>
         <div class="container">
             <h1 class="title-text body">채용공고</h1>
-            {{^NoticeList}}
+            {{^noticeList}}
             <div class="card-contain-first">
                 <div class="card">
                     <div class="card-header">Employment announcement</div>
@@ -326,9 +326,9 @@
                     </div>
                 </div>
             </div>
-            {{/NoticeList}}
+            {{/noticeList}}
 
-            {{#NoticeList}}
+            {{#noticeList}}
             <div class="card-contain-second">
                 <div class="card">
                     <div class="card-header">Employment announcement</div>
@@ -344,16 +344,16 @@
                                     <div class="employment-content-sub">
                                     </div>
                                     <div class="employment-content-skill d-flex">
-                                        {{#selectSkill}}
+                                        {{#skillNames}}
                                         <div class="employment-content-skill-box">
-                                            {{skillName}}
+                                            {{.}}
                                         </div>
-                                        {{/selectSkill}}
+                                        {{/skillNames}}
                                     </div>
                                 </div>
                                 <div>
                                     <div>
-                                        <form action="/corporationNoticeDelete/{{id}}/delete" method="post">
+                                        <form action="/corporationNoticeDelete/{{noticeId}}/delete" method="post">
                                             <button class="btn img-botton btn-employment main-text" id="btnJoin"
                                                 type="submit" onmouseover="highlightButton(this)"
                                                 onmouseout="unhighlightButton(this)">채용공고 삭제</button>
@@ -363,14 +363,14 @@
                                         <button class="btn img-botton btn-employment main-text" id="btnJoin"
                                             type="submit" onmouseover="highlightButton(this)"
                                             onmouseout="unhighlightButton(this)"> <a
-                                                href="/corporationSaveResumeUpdate/{{id}}">채용공고 수정</a></button>
+                                                href="/corporationSaveResumeUpdate/{{noticeId}}">채용공고 수정</a></button>
                                     </div>
                                 </div>
                             </div>
                     </div>
                 </div>
             </div>
-            {{/NoticeList}}
+            {{/noticeList}}
         </div>
     </div>
     ​
