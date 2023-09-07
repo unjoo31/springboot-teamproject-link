@@ -9,6 +9,8 @@ import lombok.Setter;
 
 public class NoticeRequest {
 
+    
+
 
     @Getter
     @Setter
