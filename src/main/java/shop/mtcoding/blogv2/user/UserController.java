@@ -102,7 +102,6 @@ public class UserController {
     //회원정보 업데이트
     @PostMapping("/user/update")
     public @ResponseBody String update(UserRequest.UpdateDTO updateDTO){
-        System.out.println("DTO안에 값이 어떻게 들어오지? : " + updateDTO.getPic());
         
         User sessionUser = (User)session.getAttribute("sessionUser");
         User user = userService.회원수정(updateDTO, sessionUser.getId());
@@ -110,7 +109,7 @@ public class UserController {
         // 기업회원의 경우 기업 회원정보 수정 페이지로 이동
         if(sessionUser.getCompanyUser() == true){
             // return "redirect:/updateCorporationForm";
-            return Script.back("회원정보 수정완료");
+            return Script.href("/updateCorporationForm", "회원정보 수정완료");
             
         }
         
