@@ -150,21 +150,22 @@ public class NoticeService {
 
         if (noticeList != null) {
             System.out.println("값이 있습니다.");
+            List<NoticeResponse.CorporationResume> resp = new ArrayList<>();
 
-            // List<NoticeResponse.CorporationResume> resp = new ArrayList<>();
-            // for (Notice notice : noticeList) {
-            //     NoticeResponse.CorporationResume noticeDTO = 
-            //         new NoticeResponse.CorporationResume(notice);
-            //     resp.add(noticeDTO);
-            // }
+            for (Notice notice : noticeList) {
+                NoticeResponse.CorporationResume noticeDTO = new NoticeResponse.CorporationResume(notice);
+                resp.add(noticeDTO);
+            }
 
-            // return resp;
+            System.out.println("테스트 좋은말로 할때 튀어나온나 : "+ resp);
 
-            return noticeList.stream().map(t -> new NoticeResponse.CorporationResume(t)).collect(Collectors.toList());
+            return resp;
+
         } else {
             System.out.println("값이 없습니다.");
             return null;
         }
+
     }
 
     public Notice 채용공고가져오기(Integer noticeId) {
