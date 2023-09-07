@@ -22,12 +22,26 @@ public class HashSkilService {
 
     }
 
+    
+
     public List<Skill> 채용공고선택한스킬목록(Integer noticeId) {
 
         List<Skill> skillList = hashSkilRepository.findSkillsByNoticeId(noticeId);
 
         return skillList;
     }
+
+
+    
+    public List<Skill> 채용공고선택한스킬목록2(Integer noticeId) {
+
+        List<Skill> skillList = hashSkilRepository.findSkillsByNoticeId(noticeId);
+
+        return skillList;
+    }
+
+
+    
 
     public List<HashSkil> 선택한스킬로기업조회하기(List<String> selectedSkills) {
 
