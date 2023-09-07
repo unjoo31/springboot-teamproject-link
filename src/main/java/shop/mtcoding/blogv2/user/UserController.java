@@ -70,6 +70,8 @@ public class UserController {
         if(isCompanyUser == true){
             request.setAttribute("companyUser", companyUser);
         }
+        System.out.println("로그인 테스트" + isCompanyUser);
+        System.out.println("로그인 테스트" + companyUser);
         
         return Script.href("/", "로그인 완료");
     }
