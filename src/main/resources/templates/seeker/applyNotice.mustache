@@ -361,7 +361,7 @@
                     </div>
                 </div>
                 <form action="/applyNoticeBookmark/{{noticeId}}" method="post" enctype="multipart/form-data">
-                    <input type="hidden" id="noticeId" value="{{notice.id}}">
+                    <input type="hidden" id="userId" value="{{notice.id}}">
                     <button class="star-icon-button btn-register" type="submit" id="bookmarkImageContainer">
                         {{#isBookmark}}
                         <div class="boomark-img">
@@ -418,6 +418,7 @@
     </div>
 </div>
 <script>
+    
     // 버튼 마우스 오버 시 스타일 변경
     function highlightButton(element) {
         element.style.cursor = 'pointer';
@@ -428,5 +429,7 @@
         element.style.cursor = 'pointer';
         element.style.boxShadow = 'none'; 
     }
+
+    
 </script>
 {{> layout/footer}}
