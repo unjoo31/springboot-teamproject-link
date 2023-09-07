@@ -3,6 +3,7 @@ package shop.mtcoding.blogv2.user;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.blogv2._core.error.ex.MyApiException;
+import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2._core.util.ApiUtil;
 import shop.mtcoding.blogv2._core.util.Script;
 
@@ -58,6 +60,7 @@ public class UserController {
     public @ResponseBody String login(UserRequest.LoginDTO loginDTO, HttpServletRequest request) {
         // 로그인 기능
         User sessionUser = userService.로그인(loginDTO);
+
         session.setAttribute("sessionUser", sessionUser);
 
         // 로그인시 기업회원, 일반회원 구분
@@ -70,7 +73,7 @@ public class UserController {
         System.out.println("로그인 테스트" + isCompanyUser);
         System.out.println("로그인 테스트" + companyUser);
         
-        return Script.href("/");
+        return Script.href("/", "로그인 완료");
     }
 
     // 로그아웃
@@ -100,18 +103,21 @@ public class UserController {
 
     //회원정보 업데이트
     @PostMapping("/user/update")
-    public String update(UserRequest.UpdateDTO updateDTO){
+    public @ResponseBody String update(UserRequest.UpdateDTO updateDTO){
+        
         User sessionUser = (User)session.getAttribute("sessionUser");
         User user = userService.회원수정(updateDTO, sessionUser.getId());
         session.setAttribute("sessionUser", user);
-
         // 기업회원의 경우 기업 회원정보 수정 페이지로 이동
         if(sessionUser.getCompanyUser() == true){
-            return "redirect:/updateCorporationForm";
+            // return "redirect:/updateCorporationForm";
+            return Script.href("/updateCorporationForm", "회원정보 수정완료");
+            
         }
-
+        
         if(sessionUser.getCompanyUser() ==  false){
-            return "redirect:/updateSeekerForm";
+            // return "redirect:/updateSeekerForm";
+            return Script.href("/updateSeekerForm", "회원정보 수정완료");
         }
         // 일반회원 경우 일반 회원정보 수정 페이지로 이동
         return "redirect:/";

@@ -13,7 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mysql.cj.protocol.x.Notice;
+
+import shop.mtcoding.blogv2.hashskil.HashSkil;
+import shop.mtcoding.blogv2.hashskil.HashSkilService;
+import shop.mtcoding.blogv2.notice.NoticeService;
 import shop.mtcoding.blogv2.user.User;
 
 @Controller
@@ -21,6 +28,12 @@ public class BookmarkController {
 
     @Autowired
     private BookmarkService bookmarkService;
+
+    @Autowired
+    private HashSkilService hashSkilService;
+
+    @Autowired
+    private NoticeService noticeService;
 
     @Autowired
     private HttpSession session;
@@ -54,7 +67,7 @@ public class BookmarkController {
     @PostMapping("/applyNoticeBookmark/{noticeId}")
     public String applyNoticeBookmark(@PathVariable Integer noticeId){
         User sessionUser = (User) session.getAttribute("sessionUser");
-        
+    
         Bookmark bookmark = new Bookmark();
         bookmark.setTargetId(noticeId);
         bookmark.setUser(sessionUser);
@@ -87,6 +100,18 @@ public class BookmarkController {
 
         request.setAttribute("seekerDataList", seekerDataList);
         return "/corporation/corporationSeeker";
+    }
+
+    @GetMapping("/api/seekerCompanies")
+    public @ResponseBody List<HashSkil> seekerCompanies(@RequestParam(defaultValue = "")  List<String> selectedSkills){
+        List<HashSkil> HashSkilList = hashSkilService.선택한스킬로기업조회하기(selectedSkills);
+        return HashSkilList;
+    }
+
+    @GetMapping("/api/corporationSeeker")
+    public @ResponseBody List<HashSkil> corporationSeeker(@RequestParam(defaultValue = "")  List<String> selectedSkills){
+        List<HashSkil> HashSkilList = hashSkilService.선택한스킬로이력서조회하기(selectedSkills);
+        return HashSkilList;
     }
 
 }
