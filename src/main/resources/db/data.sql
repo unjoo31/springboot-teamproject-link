@@ -98,7 +98,7 @@ VALUES
     ('Daegu');
 INSERT INTO bookmark_tb (target_id, user_id)
 VALUES
-(12, 5),
+(1, 5),
 (5, 1),
 (6, 1),
 (1, 6);

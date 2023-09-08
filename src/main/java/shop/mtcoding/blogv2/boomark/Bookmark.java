@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,4 +34,12 @@ public class Bookmark {
     private User user;
 
     private Integer targetId;
+
+    @Builder
+    public Bookmark(Integer id, User user, Integer targetId) {
+        this.id = id;
+        this.user = user;
+        this.targetId = targetId;
+    }
+    
 }

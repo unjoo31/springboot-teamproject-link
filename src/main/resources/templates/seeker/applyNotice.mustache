@@ -360,22 +360,7 @@
                         {{notice.title}}
                     </div>
                 </div>
-                <form action="/applyNoticeBookmark/{{noticeId}}" method="post" enctype="multipart/form-data">
-                    <input type="hidden" id="noticeId" value="{{notice.id}}">
-                    <button class="star-icon-button btn-register" type="submit" id="bookmarkImageContainer">
-                        {{#isBookmark}}
-                        <div class="boomark-img">
-                            <img src="/images/boomarkOn.png" id="bookmarkImage">
-                        </div>
-                        {{/isBookmark}}
-                        {{^isBookmark}}
-                        <div class="boomark-img">
-                            
-                            <img src="/images/boomark.png" id="bookmarkImage">
-                        </div>
-                        {{/isBookmark}}
-                    </button>
-                </form>
+               
             </div>
             <hr>
             <div class="container d-flex third-box">
