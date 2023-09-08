@@ -153,7 +153,6 @@ public class NoticeController {
             @RequestParam(name = "selectedAreas", required = false) List<String> selectedAreaNames,
             HttpServletRequest request) {
 
-
         // 스킬 리스트 보여주기
         List<Skill> skills = skillService.스킬리스트목록보기();
         request.setAttribute("skills", skills);
@@ -190,7 +189,6 @@ public class NoticeController {
                 addedNoticeIds.add(filter.getId());
             }
         }
-
 
         request.setAttribute("filterDataList", filterDataList);
 
@@ -317,11 +315,11 @@ public class NoticeController {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.회원정보보기(sessionUser.getId());
         List<NoticeResponse.CorporationResume> noticeList = noticeService.채용공고존재유무확인(sessionUser.getId());
-        //List<Skill> skill = hashSkilService.채용공고선택한스킬목록2(sessionUser.getId());
+        // List<Skill> skill = hashSkilService.채용공고선택한스킬목록2(sessionUser.getId());
         model.addAttribute("userInfo", user);
         model.addAttribute("noticeList", noticeList);
         return "/corporation/corporationResume";
-        //return notice;
+        // return noticeList;
     }
 
     @GetMapping("/corporationSaveResume")

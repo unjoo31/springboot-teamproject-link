@@ -13,9 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.user.User;
 
 @NoArgsConstructor
@@ -31,6 +33,7 @@ public class Bookmark {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+
 
     private Integer targetId;
 }
