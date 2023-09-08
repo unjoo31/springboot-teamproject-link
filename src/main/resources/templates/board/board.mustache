@@ -415,7 +415,7 @@
             {{#boardPG.content}}
             <tr class="td-text board-list">
 
-                <td class="board-number text-center"></td>
+                <td class="board-number text-center">{{id}}</td>
 
                 <td class="board-title board-overflow-title"><a href="/board/{{id}}/detailBoard">{{title}}</a></td>
 
@@ -470,14 +470,14 @@
             return false;
         }
     }
-    const tdElements = document.querySelectorAll('td.board-number'); // 클래스가 'board-number'인 모든 <td> 요소 선택
-    const totalElements = tdElements.length;
+    //const tdElements = document.querySelectorAll('td.board-number'); // 클래스가 'board-number'인 모든 <td> 요소 선택
+    //const totalElements = tdElements.length;
 
-    tdElements.forEach((td, index) => {
-        const id = document.createElement('span');
-        id.textContent = `${totalElements - index}`; // 역순으로 아이디 생성
-        td.appendChild(id); // <td> 내에 아이디 추가
-    });
+    // tdElements.forEach((td, index) => {
+    //     const id = document.createElement('span');
+    //     id.textContent = `${totalElements - index}`; // 역순으로 아이디 생성
+    //     td.appendChild(id); // <td> 내에 아이디 추가
+    // });
 
 </script>
 
