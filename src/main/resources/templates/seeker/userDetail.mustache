@@ -295,11 +295,11 @@
     }
     .box-background{
         background-color: #FAFAFA;
-        height: 900px;
+        height: 700px;
     }
     .box{
         width: 750px;
-        height: 800px;
+        height: 600px;
         padding: 20px;
         border-radius: 20px;
         border: 1px solid #EDEEF2;
@@ -332,62 +332,93 @@
     .detail-company-title{
         font-weight: 600;
     }
+    .star-icon-button {
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        background: none;
+        outline: none;
+        margin-right: 10px;
+        z-index: 100;
+    }
 </style>
 
 <div class="box-background d-flex justify-content-center">
     <div class="box">
-        <div class="container d-flex first-box " style="justify-content: space-between;">
-            <button type="button" class="btn btn-style btn-register main-text bottom-box-right">{{apply.get.pass}}</button>
-        </div>
         <div class="d-flex">
             <div class="container d-flex flex-column">
-                <div class="detail-company">
-                    {{apply.get.user.name}}
-                </div>
+                
                 <div class="detail-company-title">
-                    {{apply.get.notice.title}}
+                    {{user.get.name}}
                 </div>
             </div>
-            </div>
+            <form action="/applyNoticeBookmark" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="userId" id="userId" value="{{user.get.id}}">
+                <button class="star-icon-button btn-register" type="submit" id="bookmarkImageContainer">
+                    {{#isBookmark}}
+                    <div class="boomark-img">
+                        <img src="/images/boomarkOn.png" id="bookmarkImage">
+                    </div>
+                    {{/isBookmark}}
+                    {{^isBookmark}}
+                    <div class="boomark-img">                       
+                        <img src="/images/boomark.png" id="bookmarkImage">
+                    </div>
+                    {{/isBookmark}}
+                </button>
+            </form>
+        </div>
             <hr />
             <div class="d-flex">
                 <div>
                     <div class="d-flex1 sub-text">
                         <div class="d-flex2">
-                            <div class="main-text text-line">경력</div>
-                            <div class="main-text text-line">학력</div>
-                            <div class="main-text">근무형태</div>
+                            <div class="main-text text-line">이름</div>
+                            <div class="main-text text-line">이메일</div>
+                            <div class="main-text">전화번호</div>
                             
                             </div>
                             <div>
-                                <div class="main-text main-text-color text-line">{{apply.get.notice.career}}</div>
-                                <div class="main-text main-text-color text-line">{{apply.get.notice.academicAbility}}</div>
-                                <div class="main-text main-text-color ">{{apply.get.notice.typeOfWork}}</div>
+                                <div class="main-text main-text-color text-line">{{user.get.name}}</div>
+                                <div class="main-text main-text-color text-line">{{user.get.email}}</div>
+                                <div class="main-text main-text-color ">{{user.get.phonenumber}}</div>
                             </div>
                     </div>
                 </div>
                 <div class="d-flex1 sub-text">
                     <div class="d-flex2">
-                        <div class="main-text text-line">급여</div>
-                        <div class="main-text text-line">마감일</div>
-                        <div class="main-text">지역</div>
+                        <div class="main-text text-line">주소</div>
+                        <div class="main-text text-line">업종</div>
+                        <div class="main-text">업력</div>
                     </div>
                     <div>
-                        <div class="main-text main-text-color text-line">{{apply.get.notice.salary}}</div>
-                        <div class="main-text main-text-color text-line">{{apply.get.notice.endDate}}</div>
-                        <div class="main-text main-text-color">{{#apply.get.notice.hashAreaList}}  {{area.areaName}}  {{/apply.get.notice.hashAreaList}}</div>
+                        <div class="main-text main-text-color text-line">{{user.get.address}}</div>
+                        <div class="main-text main-text-color text-line">{{user.get.business}}</div>
+                        <div class="main-text main-text-color">{{user.get.performance}}</div>
                     </div>
                 </div>
             </div>
             <hr />
-            <div class="container d-flex sub-text four-box">
-                {{#apply.get.notice.hashSkilList}}
-                <div class="statusfail">{{skill.skillName}}</div>
-                {{/apply.get.notice.hashSkilList}}
-            </div>
+            
             <br>
             <div class="container d-flex sub-text five-box">
-                <div>{{apply.get.notice.content}}</div>
+                <div>
+                    저는 언제나 밝고 명랑하며, 딱딱한 분위기를 전환시킬 줄 아는 융통성과 <br> 
+                    <br>
+                    재치도 겸비하고 있습니다. 또한 맡은 일을 끝까지 해낼 수 있는 끈기와 집념의 소유자이기도 합니다. <br>
+                    <br>
+                    저의 장점은 모든 일을 되도록 긍정적으로 받아들이고 마음의 여유를 가지고 <br>
+                    <br>
+                    생활하려 노력한다는 것입니다. <br> 
+                    <br>
+                    하지만 가끔은 마음의 여유를 갖는다는 것이 지나쳐 게으름으로 이어지기도 했었습니다. <br> 
+                    <br>
+                    그러나 학생이 아닌 사회인의 신분으로 새로운 시작을 위한 출발점에 서 있는 지금, <br> 
+                    <br>
+                    더 이상 게으름을 피우기보다는 마음의 여유를 가지되 몸소 실천하는 사람이 되도록 <br> 
+                    <br>
+                    노력하고 있습니다.
+                    
             </div>    
         </div>
             </div>
