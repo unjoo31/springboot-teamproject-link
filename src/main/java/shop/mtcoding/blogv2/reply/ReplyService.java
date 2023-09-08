@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.blogv2._core.error.ex.MyApiException;
+import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2.board.Board;
 import shop.mtcoding.blogv2.reply.ReplyRequest.SaveDTO;
 import shop.mtcoding.blogv2.user.User;
@@ -20,10 +21,12 @@ public class ReplyService {
 
     @Transactional
     public void 댓글쓰기(SaveDTO saveDTO, Integer sessionId) {
-        
         Board board = Board.builder().id(saveDTO.getBoardId()).build();
-
         User user = User.builder().id(sessionId).build();
+
+         if (saveDTO.getComment() == null || saveDTO.getComment().isEmpty()) {
+            throw new MyException("내용을 입력하세요");
+        }
         
         Reply reply = Reply.builder()
                 .comment(saveDTO.getComment())

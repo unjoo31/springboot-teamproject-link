@@ -53,7 +53,7 @@ public class Board {
     @JsonIgnoreProperties({ "board" })
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Reply> replies = new ArrayList<>();
-  
+
     @CreationTimestamp
     @Column(nullable = true)
     private Timestamp createdAt;
