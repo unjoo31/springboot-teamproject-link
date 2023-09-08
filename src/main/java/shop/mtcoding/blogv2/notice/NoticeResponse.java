@@ -14,13 +14,13 @@ public class NoticeResponse {
     @Getter
     @Setter
     public static class CorporationResume{
-        private Integer notiecId;
+        private Integer noticeId;
         private String title;
         private List<String> skillNames = new ArrayList<>();
 
 
         public CorporationResume(Notice notice) {
-            this.notiecId = notice.getId();
+            this.noticeId = notice.getId();
             this.title = notice.getTitle();
             
             List<HashSkil> hashskilList = notice.getHashSkilList();
