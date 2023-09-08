@@ -1,6 +1,7 @@
 package shop.mtcoding.blogv2.boomark;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,6 +22,7 @@ public interface BookmarkRepository extends JpaRepository <Bookmark, Integer>{
     int noticeBookmarkCheck(@Param("userId") User userId, @Param("noticeId") Integer noticeId);
 
     List<Bookmark> findByUserId(@Param("userId") Integer userId);
+
 
     
 }

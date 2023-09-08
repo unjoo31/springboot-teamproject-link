@@ -2,14 +2,17 @@ package shop.mtcoding.blogv2.boomark;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import shop.mtcoding.blogv2.boomark.BookmarkRequest.BookmarkDTO;
 import shop.mtcoding.blogv2.notice.Notice;
 import shop.mtcoding.blogv2.user.User;
+import shop.mtcoding.blogv2.user.UserRepository;
 
 
 @Service
@@ -18,11 +21,21 @@ public class BookmarkService {
     @Autowired
     private BookmarkRepository bookmarkRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Transactional
-    public boolean 북마크하기(Bookmark bookmark, Integer integer) {
+    public boolean 북마크하기(BookmarkDTO bookmarkDTO, Integer sessionUserId) {
+        System.out.println("북마크 테스트 3 : " + sessionUserId);
+        Bookmark bookmark = Bookmark.builder()
+        .targetId(bookmarkDTO.getUserId())
+        .user(User.builder().id(sessionUserId).build())
+        .build();
+        bookmarkRepository.save(bookmark);
+    
       return bookmarkRepository.save(bookmark) != null;
-        
     }
+    
 
     public List<User> 북마크기업찾기(Integer id) {
         List<Object[]> result = bookmarkRepository.findByBookmark(id);
@@ -63,6 +76,16 @@ public class BookmarkService {
         }
         return false;
     }
+
+    public List<User> 관심구직자찾기(Integer id) {
+        return userRepository.findBookmarksByTargetIdAndUserIsNotCompanyUser(id);
+    }
+
+    public List<User> 관심기업찾기(Integer id) {
+        return userRepository.findBookmarksByTargetIdAndUserIsNotUser(id);
+    }
+
+
 
     public List<Bookmark> 나를북마크한구직자(Integer id) {
         return bookmarkRepository.findByUserId(id);

@@ -82,6 +82,9 @@ public class NoticeController {
     @GetMapping("/")
     public String index(@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "0") Integer page,
             HttpServletRequest request) {
+        
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        
 
         // 스킬 리스트 보여주기
         List<Skill> skills = skillService.스킬리스트목록보기();
@@ -127,9 +130,10 @@ public class NoticeController {
         request.setAttribute("prevPage", noticeList.getNumber() - 1);
         request.setAttribute("nextPage", noticeList.getNumber() + 1);
 
+
+     
         // 기업 리스트 보여주기
         List<User> companyUsers = userService.기업회원조회();
-
         List<Map<String, Object>> companyDataList = new ArrayList<>();
         for (User companyuser : companyUsers) {
             Map<String, Object> companyData = new HashMap<>();
@@ -137,12 +141,35 @@ public class NoticeController {
             companyData.put("business", companyuser.getBusiness());
             companyData.put("address", companyuser.getAddress());
             companyData.put("picUrl", companyuser.getPicUrl());
-
+            companyData.put("id", companyuser.getId());
             companyDataList.add(companyData);
         }
 
+        // 유저 리스트 보여주기 
+        List<User> users = userService.일반회원조회();
+        List<Map<String, Object>> userDataList = new ArrayList<>();
+        for (User user : users) {
+            Map<String, Object> userData = new HashMap<>();
+            userData.put("name", user.getName());
+            userData.put("business", user.getBusiness());
+            userData.put("address", user.getAddress());
+            userData.put("picUrl", user.getPicUrl());
+            userData.put("id", user.getId());
+            userDataList.add(userData);
+        }
+        request.setAttribute("userDataList", userDataList);
         request.setAttribute("companyDataList", companyDataList);
 
+        
+        int companyUser = 1;
+
+        if(sessionUser == null){
+            return "index";    
+        }
+        if(sessionUser.getCompanyUser() == true) {
+            request.setAttribute("companyUser", companyUser);             
+        }
+        
         return "index";
     }
 
