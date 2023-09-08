@@ -32,7 +32,7 @@ public class BoardService {
         String content = saveDTO.getContent();
 
         // 제목과 내용의 최대 길이 설정
-        int maxTitleLength = 60;
+        int maxTitleLength = 40;
         int maxContentLength = 200000;
 
         if (saveDTO.getTitle() == null || saveDTO.getTitle().isEmpty()) {
@@ -89,7 +89,7 @@ public class BoardService {
         String content = updateDTO.getContent();
 
         // 제목과 내용의 최대 길이 설정
-        int maxTitleLength = 60;
+        int maxTitleLength = 40;
         int maxContentLength = 200000;
 
         // 제목과 내용의 길이를 체크하여 최대 길이를 넘어가면 저장하지 않음
