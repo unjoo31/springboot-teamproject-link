@@ -25,14 +25,17 @@ public class BookmarkService {
     private UserRepository userRepository;
 
     @Transactional
-    public void 북마크하기(BookmarkDTO bookmarkDTO, Integer sessionUserId) {
+    public boolean 북마크하기(BookmarkDTO bookmarkDTO, Integer sessionUserId) {
         System.out.println("북마크 테스트 3 : " + sessionUserId);
         Bookmark bookmark = Bookmark.builder()
         .targetId(bookmarkDTO.getUserId())
         .user(User.builder().id(sessionUserId).build())
         .build();
         bookmarkRepository.save(bookmark);
+    
+      return bookmarkRepository.save(bookmark) != null;
     }
+    
 
     public List<User> 북마크기업찾기(Integer id) {
         List<Object[]> result = bookmarkRepository.findByBookmark(id);
@@ -83,5 +86,9 @@ public class BookmarkService {
     }
 
 
+
+    public List<Bookmark> 나를북마크한구직자(Integer id) {
+        return bookmarkRepository.findByUserId(id);
+    }
 
 }

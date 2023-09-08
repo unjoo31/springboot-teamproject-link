@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mysql.cj.protocol.x.Notice;
 
+import shop.mtcoding.blogv2._core.error.ex.MyApiException;
+import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2._core.util.Script;
 import shop.mtcoding.blogv2.hashskil.HashSkil;
 import shop.mtcoding.blogv2.hashskil.HashSkilService;
@@ -63,6 +65,22 @@ public class BookmarkController {
         return "/seeker/seekerCompanies";
     }
 
+    // 채용공고 북마크
+    // 채용공고 북마크
+@PostMapping("/applyNoticeBookmark/{noticeId}")
+public @ResponseBody String applyNoticeBookmark(@PathVariable Integer noticeId, BookmarkRequest.BookmarkDTO bookmarkDTO){
+    User sessionUser = (User) session.getAttribute("sessionUser");
+    System.out.println("여기 값이 머야" + noticeId);
+    
+    boolean mark = bookmarkService.북마크하기(bookmarkDTO, sessionUser.getId());
+    System.out.println("mark에 머가 들어와?" + mark);
+   if (mark == true) {
+    return Script.href("/applyNotice/" + noticeId,"북마크 추가 성공");
+   }else {
+       // 알림 메시지를 표시하고 페이지를 리디렉션합니다.
+       throw new MyException("북마크 추가에 실패했습니다.");
+   }
+}
 
 
     // 관심구직자/기술스택
@@ -84,6 +102,7 @@ public class BookmarkController {
             userDataList.add(userData);
         }
 
+        System.out.println();
 
         request.setAttribute("userDataList", userDataList);
         return "/corporation/corporationSeeker";

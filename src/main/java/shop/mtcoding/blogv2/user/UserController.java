@@ -107,7 +107,8 @@ public class UserController {
     //회원정보 업데이트
     @PostMapping("/user/update")
     public @ResponseBody String update(UserRequest.UpdateDTO updateDTO){
-        
+        try {
+            
         User sessionUser = (User)session.getAttribute("sessionUser");
         User user = userService.회원수정(updateDTO, sessionUser.getId());
         session.setAttribute("sessionUser", user);
@@ -124,6 +125,9 @@ public class UserController {
         }
         // 일반회원 경우 일반 회원정보 수정 페이지로 이동
         return "redirect:/";
+         } catch (Exception e) {
+            return Script.href("/", "메인으로 이동합니다.");
+        }
     }
 
     // 기업 유저 상세보기
