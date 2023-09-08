@@ -3,6 +3,7 @@ package shop.mtcoding.blogv2.notice;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -144,16 +145,27 @@ public class NoticeService {
 
     }
 
-    public List<Notice> 채용공고존재유무확인(Integer userId) {
-        List<Notice> noticeList = noticeRepository.findByUserId(userId);
+    public List<NoticeResponse.CorporationResume> 채용공고존재유무확인(Integer userId) {
+        List<Notice> noticeList = noticeRepository.mfindNoticesWithSkillsByUserId(userId);
 
         if (noticeList != null) {
             System.out.println("값이 있습니다.");
-            return noticeList;
+            List<NoticeResponse.CorporationResume> resp = new ArrayList<>();
+
+            for (Notice notice : noticeList) {
+                NoticeResponse.CorporationResume noticeDTO = new NoticeResponse.CorporationResume(notice);
+                resp.add(noticeDTO);
+            }
+
+            System.out.println("테스트 좋은말로 할때 튀어나온나 : "+ resp);
+
+            return resp;
+
         } else {
             System.out.println("값이 없습니다.");
             return null;
         }
+
     }
 
     public Notice 채용공고가져오기(Integer noticeId) {

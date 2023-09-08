@@ -82,6 +82,9 @@ public class NoticeController {
     @GetMapping("/")
     public String index(@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "0") Integer page,
             HttpServletRequest request) {
+        
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        
 
         // 스킬 리스트 보여주기
         List<Skill> skills = skillService.스킬리스트목록보기();
@@ -93,16 +96,16 @@ public class NoticeController {
 
         // 채용공고 리스트 보여주기
 
-        Page<Notice> noticeList = null; 
+        Page<Notice> noticeList = null;
 
-        if(keyword.isBlank()){
+        if (keyword.isBlank()) {
             noticeList = noticeService.공고목록보기(page);
-        }else{
+        } else {
             noticeList = noticeService.공고목록보기(page, keyword);
             request.setAttribute("keyword", keyword);
         }
 
-        //List<Notice> noticeList = noticeService.공고목록보기();
+        // List<Notice> noticeList = noticeService.공고목록보기();
 
         List<Map<String, Object>> noticeDataList = new ArrayList<>();
         for (Notice notice : noticeList) {
@@ -124,13 +127,13 @@ public class NoticeController {
         }
 
         request.setAttribute("noticeDataList", noticeDataList);
-        request.setAttribute("prevPage", noticeList.getNumber()-1);
-        request.setAttribute("nextPage", noticeList.getNumber()+1);
-        
+        request.setAttribute("prevPage", noticeList.getNumber() - 1);
+        request.setAttribute("nextPage", noticeList.getNumber() + 1);
 
+
+     
         // 기업 리스트 보여주기
         List<User> companyUsers = userService.기업회원조회();
-
         List<Map<String, Object>> companyDataList = new ArrayList<>();
         for (User companyuser : companyUsers) {
             Map<String, Object> companyData = new HashMap<>();
@@ -138,12 +141,35 @@ public class NoticeController {
             companyData.put("business", companyuser.getBusiness());
             companyData.put("address", companyuser.getAddress());
             companyData.put("picUrl", companyuser.getPicUrl());
-
+            companyData.put("id", companyuser.getId());
             companyDataList.add(companyData);
         }
 
+        // 유저 리스트 보여주기 
+        List<User> users = userService.일반회원조회();
+        List<Map<String, Object>> userDataList = new ArrayList<>();
+        for (User user : users) {
+            Map<String, Object> userData = new HashMap<>();
+            userData.put("name", user.getName());
+            userData.put("business", user.getBusiness());
+            userData.put("address", user.getAddress());
+            userData.put("picUrl", user.getPicUrl());
+            userData.put("id", user.getId());
+            userDataList.add(userData);
+        }
+        request.setAttribute("userDataList", userDataList);
         request.setAttribute("companyDataList", companyDataList);
 
+        
+        int companyUser = 1;
+
+        if(sessionUser == null){
+            return "index";    
+        }
+        if(sessionUser.getCompanyUser() == true) {
+            request.setAttribute("companyUser", companyUser);             
+        }
+        
         return "index";
     }
 
@@ -153,7 +179,6 @@ public class NoticeController {
             @RequestParam(name = "selectedSkills", required = false) List<String> selectedSkillNames,
             @RequestParam(name = "selectedAreas", required = false) List<String> selectedAreaNames,
             HttpServletRequest request) {
-
 
         // 스킬 리스트 보여주기
         List<Skill> skills = skillService.스킬리스트목록보기();
@@ -191,7 +216,6 @@ public class NoticeController {
                 addedNoticeIds.add(filter.getId());
             }
         }
-
 
         request.setAttribute("filterDataList", filterDataList);
 
@@ -261,10 +285,6 @@ public class NoticeController {
         User userId = userService.회원정보보기(sessionUser.getId());
         Notice notice = noticeService.공고상세보기(noticeId);
         Boolean ischeck = applyService.채용공고지원여부확인(userId, noticeId);
-        Boolean isBookmark = bookmarkService.채용공고북마크여부확인(userId, noticeId);
-
-        System.out.println("북마크 공고 테스트 : " + noticeId);
-        System.out.println("북마크 테스트 : " + isBookmark);
 
         // 마감일 계산을 위해서 변수에 담아주기
         Date startDate = notice.getCreatedAt();
@@ -275,15 +295,14 @@ public class NoticeController {
         long timeDifferenceDays = timeDifferenceMillis / (1000 * 60 * 60 * 24);
 
         int companyUser = 1;
-        
-        if(sessionUser.getCompanyUser() == true){
+
+        if (sessionUser.getCompanyUser() == true) {
             request.setAttribute("companyUser", companyUser);
         }
 
         request.setAttribute("notice", notice);
         request.setAttribute("timeDifferenceDays", timeDifferenceDays);
         request.setAttribute("ischeck", ischeck);
-        request.setAttribute("isBookmark", isBookmark);
         return "seeker/applyNotice";
     }
 
@@ -314,15 +333,15 @@ public class NoticeController {
     }
 
     @GetMapping("/corporationResume")
-    public String corporationResume(Model model1, Model model2, Model model3) {
+    public String corporationResume(Model model) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.회원정보보기(sessionUser.getId());
-        List<Notice> notice = noticeService.채용공고존재유무확인(sessionUser.getId());
-        List<Skill> skill = hashSkilService.채용공고선택한스킬목록(sessionUser.getId());
-        model1.addAttribute("userInfo", user);
-        model2.addAttribute("existNotice", notice);
-        model3.addAttribute("selectSkill", skill);
+        List<NoticeResponse.CorporationResume> noticeList = noticeService.채용공고존재유무확인(sessionUser.getId());
+        // List<Skill> skill = hashSkilService.채용공고선택한스킬목록2(sessionUser.getId());
+        model.addAttribute("userInfo", user);
+        model.addAttribute("noticeList", noticeList);
         return "/corporation/corporationResume";
+        // return noticeList;
     }
 
     @GetMapping("/corporationSaveResume")

@@ -41,10 +41,9 @@ public class BoardController {
         request.setAttribute("first", !boardPage.hasPrevious());
         request.setAttribute("last", !boardPage.hasNext());
         request.setAttribute("totalPage", boardPage.getTotalPages());
-        request.setAttribute("totalCount", boardPage.getTotalElements());
-
+        request.setAttribute("totalCount", boardPage.getTotalElements());        
         return "board/board";
-    }
+    } 
 
     // 게시글 글쓰기 화면 호출
     @GetMapping("/board/saveBoard")

@@ -1,6 +1,7 @@
 package shop.mtcoding.blogv2.boomark;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,9 +16,13 @@ public interface BookmarkRepository extends JpaRepository <Bookmark, Integer>{
         "WHERE bt.user_id = :id", nativeQuery = true)
     List<Object[]> findByBookmark(@Param("id") Integer id);
 
-    @Query(value = "SELECT COUNT(*) FROM bookmark_tb b\n" + //
-            "LEFT JOIN notice_tb n ON b.target_id = :noticeId\n" + //
-            "WHERE b.user_id = :userId and b.target_id = :noticeId", nativeQuery = true)
-    int noticeBookmarkCheck(@Param("userId") User userId, @Param("noticeId") Integer noticeId);
+    @Query(value = "SELECT COUNT(*) FROM bookmark_tb bt\n" + //
+            "LEFT JOIN user_tb ut ON bt.user_id = :userId\n" + //
+            "WHERE bt.user_id = :userId", nativeQuery = true)
+    int noticeBookmarkCheck(@Param("userId") User userId);
+
+    List<Bookmark> findByUserId(@Param("userId") Integer userId);
+
+
     
 }
