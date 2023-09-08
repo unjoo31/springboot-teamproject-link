@@ -1,83 +1,215 @@
+ -- 기업의 아이디 목록
 INSERT INTO user_tb (
   username, password, email, company_user,
   pic_url, name, phonenumber, address, age,
   business, form, performance
-) VALUES (
-  'ssar1', '1234', 'ssar@nate.com', TRUE,
-  'basic.jpg', '기업회원1', '123-456-7890', '123 Main St, City', '1985-05-20',
-  'Tech Company', 'Software Development', 'Good'
+) VALUES 
+(
+  'coupang', '1234', 'www.coupang.com', TRUE,
+  'coupang.jpg', '쿠팡(주)', '1577-7011', '서울 송파구 송파대로 570, 18', '2010-08-10',
+  '쿠팡로지스틱스서비스', 'System Engineer(infra & Solution Engineering)', 'backend & Web development'
+),
+(
+  'woowahan', '1234', 'www.woowahan.com', TRUE,
+  'woowahan.jpg', '우아한형제들(주)', '1600-9880', '서울 송파구 위례성대로 2', '2011-03-10',
+  '우아한형제들', '응용 소프트웨어 개발 및 공급업', 'backend & Web development'
+),
+(
+  'kt', '1234', 'http://www.ktengineering.co.kr', TRUE,
+  'kt.jpg', '케이티이니텍(주)', '080-000-1618', '서울 광진구 천호대로', '1986-05-12',
+  'kt initech', 'SI', 'Java 기반 Web 개발'
+),
+(
+  'naver', '1234', ' http://www.naverins.com', TRUE,
+  'naveris.jpg', '네이버아이앤에스(주)', '1566-3950', '경기 성남시 분당구 정자일로 95, 17층', '2009-02-06',
+  'naver i&s', 'SI', 'template development'
 );
+
+ -- 구직자의 아이디 목록
 INSERT INTO user_tb (
   username, password, email, company_user,
   pic_url, name, phonenumber, address, age,
   business, form, performance
-) VALUES (
-  'ssar2', '1234', 'ssar@nate.com', TRUE,
-  'basic.jpg', '기업회원2', '123-456-7890', '123 Main St, City', '1985-05-20',
-  'Tech Company', 'Software Development', 'Good'
+) VALUES 
+(
+  'cos1', '1234', 'wanni30@wankanda.com', FALSE,
+  'basic.jpg', '홍길동', '010-0000-0000', '경남 양산시 아름다운 3길 1번지', '1994-01-01',
+  'software Developer', null, null
 ),
 (
-  'ssar3', '1234', 'ssar@nate.com', TRUE,
-  'basic.jpg', '기업회원3', '123-456-7890', '123 Main St, City', '1985-05-20',
-  'Tech Company', 'Software Development', 'Good'
+  'cos2', '1234', 'wakgood@wankanda.com', FALSE,
+  'basic.jpg', '김철수', '010-0000-0001', '경남 부산시 길따라 4길 3번지', '1995-04-03',
+  'software Developer', null, null
 ),
 (
-  'ssar4', '1234', 'ssar@nate.com', TRUE,
-  'basic.jpg', '기업회원4', '123-456-7890', '123 Main St, City', '1985-05-20',
-  'Tech Company', 'Software Development', 'Good'
+  'cos3', '1234', 'demian@wankanda.com', FALSE,
+  'basic.jpg', '박이룸', '010-0000-0002', '경남 창원시 오솔길 4길 133번지', '1993-11-03',
+  'software Developer', null, null
+),
+(
+  'cos4', '1234', 'abracsacs@wankanda.com', FALSE,
+  'basic.jpg', '유예슬', '010-0000-0003', '경남 김해시 벚꽃 1길 112번지', '1995-12-07',
+  'software Developer', null, null
 );
-INSERT INTO user_tb (
-  username, password, email, company_user,
-  pic_url, name, phonenumber, address, age,
-  business, form, performance
-) VALUES (
-  'cos1', '1234', 'cos@nate.com', FALSE,
-  'basic.jpg', '일반회원1', '987-654-3210', '123 Main St, City', '1985-05-20',
-  'Tech Company', 'Software Development', 'Good'
-),
-(
-  'cos2', '1234', 'cos@nate.com', FALSE,
-  'basic.jpg', '일반회원2', '987-654-3210', '123 Main St, City', '1985-05-20',
-  'Tech Company', 'Software Development', 'Good'
-);
+
+
+-- 채용공고
 INSERT INTO notice_tb (career, title, academic_ability, salary, type_of_work, created_at, end_date, content, user_id)
 VALUES
-    (1, 'Backend Developer Position', '학력무관', '면접 후 결정', '정규직', now(), '2023-09-20', 'We are seeking an experienced Backend Developer...', 1),
-    (2, 'UI/UX Designer Internship', '학력무관', '면접 후 결정', '아르바이트', now(), '2023-09-21', 'Join our UI/UX Design team as an intern to...', 2),
-    (1, 'Backend Developer Position', '학력무관', '면접 후 결정', '정규직', now(), '2023-09-22', 'We are seeking an experienced Backend Developer...', 1),
-    (2, 'UI/UX Designer Internship', '학력무관', '면접 후 결정', '아르바이트', now(), '2023-09-23', 'Join our UI/UX Design team as an intern to...', 2),
-    (2023, '프론트엔드 개발자 채용', 'React, Vue, Angular 중 1개 이상의 개발 경험', '시스템 소프트웨어 개발 및 공급업', '신입, 경력', now(), '2023-10-31', '백엔드/퍼블리싱/앱 개발 경험 ...', 3),
-    (2023, '웹 개발 경력 및 신입사원 채용', '웹 개발 및 시스템 운영', '시스템 소프트웨어 개발 및 공급업', '신입, 경력', now(), '2024-09-01', 'JAVA개발자(Java, JSP, Spring 등)...', 4),
-    (2023, '백엔드/프론트엔드개발자(java/php/react)', 'java/php/react', '시스템 소프트웨어 개발 및 공급업', '신입, 경력', now(), '2023-11-11', 'java/php/react...', 1),
-    (2023, 'Flutter/React-Native 개발자 채용', 'Flutter/React-Native 개발', '시스템 소프트웨어 개발 및 공급업', '신입, 경력', now(), '2024-01-06', 'java/php/react...', 1),
-    (2023, '엔드/ QC/ GUI디자이너 채용', 'java/php/react', '시스템 소프트웨어 개발 및 공급업', '신입, 경력', now(), '2023-09-08', 'java/php/react...', 1),
-    (2023, 'HR 클라우드 서비스 개발(C#) 신입', 'java/php/react', '시스템 소프트웨어 개발 및 공급업', '신입, 경력',  now(), '2023-09-04','java/php/react...', 1),
-    (2023, '웹/ 서버/ 앱 개발/ 시스템 엔지니어', 'java/php/react', '시스템 소프트웨어 개발 및 공급업', '신입, 경력',  now(), '2023-09-05','java/php/react...', 1),
-    (2023, 'BackEnd/PHP 개발자/보안솔루션 채용', '보안 웹하드 솔루션/서비스 BackEnd 개발', '시스템 소프트웨어 개발 및 공급업', '신입, 경력', now(), '2023-09-05', 'Python 개발 경력 3년 이상자...', 1);
+    (1, 'Senior, Back-end Engineer', '대졸(2,3년제) 이상', '면접 후 결정', '정규직(수습기간 3개월)', now(), '2023-09-30', '[회사 소개]
+쿠팡은 고객 감동 실현을 위해 존재합니다. 고객들이 "쿠팡 없이 그동안 어떻게 살았을까?" 라고 말할 때, 비로소 우리의 미션을 실현하고 있음을 알 수 있습니다. 고객들의 쇼핑과 식사, 생활 전반을 편하게 만들겠다는 유일한 집념으로 쿠팡은 수억 달러 규모의 이커머스 산업 전반의 혁신을 이끌고 있습니다. 쿠팡은 가장 빠르게 성장하는 이커머스 기업 중 하나로, 국내 커머스 업계에서의 독보적인 입지와, 고객 신뢰를 구축했습니다.
+쿠팡은 스타트업 문화를 기반으로 한 글로벌 대형 상장사라고 자부합니다. 이것이 창립 당시의 기민함을 유지하며, 신규 서비스를 끊임없이 출시하며 비즈니스를 확장해 나가는 우리의 성장 동력입니다. 쿠팡의 모든 임직원에게는 기업가 정신을 갖추고 새로운 혁신과 이니셔티브를 추진할 수 있는 기회가 주어집니다. 주저 없이 일에 뛰어들어 성과를 이루고자 하는 과감성이, 바로 쿠팡이 일하는 방식의 본질입니다. 쿠팡에서는 여러분 자신, 동료, 팀 그리고 회사 전체가 매일 성장하는 모습을 목격할 것입니다.
+쿠팡의 모든 직원은 커머스의 미래를 만들겠다는 쿠팡의 미션에 진심입니다. 우리는 고객의 문제를 해결해 나가고, 전통적인 관념과 통념에 맞서며 실현 가능한 한계를 뛰어넘고 있습니다. 고가용성 (always-on) 과 최첨단의 앞선 기술 (high-tech), 초연결사회 (hyper-connected world) 에서의 놀라운 업무 경험을 원하신다면, 지금 바로 쿠팡에 합류하세요.
+[직무 소개]
+Coupang IT 의 Enterprise Software를 이끌 풀 스택 엔지니어는 시스템의 프론트엔드 및 백엔드 구성 요소를 모두 포함하는 소프트웨어 애플리케이션을 개발하고 유지 관리하는 전문가입니다. 해당 엔지니어가 보유한 다양한 기술을 통해 Coupang 내 비지니스 효율성을 향상 시킬 웹 애플리케이션을 구축하고 배포하며, 또한 운영에 필요한 개발 및 스킬을 보유하고 있습니다.
+[업무 내용]
+- Coupang의 Enterprise Software 서비스 만족도 및 비지니스 효율성 향상을 위해 제고를 위해 하나 이상의 복잡한 팀 협업 구조에서 해당 서비스 프로젝트를 리딩 및 구현
+- 프로젝트 진행을 통해 동료 및 주니어 개발자의 성장을 견인함
+- Coupang Enterprise Web Service 의 디자인 및 개발
+- 다른 Enterprise service 와의 Integration을 위한 솔루션 개발
+[자격 요건]
+- 최소 7년 이상의 Back-end 서비스 개발 경험이 있는 분
+- 고객 대상의 웹 서비스 Backend 개발 경험을 갖고 있는 분
+- Spring Boot 또는 React framework으로 개발 경험 있으신 분
+- Container / SQL / RESTful API 기반의 개발 경험 있으신 분
+- 자신의 의도를 능동적으로 말할 수 있고, 타인의 의견을 겸손한 자체로 수용할 수 있으며, 팀원과의 기술적 토론을 통해 발전적인 문제해결이 가능한 분
+- 주어진 Problem을 Deep Dive 하여 해결한 경험이 있는 분
+- 기술에 대한 지속적인 학습과 이에 대한 공유를 즐기는 분
+[우대 사항]
+- Web Service 의 디자인 및 개발 경험 있으신 분
+- AWS를 사용하고 해당 서비스에 대한 이해도가 있으신 분
+- JPA나 Hibernate 등의 ORM 개발 경험 있으신 분
+- Git 관련된 Repository 사용 경험 있으신 분
+- Enterprise Service 개발 경험 있으신 분
+- 서비스 장애 관리 및 모니터링 경험 있으신 분
+[전형 절차 및 안내 사항]
+전형 절차
+- 서류전형 - 1처 면접 - 2차 면접 – 최종 미정
+- 전형 절차는 직무별로 다르게 운영될 수 있으며, 일정 및 상황에 따라 변동될 수 있습니다.
+- 전형 일정 및 결과는 지원서에 등록하신 이메일로 개별 안내드립니다.', 1),
+    (1, 'Front-end Engineer', '학력무관', '면접 후 결정', '정규직(수습기간 1개월)', now(), '2023-09-30', '[회사 소개]
+쿠팡은 고객 감동 실현을 위해 존재합니다. 고객들이 "쿠팡 없이 그동안 어떻게 살았을까?" 라고 말할 때, 비로소 우리의 미션을 실현하고 있음을 알 수 있습니다. 고객들의 쇼핑과 식사, 생활 전반을 편하게 만들겠다는 유일한 집념으로 쿠팡은 수억 달러 규모의 이커머스 산업 전반의 혁신을 이끌고 있습니다. 쿠팡은 가장 빠르게 성장하는 이커머스 기업 중 하나로, 국내 커머스 업계에서의 독보적인 입지와, 고객 신뢰를 구축했습니다.
+쿠팡은 스타트업 문화를 기반으로 한 글로벌 대형 상장사라고 자부합니다. 이것이 창립 당시의 기민함을 유지하며, 신규 서비스를 끊임없이 출시하며 비즈니스를 확장해 나가는 우리의 성장 동력입니다. 쿠팡의 모든 임직원에게는 기업가 정신을 갖추고 새로운 혁신과 이니셔티브를 추진할 수 있는 기회가 주어집니다. 주저 없이 일에 뛰어들어 성과를 이루고자 하는 과감성이, 바로 쿠팡이 일하는 방식의 본질입니다. 쿠팡에서는 여러분 자신, 동료, 팀 그리고 회사 전체가 매일 성장하는 모습을 목격할 것입니다.
+쿠팡의 모든 직원은 커머스의 미래를 만들겠다는 쿠팡의 미션에 진심입니다. 우리는 고객의 문제를 해결해 나가고, 전통적인 관념과 통념에 맞서며 실현 가능한 한계를 뛰어넘고 있습니다. 고가용성 (always-on) 과 최첨단의 앞선 기술 (high-tech), 초연결사회 (hyper-connected world) 에서의 놀라운 업무 경험을 원하신다면, 지금 바로 쿠팡에 합류하세요.
+[직무 소개]
+Coupang IT 의 Enterprise Software를 이끌 풀 스택 엔지니어는 시스템의 프론트엔드 및 백엔드 구성 요소를 모두 포함하는 소프트웨어 애플리케이션을 개발하고 유지 관리하는 전문가입니다. 해당 엔지니어가 보유한 다양한 기술을 통해 Coupang 내 비지니스 효율성을 향상 시킬 웹 애플리케이션을 구축하고 배포하며, 또한 운영에 필요한 개발 및 스킬을 보유하고 있습니다.
+[업무 내용]
+- React를 이용한 자사 플랫폼 반응형 웹 서비스 개발
+[전형 절차 및 안내 사항]
+전형 절차
+- 서류전형 - 1처 면접 - 2차 면접 – 최종 미정
+- 전형 절차는 직무별로 다르게 운영될 수 있으며, 일정 및 상황에 따라 변동될 수 있습니다.
+- 전형 일정 및 결과는 지원서에 등록하신 이메일로 개별 안내드립니다.', 1),
+    (1, '배민커머스주문서비스팀 서버 개발자', '학력무관', '면접 후 결정', '정규직(수습기간 3개월)', now(), '2023-09-28', '[지원자격]
+- 실무 개발 경력 7년 이상 또는 그에 준하는 역량 보유자
+- 다양한 문제에 다영한 접근법과 해법을 활용할 수 있는 백엔드 개발자
+- 다음 기술에 익숙하신 분
+- Java 8 이상
+- Spring Framework, Spring boot, Spring Cloud, JPA, 기타 Java EE 기술
+- AWS
+- jUnit과 테스트코드 작성 라이브러리
+- Git, Jira, Wiki 등의 협업 도구
 
+[우대사항]
+- Big Data 기반 애플리케이션 개발, ML 경험이나 관심이 있으신 분
+- Reactive System 개발 경험이나 관심이 있으신 분
+- Cloud Native Application 개발 경험이나 관심이 있으신 분
+- 코드 유지보수성을 위해 꾸준하게 코드를 리팩터링하고 테스트 코드를 작성하시는 분
+- 서비스 운영과 다양한 상황의 문제를 해결한 경험이 있으신 분
+- 공개 클라우드 서비스(AWS)를 활용한 개발 및 운영 경험이 있으신 분
+- 빌드/테스트/배포 자동화를 통한 CI/CD 경험이 있으신 분
+- 대용량 실시간 애플리케이션/시스템 아키텍처 지식과 경험이 있으신 분
+- Java 외 플랫폼에도 익숙하신 분', 2),
+    (1, '배민커넥트 서비스 백엔드 시스템 개발자', '학력무관', '면접 후 결정', '정규직(수습기간 3개월)', now(), '2023-09-30', '[지원자격]
+- 웹 애플리케이션 개발, 운영을 경험한 실무 3년 이상 또는 이에 준하는 역량을 보유하신 분 
+- Java, Spring Framework, JPA 환경에서 개발 경험이 있으신 분
+- 도메인 설계 및 개발 경험이 있으신분
+- Vue.js를 활용한 간단한 어드민 개발 경험이 있으신 분
+- MySQL(Maria DB) 등 RDBMS 경험이 있으신 분 
+- RESTful API 설계 및 개발 경험이 있으신 분
+- Git flow 형상관리에 익숙하신 분
+- 기본적인 Linux/Unix 명령 사용 능력을 보유하신 분
+- 비즈니스 요구사항에 대한 이해가 뛰어나고, 커뮤니케이션이 원활하신 분
+- 항상 배우고 성장할 준비가 되어 있으신 분 
+
+[우대사항]
+- AWS 클라우드 환경에서 개발, 운영 경험이 있으신 분
+- 테스트 코드를 적극적으로 작성하시는 분
+- SQS, Kafka 등을 활용한 비동기 메시지 기반 개발 경험이 있으신 분
+- 캐싱 처리에 대한 사용 경험이 있으신 분
+- JPA, Hibernate 등 ORM 사용과 도메인 모델링 경험이 있으신 분
+- 대용량 트래픽 환경에서의 성능 최적화 경험이 있으신 분
+- 각종 장애 극복 경험이 있으신 분
+- 품질 좋은 소프트웨어 개발을 위해 지속적으로 노력해오신 분
+- 새로운 기술에 호기심이 많고 공유하시는 분, 코드 리뷰 등을 통해 주변 동료에게 자극을 주는 분
+- 기획/디자인/운영 등 다양한 직군과 같이 문제를 정의하고 해결책을 찾아나갈 수 있는 협업 능력을 갖춘 분', 2),
+    (1, '금융 SI 프로젝트 수행 모집', '대졸(4년제) 이상', '면접 후 결정', '정규직, 계약직', now(), '2023-10-02', '[ 주요 수행업무 ]
+· SI프로젝트  PM/PL 수행
+· SI프로젝트 개발업무 (JAVA개발)
+  ※ 정규직 또는 전문컨설턴트(계약직) 서류전형 미정 시 협의/확정
+
+[ 필요 역량/경험 ]
+· JAVA 기반 Web 개발 경험 10년 이상
+· 중형급 이상 개발 프로젝트 PM/PL 경험
+· WAS 및 J2EE 분석 및 스펙 이해 가능
+· Unix/Linux 사용 가능
+· HTML5, javascript, Servlet, JSP 프로그램 가능
+
+· 금융SI프로젝트 개발 또는 PM/PL 경험 우대
+· 다양한 개발환경 프레임워크 활용 경험 우대
+
+◇ 필요 역량/경험 일부 경험자도 지원 가능', 3),
+    (1, '보안솔루션 서버 개발 모집', '대졸(4년제) 이상', '면접 후 결정', '정규직(수습기간 3개월)', now(), '2023-10-02', '[ 업무내용 ]
+· 서버 보안솔루션 연구개발 및 유지보수
+· 제품 인증 및 신제품 개발
+
+[ 자격요건 ]         
+· 서버 개발 가능하신 분 (경력 6년 이상 필수)
+· 개발에 대한 기본 지식을 갖춘 분
+
+[ 우대요건 ]
+· DB연동 및 네트워크 기술을 사용하여 개발한 경험 우대
+· PKI기술 이해 및 경험 우대
+
+◇ 입사지원 순서대로 이력서 검토(채용 시 마감)', 3),
+    (1, '헬스케어 서비스 데이터 템플릿 개발', '대졸(4년제) 이상(예정자 가능)', '면접 후 결정', '인턴직 3개월', now(), '2023-10-05', '모집분야
+: 헬스케어 서비스 프로토타입 및 데이터 어노테이션 템플릿 개발
+
+지원자격
+: 신입, 학사학위(4년제) 재학 중 (기졸업자 지원 가능)
+  React.js 활용 능력 및 웹 front-end 개발 경험
+
+근무지역
+: 경기도 성남시 분당구
+
+모집인원
+: 0명', 4),
+    (1, '헬스케어 템플릿 개발(Backend)', '대졸(4년제) 이상(예정자 가능)', '면접 후 결정', '인턴직 3개월', now(), '2023-10-02', '모집분야
+: 헬스케어 서비스 프로토타입 및 데이터 어노테이션 템플릿 개발
+
+지원자격
+: 신입, 학사학위(4년제) 재학 중 (기졸업자 지원 가능)
+  Spring 활용 능력 및 웹 back-end 개발 경험
+
+근무지역
+: 경기도 성남시 분당구
+
+모집인원
+: 0명', 4);
+
+-- 이력서
 INSERT INTO resume_tb (career, content, user_id)
 VALUES
-(1, '7 years of experience in web development.', 5),
-(2, 'Recent graduate with strong programming skills.', 6);
+(1, 'IT 업계에서의 경력과 역량을 향상시키기 위해 근무하고자 합니다. 
+저의 기술적 역량, 문제 해결 능력, 그리고 팀 협업 능력을 활용하여 회사의 성장과 혁신에 기여하겠습니다.', 5),
+(1, 'IT 업계에서의 경력과 역량을 바탕으로 함께 미래를 형성하고자 합니다. 
+저의 뛰어난 기술과 열정을 바탕으로 회사의 성공을 이끌어 나가겠습니다. 감사합니다.', 6),
+(1, 'IT 업계에서의 경험과 역량을 바탕으로 함께 혁신적인 프로젝트를 이끌어 나가고자 합니다. 
+끊임없이 성장하고 발전하는 기회를 주셔서 감사합니다. 함께 일하길 기대하고 있습니다.', 7),
+(1, '목표: IT 분야에서 혁신적인 솔루션을 개발하고, 기술을 통해 사회에 가치를 창출하고자 합니다.
+IT 분야에서의 경험과 역량을 활용하여 함께 혁신을 이끌어 나가겠습니다. 감사합니다.', 8);
 
-INSERT INTO apply_tb (pass, user_id, notice_id, resume_id)
-VALUES
-('합격', 5, 1, 1),
-('합격', 5, 2, 1),
-('합격', 5, 3, 1),
-('합격', 5, 4, 1),
-('합격', 5, 5, 1),
-('합격', 5, 6, 1),
-('합격', 5, 7, 1),
-('합격', 5, 8, 1),
-('합격', 5, 9, 1),
-('미정', 2, 10, 2),
-('불합격', 1, 2, 2),
-('합격', 6, 1, 2),
-('합격', 6, 2, 2),
-('합격', 6, 3, 2),
-('미정', 6, 4, 2),
-('불합격', 6, 5, 2);
+-- 스킬 더미데이터
 INSERT INTO skill_tb (skill_name) VALUES('CSS');
 INSERT INTO skill_tb (skill_name) VALUES('C#');
 INSERT INTO skill_tb (skill_name) VALUES('JSP');
@@ -90,56 +222,102 @@ INSERT INTO skill_tb (skill_name) VALUES('Java');
 INSERT INTO skill_tb (skill_name) VALUES('JavaScript');
 INSERT INTO skill_tb (skill_name) VALUES('Git');
 INSERT INTO skill_tb (skill_name) VALUES('AWS');
+
+
+-- 지역 더미데이터
 INSERT INTO area_tb (area_name)
 VALUES
     ('Busan'),
     ('Seoul'),
     ('Gyeonggi'),
     ('Daegu');
+
+-- 북마크 더미데이터
 INSERT INTO bookmark_tb (target_id, user_id)
 VALUES
 (1, 5),
-(5, 1),
-(6, 1),
-(1, 6);
-INSERT INTO board_tb (title, content, user_id)
+(2, 6),
+(3, 7),
+(4, 8);
+
+
+-- 지원현황
+INSERT INTO apply_tb (pass, user_id, notice_id, resume_id)
 VALUES
-('First Post', 'Hello, world!', 1),
-('Tips for Programming', 'Here are some useful tips for coding.', 2);
-INSERT INTO reply_tb (comment, user_id, board_id)
-VALUES
-('Great post!', 1, 1),
-('Thanks for the tips!', 2, 2);
+('미정', 5, 1, 1),
+('미정', 6, 1, 2),
+('미정', 7, 1, 3),
+('미정', 8, 1, 4),
+('미정', 5, 2, 1),
+('미정', 6, 2, 2),
+('미정', 7, 2, 3),
+('미정', 8, 2, 4),
+('미정', 5, 3, 1),
+('미정', 6, 3, 2),
+('미정', 7, 3, 3),
+('미정', 8, 3, 4),
+('미정', 5, 4, 1),
+('미정', 6, 4, 2),
+('미정', 7, 4, 3),
+('미정', 8, 4, 4),
+('미정', 5, 5, 1),
+('미정', 6, 5, 2),
+('미정', 7, 5, 3),
+('미정', 8, 5, 4),
+('미정', 5, 6, 1),
+('미정', 6, 6, 2),
+('미정', 7, 6, 3),
+('미정', 8, 6, 4),
+('미정', 5, 7, 1),
+('미정', 6, 7, 2),
+('미정', 7, 7, 3),
+('미정', 8, 7, 4),
+('미정', 5, 8, 1),
+('미정', 6, 8, 2),
+('미정', 7, 8, 3),
+('미정', 8, 8, 4);
+
+
+-- 관계테이블(1. skill <-> resume / 2. skill <-> notice)
 INSERT INTO hash_skil_tb (user_id, skill_id, notice_id, resume_id) VALUES
 (5, 1, null, 1),
 (5, 2, null, 1),
 (5, 3, null, 1),
-(6, 1, null, 2),
-(6, 2, null, 2),
-(6, 3, null, 2),
+(6, 4, null, 2),
+(6, 5, null, 2),
+(6, 6, null, 2),
+(7, 7, null, 3),
+(7, 8, null, 3),
+(7, 9, null, 3),
+(8, 10, null, 4),
+(8, 11, null, 4),
+(8, 12, null, 4),
 (1, 1, 1, null),
 (1, 2, 1, null),
 (1, 3, 1, null),
-(2, 1, 2, null),
-(2, 2, 2, null),
-(2, 3, 2, null),
-(1, 1, 3, null),
-(1, 2, 3, null),
-(1, 3, 3, null),
-(2, 1, 4, null),
-(2, 2, 4, null),
-(3, 3, 5, null),
-(3, 3, 5, null),
-(4, 3, 6, null),
-(4, 3, 6, null),
-(1, 3, 7, null),
-(1, 3, 7, null),
-(1, 3, 8, null),
-(1, 3, 8, null),
-(1, 3, 9, null),
-(1, 3, 10, null),
-(1, 3, 11, null),
-(1, 3, 12, null);
+(1, 1, 2, null),
+(1, 2, 2, null),
+(1, 3, 2, null),
+(2, 4, 3, null),
+(2, 5, 3, null),
+(2, 6, 3, null),
+(2, 4, 4, null),
+(2, 5, 4, null),
+(2, 6, 4, null),
+(3, 7, 5, null),
+(3, 8, 5, null),
+(3, 9, 5, null),
+(3, 7, 6, null),
+(3, 8, 6, null),
+(3, 9, 6, null),
+(4, 10, 7, null),
+(4, 11, 7, null),
+(4, 12, 7, null),
+(4, 10, 8, null),
+(4, 11, 8, null),
+(4, 12, 8, null);
+
+-- 관계테이블(1. area <-> resume / 2. area <-> notice)
 INSERT INTO hash_area_tb (user_id, notice_id, resume_id, area_id) VALUES
 (5, null, 1, 1),
 (5, null, 1, 2),
@@ -147,26 +325,57 @@ INSERT INTO hash_area_tb (user_id, notice_id, resume_id, area_id) VALUES
 (6, null, 2, 1),
 (6, null, 2, 2),
 (6, null, 2, 3),
+(7, null, 3, 1),
+(7, null, 3, 3),
+(7, null, 3, 4),
+(8, null, 4, 2),
+(8, null, 4, 3),
+(8, null, 4, 4),
 (1, 1, null, 1),
 (1, 1, null, 2),
 (1, 1, null, 3),
-(2, 2, null, 1),
-(2, 2, null, 2),
-(2, 2, null, 3),
-(1, 3, null, 1),
-(1, 3, null, 2),
-(1, 3, null, 3),
+(1, 2, null, 1),
+(1, 2, null, 2),
+(1, 2, null, 3),
+(2, 3, null, 1),
+(2, 3, null, 2),
+(2, 3, null, 3),
+(2, 4, null, 1),
 (2, 4, null, 2),
 (2, 4, null, 3),
 (3, 5, null, 1),
-(3, 5, null, 2),
-(4, 6, null, 3),
-(4, 6, null, 1),
-(1, 7, null, 2),
-(1, 7, null, 2),
-(1, 8, null, 2),
-(1, 9, null, 2),
-(1, 10, null, 2),
-(1, 11, null, 2),
-(1, 12, null, 3);
+(3, 5, null, 3),
+(3, 5, null, 4),
+(3, 6, null, 1),
+(3, 6, null, 3),
+(3, 6, null, 4),
+(4, 7, null, 2),
+(4, 7, null, 3),
+(4, 7, null, 4),
+(4, 8, null, 2),
+(4, 8, null, 3),
+(4, 8, null, 4);
+
+
+
+
+-- 게시글 더미데이터 (각 기업 당 1개씩 총 5개가 필요하고 1개는 넣어주면서 시연영상에 페이징 기능 구현가능하도록!)
+INSERT INTO board_tb (title, content, created_at, user_id)
+VALUES
+('구직자 이력서 열람이 안됩니다.', '구직자의 이력서 열람이 안됩니다. 어떻게하면 볼수있나요?', now(), 1),
+('이미지 파일이 깨집니다.', '이미지 파일이 깨지는데 확장자명을 뭐라고하면 되나요?', now(), 2),
+('구직자의 전화번호가 일치하지 않습니다.', '구직자에게 연락을 하고 싶은데 어디로 하면될까요?', now(), 3),
+('외국인 노동자도 이력서를 쓸 수 있나요?', '외국인이 전화를 받는데 외국인도 지원이 가능한건가요?', now(), 4),
+('사람인 포탈 사이트는 어떤 사이트와 연결 되어있나요?', '다른 협력업체가 있나요?', now(), 1);
+
+
+-- 댓글 더미데이터 (게시글 1개당 구직자 댓글 1개)
+INSERT INTO reply_tb (comment, user_id, board_id)
+VALUES
+('지원현황가시면 볼수있어요.', 5, 1),
+('jpg라고 하시면 파일에 올바른 확장자명을 사용해서 저장할수있어요!', 6, 2),
+('구직자 이메일로 보내보시는것은 어떨까요?', 7, 3),
+('외국인 노동자도 받는데 합당한 자격증과 기술을 갖춘사람만 받는것으로 알고있어요!', 8, 4),
+('사람인 사이트는 프리랜서 포탈사이즈와도 연결되어있어요.', 5, 5);
+
 
