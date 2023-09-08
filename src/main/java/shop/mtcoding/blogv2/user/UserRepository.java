@@ -17,4 +17,18 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     User companyFindByUsername(@Param("username") String username);
 
     List<User> findByCompanyUserIsTrue();
+
+    List<User> findByCompanyUserIsFalse();
+
+    @Query(value = "SELECT * FROM bookmark_tb bt\n" +
+            "INNER JOIN user_tb ut ON bt.target_id = ut.id\n" +
+            "WHERE bt.user_id = :targetId AND ut.company_user = false",
+    nativeQuery = true)
+    List<User> findBookmarksByTargetIdAndUserIsNotCompanyUser(@Param("targetId") Integer targetId);
+    
+    @Query(value = "SELECT * FROM bookmark_tb bt\n" +
+            "INNER JOIN user_tb ut ON bt.target_id = ut.id\n" +
+            "WHERE bt.user_id = :targetId AND ut.company_user = true",
+    nativeQuery = true)
+    List<User> findBookmarksByTargetIdAndUserIsNotUser(@Param("targetId") Integer targetId);
 }
