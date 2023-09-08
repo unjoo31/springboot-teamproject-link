@@ -5,4 +5,11 @@ import lombok.Setter;
 
 public class BookmarkRequest {
 
+    @Getter
+    @Setter
+    public static class BookmarkDTO{
+        private Integer userId;
+        private Integer noticeId;
+    }
+
 }

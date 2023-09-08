@@ -35,6 +35,8 @@ public interface NoticeRepository extends JpaRepository<Notice, Integer> {
         @Query("Select n from Notice n where n.id = :noticeId")
         Notice mfindByNoticeId(@Param("noticeId") Integer noticeId);
 
+
+
         @Query(value = "SELECT n FROM Notice n " +
                         "left outer JOIN fetch n.hashSkilList hs " +
                         "left outer JOIN fetch hs.skill s " +
