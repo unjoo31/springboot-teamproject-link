@@ -1,7 +1,7 @@
 {{> layout/header}}
 
 <style>
-    /* 헤더, 푸터 스타일 시작 */
+        /* 헤더, 푸터 스타일 시작 */
 .header{
     height: 70px;
     border-bottom: 1px solid #ccc;
@@ -66,11 +66,18 @@
     background-color: #9F12E1;
     color: white;
 }
+.btn-logout a{
+    font-size: 15px;
+    color: #ffffff;
+}
 .header-menu{
     font-weight: 600;
 }
 .dropdown-menu{
     width: 300px;
+    position: absolute;
+    left: -230px;
+
 }
 .dropdown-menu-big{
     font-size: 15px;
@@ -299,7 +306,7 @@
         font-weight: 600;
     }
     .first-button{
-        margin-left: 550px;
+        margin-left: 650px;
         margin-top: 30px;
     }
     .star-icon-button {
@@ -309,7 +316,7 @@
         background: none;
         outline: none;
         margin-right: 10px;
-        
+        z-index: 100;
     }
 
     /* 추가된 스타일클래스입니다 */
@@ -321,13 +328,27 @@
         vertical-align: middle;
        
     }
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 </style>
 
 <div class="middle-box d-flex justify-content-center">
     <div class="middle-box d-flex flex-column">
         <div class="first-button d-flex">
-            <button class="btn btn-style btn-register main-text bottom-box-right">지원완료</button>
-            <a href="/" class="btn btn-style btn-login main-text bottom-box-right">입사지원</a>
+            {{^companyUser}}
+            {{#ischeck}}
+            <a href="/" class="btn btn-style btn-register main-text bottom-box-right btn-complete" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">지원완료</a>
+            {{/ischeck}}
+            {{^ischeck}}
+            <form action="/resume/transmit" method="post">
+                <input type="hidden" name="noticeId" value="{{notice.id}}">
+                <input type="hidden" name="pass" value="미정">
+                <button type="submit" class="btn btn-style btn-login main-text bottom-box-right btn-apply" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">입사지원</button>
+            </form>
+            {{/ischeck}}
+            {{/companyUser}}
         </div>
         <div class="box">
             <div class="d-flex">
@@ -339,11 +360,21 @@
                         {{notice.title}}
                     </div>
                 </div>
-                <button class="star-icon-button btn-register" type="button">
-                    <div class="boomark-img">
-                        <img src="./img/boomark.png">
-                    </div>
-                </button>
+                <form action="/applyNoticeBookmark/{{noticeId}}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" id="noticeId" value="{{notice.id}}">
+                    <button class="star-icon-button btn-register" type="submit" id="bookmarkImageContainer">
+                        {{#isBookmark}}
+                        <div class="boomark-img">
+                            <img src="/images/boomarkOn.png" id="bookmarkImage">
+                        </div>
+                        {{/isBookmark}}
+                        {{^isBookmark}}
+                        <div class="boomark-img">
+                            <img src="/images/boomark.png" id="bookmarkImage">
+                        </div>
+                        {{/isBookmark}}
+                    </button>
+                </form>
             </div>
             <hr>
             <div class="container d-flex third-box">
@@ -385,4 +416,16 @@
         </div>
     </div>
 </div>
+<script>
+    // 버튼 마우스 오버 시 스타일 변경
+    function highlightButton(element) {
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = '3px 3px 5px rgba(0, 0, 0, 0.2)';
+    }
+
+    function unhighlightButton(element) {
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = 'none'; 
+    }
+</script>
 {{> layout/footer}}

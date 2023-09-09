@@ -66,11 +66,18 @@
     background-color: #9F12E1;
     color: white;
 }
+.btn-logout a{
+    font-size: 15px;
+    color: #ffffff;
+}
 .header-menu{
     font-weight: 600;
 }
 .dropdown-menu{
     width: 300px;
+    position: absolute;
+    left: -230px;
+
 }
 .dropdown-menu-big{
     font-size: 15px;
@@ -326,6 +333,7 @@
     cursor: pointer;
     background: none;
     outline: none;
+    z-index: 100;
 }
 
 /* 추가된 스타일클래스입니다 */
@@ -374,7 +382,21 @@
     padding: 10px;
     margin-right: 10px;
 }
-
+a {
+        text-decoration: none;
+        color: inherit;
+    }
+    .pagination{
+        margin-top: 20px;
+    }
+    .pagination a{
+        color: #9F12E1;
+    }
+    .page-link {
+        border-radius: 5px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 /* index.html */
 </style>
 
@@ -391,11 +413,13 @@
                 검색
             </button>
             <div class="left-align-container search-input">
-                <input class=" search-text btn-login" type="text" placeholder="검색어를 입력하세요" style="border: none;">
+                <form action="/" method="get" onsubmit="return valid()">
+                    <input id="keyword" class="search-text btn-login" type="text" name="keyword" placeholder="검색어를 입력하세요" style="border: none;">
 
-                <button class="navbar-toggler" type="button" style="background: none; border: none">
-                    <img src="./img/search.png" alt="이미지 설명">
+                <button class="navbar-toggler" type="submit" style="background: none; border: none">
+                    <img src="/images/search.png" alt="이미지 설명">
                 </button>
+                </form>                
             </div>
 
         </div>
@@ -418,17 +442,13 @@
         <div class="body-content-title2 bottom-box-right">
             {{#filterDataList}}
                 <div class="index-company-box" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
-                    <div>
+                    <input type="hidden" id="noticeId" value="{{notice}}">
+                    <a href="/applyNotice/{{notice}}">
                         <div class="mb-3 d-flex justify-content-between">
                             <div>
-                                <img src="./img/{{user.picUrl}}"
+                                <img class="main-profile-img" src="/images/{{user.picUrl}}"
                                     style="max-width: 50%; max-height: 100%; border-radius: 60%;">
                             </div>
-                            <button class="star-icon-button btn-register" type="button">
-                                <div class="boomark-img">
-                                    <img src="./img/boomark.png">
-                                </div>
-                            </button>
                         </div>
                         <div class="main-text"><b>{{title}}</b></div>
                         <div class="companyname">{{user.business}}</div>
@@ -445,22 +465,20 @@
                         <div>
                             <div class="d-flex justify-content-end sub-sub-test">마감 {{timeDifference}}일전</div>
                         </div>
-                    </div>
+                    </a>
                  </div>
             {{/filterDataList}}
+                 
+        
             {{#noticeDataList}}
                 <div class="index-company-box" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
-                    <div >
+                    <input type="hidden" id="noticeId" value="{{notice}}">
+                    <a href="/applyNotice/{{notice}}">
                         <div class="mb-3 d-flex justify-content-between">
                             <div>
-                                <img src="./img/{{user.picUrl}}"
+                                <img class="main-profile-img" src="/images/{{user.picUrl}}"
                                     style="max-width: 50%; max-height: 100%; border-radius: 60%;">
                             </div>
-                            <button class="star-icon-button btn-register" type="button">
-                                <div class="boomark-img">
-                                    <img src="./img/boomark.png">
-                                </div>
-                            </button>
                         </div>
                         <div class="main-text"><b>{{title}}</b></div>
                         <div class="companyname">{{user.business}}</div>
@@ -477,10 +495,20 @@
                         <div>
                             <div class="d-flex justify-content-end sub-sub-test">마감 {{timeDifference}}일전</div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-            {{/noticeDataList}}          
+            {{/noticeDataList}}                   
         </div>
+        
+        <ul class="pagination d-flex justify-content-center">
+            <li class="page-item {{#noticeDataList.first}}disabled{{/noticeDataList.first}}"><a class="page-link"
+                    href="?page={{prevPage}}">이전</a>
+            </li>
+            <li class="page-item {{#noticeDataList.last}}disabled{{/noticeDataList.last}}"><a class="page-link"
+                    href="?page={{nextPage}}">다음</a>
+            </li>
+        </ul> 
+        
     </div>
 </div>
 
@@ -495,7 +523,7 @@
                     <div class="card-body">
                         <div class="mb-2">
                             <div>
-                                <img src="./img/{{picUrl}}"
+                                <img src="/images/{{picUrl}}"
                                     style="max-width: 100%; max-height: 100%; border-radius: 10px">
                             </div>
                         </div>
@@ -503,7 +531,7 @@
                         <div class="companyname">{{business}}</div>
                         <br>
                         <div class="d-flex companyname">
-                        <img src="./img/location.png"
+                        <img src="/images/location.png"
                         style="max-width: 10%; margin-right: 5px;">  
                         <div>{{address}}</div>
                         </div>
@@ -514,6 +542,58 @@
     </div>
 </div>
 <script>
+    // 검색
+    function isWhitespace(str) {
+        return str.trim() === '';
+    }
+
+    function valid() {
+        let keyword = document.querySelector("#keyword").value;
+        console.log(keyword);
+        if (isWhitespace(keyword)) {
+            alert('공백을 입력할 수 없습니다');
+            return false;
+        }
+    }
+
+    // 북마크 마우스오버, 선택시 이미지 변경 임
+    let bookmarkImageContainer = document.getElementById("bookmarkImageContainer");
+    let bookmarkImage = document.getElementById("bookmarkImage");
+    let bookmarkImageSrc = "/img/boomark.png";
+    let bookmarkHoverImageSrc = "/img/boomarkOn.png";
+    let isMouseOver = false;
+    let isClicked = false;
+
+    // 마우스 오버 이벤트 리스너
+    bookmarkImageContainer.addEventListener("mouseover", function () {
+        if (!isClicked) { // 클릭 상태가 아닌 경우에만 이미지 변경
+            bookmarkImage.src = bookmarkHoverImageSrc;
+            isMouseOver = true; // 마우스 오버 상태로 설정
+        }
+    });
+
+    // 마우스 아웃 이벤트 리스너
+    bookmarkImageContainer.addEventListener("mouseout", function () {
+        if (!isClicked) { // 클릭 상태가 아닌 경우에만 이미지 변경
+            bookmarkImage.src = bookmarkImageSrc;
+            isMouseOver = false; // 마우스 오버 상태 해제
+        }
+    });
+
+    // 클릭 이벤트 리스너
+    bookmarkImageContainer.addEventListener("click", function () {
+        if (!isClicked) {
+            // 클릭 전 상태에서 클릭 시 이미지 변경
+            bookmarkImage.src = bookmarkHoverImageSrc;
+        } else {
+            // 클릭 후 상태에서 클릭 시 이미지 변경
+            bookmarkImage.src = bookmarkImageSrc;
+        }
+        
+        isClicked = !isClicked; // 클릭 상태 토글
+        isMouseOver = false; // 마우스 오버 상태 해제
+    });
+
     // 기술버튼 누르면 기술리스트 표출
     function showSkills() {
         document.getElementById('skills-list').style.display = 'block';

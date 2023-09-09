@@ -2,351 +2,404 @@
 
 <style>
     /* 헤더, 푸터 스타일 시작 */
-.header{
-    height: 70px;
-    border-bottom: 1px solid #ccc;
-    margin-top: 10px;
-}
-.logo{
-    color: #9F12E1;
-    font-weight: 700;
-}
-.footer{
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 20px;
-}
-/* 타이틀 스타일 */
-.title-text{
-    font-size: 20px;
-}
-/* 메인 스타일 */
-.main-text{
-    font-size: 14px;
-}
-/* 서브 스타일 */
-.sub-text{
-    font-size: 13px;
-}
-.footer-inc{
-    font-size: 12px;
-}
-.btn-style{
-    margin-top: 15px;
-    border-radius: 30px;
-    width: 100px;
-    height: 40px;
-}
-.btn-login{
-    border: 1px solid #9F12E1;
-    color: #9F12E1;
-    margin-right: 10px;
-}
-.btn-login a{
-    margin-bottom: 5px;
-    font-size: 15px;
-    color: #9F12E1;
-    margin-bottom: 5px;
-    text-decoration: none;
-}
-.btn-register{
-    background-color: #9F12E1;
-    color: white;
-}
-.btn-register a{
-    margin-bottom: 5px;
-    font-size: 15px;
-    color: #ffffff;
-    margin-bottom: 5px;
-    text-decoration: none;
-}
-.btn-logout{
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 280px;
-    background-color: #9F12E1;
-    color: white;
-}
-.header-menu{
-    font-weight: 600;
-}
-.dropdown-menu{
-    width: 300px;
-}
-.dropdown-menu-big{
-    font-size: 15px;
-}
-.dropdown-menu-small{
-    font-size: 11px;
-}
-.dropdown-toggle::after {
-    display: none;
-}
-.nav-img{
-    width: 20px;
-    height: 20px;
-    margin-top: 20px;
-    margin-right: 20px;
-}
-/* 헤더, 푸터 스타일 끝 */
+    .header {
+        height: 70px;
+        border-bottom: 1px solid #ccc;
+        margin-top: 10px;
+    }
 
-/* 좌측 메뉴 스타일 시작 */
-.left-nav-title {
-    font-size: 15px;
-    margin-left: 20px;
-    margin-top: 10px;
-}
+    .logo {
+        color: #9F12E1;
+        font-weight: 700;
+    }
 
-.left-nav-sub {
-    font-size: 11px;
-}
+    .footer {
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 20px;
+    }
 
-.left-nav {
-    width: 300px;
-    margin-top: 85px;
-}
+    /* 타이틀 스타일 */
+    .title-text {
+        font-size: 20px;
+    }
 
-.left-nav-detail {
-    display: flex;
-    flex-direction: row;
-    border-radius: 10px;
-    border: 1px solid #EDEEF2;
-    margin-bottom: 10px;
-}
+    /* 메인 스타일 */
+    .main-text {
+        font-size: 14px;
+    }
 
-.nav-img img {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    margin-right: 20px;
-    margin-left: 10px;
-}
+    /* 서브 스타일 */
+    .sub-text {
+        font-size: 13px;
+    }
 
-/* 좌측 메뉴 스타일 끝 */
+    .footer-inc {
+        font-size: 12px;
+    }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-gap: 30px;
-    width: 1000px;
-}
+    .btn-style {
+        margin-top: 15px;
+        border-radius: 30px;
+        width: 100px;
+        height: 40px;
+    }
 
-.body {
-    margin-top: 50px;
-}
+    .btn-login {
+        border: 1px solid #9F12E1;
+        color: #9F12E1;
+        margin-right: 10px;
+    }
 
-.body-content {
-    border: 1px solid #EDEEF2;
-    border-radius: 15px;
-}
+    .btn-login a {
+        margin-bottom: 5px;
+        font-size: 15px;
+        color: #9F12E1;
+        margin-bottom: 5px;
+        text-decoration: none;
+    }
 
-.body-content-title {
-    margin-left: 20px;
-    margin-top: 15px;
-}
+    .btn-register {
+        background-color: #9F12E1;
+        color: white;
+    }
 
-.first-box {
-    margin-bottom: 15px;
-    margin-left: 10px;
-}
+    .btn-register a {
+        margin-bottom: 5px;
+        font-size: 15px;
+        color: #ffffff;
+        margin-bottom: 5px;
+        text-decoration: none;
+    }
 
-.left-box {
-    margin-right: 20px;
-    margin-left: 20px;
-}
+    .btn-logout {
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 280px;
+        background-color: #9F12E1;
+        color: white;
+    }
 
-.left-box-first {
-    margin-right: 40px;
-    margin-left: 10px;
-}
+    .btn-logout a {
+        font-size: 15px;
+        color: #ffffff;
+    }
 
-.bottom-box {
-    border-top: 1px solid #ccc;
-    margin-top: 100px;
-    margin-bottom: 20px;
-    padding-top: 10px;
-}
+    .header-menu {
+        font-weight: 600;
+    }
 
-.bottom-box-left {
-    margin-left: 15px;
-}
+    .dropdown-menu {
+        width: 300px;
+        position: absolute;
+        left: -230px;
 
-.bottom-box-right {
-    margin-right: 15px;
-}
+    }
 
-.personal-img {
-    width: 88px;
-    height: 88px;
-    background-color: #ccc;
-    border-radius: 20px;
-    margin-right: 15px;
-}
+    .dropdown-menu-big {
+        font-size: 15px;
+    }
 
-.personal-img img {
-    width: 88px;
-    height: 88px;
-    border-radius: 20px;
-}
+    .dropdown-menu-small {
+        font-size: 11px;
+    }
 
-.img-botton {
-    margin-top: 20px;
-    margin-right: 15px;
-    height: 40px;
-}
+    .dropdown-toggle::after {
+        display: none;
+    }
 
-.input-style {
-    width: 310px;
-    height: 40px;
-    border-radius: 5px;
-    border: 1px solid #EDEEF2;
-    font-size: 14px;
-}
+    .nav-img {
+        width: 20px;
+        height: 20px;
+        margin-top: 20px;
+        margin-right: 20px;
+    }
 
-.box-layout {
-    margin-bottom: 15px;
-}
+    /* 헤더, 푸터 스타일 끝 */
+
+    /* 좌측 메뉴 스타일 시작 */
+    .left-nav-title {
+        font-size: 15px;
+        margin-top: 10px;
+    }
+
+    .left-nav-sub {
+        font-size: 11px;
+    }
+
+    .left-nav {
+        width: 300px;
+        margin-top: 85px;
+    }
+
+    .left-nav-detail {
+        display: flex;
+        flex-direction: row;
+        border-radius: 10px;
+        border: 1px solid #EDEEF2;
+        margin-bottom: 10px;
+    }
+
+    .left-nav-detail .nav-img {
+        width: 40px;
+        height: 40px;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+
+    /* 좌측 메뉴 스타일 끝 */
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        grid-gap: 30px;
+        width: 1000px;
+    }
+
+    .body {
+        margin-top: 50px;
+    }
+
+    .body-content {
+        border: 1px solid #EDEEF2;
+        border-radius: 15px;
+    }
+
+    .body-content-title {
+        margin-left: 20px;
+        margin-top: 15px;
+    }
+
+    .first-box {
+        margin-bottom: 15px;
+        margin-left: 10px;
+    }
+
+    .left-box {
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+
+    .left-box-first {
+        margin-right: 40px;
+        margin-left: 10px;
+    }
+
+    .bottom-box {
+        border-top: 1px solid #ccc;
+        margin-top: 100px;
+        margin-bottom: 20px;
+        padding-top: 10px;
+    }
+
+    .bottom-box-left {
+        margin-left: 15px;
+    }
+
+    .bottom-box-right {
+        margin-right: 15px;
+    }
+
+    .personal-img {
+        width: 88px;
+        height: 88px;
+        background-color: #ccc;
+        border-radius: 20px;
+        margin-right: 15px;
+    }
+
+    .personal-img img {
+        width: 88px;
+        height: 88px;
+        border-radius: 20px;
+    }
+
+    .img-botton {
+        margin-top: 20px;
+        margin-right: 15px;
+        height: 40px;
+    }
+
+    .input-style {
+        width: 310px;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid #EDEEF2;
+        font-size: 14px;
+    }
+
+    .box-layout {
+        margin-bottom: 15px;
+    }
 
 
-.grid-container1 {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-gap: 30px;
-    width: 1500px;
-    height: 600px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+    .grid-container1 {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        grid-gap: 30px;
+        width: 1500px;
+        height: 600px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
-.card-contain {
-    padding-left: 15px;
-    padding-right: 15px;
-}
+    .card-contain {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 
-.card-input {
-    height: 40px;
-    margin-bottom: 5px;
-}
+    .card-input {
+        height: 40px;
+        margin-bottom: 5px;
+    }
 
-.grid-container2 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-}
+    .grid-container2 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
 
-.grid-container3 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin: 20px;
-}
+    .grid-container3 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin: 20px;
+    }
 
-.grid-container4{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-}
-.statussuccess {
-    display: inline-block;
-    padding: 5px 20px;
-    border-radius: 20px;
-    background-color: #9F12E1;
-    color: white;
-    cursor: pointer;
-    font-size: 13px;
-    height: 25px;
-    text-align: center;
-}
+    .grid-container4 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
 
-.statusfail {
-    display: inline-block;
-    padding: 5px 20px;
-    border-radius: 20px;
-    background-color: #EDEEF2;
-    color: rgb(75, 72, 72);
-    cursor: pointer;
-    font-size: 13px;
-    height: 25px;
-    text-align: center;
-}
+    .statussuccess {
+        display: inline-block;
+        padding: 5px 20px;
+        border-radius: 20px;
+        background-color: #9F12E1;
+        color: white;
+        cursor: pointer;
+        font-size: 13px;
+        height: 25px;
+        text-align: center;
+    }
 
-.companyname {
-    color: rgb(155, 154, 154);
-    font-size: 14px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
+    .statusfail {
+        display: inline-block;
+        padding: 5px 20px;
+        border-radius: 20px;
+        background-color: #EDEEF2;
+        color: rgb(75, 72, 72);
+        cursor: pointer;
+        font-size: 13px;
+        height: 25px;
+        text-align: center;
+    }
 
-.title {
-    font-size: 22px;
-}
+    .companyname {
+        color: rgb(155, 154, 154);
+        font-size: 14px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
 
-/* 추가된 스타일클래스입니다 */
-.body-content-title2 {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-left: 20px;
-}
+    .title {
+        font-size: 22px;
+    }
 
- /* 추가된 스타일클래스입니다 */
-.star-icon-button {
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    background: none;
-    outline: none;
-}
+    /* 추가된 스타일클래스입니다 */
+    .body-content-title2 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-left: 20px;
+    }
 
-/* 추가된 스타일클래스입니다 */
-.star-icon {
-    font-size: 24px;
-    color: #9F12E1;
-    transition: color 0.3s ease;
-}
+    /* 추가된 스타일클래스입니다 */
+    .star-icon-button {
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        background: none;
+        outline: none;
+    }
 
-.body-second{
-    margin-top: 20px;
-}
+    /* 추가된 스타일클래스입니다 */
+    .star-icon {
+        font-size: 24px;
+        color: #9F12E1;
+        transition: color 0.3s ease;
+    }
+
+    .body-second {
+        margin-top: 20px;
+    }
+
+    .location-img {
+        width: 20px;
+        height: 20px;
+        margin-top: 15px;
+        margin-right: 10px;
+    }
+
+    .body-second {
+        margin-top: 20px;
+    }
+
+    .location-img {
+        width: 20px;
+        height: 20px;
+        margin-top: 15px;
+        margin-right: 10px;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 </style>
 
 <div class="d-flex justify-content-center">
     <div class="grid-container">
         <div class="left-nav">
             <div class="card-body d-flex flex-column">
-                <div class="card left-nav-detail">
+                <div class="card left-nav-detail d-flex" onmouseover="highlightCard(this)"
+                    onmouseout="unhighlightCard(this)" id="personalImageContainer">
                     <div class="nav-img">
-                        <img src="./img/personal.png">
+                        <img src="/images/personal.png" id="personalImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="#">
+                    <a class="dropdown-item left-nav-title" href="/updateSeekerForm">
                         회원정보 수정
                         <p class="left-nav-sub">Personal information</p>
                     </a>
                 </div>
-                <div class="card left-nav-detail">
+                <div class="card left-nav-detail" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)"
+                    id="employmentImageContainer">
                     <div class="nav-img">
-                        <img src="./img/resume.png">
+                        <img src="/images/resume.png" id="employmentImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="#">
+                    <a class="dropdown-item left-nav-title" href="/seekerResumeForm">
                         이력서
                         <p class="left-nav-sub">Resume</p>
                     </a>
                 </div>
-                <div class="card left-nav-detail">
+                <div class="card left-nav-detail" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)"
+                    id="statusImageContainer">
                     <div class="nav-img">
-                        <img src="./img/resume.png">
+                        <img src="/images/resume.png" id="statusImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="#">
+                    <a class="dropdown-item left-nav-title" href="/seekerSupport">
                         지원현황
                         <p class="left-nav-sub">Support status</p>
                     </a>
                 </div>
-                <div class="card left-nav-detail">
+                <div class="card left-nav-detail" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)"
+                    id="interestImageContainer">
                     <div class="nav-img">
-                        <img src="./img/company.png">
+                        <img src="/images/company.png" id="interestImage">
                     </div>
-                    <a class="dropdown-item left-nav-title" href="#">
+                    <a class="dropdown-item left-nav-title" href="/seekerCompanies">
                         관심기업 / 기술스택 매칭
                         <p class="left-nav-sub">Interested companies / Technical stack</p>
                     </a>
@@ -362,103 +415,70 @@
                 <div class="card-contain">
                     <div class="ml-3 body-content-title main-text">
                     </div>
-                    <div class="body-content-title2 sub-text">
+                    <div class="body-content-title2 sub-text" id="skillName">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="CSS">
                             <label class="form-check-label">CSS
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="C#">
                             <label class="form-check-label">C#
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="JSP">
                             <label class="form-check-label">JSP
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="Android">
                             <label class="form-check-label">Android
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="Ajax">
                             <label class="form-check-label">Ajax
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="Flutter">
                             <label class="form-check-label">Flutter
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="HTML">
                             <label class="form-check-label">HTML
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="Mysql">
                             <label class="form-check-label">Mysql
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="Java">
                             <label class="form-check-label">Java
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="Javascript">
                             <label class="form-check-label">Javascript
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="Git">
                             <label class="form-check-label">Git
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkboxExample">
+                            <input class="form-check-input" type="checkbox" value="AWS">
                             <label class="form-check-label">AWS
                             </label>
                         </div>
                     </div>
                 </div>
+                <div class="grid-container3" id="notice-Box">
 
-
-                <div class="grid-container3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="main-text"><b>(주) 그룹코리아</b></div>
-                            <div class="companyname">빅데이터 기반 서비스 운영중입니다.</div>
-                            <div class="statusfail">Java</div>
-                            <div class="statusfail">CSS</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="main-text"><b>(주) 그룹코리아</b></div>
-                            <div class="companyname">빅데이터 기반 서비스 운영중입니다.</div>
-                            <div class="statusfail">Java</div>
-                            <div class="statusfail">CSS</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="main-text"><b>(주) 그룹코리아</b></div>
-                            <div class="companyname">빅데이터 기반 서비스 운영중입니다.</div>
-                            <div class="statusfail">Java</div>
-                            <div class="statusfail">CSS</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="main-text"><b>(주) 그룹코리아</b></div>
-                            <div class="companyname">빅데이터 기반 서비스 운영중입니다.</div>
-                            <div class="statusfail">Java</div>
-                            <div class="statusfail">CSS</div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -468,74 +488,171 @@
                 </div>
                 <div class="card-body">
                     <div class="grid-container4">
-                        <div class="card">
+                        {{#companyDataList}}
+                        <div class="card" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
                             <div class="card-body">
                                 <button class="star-icon-button btn-register" type="button">
                                     <div class="boomark-img">
-                                        <img src="./img/boomark.png">
+                                        <img src="/images/boomarkOn.png">
                                     </div>
                                 </button>
                                 <div class="mt-3"></div>
-                                <div class="main-text"><b>(주) 그룹코리아</b></div>
-                                <div class="companyname">빅데이터 기반 서비스 운영중입니다.</div>
+                                <div class="main-text"><b>{{name}}</b></div>
+                                <div class="companyname">{{business}}</div>
                                 <div class="d-flex">
-                                    <img src="./img/location.png" class="nav-img" alt="위치">
-                                    <div class="mt-3 companyname">부산</div>
+                                    <img src="/images/location.png" class="location-img" alt="위치">
+                                    <div class="mt-3 companyname">{{address}}</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <button class="star-icon-button btn-register" type="button">
-                                    <div class="boomark-img">
-                                        <img src="./img/boomark.png">
-                                    </div>
-                                </button>
-                                <div class="mt-3"></div>
-                                <div class="main-text"><b>(주) 그룹코리아</b></div>
-                                <div class="companyname">빅데이터 기반 서비스 운영중입니다.</div>
-                                <div class="d-flex">
-                                    <img src="./img/location.png" class="nav-img" alt="위치">
-                                    <div class="mt-3 companyname">부산</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <button class="star-icon-button btn-register" type="button">
-                                    <div class="boomark-img">
-                                        <img src="./img/boomark.png">
-                                    </div>
-                                </button>
-                                <div class="mt-3"></div>
-                                <div class="main-text"><b>(주) 그룹코리아</b></div>
-                                <div class="companyname">빅데이터 기반 서비스 운영중입니다.</div>
-                                <div class="d-flex">
-                                    <img src="./img/location.png" class="nav-img" alt="위치">
-                                    <div class="mt-3 companyname">부산</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <button class="star-icon-button btn-register" type="button">
-                                    <div class="boomark-img">
-                                        <img src="./img/boomark.png">
-                                    </div>
-                                </button>
-                                <div class="mt-3"></div>
-                                <div class="main-text"><b>(주) 그룹코리아</b></div>
-                                <div class="companyname">빅데이터 기반 서비스 운영중입니다.</div>
-                                <div class="d-flex">
-                                    <img src="./img/location.png" class="nav-img" alt="위치">
-                                    <div class="mt-3 companyname">부산</div>
-                                </div>
-                            </div>
-                        </div>
+                        {{/companyDataList}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+
+    // 0. 화면 다 그려지면 호출
+    render("");
+
+    let selectedSkills = []; // 전역 변수로 선언
+
+    // 1. 셀렉트 박스 변경될 때 마다, 화면 갱신
+    $(".form-check-input").change(() => {
+        let value = $(".form-check-input").val();
+        // alert(value);
+        // render(value);
+    });
+
+
+    $(".form-check-input").change(() => {
+        // 모든 체크박스를 순회하며 선택된 스킬을 배열에 추가
+        selectedSkills = $(".form-check-input:checked").map(function () {
+            return $(this).val();
+        }).get();
+
+        // 선택된 스킬을 출력하거나 다른 작업을 수행할 수 있습니다.
+
+        render(selectedSkills);
+    });
+
+
+
+
+
+    // 2. 통신해서 화면 다시 그리기
+    async function render(selectedSkills) {
+        $("#notice-Box").html('');
+        let responseBody = await download(selectedSkills);
+        responseBody.forEach((bookmark) => {
+            $("#notice-Box").append(noticeBox(bookmark));
+        });
+
+    }
+
+
+
+
+    // 3. 컴퍼넌트 (디자인 결합)
+    function noticeBox(bookmark) {
+        console.log(bookmark)
+        return `<div class="card" onmouseover="highlightCard(this)" onmouseout="unhighlightCard(this)">
+                        <div class="card-body">
+                            <div class="main-text">${bookmark.user.business}</div>
+                            <div class="companyname">${bookmark.notice.title}</div>
+                            <div class="statusfail">${bookmark.skill.skillName}</div>
+                        </div>
+                    </div>`
+    }
+
+    // 4. 통신코드
+    async function download(selectedSkills) {
+        console.log("저는 이값을 찾으러 자바차원으로 넘어가요 ! : " + selectedSkills);
+        let response = await fetch("/api/seekerCompanies?selectedSkills=" + selectedSkills);
+        let responseBody = await response.json();
+        return responseBody;
+    }
+
+
+    // 카드 마우스 오버 시 스타일 변경
+    function highlightCard(element) {
+        element.style.border = '2px solid #9F12E1';
+        element.style.cursor = 'pointer';
+    }
+
+    function unhighlightCard(element) {
+        element.style.border = '1px solid #ccc';
+        element.style.cursor = 'pointer';
+    }
+
+    // 버튼 마우스 오버 시 스타일 변경
+    function highlightButton(element) {
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = '3px 3px 5px rgba(0, 0, 0, 0.2)';
+    }
+
+    function unhighlightButton(element) {
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = 'none';
+    }
+
+    // 회원정보 수정 메뉴 마우스 오버시 이미지 변경
+    let personalImageContainer = document.getElementById("personalImageContainer");
+    let personalImage = document.getElementById("personalImage");
+    let personalImageSrc = "/images/personal.png";
+    let personalHoverImageSrc = "/images/personalOn.png";
+
+    personalImageContainer.addEventListener("mouseover", function () {
+        personalImage.src = personalHoverImageSrc;
+    });
+
+    personalImageContainer.addEventListener("mouseout", function () {
+        personalImage.src = personalImageSrc;
+    });
+
+    // 채용공고 메뉴 마우스 오버시 이미지 변경
+    let employmentImageContainer = document.getElementById("employmentImageContainer");
+    let employmentImage = document.getElementById("employmentImage");
+    let employmentImageSrc = "/images/resume.png";
+    let employmentHoverImageSrc = "/images/resumeOn.png";
+
+    employmentImageContainer.addEventListener("mouseover", function () {
+        employmentImage.src = employmentHoverImageSrc;
+    });
+
+    employmentImageContainer.addEventListener("mouseout", function () {
+        employmentImage.src = employmentImageSrc;
+    });
+
+    // 채용공고 현황 메뉴 마우스 오버시 이미지 변경
+    let statusImageContainer = document.getElementById("statusImageContainer");
+    let statusImage = document.getElementById("statusImage");
+    let statusImageSrc = "/images/resume.png";
+    let statusHoverImageSrc = "/images/resumeOn.png";
+
+    statusImageContainer.addEventListener("mouseover", function () {
+        statusImage.src = statusHoverImageSrc;
+    });
+
+    statusImageContainer.addEventListener("mouseout", function () {
+        statusImage.src = statusImageSrc;
+    });
+
+    // 관심구직자 메뉴 마우스 오버시 이미지 변경
+    let interestImageContainer = document.getElementById("interestImageContainer");
+    let interestImage = document.getElementById("interestImage");
+    let interestImageSrc = "/images/company.png";
+    let interestHoverImageSrc = "/images/companyOn.png";
+
+    interestImageContainer.addEventListener("mouseover", function () {
+        interestImage.src = interestHoverImageSrc;
+    });
+
+    interestImageContainer.addEventListener("mouseout", function () {
+        interestImage.src = interestImageSrc;
+    });
+</script>
+
 {{> layout/footer}}

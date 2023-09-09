@@ -66,11 +66,18 @@
     background-color: #9F12E1;
     color: white;
 }
+.btn-logout a{
+    font-size: 15px;
+    color: #ffffff;
+}
 .header-menu{
     font-weight: 600;
 }
 .dropdown-menu{
     width: 300px;
+    position: absolute;
+    left: -230px;
+
 }
 .dropdown-menu-big{
     font-size: 15px;
@@ -92,7 +99,6 @@
 /* 좌측 메뉴 스타일 시작 */
 .left-nav-title{
     font-size: 15px;
-    margin-left: 20px;
     margin-top: 10px;
 }
 .left-nav-sub{
@@ -109,11 +115,10 @@
     border: 1px solid #EDEEF2;
     margin-bottom: 10px;
 }
-.nav-img img {
+.left-nav-detail .nav-img{
     width: 40px;
     height: 40px;
-    border-radius: 10px;
-    margin-right: 20px;
+    margin-top: 10px;
     margin-left: 10px;
 }
 /* 좌측 메뉴 스타일 끝 */
@@ -288,12 +293,18 @@
         display: flex;
         justify-content: center;    
     }
+    .box-background{
+        background-color: #FAFAFA;
+        height: 900px;
+    }
     .box{
         width: 750px;
         height: 800px;
         padding: 20px;
         border-radius: 20px;
         border: 1px solid #EDEEF2;
+        background-color: #ffffff;
+        margin-top: 50px;
     }
     .d-flex1{
         display: flex;
@@ -323,66 +334,142 @@
     }
 </style>
 
-<div class="box">
-    <div class="container d-flex first-box " style="justify-content: space-between;">
-        <button type="button" class="btn btn-style btn-register main-text bottom-box-right">{{apply.get.pass}}</button>
-        <button type="button" class="btn close-btn"> 
-            <img src="./img/boomark.png" alt="">
-        </button>
-    </div>
-    <div class="d-flex">
-        <div class="container d-flex flex-column">
-            <div class="detail-company">
-                {{apply.get.user.name}}
-            </div>
-            <div class="detail-company-title">
-                {{apply.get.notice.title}}
-            </div>
+<div class="box-background d-flex justify-content-center">
+    <div class="box">
+        <div class="container d-flex first-box " style="justify-content: space-between;">
+            <button type="button" class="btn btn-style btn-register main-text bottom-box-right">{{apply.get.pass}}</button>
         </div>
-        </div>
-        <hr />
         <div class="d-flex">
-            <div>
+            <div class="container d-flex flex-column">
+                <div class="detail-company">
+                    {{apply.get.user.name}}
+                </div>
+                <div class="detail-company-title">
+                    {{apply.get.notice.title}}
+                </div>
+            </div>
+            </div>
+            <hr />
+            <div class="d-flex">
+                <div>
+                    <div class="d-flex1 sub-text">
+                        <div class="d-flex2">
+                            <div class="main-text text-line">경력</div>
+                            <div class="main-text text-line">학력</div>
+                            <div class="main-text">근무형태</div>
+                            
+                            </div>
+                            <div>
+                                <div class="main-text main-text-color text-line">{{apply.get.notice.career}}</div>
+                                <div class="main-text main-text-color text-line">{{apply.get.notice.academicAbility}}</div>
+                                <div class="main-text main-text-color ">{{apply.get.notice.typeOfWork}}</div>
+                            </div>
+                    </div>
+                </div>
                 <div class="d-flex1 sub-text">
                     <div class="d-flex2">
-                        <div class="main-text text-line">경력</div>
-                        <div class="main-text text-line">학력</div>
-                        <div class="main-text">근무형태</div>
-                        
-                        </div>
-                        <div>
-                            <div class="main-text main-text-color text-line">{{apply.get.notice.career}}</div>
-                            <div class="main-text main-text-color text-line">{{apply.get.notice.academicAbility}}</div>
-                            <div class="main-text main-text-color ">{{apply.get.notice.typeOfWork}}</div>
-                        </div>
+                        <div class="main-text text-line">급여</div>
+                        <div class="main-text text-line">마감일</div>
+                        <div class="main-text">지역</div>
+                    </div>
+                    <div>
+                        <div class="main-text main-text-color text-line">{{apply.get.notice.salary}}</div>
+                        <div class="main-text main-text-color text-line">{{apply.get.notice.endDate}}</div>
+                        <div class="main-text main-text-color">{{#apply.get.notice.hashAreaList}}  {{area.areaName}}  {{/apply.get.notice.hashAreaList}}</div>
+                    </div>
                 </div>
             </div>
-            <div class="d-flex1 sub-text">
-                <div class="d-flex2">
-                    <div class="main-text text-line">급여</div>
-                    <div class="main-text text-line">마감일</div>
-                    <div class="main-text">지역</div>
-                </div>
-                <div>
-                    <div class="main-text main-text-color text-line">{{apply.get.notice.salary}}</div>
-                    <div class="main-text main-text-color text-line">{{apply.get.notice.endDate}}</div>
-                    <div class="main-text main-text-color">{{#apply.get.notice.hashAreaList}}  {{area.areaName}}  {{/apply.get.notice.hashAreaList}}</div>
-                </div>
+            <hr />
+            <div class="container d-flex sub-text four-box">
+                {{#apply.get.notice.hashSkilList}}
+                <div class="statusfail">{{skill.skillName}}</div>
+                {{/apply.get.notice.hashSkilList}}
             </div>
+            <br>
+            <div class="container d-flex sub-text five-box">
+                <div>{{apply.get.notice.content}}</div>
+            </div>    
         </div>
-        <hr />
-        <div class="container d-flex sub-text four-box">
-            {{#apply.get.notice.hashSkilList}}
-            <div class="statusfail">{{skill.skillName}}</div>
-            {{/apply.get.notice.hashSkilList}}
-        </div>
-        <br>
-        <div class="container d-flex sub-text five-box">
-            <div>{{apply.get.notice.content}}</div>
-        </div>    
+            </div>
     </div>
-        </div>
-    <hr>  
 </div>
+<script>
+    // 카드 마우스 오버 시 스타일 변경
+    function highlightCard(element) {
+        element.style.border = '2px solid #9F12E1';
+        element.style.cursor = 'pointer';
+    }
 
+    function unhighlightCard(element) {
+        element.style.border = '1px solid #ccc';
+        element.style.cursor = 'pointer';
+    }
+
+    // 버튼 마우스 오버 시 스타일 변경
+    function highlightButton(element) {
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = '3px 3px 5px rgba(0, 0, 0, 0.2)';
+    }
+
+    function unhighlightButton(element) {
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = 'none'; 
+    }
+
+    // 회원정보 수정 메뉴 마우스 오버시 이미지 변경
+    let personalImageContainer = document.getElementById("personalImageContainer");
+    let personalImage = document.getElementById("personalImage");
+    let personalImageSrc = "/images/personal.png";
+    let personalHoverImageSrc = "/images/personalOn.png";
+
+    personalImageContainer.addEventListener("mouseover", function() {
+        personalImage.src = personalHoverImageSrc;
+    });
+
+    personalImageContainer.addEventListener("mouseout", function() {
+        personalImage.src = personalImageSrc;
+    });
+
+    // 채용공고 메뉴 마우스 오버시 이미지 변경
+    let employmentImageContainer = document.getElementById("employmentImageContainer");
+    let employmentImage = document.getElementById("employmentImage");
+    let employmentImageSrc = "/images/resume.png";
+    let employmentHoverImageSrc = "/images/resumeOn.png";
+
+    employmentImageContainer.addEventListener("mouseover", function() {
+        employmentImage.src = employmentHoverImageSrc;
+    });
+
+    employmentImageContainer.addEventListener("mouseout", function() {
+        employmentImage.src = employmentImageSrc;
+    });
+
+    // 채용공고 현황 메뉴 마우스 오버시 이미지 변경
+    let statusImageContainer = document.getElementById("statusImageContainer");
+    let statusImage = document.getElementById("statusImage");
+    let statusImageSrc = "/images/resume.png";
+    let statusHoverImageSrc = "/images/resumeOn.png";
+
+    statusImageContainer.addEventListener("mouseover", function() {
+        statusImage.src = statusHoverImageSrc;
+    });
+
+    statusImageContainer.addEventListener("mouseout", function() {
+        statusImage.src = statusImageSrc;
+    });
+
+    // 관심구직자 메뉴 마우스 오버시 이미지 변경
+    let interestImageContainer = document.getElementById("interestImageContainer");
+    let interestImage = document.getElementById("interestImage");
+    let interestImageSrc = "/images/company.png";
+    let interestHoverImageSrc = "/images/companyOn.png";
+
+    interestImageContainer.addEventListener("mouseover", function() {
+        interestImage.src = interestHoverImageSrc;
+    });
+
+    interestImageContainer.addEventListener("mouseout", function() {
+        interestImage.src = interestImageSrc;
+    });
+</script>
 {{> layout/footer}}

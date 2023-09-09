@@ -10,6 +10,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 <body>
  
@@ -23,13 +24,13 @@
             </div>
             <div class="p-2">
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                    <ul class="navbar-nav header-menu">
-                      <li class="nav-item">
-                        <a class="nav-link me-5" href="#">채용공고</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link me-5" href="#">기업</a>
-                      </li> 
+                    <ul class="navbar-nav header-menu">                          
+                        <li class="nav-item">
+                          <a class="nav-link me-5" href="#">기업</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link me-5" href="/corporationResume">채용공고</a>
+                        </li>
                       <li class="nav-item">
                         <a class="nav-link me-5" href="/board">고객센터</a>
                       </li>  
@@ -42,66 +43,70 @@
                       {{#sessionUser}}
                         <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                              <img src="./img/smallProfile.png">
+                              <img src="/images/smallProfile.png">
                           </a>
                           <ul class="dropdown-menu">
+                            {{#companyUser}}
                               <li class="d-flex">
-                                <a class="dropdown-item dropdown-menu-big" href="/updateCorporationForm">
+                                <a class="dropdown-item dropdown-menu-big" href="/updateCorporationForm" onmouseover="highlightMenu(this)" onmouseout="unhighlightMenu(this)">
                                     회원정보 수정
                                     <p class="dropdown-menu-small">Personal information</p>
                                 </a>
-                                <img class="nav-img" src="./img/navRight.png">
+                                <img class="nav-img" src="/images/navRight.png">
                               </li>                                                                   
                               <li class="d-flex">
-                                <a class="dropdown-item dropdown-menu-big" href="#">
+                                <a class="dropdown-item dropdown-menu-big" href="/corporationResume" onmouseover="highlightMenu(this)" onmouseout="unhighlightMenu(this)">
                                     채용공고
                                     <p class="dropdown-menu-small">Employment announcement</p>
                                 </a>
-                                <img class="nav-img" src="./img/navRight.png">
+                                <img class="nav-img" src="/images/navRight.png">
                               </li>
                               <li class="d-flex">
-                                <a class="dropdown-item dropdown-menu-big" href="#">
+                                <a class="dropdown-item dropdown-menu-big" href="/corporationSupport/{{sessionUser.id}}" onmouseover="highlightMenu(this)" onmouseout="unhighlightMenu(this)">
                                     채용공고 현황
                                     <p class="dropdown-menu-small">Employment status</p>
                                 </a>
-                                <img class="nav-img" src="./img/navRight.png">
+                                <img class="nav-img" src="/images/navRight.png">
                               </li>
                               <li class="d-flex">
-                                <a class="dropdown-item dropdown-menu-big" href="#">
+                                <a class="dropdown-item dropdown-menu-big" href="/corporationSeeker" onmouseover="highlightMenu(this)" onmouseout="unhighlightMenu(this)">
                                     관심구직자 / 기술스택 매칭
                                     <p class="dropdown-menu-small">Interested seekers / Technical stack</p>
                                 </a>
-                                <img class="nav-img" src="./img/navRight.png">
+                                <img class="nav-img" src="/images/navRight.png">
                               </li>
+                            {{/companyUser}}
+                            {{^companyUser}}
                               <li class="d-flex">
-                                <a class="dropdown-item dropdown-menu-big" href="/updateSeekerForm">
+                                <a class="dropdown-item dropdown-menu-big" href="/updateSeekerForm" onmouseover="highlightMenu(this)" onmouseout="unhighlightMenu(this)">
                                     회원정보 수정
                                     <p class="dropdown-menu-small">Personal information</p>
                                 </a>
-                                <img class="nav-img" src="./img/navRight.png">
+                                <img class="nav-img" src="/images/navRight.png">
                               </li>
                               <li class="d-flex">
-                                <a class="dropdown-item dropdown-menu-big" href="seekerResumeForm">
+                                <a class="dropdown-item dropdown-menu-big" href="/seekerResumeForm" onmouseover="highlightMenu(this)" onmouseout="unhighlightMenu(this)">
                                     이력서
                                     <p class="dropdown-menu-small">Resume</p>
                                 </a>
-                                <img class="nav-img" src="./img/navRight.png">
+                                <img class="nav-img" src="/images/navRight.png">
                               </li>
                               <li class="d-flex">
-                                <a class="dropdown-item dropdown-menu-big" href="seekerSupport">
+                                <a class="dropdown-item dropdown-menu-big" href="/seekerSupport" onmouseover="highlightMenu(this)" onmouseout="unhighlightMenu(this)">
                                     지원현황
                                     <p class="dropdown-menu-small">Support status</p>
                                 </a>
-                                <img class="nav-img" src="./img/navRight.png">
+                                <img class="nav-img" src="/images/navRight.png">
                               </li>
                               <li class="d-flex">
-                                <a class="dropdown-item dropdown-menu-big" href="#">
+                                <a class="dropdown-item dropdown-menu-big" href="/seekerCompanies" onmouseover="highlightMenu(this)" onmouseout="unhighlightMenu(this)">
                                     관심기업 / 기술스택 매칭
                                     <p class="dropdown-menu-small">Interested companies / Technical stack</p>
                                 </a>
-                                <img class="nav-img" src="./img/navRight.png">
-                              </li>                     
-                            <button id="btnJoin" type="submit" class="btn form-control btn-logout main-text">
+                                <img class="nav-img" src="/images/navRight.png">
+                              </li> 
+                            {{/companyUser}}                    
+                            <button id="btnJoin" type="submit" class="btn form-control btn-logout main-text" onmouseover="highlightButton(this)" onmouseout="unhighlightButton(this)">
                               <a class="nav-link" href="/logout">로그아웃</a>
                             </button>
                           </ul>
