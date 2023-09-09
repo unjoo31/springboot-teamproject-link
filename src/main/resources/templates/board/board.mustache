@@ -91,7 +91,6 @@
         width: 300px;
         position: absolute;
         left: -230px;
-
     }
 
     .dropdown-menu-big {
@@ -117,6 +116,7 @@
     .logo {
         color: #9F12E1;
         font-weight: 700;
+        margin-left: -4px;
     }
 
     .footer {
@@ -165,7 +165,7 @@
     }
 
     .btn-register {
-        margin-top: 35px;
+        margin-top: 15px;
         width: 100px;
         height: 40px;
         background-color: #9F12E1;
@@ -189,11 +189,11 @@
     }
 
     .btn-save {
-        margin-bottom: 5px;
-        font-size: 15px;
-        color: #FFFFFF;
-        margin-bottom: 5px;
-
+        margin-top: 35px;
+        width: 100px;
+        height: 40px;
+        background-color: #9F12E1;
+        color: white;
     }
 
     .header-menu {
@@ -337,8 +337,6 @@
         max-width: 260px;
     }
 
-    /* 여기 작업 중 ================================================================================================= */
-
     .board-overflow-content {
         white-space: nowrap;
         /* 너비를 벗어나도 줄 바꿈 하지 않음 */
@@ -390,7 +388,7 @@
         </div>
 
         <div class="d-flex justify-content-end">
-            <a class="btn btn-register main-text" href="/board/saveBoard">게시글작성</a>
+            <a class="btn btn-save main-text" href="/board/saveBoard">게시글작성</a>
         </div>
 
     </div>
@@ -415,8 +413,8 @@
             {{#boardPG.content}}
             <tr class="td-text board-list">
 
-                <td class="board-number text-center"></td>
-
+                <td class="board-number text-center">{{id}}</td>        
+              
                 <td class="board-title board-overflow-title"><a href="/board/{{id}}/detailBoard">{{title}}</a></td>
 
                 <td><a class="board-state state-completion" href="/board/{{id}}/updateForm">수정</a>
@@ -426,19 +424,23 @@
                     <img src="/images/smallProfile.png" width="20" height="20" alt="이미지 설명" style="border-radius: 50%;">
                     {{user.username}}
                 </td>
+              
                 <body>
-                    <td class="board-content board-overflow-content p" >
-                        <span id="contentSpan">{{{content}}}</span>
+                    <td class="board-content board-overflow-content p">
+                        <span class="contentSpan">{{{content}}}</span>
                     </td>
-                    <script>
-                        // 줄 바꿈 문자를 제거합니다.                       
-                        var contentSpan = document.getElementById("contentSpan");
-                        contentSpan.textContent = contentSpan.textContent.replace(/\n/g, '').trim();
-                    </script>
                 </body>
-
+             
             </tr>
             {{/boardPG.content}}
+
+            <script>
+                // 줄 바꿈 문자를 제거합니다.
+                var contentSpans = document.querySelectorAll(".contentSpan");
+                contentSpans.forEach(function (contentSpan) {
+                    contentSpan.textContent = contentSpan.textContent.replace(/\n/g, '').trim();
+                });
+            </script>
 
             <tr style="height: 100px;"></tr>
         </table>
@@ -470,15 +472,6 @@
             return false;
         }
     }
-    const tdElements = document.querySelectorAll('td.board-number'); // 클래스가 'board-number'인 모든 <td> 요소 선택
-    const totalElements = tdElements.length;
-
-    tdElements.forEach((td, index) => {
-        const id = document.createElement('span');
-        id.textContent = `${totalElements - index}`; // 역순으로 아이디 생성
-        td.appendChild(id); // <td> 내에 아이디 추가
-    });
-
 </script>
 
 {{> layout/footer}}

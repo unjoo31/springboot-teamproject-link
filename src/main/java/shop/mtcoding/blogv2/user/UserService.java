@@ -1,6 +1,7 @@
 package shop.mtcoding.blogv2.user;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,10 +75,15 @@ public class UserService {
     @Transactional
     public User 회원수정(UpdateDTO updateDTO, Integer id) {
 
-        String fileName = function.saveImage(updateDTO.getPic());
+        String fileName = null;
+        
+        if (updateDTO.getPic() == null || updateDTO.getPic().isEmpty()) {
+            fileName = "basic.jpg"; // 디폴트 이미지 파일 이름
+        } else {
+            fileName = function.saveImage(updateDTO.getPic());
+        }
 
         User user = userRepository.findById(id).get();
-
         user.setPassword(updateDTO.getPassword());
         user.setEmail(updateDTO.getEmail());
         user.setCompanyUser(updateDTO.getCompanyUser());
@@ -96,5 +102,13 @@ public class UserService {
     // 기업회원 조회
     public List<User> 기업회원조회() {
         return userRepository.findByCompanyUserIsTrue();
+    }
+
+    public Optional<User> 회원조회하기(Integer id) {
+        return userRepository.findById(id);
+    }
+
+    public List<User> 일반회원조회() {
+        return userRepository.findByCompanyUserIsFalse();
     }   
 }
