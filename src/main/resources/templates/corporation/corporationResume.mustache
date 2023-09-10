@@ -306,6 +306,7 @@
         </div>
         <div class="container">
             <h1 class="title-text body">채용공고</h1>
+            <!-- 
             {{^noticeList}}
             <div class="card-contain-first">
                 <div class="card">
@@ -327,7 +328,8 @@
                 </div>
             </div>
             {{/noticeList}}
-
+        -->
+        
             {{#noticeList}}
             <div class="card-contain-second">
                 <div class="card">
@@ -371,9 +373,31 @@
                 </div>
             </div>
             {{/noticeList}}
+            <div class="card-contain-first">
+                <div class="card">
+                    <div class="card-header">Employment announcement</div>
+                    <div class="card-body">
+                        <form action="/corporationSaveResume">
+                            <div class="mb-3 d-flex justify-content-start">
+                                <div class="personal-img">
+                                    <img src="/images/hello.png">
+                                </div>
+                                <div class="employment-content d-flex flex-column">
+                                    <div class="employment-content-title">
+                                        "새로운 채용공고를 등록해주세요 ! "
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn img-botton btn-employment main-text" id="btnJoin"
+                                        type="submit">채용공고 등록</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    ​
 </div>
 </div>
 </div>
