@@ -1,0 +1,506 @@
+{{> layout/header}}
+
+<style>
+    /* 헤더, 푸터 스타일 시작 */
+.header{
+    height: 70px;
+    border-bottom: 1px solid #ccc;
+    margin-top: 10px;
+}
+.logo{
+    color: #9F12E1;
+    font-weight: 700;
+}
+.footer{
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+/* 타이틀 스타일 */
+.title-text{
+    font-size: 20px;
+}
+/* 메인 스타일 */
+.main-text{
+    font-size: 14px;
+}
+/* 서브 스타일 */
+.sub-text{
+    font-size: 13px;
+}
+.footer-inc{
+    font-size: 12px;
+}
+.btn-style{
+    margin-top: 15px;
+    border-radius: 30px;
+    width: 100px;
+    height: 40px;
+}
+.btn-login{
+    border: 1px solid #9F12E1;
+    color: #9F12E1;
+    margin-right: 10px;
+}
+.btn-login a{
+    margin-bottom: 5px;
+    font-size: 15px;
+    color: #9F12E1;
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+.btn-register{
+    background-color: #9F12E1;
+    color: white;
+}
+.btn-register a{
+    margin-bottom: 5px;
+    font-size: 15px;
+    color: #ffffff;
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+.btn-logout{
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 280px;
+    background-color: #9F12E1;
+    color: white;
+}
+.btn-logout a{
+    font-size: 15px;
+    color: #ffffff;
+}
+.header-menu{
+    font-weight: 600;
+}
+.dropdown-menu{
+    width: 300px;
+    position: absolute;
+    left: -230px;
+
+}
+.dropdown-menu-big{
+    font-size: 15px;
+}
+.dropdown-menu-small{
+    font-size: 11px;
+}
+.dropdown-toggle::after {
+    display: none;
+}
+.nav-img{
+    width: 20px;
+    height: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+/* 헤더, 푸터 스타일 끝 */
+
+/* 좌측 메뉴 스타일 시작 */
+.left-nav-title{
+    font-size: 15px;
+    margin-top: 10px;
+}
+.left-nav-sub{
+    font-size: 11px;
+}
+.left-nav{
+    width: 300px;
+    margin-top: 85px;
+}
+.left-nav-detail{
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    border: 1px solid #EDEEF2;
+    margin-bottom: 10px;
+}
+.left-nav-detail .nav-img{
+    width: 40px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+/* 좌측 메뉴 스타일 끝 */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 30px;
+    width: 1000px;
+}
+.body{
+    margin-top: 50px;
+}
+.body-content{
+    border: 1px solid #EDEEF2;
+    border-radius: 15px;
+}
+.body-content-title{
+    margin-left: 20px;
+    margin-top: 15px;
+}
+.first-box{
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+.left-box{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.left-box-first{
+    margin-right: 40px;
+    margin-left: 10px;
+}
+.bottom-box{
+    border-top: 1px solid #ccc;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+}
+.bottom-box-left{
+    margin-left: 15px;
+}
+.bottom-box-right{
+    margin-right: 5px;
+}
+.personal-img{
+    width: 88px;
+    height: 88px;
+    background-color: #ccc;
+    border-radius: 20px;
+    margin-right: 15px;
+}
+.personal-img img{
+    width: 88px;
+    height: 88px;
+    border-radius: 20px;
+}
+.img-botton{
+    margin-top: 20px;
+    margin-right: 15px;
+    height: 40px;
+}
+.input-style{
+    width: 310px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #EDEEF2;
+    font-size: 14px;
+}
+.box-layout{
+    margin-bottom: 15px;
+}
+
+
+.grid-container1 {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        grid-gap: 30px;
+        width: 1500px;
+        height: 600px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+}
+
+.card-contain{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.card-input{
+    height: 40px;
+    margin-bottom: 5px;
+}
+    .grid-container2 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .grid-container3 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin: 20px;
+    }
+
+    .statussuccess {
+        display: inline-block;
+        padding: 5px 20px;
+        border-radius: 20px;
+        background-color: #9F12E1;
+        color: white;
+        cursor: pointer;
+        font-size: 13px;
+        height: 25px;
+        text-align: center;
+    }
+
+    .statusfail {
+        display: inline-block;
+        padding: 5px 20px;
+        border-radius: 20px;
+        background-color: #EDEEF2;
+        color: rgb(75, 72, 72);
+        cursor: pointer;
+        font-size: 13px;
+        height: 25px;
+        text-align: center;
+    }
+
+    .statusundetermined{
+        display: inline-block;
+        padding: 5px 20px;
+        border-radius: 20px;
+        background-color: rgb(209, 208, 208);
+        color: rgb(75, 72, 72);
+        cursor: pointer;
+        font-size: 15px;
+        height: 30px; 
+    }
+
+
+    .companyname {
+        color: rgb(155, 154, 154);
+        font-size: 14px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+
+    .container{
+        display: flex;
+        gap: 8px;
+        white-space: nowrap; /* 줄 바꿈 없이 텍스트 표시 */
+        overflow: hidden; /* 넘칠 경우 숨김 처리 */
+        text-overflow: ellipsis;
+        margin-bottom: 30px;
+    }
+
+    .image{
+        width: 100px;
+        height: 50px;
+    }
+    .text{
+        margin-left: 5px;
+        margin-top: 7px;
+        display: flex;
+        justify-content: center;    
+    }
+    .box-background{
+        background-color: #FAFAFA;
+        height: 700px;
+    }
+    .box{
+        width: 750px;
+        height: 600px;
+        padding: 20px;
+        border-radius: 20px;
+        border: 1px solid #EDEEF2;
+        background-color: #ffffff;
+        margin-top: 50px;
+    }
+    .d-flex1{
+        display: flex;
+        justify-content: start;
+        margin-right: 60px;
+    }
+    .d-flex2{
+        margin-right: 50px;
+    }
+    .close-btn{
+        margin-left: 300px;
+    }
+    .text-line{
+        margin-bottom: 10px;
+    }
+    .main-text-color{
+        color: rgb(155, 154, 154);
+    }
+    .boomark-img{
+        margin-right: 20px;
+    }
+    .detail-company{
+        color: rgb(155, 154, 154);
+    }
+    .detail-company-title{
+        font-weight: 600;
+    }
+    .star-icon-button {
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        background: none;
+        outline: none;
+        margin-right: 10px;
+        z-index: 100;
+    }
+</style>
+
+<div class="box-background d-flex justify-content-center">
+    <div class="box">
+        <div class="d-flex">
+            <div class="container d-flex flex-column">
+                
+                <div class="detail-company-title">
+                    {{user.get.name}}
+                </div>
+            </div>
+            <form action="/applyNoticeBookmark" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="userId" id="userId" value="{{user.get.id}}">
+                <button class="star-icon-button btn-register" type="submit" id="bookmarkImageContainer">
+                    {{#isBookmark}}
+                    <div class="boomark-img">
+                        <img src="/images/boomarkOn.png" id="bookmarkImage">
+                    </div>
+                    {{/isBookmark}}
+                    {{^isBookmark}}
+                    <div class="boomark-img">                       
+                        <img src="/images/boomark.png" id="bookmarkImage">
+                    </div>
+                    {{/isBookmark}}
+                </button>
+            </form>
+        </div>
+            <hr />
+            <div class="d-flex">
+                <div>
+                    <div class="d-flex1 sub-text">
+                        <div class="d-flex2">
+                            <div class="main-text text-line">이름</div>
+                            <div class="main-text text-line">이메일</div>
+                            <div class="main-text">전화번호</div>
+                            
+                            </div>
+                            <div>
+                                <div class="main-text main-text-color text-line">{{user.get.name}}</div>
+                                <div class="main-text main-text-color text-line">{{user.get.email}}</div>
+                                <div class="main-text main-text-color ">{{user.get.phonenumber}}</div>
+                            </div>
+                    </div>
+                </div>
+                <div class="d-flex1 sub-text">
+                    <div class="d-flex2">
+                        <div class="main-text text-line">나이</div>
+                        <div class="main-text text-line">주소</div>
+                        <div class="main-text">업력</div>
+                    </div>
+                    <div>
+                        <div class="main-text main-text-color text-line">{{user.get.age}}</div>
+                        <div class="main-text main-text-color text-line">{{user.get.address}}</div>
+                        <div class="main-text main-text-color">{{user.get.business}}</div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            
+            <br>
+            <div class="container d-flex sub-text five-box">
+                <div>
+                    저는 언제나 밝고 명랑하며, 딱딱한 분위기를 전환시킬 줄 아는 융통성과 <br> 
+                    <br>
+                    재치도 겸비하고 있습니다. 또한 맡은 일을 끝까지 해낼 수 있는 끈기와 집념의 소유자이기도 합니다. <br>
+                    <br>
+                    저의 장점은 모든 일을 되도록 긍정적으로 받아들이고 마음의 여유를 가지고 <br>
+                    <br>
+                    생활하려 노력한다는 것입니다. <br> 
+                    <br>
+                    하지만 가끔은 마음의 여유를 갖는다는 것이 지나쳐 게으름으로 이어지기도 했었습니다. <br> 
+                    <br>
+                    그러나 학생이 아닌 사회인의 신분으로 새로운 시작을 위한 출발점에 서 있는 지금, <br> 
+                    <br>
+                    더 이상 게으름을 피우기보다는 마음의 여유를 가지되 몸소 실천하는 사람이 되도록 <br> 
+                    <br>
+                    노력하고 있습니다.
+                    
+            </div>    
+        </div>
+            </div>
+    </div>
+</div>
+<script>
+    // 카드 마우스 오버 시 스타일 변경
+    function highlightCard(element) {
+        element.style.border = '2px solid #9F12E1';
+        element.style.cursor = 'pointer';
+    }
+
+    function unhighlightCard(element) {
+        element.style.border = '1px solid #ccc';
+        element.style.cursor = 'pointer';
+    }
+
+    // 버튼 마우스 오버 시 스타일 변경
+    function highlightButton(element) {
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = '3px 3px 5px rgba(0, 0, 0, 0.2)';
+    }
+
+    function unhighlightButton(element) {
+        element.style.cursor = 'pointer';
+        element.style.boxShadow = 'none'; 
+    }
+
+    // 회원정보 수정 메뉴 마우스 오버시 이미지 변경
+    let personalImageContainer = document.getElementById("personalImageContainer");
+    let personalImage = document.getElementById("personalImage");
+    let personalImageSrc = "/images/personal.png";
+    let personalHoverImageSrc = "/images/personalOn.png";
+
+    personalImageContainer.addEventListener("mouseover", function() {
+        personalImage.src = personalHoverImageSrc;
+    });
+
+    personalImageContainer.addEventListener("mouseout", function() {
+        personalImage.src = personalImageSrc;
+    });
+
+    // 채용공고 메뉴 마우스 오버시 이미지 변경
+    let employmentImageContainer = document.getElementById("employmentImageContainer");
+    let employmentImage = document.getElementById("employmentImage");
+    let employmentImageSrc = "/images/resume.png";
+    let employmentHoverImageSrc = "/images/resumeOn.png";
+
+    employmentImageContainer.addEventListener("mouseover", function() {
+        employmentImage.src = employmentHoverImageSrc;
+    });
+
+    employmentImageContainer.addEventListener("mouseout", function() {
+        employmentImage.src = employmentImageSrc;
+    });
+
+    // 채용공고 현황 메뉴 마우스 오버시 이미지 변경
+    let statusImageContainer = document.getElementById("statusImageContainer");
+    let statusImage = document.getElementById("statusImage");
+    let statusImageSrc = "/images/resume.png";
+    let statusHoverImageSrc = "/images/resumeOn.png";
+
+    statusImageContainer.addEventListener("mouseover", function() {
+        statusImage.src = statusHoverImageSrc;
+    });
+
+    statusImageContainer.addEventListener("mouseout", function() {
+        statusImage.src = statusImageSrc;
+    });
+
+    // 관심구직자 메뉴 마우스 오버시 이미지 변경
+    let interestImageContainer = document.getElementById("interestImageContainer");
+    let interestImage = document.getElementById("interestImage");
+    let interestImageSrc = "/images/company.png";
+    let interestHoverImageSrc = "/images/companyOn.png";
+
+    interestImageContainer.addEventListener("mouseover", function() {
+        interestImage.src = interestHoverImageSrc;
+    });
+
+    interestImageContainer.addEventListener("mouseout", function() {
+        interestImage.src = interestImageSrc;
+    });
+</script>
+{{> layout/footer}}

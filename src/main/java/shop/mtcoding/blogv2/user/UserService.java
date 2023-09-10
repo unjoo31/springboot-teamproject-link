@@ -1,6 +1,7 @@
 package shop.mtcoding.blogv2.user;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -101,5 +102,13 @@ public class UserService {
     // 기업회원 조회
     public List<User> 기업회원조회() {
         return userRepository.findByCompanyUserIsTrue();
+    }
+
+    public Optional<User> 회원조회하기(Integer id) {
+        return userRepository.findById(id);
+    }
+
+    public List<User> 일반회원조회() {
+        return userRepository.findByCompanyUserIsFalse();
     }   
 }

@@ -161,6 +161,9 @@ public class NoticeService {
 
             return resp;
 
+            // Stream 버전이에요! 나중에 프로젝트 이후 공부하실때 꼭 숙지하세요. 코드가 간편해집니다.
+            // return noticeList.stream().map(t -> new NoticeResponse.CorporationResume(t)).collect(Collectors.toList());
+
         } else {
             System.out.println("값이 없습니다.");
             return null;

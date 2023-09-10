@@ -1,6 +1,8 @@
 package shop.mtcoding.blogv2.user;
 
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
@@ -8,6 +10,7 @@ import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,12 +18,16 @@ import shop.mtcoding.blogv2._core.error.ex.MyApiException;
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2._core.util.ApiUtil;
 import shop.mtcoding.blogv2._core.util.Script;
+import shop.mtcoding.blogv2.boomark.BookmarkService;
 
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BookmarkService bookmarkService;
 
     @Autowired
     private HttpSession session;
@@ -125,5 +132,35 @@ public class UserController {
          } catch (Exception e) {
             return Script.href("/", "메인으로 이동합니다.");
         }
+    }
+
+    // 기업 유저 상세보기
+    @GetMapping("/corporationDetail/{id}")
+    public String corporationDetail(@PathVariable Integer id, HttpServletRequest request){
+    Optional<User> user = userService.회원조회하기(id);
+    User userId = userService.회원정보보기(id);
+    Boolean isBookmark = bookmarkService.북마크여부확인(userId);
+    System.out.println("북마크테스트" + isBookmark);
+    request.setAttribute("user", user);
+    request.setAttribute("isBookmark", isBookmark);
+    System.out.println("북마크 테스트 0 : " + user.get().getId());
+    
+    return "/seeker/corporationDetail";
+    }
+
+    
+
+    // 일반 유저 상세보기 
+    @GetMapping("/userDetail/{id}")
+    public String userDetail(@PathVariable Integer id, HttpServletRequest request){
+    Optional<User> user = userService.회원조회하기(id);
+    User userId = userService.회원정보보기(id);
+    Boolean isBookmark = bookmarkService.북마크여부확인(userId);
+    System.out.println("북마크테스트" + isBookmark);
+    request.setAttribute("user", user);
+    request.setAttribute("isBookmark", isBookmark);
+    System.out.println("북마크 테스트 0 : " + user.get().getId());
+    
+    return "/seeker/userDetail";
     }
 }
