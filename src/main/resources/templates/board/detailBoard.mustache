@@ -242,7 +242,7 @@
     /* 헤더, 푸터 스타일 끝 */
 
     /* detailBoard.html */
-   
+
     .body-content {
         border: 1px solid #EDEEF2;
         border-radius: 15px;
@@ -646,13 +646,26 @@
             location.reload();
         } else {
             alert(responseBody.data);
+             // 일정 시간(예: 2초) 후에 자동으로 페이지 새로고침
+             setTimeout(function () {
+                location.reload();
+            }, 10); // 2000 밀리초(2초) 후에 새로고침
         }
     }
 
     async function saveReply() {
+        // 사용자가 입력한 댓글 내용을 가져옴
+        let comment = document.querySelector("#comment").value;
+
+        // 댓글 내용이 비어 있는지 확인
+        if (comment.trim() === "") {
+            alert("댓글을 입력하세요"); // 댓글 내용이 비어 있는 경우 경고 표시
+            return; // 댓글을 저장하지 않음
+        }
+
         let requestBody = {
             boardId: document.querySelector("#boardId").value,
-            comment: document.querySelector("#comment").value
+            comment: comment
         };
 
         let response = await fetch("/api/reply/save", {
@@ -668,6 +681,10 @@
             updateCommentList(responseBody.data);
         } else {
             alert(responseBody.data);
+            // 일정 시간(예: 2초) 후에 자동으로 페이지 새로고침
+            setTimeout(function () {
+                location.reload();
+            }, 10); // 2000 밀리초(2초) 후에 새로고침
         }
     }
 
