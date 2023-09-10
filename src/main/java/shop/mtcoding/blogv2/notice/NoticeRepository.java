@@ -1,5 +1,6 @@
 package shop.mtcoding.blogv2.notice;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,13 +36,12 @@ public interface NoticeRepository extends JpaRepository<Notice, Integer> {
         @Query("Select n from Notice n where n.id = :noticeId")
         Notice mfindByNoticeId(@Param("noticeId") Integer noticeId);
 
-
-
+        // 기존에 있는것
         @Query(value = "SELECT n FROM Notice n " +
-                        "left outer JOIN fetch n.hashSkilList hs " +
-                        "left outer JOIN fetch hs.skill s " +
-                        "WHERE n.user.id = :userId")
-        List<Notice> mfindNoticesWithSkillsByUserId(@Param("userId") Integer userId);
+        "left outer JOIN fetch n.hashSkilList hs " +
+        "left outer JOIN fetch hs.skill s " +
+        "WHERE n.user.id = :userId")
+        HashSet<Notice> mfindNoticesWithSkillsByUserId(@Param("userId") Integer userId);
 
         List<Notice> findByUserId(Integer userId);
 

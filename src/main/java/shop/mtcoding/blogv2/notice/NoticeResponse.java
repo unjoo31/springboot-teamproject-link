@@ -1,10 +1,13 @@
 package shop.mtcoding.blogv2.notice;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import shop.mtcoding.blogv2.hashskil.HashSkil;
@@ -16,7 +19,7 @@ public class NoticeResponse {
     public static class CorporationResume{
         private Integer noticeId;
         private String title;
-        private List<String> skillNames = new ArrayList<>();
+        private Set<String> skillNames = new HashSet<>();
 
 
         public CorporationResume(Notice notice) {
