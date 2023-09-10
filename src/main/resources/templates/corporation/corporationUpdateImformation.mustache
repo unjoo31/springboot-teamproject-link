@@ -259,7 +259,7 @@ a {
                         </div>
                         <div class="mb-3 d-flex flex-column">
                             <label for="companyName" class="form-label main-text">기업명</label>
-                            <input class="input-style" type="text" id="name" class="form-control sub-text" placeholder="(주)link" name="name" value="{{user.name}}">
+                            <input class="input-style" type="text" id="name" class="form-control sub-text" placeholder="(주)link" name="name" value="{{user.name}}" required>
                         </div>
                     </div>
                     <div class="d-flex box-layout">
@@ -269,37 +269,37 @@ a {
                         </div>
                         <div class="mb-3 d-flex flex-column box-layout-right">
                             <label for="password" class="form-label main-text">비밀번호</label>
-                            <input class="input-style" type="text" id="password" class="form-control sub-text" placeholder="**********" name="password">
+                            <input class="input-style" type="password" id="password" class="form-control sub-text" placeholder="**********" name="password" required>
                         </div>
                     </div>
                     <div class="d-flex box-layout">
                         <div class="mb-3 d-flex flex-column">
                             <label for="email" class="form-label main-text">이메일</label>
-                            <input class="input-style" type="text" id="email" class="form-control sub-text" placeholder="link@gmai.com" name="email" value="{{user.email}}">
+                            <input class="input-style" type="email" id="email" class="form-control sub-text" placeholder="link@gmai.com" name="email" value="{{user.email}}" required>
                         </div>
                         <div class="mb-3 d-flex flex-column box-layout-right">
                             <label for="phonenumber" class="form-label main-text">휴대폰번호</label>
-                            <input class="input-style" type="text" id="phonenumber" class="form-control sub-text" placeholder="000-0000-0000" name="phonenumber" value="{{user.phonenumber}}">
+                            <input class="input-style" type="tel" id="phonenumber" class="form-control sub-text" placeholder="000-0000-0000" name="phonenumber" value="{{user.phonenumber}}">
                         </div>
                     </div>
                     <div class="d-flex box-layout">
                         <div class="mb-3 d-flex flex-column">
                             <label for="address" class="form-label main-text">주소</label>
-                            <input class="input-style" type="text" id="address" class="form-control sub-text" placeholder="부산" name="address" value="{{user.address}}">
+                            <input class="input-style" type="text" id="address" class="form-control sub-text" placeholder="부산" name="address" value="{{user.address}}" required>
                         </div>
                         <div class="mb-3 d-flex flex-column box-layout-right">
                             <label for="business" class="form-label main-text">업종</label>
-                            <input class="input-style" type="text" id="business" class="form-control sub-text" placeholder="컴퓨터시스템 통합 시스템" name="business" value="{{user.business}}">
+                            <input class="input-style" type="text" id="business" class="form-control sub-text" placeholder="컴퓨터시스템 통합 시스템" name="business" value="{{user.business}}" required>
                         </div>
                     </div>
                     <div class="d-flex box-layout">
                         <div class="mb-3 d-flex flex-column">
                             <label for="form" class="form-label main-text">기업형태</label>
-                            <input class="input-style" type="text" id="form" class="form-control sub-text" placeholder="중소기업" name="form" value="{{user.form}}">
+                            <input class="input-style" type="text" id="form" class="form-control sub-text" placeholder="중소기업" name="form" value="{{user.form}}" required>
                         </div>
                         <div class="mb-3 d-flex flex-column box-layout-right">
                             <label for="performance" class="form-label main-text">업력</label>
-                            <input class="input-style" type="text" id="performance" class="form-control sub-text" placeholder="0000.00.00" name="performance" value="{{user.performance}}">
+                            <input class="input-style" type="text" id="performance" class="form-control sub-text" placeholder="0000.00.00" name="performance" value="{{user.performance}}" required>
                         </div>
                     </div>
                     <div class="d-flex bottom-box justify-content-between">

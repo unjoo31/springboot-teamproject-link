@@ -256,6 +256,14 @@
         margin-bottom: 30px;
     }
 
+    .container_content{
+        display: flex;
+        gap: 8px;
+        white-space: break-spaces; /* 줄 바꿈 없이 텍스트 표시 */
+        text-overflow: ellipsis;
+        margin-bottom: 30px;
+    }
+
     .image{
         width: 100px;
         height: 50px;
@@ -271,7 +279,7 @@
         height: 850px;
     }
     .box{
-        width: 750px;
+        width: 740px;
         height: 700px;
         padding: 20px;
         border-radius: 20px;
@@ -380,7 +388,7 @@
             </div>
             <hr>
             <div class="container d-flex third-box">
-                <div class="d-flex1 sub-text">
+                <div class="d-flex1 sub-text" style="width: 200px;">
                     <div class="d-flex2">
                         <div class="main-text text-line">경력</div>
                         <div class="main-text text-line">학력</div>
@@ -392,7 +400,7 @@
                         <div class="main-text main-text-color ">{{notice.typeOfWork}}</div>
                     </div>
                 </div>
-                <div class="d-flex1 sub-text">
+                <div class="d-flex1 sub-text" style="width: 200px;">
                     <div class="d-flex2">
                         <div class="main-text text-line">급여</div>
                         <div class="main-text text-line">마감일</div>
@@ -412,7 +420,7 @@
                 {{/notice.hashSkilList}}
             </div>
             <br>
-            <div class="container d-flex sub-text five-box">
+            <div class="container_content d-flex sub-text five-box" style="margin-left: 5px;">
                 <div>{{notice.content}}</div>
             </div>    
         </div>

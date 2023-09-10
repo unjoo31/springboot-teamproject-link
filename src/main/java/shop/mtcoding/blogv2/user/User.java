@@ -36,7 +36,7 @@ public class User {
     private String email;
 
     private Boolean companyUser;
-
+    
     @Column(nullable = true)
     private String picUrl;
 

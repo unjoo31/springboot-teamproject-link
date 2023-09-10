@@ -56,20 +56,12 @@ public class ResumeService {
 
                 List<HashSkil> hashSkilList = new ArrayList<>();
                 List<HashArea> hashAreaList = new ArrayList<>(); // 미리 선언
-
-                // 유저는 이미 만들어 져있다.
-                User user = userRepository.findById(userId).get();
-                user.setEmail(resumeSaveDTO.getEmail());
-                user.setName(resumeSaveDTO.getName());
-                user.setPhonenumber(resumeSaveDTO.getPhoneNumber());
-                user.setAddress(resumeSaveDTO.getAddress());
-                user.setAge(resumeSaveDTO.getDate());
-
+                
                 // 이력서는 그 다음에 만들어진다.
                 Resume resume = Resume.builder()
                                 .career(resumeSaveDTO.getCareer())
                                 .content(resumeSaveDTO.getContent())
-                                .user(user)
+                                .user(User.builder().id(userId).build())
                                 .hashSkilList(hashSkilList)
                                 .hashAreaList(hashAreaList) // 추가한 부분
                                 .build();
@@ -120,19 +112,15 @@ public class ResumeService {
 
 
         @Transactional
-        public void 이력서수정(ResumeUpdateDTO resumeUpdateDTO, Integer resumeId) {
+        public void 이력서수정(ResumeUpdateDTO resumeUpdateDTO, Integer resumeId, Integer sessionUserId) {
 
                 // builder 를 사용하면 데이터가 쌓이기때문에 있는 데이터를 이용하여 값을 수정
                 Resume resume = resumeRepository.mfindByResumeId(resumeId);
 
                 resume.setContent(resumeUpdateDTO.getContent());
                 resume.setCareer(resumeUpdateDTO.getCareer());
-                resume.getUser().setName(resumeUpdateDTO.getName());
-                resume.getUser().setEmail(resumeUpdateDTO.getEmail());
-                resume.getUser().setAddress(resumeUpdateDTO.getAddress());
-                resume.getUser().setPhonenumber(resumeUpdateDTO.getPhoneNumber());
-                resume.getUser().setAge(resumeUpdateDTO.getDate());
-
+                resume.getUser().setId(sessionUserId);
+              
                 // 여기서부터 지역과 스킬스택 처리 로직
                 List<HashSkil> hashSkilList = new ArrayList<>();
                 List<HashArea> hashAreaList = new ArrayList<>();
@@ -174,7 +162,6 @@ public class ResumeService {
         }
 
         public void 이력서전송하기(TransmitDTO transmitDTO, Optional<Resume> resume) {
-                System.out.println("업데이트 쿼리 전");
                 Apply apply = Apply.builder()
                 .pass(transmitDTO.getPass())
                 .user(User.builder().id(resume.get().getUser().getId()).build())
@@ -183,7 +170,6 @@ public class ResumeService {
                 .build();
                 
                 applyRepository.save(apply);
-                System.out.println("업데이트 쿼리 완료");
                
         }
 

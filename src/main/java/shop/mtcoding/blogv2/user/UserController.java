@@ -77,10 +77,8 @@ public class UserController {
         if(isCompanyUser == true){
             request.setAttribute("companyUser", companyUser);
         }
-        System.out.println("로그인 테스트" + isCompanyUser);
-        System.out.println("로그인 테스트" + companyUser);
         
-        return Script.href("/", "로그인 완료");
+        return Script.href("/", "로그인 되었습니다.");
     }
 
     // 로그아웃
@@ -111,27 +109,25 @@ public class UserController {
     //회원정보 업데이트
     @PostMapping("/user/update")
     public @ResponseBody String update(UserRequest.UpdateDTO updateDTO){
-        try {
-            
         User sessionUser = (User)session.getAttribute("sessionUser");
+        try {   
         User user = userService.회원수정(updateDTO, sessionUser.getId());
         session.setAttribute("sessionUser", user);
         // 기업회원의 경우 기업 회원정보 수정 페이지로 이동
         if(sessionUser.getCompanyUser() == true){
-            // return "redirect:/updateCorporationForm";
             return Script.href("/updateCorporationForm", "회원정보 수정완료");
-            
         }
-        
         if(sessionUser.getCompanyUser() ==  false){
-            // return "redirect:/updateSeekerForm";
             return Script.href("/updateSeekerForm", "회원정보 수정완료");
         }
+        
         // 일반회원 경우 일반 회원정보 수정 페이지로 이동
-        return "redirect:/";
+       
          } catch (Exception e) {
-            return Script.href("/", "메인으로 이동합니다.");
+           return Script.href("/", "에러가 발생했습니다. 문의 부탁드립니다.");
         }
+           
+        return "redirect:/";  
     }
 
     // 기업 유저 상세보기
@@ -153,6 +149,7 @@ public class UserController {
     // 일반 유저 상세보기 
     @GetMapping("/userDetail/{id}")
     public String userDetail(@PathVariable Integer id, HttpServletRequest request){
+    
     Optional<User> user = userService.회원조회하기(id);
     User userId = userService.회원정보보기(id);
     Boolean isBookmark = bookmarkService.북마크여부확인(userId);
