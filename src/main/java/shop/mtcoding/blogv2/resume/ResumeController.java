@@ -1,13 +1,8 @@
 package shop.mtcoding.blogv2.resume;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import shop.mtcoding.blogv2.apply.Apply;
-import shop.mtcoding.blogv2.apply.ApplyRequest;
+import shop.mtcoding.blogv2._core.error.ex.MyException;
+import shop.mtcoding.blogv2._core.util.Script;
 import shop.mtcoding.blogv2.area.Area;
 import shop.mtcoding.blogv2.area.AreaService;
-import shop.mtcoding.blogv2.notice.NoticeRequest;
 import shop.mtcoding.blogv2.hasharea.HashAreaService;
 import shop.mtcoding.blogv2.hashskil.HashSkilService;
 import shop.mtcoding.blogv2.skill.Skill;
@@ -57,14 +51,14 @@ public class ResumeController {
 
     // Get맵핑 호출공간
     @GetMapping("/seekerResumeForm")
-    public  String resumeForm(Model model1, Model model2, Model model3) {
+    public  String resumeForm(Model model1) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.회원정보보기(sessionUser.getId());
         List<Resume> resumeList = resumeService.이력서존재유무확인(sessionUser.getId());
         List<Skill> skill2 = hashSkilService.이력서선택한스킬목록(sessionUser.getId()); // 여기
         model1.addAttribute("userInfo", user);
-        model2.addAttribute("existResume", resumeList);
-        model3.addAttribute("selectSkill", skill2);
+        model1.addAttribute("existResume", resumeList);
+        model1.addAttribute("selectSkill", skill2);
         return "/seeker/seekerResume";
     }
 
@@ -79,16 +73,20 @@ public class ResumeController {
     // }
 
     @GetMapping("/seekerSaveResumeForm")
-    public String seekerSaveResumeForm(Model model1, Model model2) {
+    public String seekerSaveResumeForm(Model model1) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        Optional<User> user = userService.회원조회하기(sessionUser.getId());
         List<Skill> skill = skillService.모든스킬가져오기();
         List<Area> area = areaService.모든지역가져오기();
         model1.addAttribute("skills", skill);
-        model2.addAttribute("areas", area);
+        model1.addAttribute("areas", area);
+        model1.addAttribute("user", user);
         return "/seeker/seekerSaveResume";
     }
 
+
     @GetMapping("/seekerSaveResumeUpdateForm/{resumeId}")
-    public String seekerSaveResumeUpdateForm(@PathVariable Integer resumeId, Model model1, Model model2, Model model3, Model model4, Model model5) {
+    public String seekerSaveResumeUpdateForm(@PathVariable Integer resumeId, Model model1) {
 
         User sessionUser = (User) session.getAttribute("sessionUser");
         Resume resume = resumeService.이력서가져오기(resumeId);
@@ -101,13 +99,14 @@ public class ResumeController {
         List<Area> area2 = hashAreaService.이력서선택한지역목룍(resumeId);
         List<Area> restArea = areaService.이력서나머지지역가져오기(resumeId);
 
+
         model1.addAttribute("userResume", resume); // 이력서를 보여주는 모델
 
-        model2.addAttribute("selectSkill", skill2); // 선택한 기술을 보여주는 모델
-        model3.addAttribute("restSkill", restSkill); // 선택하고 남은 기술을 보여주는 모델
+        model1.addAttribute("selectSkill", skill2); // 선택한 기술을 보여주는 모델
+        model1.addAttribute("restSkill", restSkill); // 선택하고 남은 기술을 보여주는 모델
 
-        model4.addAttribute("selectArea", area2); // 선택한 지역을 보여주는 모델
-        model5.addAttribute("restArea", restArea); // 선택하고 남은 지역을 보여주는 모델
+        model1.addAttribute("selectArea", area2); // 선택한 지역을 보여주는 모델
+        model1.addAttribute("restArea", restArea); // 선택하고 남은 지역을 보여주는 모델
 
         return "/seeker/seekerSaveResumeUpdate";
     }
@@ -115,31 +114,50 @@ public class ResumeController {
     // Post맵핑 호출공간
     @PostMapping("/seekerSave")
     public String seekerSave(ResumeRequest.ResumeSaveDTO resumeSaveDTO) {
+       try {
         User sessionUser = (User) session.getAttribute("sessionUser");
         resumeService.이력서등록(resumeSaveDTO, sessionUser.getId());
         return "redirect:/seekerResumeForm";
+       } catch (Exception e) {
+        throw new MyException("기술과 지역을 체크해주세요");
+       } 
+        
     }
 
+    // 이력서 수정
     @PostMapping("/SeekerUpdate/{resumeId}")
-    public String seekerUpdate(@PathVariable Integer resumeId, ResumeRequest.ResumeUpdateDTO resumeUpdateDTO) {
-        resumeService.이력서수정(resumeUpdateDTO, resumeId);
-        return "redirect:/seekerResumeForm";
+    public @ResponseBody String seekerUpdate(@PathVariable Integer resumeId, ResumeRequest.ResumeUpdateDTO resumeUpdateDTO) {
+        User sessionUser = (User) session.getAttribute("sessionUser"); 
+        resumeService.이력서수정(resumeUpdateDTO, resumeId, sessionUser.getId());
+        // return "redirect:/seekerResumeForm";
+        return Script.href("/seekerResumeForm", "이력서 수정 완료");
     }
 
+    // 이력서 삭제
     @PostMapping("/seekerResume/{resumeId}/delete")
-    public String seekerResumeDelete(@PathVariable Integer resumeId) {
+    public @ResponseBody String seekerResumeDelete(@PathVariable Integer resumeId) {
         resumeService.이력서삭제(resumeId);
-        return "redirect:/seekerResumeForm";
+        // return "redirect:/seekerResumeForm";
+        return Script.href("/seekerResumeForm", "이력서 삭제 완료");
     }
 
 
     //이력서 전송하기 
     @PostMapping("/resume/transmit")
-    public String resumeTransmit(ResumeRequest.TransmitDTO transmitDTO){
-        User sessionUser = (User) session.getAttribute("sessionUser"); 
+    public @ResponseBody String resumeTransmit(ResumeRequest.TransmitDTO transmitDTO){
+        try {
+           User sessionUser = (User) session.getAttribute("sessionUser"); 
         Optional<Resume> resume  = resumeService.이력서조회하기(sessionUser.getId());
         resumeService.이력서전송하기(transmitDTO, resume);
-        return "redirect:/";
+        return Script.href("/", "이력서 전송 완료");  
+        } catch (Exception e) {
+            User sessionUser = (User) session.getAttribute("sessionUser"); 
+            if (sessionUser.getName().isEmpty()) {
+                return Script.href("/updateSeekerForm", "회원정보를 작성해주세요.");
+            }
+            return Script.href("/seekerResumeForm", "이력서를 작성해주세요.");
+        }
+       
     }
 
 

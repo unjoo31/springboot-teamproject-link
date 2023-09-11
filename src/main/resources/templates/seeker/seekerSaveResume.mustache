@@ -33,7 +33,6 @@
 .btn-style{
     margin-top: 15px;
     border-radius: 30px;
-    width: 100px;
     height: 40px;
 }
 .btn-login{
@@ -299,12 +298,12 @@
                         <div class="d-flex first-box box-layout">
                             <div class="d-flex left-box-first">
                                 <div class="personal-img">
-                                    <img src="/images/hello.png">
+                                    <img src="/images/{{user.get.picUrl}}">
                                 </div>
                                 <div class="mb-3 d-flex flex-column">
                                     <label for="name" class="form-label main-text">이름</label>
                                     <input class="input-style-name" type="text" id="name" class="form-control sub-text"
-                                        placeholder="link" name="name" value="link">
+                                         name="name" value="{{user.get.name}}" disabled>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -313,10 +312,10 @@
                                 </div>
                                 <div>
                                     <label class="me-5 custom-radio main-text">
-                                        <input type="radio" name="career" value=1> 경력
+                                        <input type="radio" name="career" value=1 required> 경력
                                     </label>
                                     <label class="me-5 custom-radio main-text">
-                                        <input type="radio" name="career" value=2> 신입
+                                        <input type="radio" name="career" value=2 required> 신입
                                     </label>
                                 </div>
                             </div>
@@ -325,24 +324,24 @@
                             <div class="mb-3 d-flex flex-column box-layout-left">
                                 <label for="email" class="form-label main-text">이메일</label>
                                 <input class="input-style" type="text" id="email" class="form-control sub-text"
-                                    placeholder="link@gmail.com" name="email" value="link@gmail.com">
+                                name="email" value="{{user.get.email}}" disabled>
                             </div>
                             <div class="mb-3 d-flex flex-column box-layout-right">
                                 <label for="phonenumber" class="form-label main-text">전화번호</label>
                                 <input class="input-style" type="text" id="phonenumber" class="form-control sub-text"
-                                    placeholder="000-0000-0000" name="phoneNumber" value="010-0000-0000">
+                                     name="phoneNumber" value="{{user.get.phonenumber}}" disabled>
                             </div>
                         </div>
                         <div class="d-flex box-layout">
                             <div class="mb-3 d-flex flex-column box-layout-left">
                                 <label for="address" class="form-label main-text">주소</label>
                                 <input class="input-style" type="text" id="address" class="form-control sub-text"
-                                    placeholder="부산" name="address" value="부산">
+                                     name="address" value="{{user.get.address}}" disabled>
                             </div>
                             <div class="mb-3 d-flex flex-column box-layout-right">
                                 <label for="date" class="form-label main-text">생년월일</label>
                                 <input class="input-style" type="date" id="date" class="form-control sub-text"
-                                    placeholder="0000.00.00" name="date">
+                                    name="date" value="{{user.get.age}}" disabled>
                             </div>
                         </div>
                         <div class="mb-3 d-flex flex-column box-layout-textarea">

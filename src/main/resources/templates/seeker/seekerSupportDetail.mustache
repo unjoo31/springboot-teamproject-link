@@ -283,6 +283,15 @@
         margin-bottom: 30px;
     }
 
+    .container-content{
+        display: flex;
+        gap: 8px;
+        white-space: break-spaces; /* 줄 바꿈 없이 텍스트 표시 */
+        overflow: hidden; /* 넘칠 경우 숨김 처리 */
+        text-overflow: ellipsis;
+        margin-bottom: 30px;
+    }
+
     .image{
         width: 100px;
         height: 50px;
@@ -298,7 +307,7 @@
         height: 900px;
     }
     .box{
-        width: 750px;
+        width: 800px;
         height: 800px;
         padding: 20px;
         border-radius: 20px;
@@ -354,8 +363,8 @@
             </div>
             </div>
             <hr />
-            <div class="d-flex">
-                <div>
+            <div class="container d-flex">
+                <div style="width: 380px;">
                     <div class="d-flex1 sub-text">
                         <div class="d-flex2">
                             <div class="main-text text-line">경력</div>
@@ -390,7 +399,7 @@
                 {{/apply.get.notice.hashSkilList}}
             </div>
             <br>
-            <div class="container d-flex sub-text five-box">
+            <div class="container-content d-flex sub-text five-box">
                 <div>{{apply.get.notice.content}}</div>
             </div>    
         </div>
