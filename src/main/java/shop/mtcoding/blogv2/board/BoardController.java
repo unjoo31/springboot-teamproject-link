@@ -41,9 +41,9 @@ public class BoardController {
         request.setAttribute("first", !boardPage.hasPrevious());
         request.setAttribute("last", !boardPage.hasNext());
         request.setAttribute("totalPage", boardPage.getTotalPages());
-        request.setAttribute("totalCount", boardPage.getTotalElements());        
+        request.setAttribute("totalCount", boardPage.getTotalElements());
         return "board/board";
-    } 
+    }
 
     // 게시글 글쓰기 화면 호출
     @GetMapping("/board/saveBoard")
@@ -54,7 +54,8 @@ public class BoardController {
     // 게시글 글쓰기 요청 응답
     @PostMapping("/board/save")
     public String save(BoardRequest.SaveDTO saveDTO) {
-        boardService.글쓰기(saveDTO, 1);
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        boardService.글쓰기(saveDTO, sessionUser.getId());
         return "redirect:/board";
     }
 

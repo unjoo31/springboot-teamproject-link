@@ -53,8 +53,9 @@ public class BoardService {
         Board board = Board.builder()
                 .title(saveDTO.getTitle())
                 .content(saveDTO.getContent())
-                .user(User.builder().id(sessionUserId).build()) // 게시글 작성자 설정
+                .user(User.builder().id(sessionUserId).build())
                 .build();
+        // 게시글 작성자 설정 .build();
         // 생성한 Board 객체를 Repository를 통해 데이터베이스에 저장
         boardRepository.save(board);
     }
