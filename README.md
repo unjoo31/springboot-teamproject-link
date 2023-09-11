@@ -1,3 +1,5 @@
+<img src = "images/main.png" width="900" height="500" />
+
 # 스프링부트 팀프로젝트 Link
 
 ## 프로젝트 3조
