@@ -177,6 +177,8 @@ public class NoticeController {
             @RequestParam(name = "selectedAreas", required = false) List<String> selectedAreaNames,
             HttpServletRequest request) {
 
+        User sessionUser = (User) session.getAttribute("sessionUser");
+
         // 스킬 리스트 보여주기
         List<Skill> skills = skillService.스킬리스트목록보기();
         request.setAttribute("skills", skills);
@@ -218,7 +220,6 @@ public class NoticeController {
 
         // 기업 리스트 보여주기
         List<User> companyUsers = userService.기업회원조회();
-
         List<Map<String, Object>> companyDataList = new ArrayList<>();
         for (User companyuser : companyUsers) {
             Map<String, Object> companyData = new HashMap<>();
@@ -226,11 +227,33 @@ public class NoticeController {
             companyData.put("business", companyuser.getBusiness());
             companyData.put("address", companyuser.getAddress());
             companyData.put("picUrl", companyuser.getPicUrl());
-
+            companyData.put("id", companyuser.getId());
             companyDataList.add(companyData);
         }
 
+        // 유저 리스트 보여주기
+        List<User> users = userService.일반회원조회();
+        List<Map<String, Object>> userDataList = new ArrayList<>();
+        for (User user : users) {
+            Map<String, Object> userData = new HashMap<>();
+            userData.put("name", user.getName());
+            userData.put("business", user.getBusiness());
+            userData.put("address", user.getAddress());
+            userData.put("picUrl", user.getPicUrl());
+            userData.put("id", user.getId());
+            userDataList.add(userData);
+        }
+        request.setAttribute("userDataList", userDataList);
         request.setAttribute("companyDataList", companyDataList);
+
+        int companyUser = 1;
+
+        if (sessionUser == null) {
+            return "index";
+        }
+        if (sessionUser.getCompanyUser() == true) {
+            request.setAttribute("companyUser", companyUser);
+        }
 
         return "index";
     }

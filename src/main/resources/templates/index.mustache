@@ -694,7 +694,7 @@ a {
 
         if (selectedSkillNames.length > 0 && selectedAreaNames.length > 0) {
             // 선택된 스킬과 지역 값을 서버로 전송
-            const queryString = `selectedSkills=${selectedSkillNames.join(',')}&selectedAreas=${selectedAreaNames.join(',')}`;
+            let queryString = `selectedSkills=${selectedSkillNames.join(',')}&selectedAreas=${selectedAreaNames.join(',')}`;
             window.location.href = `/filtered-notices?${queryString}`;
         } else {
             console.log("선택안됨");
