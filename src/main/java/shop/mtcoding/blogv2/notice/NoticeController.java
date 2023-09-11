@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.blogv2._core.error.ex.MyApiException;
 import shop.mtcoding.blogv2._core.error.ex.MyException;
+import shop.mtcoding.blogv2._core.util.Script;
 import shop.mtcoding.blogv2.apply.Apply;
 import shop.mtcoding.blogv2.apply.ApplyRequest;
 import shop.mtcoding.blogv2.apply.ApplyService;
@@ -303,9 +304,7 @@ public class NoticeController {
     }
 
     @GetMapping("/corporationSaveResumeUpdate/{noticeId}")
-    public String corporationSaveResumeUpdateForm(@PathVariable Integer noticeId, Model model1, Model model2,
-            Model model3, Model model4,
-            Model model5) {
+    public String corporationSaveResumeUpdateForm(@PathVariable Integer noticeId, Model model1) {
 
         User sessionUser = (User) session.getAttribute("sessionUser");
         Notice notice = noticeService.채용공고가져오기(noticeId);
@@ -319,12 +318,13 @@ public class NoticeController {
         List<Area> restArea = areaService.채용공고나머지지역가져오기(notice.getId());
 
         model1.addAttribute("userNotice", notice); // 이력서를 보여주는 모델
+        System.out.println("Noticie 테스트 : " + notice.getEndDate());
 
-        model2.addAttribute("selectSkill", skill2); // 선택한 기술을 보여주는 모델
-        model3.addAttribute("restSkill", restSkill); // 선택하고 남은 기술을 보여주는 모델
+        model1.addAttribute("selectSkill", skill2); // 선택한 기술을 보여주는 모델
+        model1.addAttribute("restSkill", restSkill); // 선택하고 남은 기술을 보여주는 모델
 
-        model4.addAttribute("selectArea", area2); // 선택한 지역을 보여주는 모델
-        model5.addAttribute("restArea", restArea); // 선택하고 남은 지역을 보여주는 모델
+        model1.addAttribute("selectArea", area2); // 선택한 지역을 보여주는 모델
+        model1.addAttribute("restArea", restArea); // 선택하고 남은 지역을 보여주는 모델
         return "/corporation/corporationSaveResumeUpdate";
     }
 
@@ -341,23 +341,28 @@ public class NoticeController {
     }
 
     @GetMapping("/corporationSaveResume")
-    public String corporationSaveResumeForm(Model model1, Model model2) {
+    public String corporationSaveResumeForm(Model model1) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.회원정보보기(sessionUser.getId());
         List<Skill> skill = skillService.모든스킬가져오기();
         List<Area> area = areaService.모든지역가져오기();
         model1.addAttribute("userInfo", user);
         model1.addAttribute("skills", skill);
-        model2.addAttribute("areas", area);
+        model1.addAttribute("areas", area);
         return "/corporation/corporationSaveResume";
     }
 
     
     @PostMapping("/corporationSave")
     public String corporationSaveResume(NoticeRequest.NoticeSaveDTO noticeSaveDTO) {
+        try {
         User sessionUser = (User) session.getAttribute("sessionUser");
         noticeService.채용공고등록(noticeSaveDTO, sessionUser.getId());
-        return "redirect:/corporationResume";
+        return "redirect:/corporationResume";    
+        } catch (Exception e) {
+           throw new MyException("기술과 지역을 체크해주세요");
+        }
+        
     }
 
     @PostMapping("/corporationUpdate/{noticeId}")
