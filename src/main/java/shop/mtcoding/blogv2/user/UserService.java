@@ -1,5 +1,6 @@
 package shop.mtcoding.blogv2.user;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,12 +27,29 @@ public class UserService {
     // 회원가입
     @Transactional
     public void 회원가입(JoinDTO joinDTO) {
+        
+        String fileName = null;
+
+        
+        if (joinDTO.getPic() == null || joinDTO.getPic().isEmpty()) {
+            fileName = "basic.jpg"; // 디폴트 이미지 파일 이름
+        } else {
+            fileName = function.saveImage(joinDTO.getPic());
+        }        
 
         User user = User.builder()
             .username(joinDTO.getUsername())
             .password(joinDTO.getPassword())
             .email(joinDTO.getEmail())
             .companyUser(joinDTO.getCompanyUser())
+            .picUrl(fileName)
+            .address("")
+            .business("")
+            .form("")
+            .name("")
+            .phonenumber("")
+            .performance("")
+            .age(Date.valueOf("1900-01-01"))
             .build();
 
         userRepository.save(user);
@@ -86,7 +104,6 @@ public class UserService {
         User user = userRepository.findById(id).get();
         user.setPassword(updateDTO.getPassword());
         user.setEmail(updateDTO.getEmail());
-        user.setCompanyUser(updateDTO.getCompanyUser());
         user.setName(updateDTO.getName());
         user.setPhonenumber(updateDTO.getPhonenumber());
         user.setAddress(updateDTO.getAddress());
@@ -110,5 +127,6 @@ public class UserService {
 
     public List<User> 일반회원조회() {
         return userRepository.findByCompanyUserIsFalse();
-    }   
+    }
+
 }

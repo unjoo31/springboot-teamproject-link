@@ -112,13 +112,13 @@ public class BookmarkController {
     @PostMapping("/applyNoticeBookmark")
     public @ResponseBody String applyNoticeBookmark(BookmarkRequest.BookmarkDTO bookmarkDTO){
         User sessionUser = (User) session.getAttribute("sessionUser");
-        System.out.println("북마크 테스트 1 :" + bookmarkDTO.getUserId());
-        System.out.println("북마크 테스트 2 :" + sessionUser.getId());
-    
+        if (sessionUser.getCompanyUser() == true) {
+        bookmarkService.북마크하기(bookmarkDTO, sessionUser.getId());
+        return Script.href("/userDetail/" + bookmarkDTO.getUserId(), "북마크 등록 완료");    
+        } 
 
         bookmarkService.북마크하기(bookmarkDTO, sessionUser.getId());
         return Script.href("/corporationDetail/" + bookmarkDTO.getUserId(), "북마크 등록 완료");      
-        // return "redirect:/corporationDetail/" + bookmarkDTO.getUserId();
     }
 
     @GetMapping("/api/seekerCompanies")

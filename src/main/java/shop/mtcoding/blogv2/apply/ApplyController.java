@@ -129,9 +129,6 @@ public class ApplyController {
     // 합격, 불합격, 미정 
     @PostMapping("/apply/pass")
     public String pass(ApplyRequest.PassDTO passDTO){
-    System.out.println("나 여기 있어 : "+passDTO.getPass());
-    System.out.println("나 여기 있어 : "+passDTO.getApplyId());
-    System.out.println("나 여기 있어 : "+passDTO.getNoticeId());
     applyService.합격여부결정(passDTO);
     return "redirect:/corporationSupportDetail/" + passDTO.getNoticeId();
 }

@@ -352,6 +352,7 @@ public class NoticeController {
         return "/corporation/corporationSaveResume";
     }
 
+    
     @PostMapping("/corporationSave")
     public String corporationSaveResume(NoticeRequest.NoticeSaveDTO noticeSaveDTO) {
         User sessionUser = (User) session.getAttribute("sessionUser");

@@ -17,6 +17,7 @@ public class UserRequest {
         private String password;
         private String email;
         private Boolean companyUser;
+        private MultipartFile Pic;
     }
 
     @Getter
