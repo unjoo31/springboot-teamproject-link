@@ -291,7 +291,7 @@ public class NoticeController {
         request.setAttribute("expiredNoticeCount", expiredNoticeCount);
         request.setAttribute("count", noticeDataList.size());
         request.setAttribute("noticeDataList", noticeDataList);
-        return "/corporation/corporationSupport";
+        return "corporation/corporationSupport";
     }
 
     // 입사지원 화면
@@ -348,7 +348,7 @@ public class NoticeController {
 
         model1.addAttribute("selectArea", area2); // 선택한 지역을 보여주는 모델
         model1.addAttribute("restArea", restArea); // 선택하고 남은 지역을 보여주는 모델
-        return "/corporation/corporationSaveResumeUpdate";
+        return "corporation/corporationSaveResumeUpdate";
     }
 
     @GetMapping("/corporationResume")
@@ -359,7 +359,7 @@ public class NoticeController {
         // List<Skill> skill = hashSkilService.채용공고선택한스킬목록2(sessionUser.getId());
         model.addAttribute("userInfo", user);
         model.addAttribute("noticeList", noticeList);
-        return "/corporation/corporationResume";
+        return "corporation/corporationResume";
         // return noticeList;
     }
 
@@ -372,7 +372,7 @@ public class NoticeController {
         model1.addAttribute("userInfo", user);
         model1.addAttribute("skills", skill);
         model1.addAttribute("areas", area);
-        return "/corporation/corporationSaveResume";
+        return "corporation/corporationSaveResume";
     }
 
     

@@ -59,12 +59,12 @@ public class ResumeController {
         model1.addAttribute("userInfo", user);
         model1.addAttribute("existResume", resumeList);
         model1.addAttribute("selectSkill", skill2);
-        return "/seeker/seekerResume";
+        return "seeker/seekerResume";
     }
 
     @GetMapping("/seekerSupportForm")
     public String seekSupportForm() {
-        return "/seeker/seekerSupport";
+        return "seeker/seekerSupport";
     }
 
     // @GetMapping("/seekerCompanies")
@@ -81,7 +81,7 @@ public class ResumeController {
         model1.addAttribute("skills", skill);
         model1.addAttribute("areas", area);
         model1.addAttribute("user", user);
-        return "/seeker/seekerSaveResume";
+        return "seeker/seekerSaveResume";
     }
 
 
@@ -108,7 +108,7 @@ public class ResumeController {
         model1.addAttribute("selectArea", area2); // 선택한 지역을 보여주는 모델
         model1.addAttribute("restArea", restArea); // 선택하고 남은 지역을 보여주는 모델
 
-        return "/seeker/seekerSaveResumeUpdate";
+        return "seeker/seekerSaveResumeUpdate";
     }
 
     // Post맵핑 호출공간

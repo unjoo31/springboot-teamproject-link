@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.mysql.cj.protocol.x.Notice;
 
-import shop.mtcoding.blogv2.resume.Resume;
-import shop.mtcoding.blogv2.resume.ResumeRequest;
 import shop.mtcoding.blogv2.user.User;
 
 @Controller
@@ -102,7 +99,7 @@ public class ApplyController {
         request.setAttribute("fail", failCount);
         request.setAttribute("undecided", undecidedCount);
 
-        return "/corporation/corporationSupportDetail";
+        return "corporation/corporationSupportDetail";
     }
 
     // 지원현황 상세보기
@@ -111,7 +108,7 @@ public class ApplyController {
     Optional<Apply> apply = applyService.지원현황상세보기(id);
     request.setAttribute("apply", apply);
     
-    return "/seeker/seekerSupportDetail";
+    return "seeker/seekerSupportDetail";
 
     }
 
