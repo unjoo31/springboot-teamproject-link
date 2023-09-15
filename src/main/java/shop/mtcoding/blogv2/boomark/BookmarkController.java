@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mysql.cj.protocol.x.Notice;
 
-import shop.mtcoding.blogv2._core.error.ex.MyApiException;
 import shop.mtcoding.blogv2._core.error.ex.MyException;
 import shop.mtcoding.blogv2._core.util.Script;
 import shop.mtcoding.blogv2.hashskil.HashSkil;
@@ -62,7 +60,7 @@ public class BookmarkController {
         }
         request.setAttribute("companyDataList", companyDataList);
         
-        return "/seeker/seekerCompanies";
+        return "seeker/seekerCompanies";
     }
 
     // 채용공고 북마크
@@ -104,7 +102,7 @@ public class BookmarkController {
         System.out.println();
 
         request.setAttribute("userDataList", userDataList);
-        return "/corporation/corporationSeeker";
+        return "corporation/corporationSeeker";
     }
 
     

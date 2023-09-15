@@ -247,8 +247,5 @@ public class NoticeService {
         return noticeRepository.findByUserId(id);
     }
 
-    public com.mysql.cj.protocol.x.Notice getNoticeById(Integer noticeId) {
-        return null;
-    }
 
 }
